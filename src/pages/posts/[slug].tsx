@@ -20,7 +20,7 @@ import OpenGraphMeta from "../../components/meta/OpenGraphMeta";
 import TwitterCardMeta from "../../components/meta/TwitterCardMeta";
 import { SocialList } from "../../components/SocialList";
 import TagButton from "../../components/TagButton";
-import { AuthorContent, getAuthor } from "../../lib/authors";
+import { AuthorContent } from "../../lib/authors";
 import { TagContent } from "../../lib/tags";
 import { GetStaticPaths, GetStaticProps } from "next";
 

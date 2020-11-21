@@ -43,7 +43,7 @@ export const getStaticProps: GetStaticProps = async () => {
   }));
   const posts = grayMatters.map(grayMatter => grayMatter.data)
   const tagsFile = fs.readFileSync(path.join(process.cwd(), 'meta', 'tags.yml'), 'utf-8')
-  const tags = yaml.safeLoad(tagsFile, { schema: yaml.JSON_SCHEMA });
+  const { tags } = yaml.safeLoad(tagsFile, { schema: yaml.JSON_SCHEMA }) as { tags: TagContent[] };
   const pagination = {
     current: 1,
     pages: 1,

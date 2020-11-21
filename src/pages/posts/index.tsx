@@ -1,8 +1,6 @@
 import { GetStaticProps } from "next";
 import fs from 'fs'
 import path from 'path';
-import renderToString from 'next-mdx-remote/render-to-string'
-import hydrate from 'next-mdx-remote/hydrate'
 import matter from "gray-matter";
 import yaml from "js-yaml";
 import Layout from "../../components/Layout";
@@ -10,8 +8,7 @@ import BasicMeta from "../../components/meta/BasicMeta";
 import OpenGraphMeta from "../../components/meta/OpenGraphMeta";
 import TwitterCardMeta from "../../components/meta/TwitterCardMeta";
 import PostList from "../../components/PostList";
-import config from "../../lib/config";
-import { listTags, TagContent } from "../../lib/tags";
+import { TagContent } from "../../lib/tags";
 
 type Props = {
   posts: any[];
@@ -45,7 +42,8 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   }));
   const posts = grayMatters.map(grayMatter => grayMatter.data)
-  const tags = listTags();
+  const tagsFile = fs.readFileSync(path.join(process.cwd(), 'meta', 'tags.yml'), 'utf-8')
+  const tags = yaml.safeLoad(tagsFile, { schema: yaml.JSON_SCHEMA });
   const pagination = {
     current: 1,
     pages: 1,

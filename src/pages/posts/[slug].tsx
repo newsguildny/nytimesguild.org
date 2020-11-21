@@ -1,6 +1,6 @@
-import Head from "next/head";
 import React from "react";
 import fs from 'fs'
+import Head from "next/head";
 import path from 'path';
 import renderToString from 'next-mdx-remote/render-to-string'
 import hydrate from 'next-mdx-remote/hydrate'
@@ -20,8 +20,8 @@ import OpenGraphMeta from "../../components/meta/OpenGraphMeta";
 import TwitterCardMeta from "../../components/meta/TwitterCardMeta";
 import { SocialList } from "../../components/SocialList";
 import TagButton from "../../components/TagButton";
-import { getAuthor } from "../../lib/authors";
-import { getTag } from "../../lib/tags";
+import { AuthorContent, getAuthor } from "../../lib/authors";
+import { TagContent } from "../../lib/tags";
 import { GetStaticPaths, GetStaticProps } from "next";
 
 const components = {
@@ -35,8 +35,8 @@ type Props = {
   date: Date;
   slug: string;
   description: string;
-  tags: string[];
-  author: string;
+  tags: TagContent[];
+  author: AuthorContent;
   source: any;
   pages: string[];
 };
@@ -51,8 +51,8 @@ export default function Post({
   source,
   pages,
 }: Props) {
-  const keywords = tags.map((it) => getTag(it).name);
-  const authorName = getAuthor(author).name;
+  const keywords = tags.map((tag) => tag.slug);
+  const authorName = author.name;
   date = new globalThis.Date(date)
   return (
     <Layout pages={pages}>
@@ -89,7 +89,7 @@ export default function Post({
                 <Date date={date} />
               </div>
               <div>
-                <Author author={getAuthor(author)} />
+                <Author author={author} />
               </div>
             </div>
           </header>
@@ -97,7 +97,7 @@ export default function Post({
           <ul className={"tag-list"}>
             {tags.map((it, i) => (
               <li key={i}>
-                <TagButton tag={getTag(it)} />
+                <TagButton tag={it} />
               </li>
             ))}
           </ul>
@@ -267,10 +267,22 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
   });
   const mdxSource = await renderToString(matterResult.content, { components })
+  const tagsFile = fs.readFileSync(
+    path.join(process.cwd(), "meta", "tags.yml"),
+    "utf-8"
+  );
+  const { tags } = yaml.safeLoad(tagsFile, { schema: yaml.JSON_SCHEMA }) as { tags: TagContent[] };
+  const authorsFile = fs.readFileSync(
+    path.join(process.cwd(), "meta", "authors.yml"),
+    "utf-8"
+  );
+  const { authors } = yaml.safeLoad(authorsFile, { schema: yaml.JSON_SCHEMA }) as { authors: AuthorContent[] };
   return {
     props: {
       source: mdxSource,
       ...matterResult.data,
+      tags: tags.filter(tag => matterResult.data.tags.includes(tag.slug) ),
+      authors: authors.find(author => matterResult.data.author === author.slug),
       pages
     },
   };

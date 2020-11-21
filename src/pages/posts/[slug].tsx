@@ -6,6 +6,9 @@ import renderToString from 'next-mdx-remote/render-to-string'
 import hydrate from 'next-mdx-remote/hydrate'
 import matter from "gray-matter";
 import yaml from "js-yaml";
+import InstagramEmbed from "react-instagram-embed";
+import YouTube from "react-youtube";
+import { TwitterTweetEmbed } from "react-twitter-embed";
 import styles from "../../../public/styles/content.module.css";
 import Author from "../../components/Author";
 import Copyright from "../../components/Copyright";
@@ -21,6 +24,11 @@ import { getAuthor } from "../../lib/authors";
 import { getTag } from "../../lib/tags";
 import { GetStaticPaths, GetStaticProps } from "next";
 
+const components = {
+  InstagramEmbed,
+  YouTube,
+  TwitterTweetEmbed,
+};
 
 type Props = {
   title: string;
@@ -85,7 +93,7 @@ export default function Post({
               </div>
             </div>
           </header>
-          <div className={styles.content}>{hydrate(source)}</div>
+          <div className={styles.content}>{hydrate(source, { components })}</div>
           <ul className={"tag-list"}>
             {tags.map((it, i) => (
               <li key={i}>
@@ -258,7 +266,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       yaml: (s) => yaml.safeLoad(s, { schema: yaml.JSON_SCHEMA }) as object,
     },
   });
-  const mdxSource = await renderToString(matterResult.content)
+  const mdxSource = await renderToString(matterResult.content, { components })
   return {
     props: {
       source: mdxSource,

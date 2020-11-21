@@ -1,19 +1,22 @@
+import { GetStaticProps } from "next";
+import fs from 'fs';
+import path from 'path';
 import Layout from "../components/Layout";
 import BasicMeta from "../components/meta/BasicMeta";
 import OpenGraphMeta from "../components/meta/OpenGraphMeta";
 import TwitterCardMeta from "../components/meta/TwitterCardMeta";
 import { SocialList } from "../components/SocialList";
 
-export default function Index() {
+export default function Index({ pages }) {
   return (
-    <Layout>
+    <Layout pages={pages}>
       <BasicMeta url={"/"} />
       <OpenGraphMeta url={"/"} />
       <TwitterCardMeta url={"/"} />
       <div className="container">
         <div>
           <h1>
-            Hi, We're Next.js & Netlify<span className="fancy">.</span>
+            Hi, We're Next.js &amp; Netlify<span className="fancy">.</span>
           </h1>
           <span className="handle">@nextjs-netlify-blog</span>
           <h2>A blog template with Next.js and Netlify.</h2>
@@ -59,4 +62,13 @@ export default function Index() {
       `}</style>
     </Layout>
   );
+}
+
+export const getStaticProps: GetStaticProps = async () => {
+  const pages = fs.readdirSync(path.join(process.cwd(), 'src', 'markdown', 'pages')).map(page => page.slice(0, page.length - 4))
+  return {
+    props: {
+      pages
+    }
+  }
 }

@@ -1,18 +1,26 @@
 import Head from "next/head";
 import React from "react";
-import styles from "../../public/styles/content.module.css";
-import Author from "../components/Author";
-import Copyright from "../components/Copyright";
-import Date from "../components/Date";
-import Layout from "../components/Layout";
-import BasicMeta from "../components/meta/BasicMeta";
-import JsonLdMeta from "../components/meta/JsonLdMeta";
-import OpenGraphMeta from "../components/meta/OpenGraphMeta";
-import TwitterCardMeta from "../components/meta/TwitterCardMeta";
-import { SocialList } from "../components/SocialList";
-import TagButton from "../components/TagButton";
-import { getAuthor } from "../lib/authors";
-import { getTag } from "../lib/tags";
+import fs from 'fs'
+import path from 'path';
+import renderToString from 'next-mdx-remote/render-to-string'
+import hydrate from 'next-mdx-remote/hydrate'
+import matter from "gray-matter";
+import yaml from "js-yaml";
+import styles from "../../../public/styles/content.module.css";
+import Author from "../../components/Author";
+import Copyright from "../../components/Copyright";
+import Date from "../../components/Date";
+import Layout from "../../components/Layout";
+import BasicMeta from "../../components/meta/BasicMeta";
+import JsonLdMeta from "../../components/meta/JsonLdMeta";
+import OpenGraphMeta from "../../components/meta/OpenGraphMeta";
+import TwitterCardMeta from "../../components/meta/TwitterCardMeta";
+import { SocialList } from "../../components/SocialList";
+import TagButton from "../../components/TagButton";
+import { getAuthor } from "../../lib/authors";
+import { getTag } from "../../lib/tags";
+import { GetStaticPaths, GetStaticProps } from "next";
+
 
 type Props = {
   title: string;
@@ -21,75 +29,80 @@ type Props = {
   description: string;
   tags: string[];
   author: string;
+  source: any;
+  pages: string[];
 };
-export default function Index({
+
+export default function Post({
   title,
   date,
   slug,
   author,
   tags,
   description,
+  source,
+  pages,
 }: Props) {
   const keywords = tags.map((it) => getTag(it).name);
   const authorName = getAuthor(author).name;
-  return ({ children: content }) => {
-    return (
-      <Layout>
-        <BasicMeta
-          url={`/posts/${slug}`}
-          title={title}
-          keywords={keywords}
-          description={description}
-        />
-        <TwitterCardMeta
-          url={`/posts/${slug}`}
-          title={title}
-          description={description}
-        />
-        <OpenGraphMeta
-          url={`/posts/${slug}`}
-          title={title}
-          description={description}
-        />
-        <JsonLdMeta
-          url={`/posts/${slug}`}
-          title={title}
-          keywords={keywords}
-          date={date}
-          author={authorName}
-          description={description}
-        />
-        <div className={"container"}>
-          <article>
-            <header>
-              <h1>{title}</h1>
-              <div className={"metadata"}>
-                <div>
-                  <Date date={date} />
-                </div>
-                <div>
-                  <Author author={getAuthor(author)} />
-                </div>
+  date = new globalThis.Date(date)
+  return (
+    <Layout pages={pages}>
+      <BasicMeta
+        url={`/posts/${slug}`}
+        title={title}
+        keywords={keywords}
+        description={description}
+      />
+      <TwitterCardMeta
+        url={`/posts/${slug}`}
+        title={title}
+        description={description}
+      />
+      <OpenGraphMeta
+        url={`/posts/${slug}`}
+        title={title}
+        description={description}
+      />
+      <JsonLdMeta
+        url={`/posts/${slug}`}
+        title={title}
+        keywords={keywords}
+        date={date}
+        author={authorName}
+        description={description}
+      />
+      <div className={"container"}>
+        <article>
+          <header>
+            <h1>{title}</h1>
+            <div className={"metadata"}>
+              <div>
+                <Date date={date} />
               </div>
-            </header>
-            <div className={styles.content}>{content}</div>
-            <ul className={"tag-list"}>
-              {tags.map((it, i) => (
-                <li key={i}>
-                  <TagButton tag={getTag(it)} />
-                </li>
-              ))}
-            </ul>
-          </article>
-          <footer>
-            <div className={"social-list"}>
-              <SocialList />
+              <div>
+                <Author author={getAuthor(author)} />
+              </div>
             </div>
-            <Copyright />
-          </footer>
-        </div>
-        <style jsx>
-          {`
+          </header>
+          <div className={styles.content}>{hydrate(source)}</div>
+          <ul className={"tag-list"}>
+            {tags.map((it, i) => (
+              <li key={i}>
+                <TagButton tag={getTag(it)} />
+              </li>
+            ))}
+          </ul>
+        </article>
+        <footer>
+          <div className={"social-list"}>
+            <SocialList />
+          </div>
+          <Copyright />
+        </footer>
+      </div>
+      <style jsx>
+        {`
             .container {
               display: block;
               max-width: 36rem;
@@ -131,9 +144,9 @@ export default function Index({
               }
             }
           `}
-        </style>
-        <style global jsx>
-          {`
+      </style>
+      <style global jsx>
+        {`
             /* Syntax highlighting */
             .token.comment,
             .token.prolog,
@@ -231,8 +244,35 @@ export default function Index({
               color: #005cc5;
             }
           `}
-        </style>
-      </Layout>
-    );
+      </style>
+    </Layout>
+  );
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const pages = fs.readdirSync(path.join(process.cwd(), 'src', 'markdown', 'pages')).map(page => page.slice(0, page.length - 4))
+  const filePath = path.join(process.cwd(), 'src', 'markdown', 'posts', `${params.slug}.mdx`);
+  const fileContents = fs.readFileSync(filePath, "utf8");
+  const matterResult = matter(fileContents, {
+    engines: {
+      yaml: (s) => yaml.safeLoad(s, { schema: yaml.JSON_SCHEMA }) as object,
+    },
+  });
+  const mdxSource = await renderToString(matterResult.content)
+  return {
+    props: {
+      source: mdxSource,
+      ...matterResult.data,
+      pages
+    },
   };
 }
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const pages = fs.readdirSync(path.join(process.cwd(), 'src', 'markdown', 'posts')).map(page => page.slice(0, page.length - 4))
+  const paths = pages.map(page => ({ params: { slug: page } }))
+  return {
+    paths: paths,
+    fallback: false,
+  };
+};

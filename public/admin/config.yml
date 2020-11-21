@@ -90,7 +90,7 @@ collections:
 
   - name: "posts"
     label: "Posts"
-    folder: "src/pages/posts"
+    folder: "src/markdown/posts"
     extension: "mdx"
     format: "frontmatter"
     create: true
@@ -139,7 +139,7 @@ collections:
       - label: "Body"
         name: "body"
         widget: "markdown"
-  
+
   - name: pages
     label: Pages
     folder: src/markdown/pages
@@ -159,4 +159,3 @@ collections:
       - label: Body
         name: body
         widget: markdown
-

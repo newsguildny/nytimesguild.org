@@ -1,14 +1,14 @@
-import { GetStaticProps, GetStaticPaths } from "next";
-import fs from 'fs'
+import { GetStaticProps, GetStaticPaths } from 'next';
+import fs from 'fs';
 import path from 'path';
-import renderToString from 'next-mdx-remote/render-to-string'
-import hydrate from 'next-mdx-remote/hydrate'
-import matter from "gray-matter";
-import yaml from "js-yaml";
-import Layout from "../components/Layout";
+import renderToString from 'next-mdx-remote/render-to-string';
+import hydrate from 'next-mdx-remote/hydrate';
+import matter from 'gray-matter';
+import yaml from 'js-yaml';
+import Layout from '../components/Layout';
 
 const Page = ({ source, title, pages }) => {
-  const content = hydrate(source, { components: { Page } })
+  const content = hydrate(source, { components: { Page } });
   return (
     <Layout pages={pages}>
       <div className="container">
@@ -55,35 +55,39 @@ const Page = ({ source, title, pages }) => {
         }
       `}</style>
     </Layout>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const pages = fs.readdirSync(path.join(process.cwd(), 'src', 'markdown', 'pages')).map(page => page.slice(0, page.length - 4))
+  const pages = fs
+    .readdirSync(path.join(process.cwd(), 'src', 'markdown', 'pages'))
+    .map((page) => page.slice(0, page.length - 4));
   const filePath = path.join(process.cwd(), 'src', 'markdown', 'pages', `${params.slug}.mdx`);
-  const fileContents = fs.readFileSync(filePath, "utf8");
+  const fileContents = fs.readFileSync(filePath, 'utf8');
   const matterResult = matter(fileContents, {
     engines: {
-      yaml: (s) => yaml.safeLoad(s, { schema: yaml.JSON_SCHEMA }) as object,
+      yaml: (s) => yaml.safeLoad(s, { schema: yaml.JSON_SCHEMA }) as any,
     },
   });
-  const mdxSource = await renderToString(matterResult.content)
+  const mdxSource = await renderToString(matterResult.content);
   return {
     props: {
       pages,
       source: mdxSource,
-      title: matterResult.data.title
+      title: matterResult.data.title,
     },
   };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const pages = fs.readdirSync(path.join(process.cwd(), 'src', 'markdown', 'pages')).map(page => page.slice(0, page.length - 4))
-  const paths = pages.map(page => ({ params: { slug: page } }))
+  const pages = fs
+    .readdirSync(path.join(process.cwd(), 'src', 'markdown', 'pages'))
+    .map((page) => page.slice(0, page.length - 4));
+  const paths = pages.map((page) => ({ params: { slug: page } }));
   return {
-    paths: paths,
+    paths,
     fallback: false,
   };
 };

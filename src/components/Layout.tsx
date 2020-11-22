@@ -1,11 +1,12 @@
-import Head from "next/head";
-import Navigation from "./Navigation";
+import { FC } from 'react';
+import Head from 'next/head';
+import Navigation from './Navigation';
 
-type Props = {
-  children: React.ReactNode;
+interface Props {
   pages: string[];
-};
-export default function Layout({ pages, children }: Props) {
+}
+
+const Layout: FC<Props> = ({ pages, children }) => {
   return (
     <div className="root">
       <Head>
@@ -44,4 +45,6 @@ export default function Layout({ pages, children }: Props) {
       </style>
     </div>
   );
-}
+};
+
+export default Layout;

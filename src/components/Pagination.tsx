@@ -1,25 +1,26 @@
-import { generatePagination } from "../lib/pagination";
-import Link from "next/link";
+import Link from 'next/link';
+import { generatePagination } from '../lib/pagination';
 
-type Props = {
+interface Props {
   current: number;
   pages: number;
   link: {
     href: (page: number) => string;
     as: (page: number) => string;
   };
-};
+}
+
 export default function Pagination({ current, pages, link }: Props) {
   const pagination = generatePagination(current, pages);
   return (
     <ul>
-      {pagination.map((it, i) => (
-        <li key={i}>
+      {pagination.map((it) => (
+        <li key={it.page}>
           {it.excerpt ? (
-            "..."
+            '...'
           ) : (
             <Link href={link.href(it.page)} as={link.as(it.page)}>
-              <a className={it.page === current ? "active" : null}>{it.page}</a>
+              <a className={it.page === current ? 'active' : null}>{it.page}</a>
             </Link>
           )}
         </li>

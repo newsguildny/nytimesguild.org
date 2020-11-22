@@ -1,26 +1,26 @@
-import Link from "next/link";
-import { useRouter } from "next/router";
-import Burger from "./Burger";
-import { useState } from "react";
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
+import Burger from './Burger';
 
 interface Props {
   pages: string[];
 }
 
-export default function Navigation({ pages }) {
+export default function Navigation({ pages }: Props) {
   const router = useRouter();
   const [active, setActive] = useState(false);
   return (
     <>
       <Burger active={active} onClick={() => setActive(!active)} />
-      <div className={"container " + (active ? "active" : "")}>
+      <div className={`container ${active ? 'active' : ''}`}>
         <ul>
           <li>
             <Link href="/">
-              <a className={router.pathname === "/" ? "active" : null}>home</a>
+              <a className={router.pathname === '/' ? 'active' : null}>home</a>
             </Link>
           </li>
-          {pages.map(page => (
+          {pages.map((page) => (
             <li key={page}>
               <Link href={`/${page}`}>
                 <a className={router.pathname === `/${page}` ? 'active' : null}>{page}</a>
@@ -29,13 +29,7 @@ export default function Navigation({ pages }) {
           ))}
           <li>
             <Link href="/posts">
-              <a
-                className={
-                  router.pathname.startsWith("/posts") ? "active" : null
-                }
-              >
-                blog
-              </a>
+              <a className={router.pathname.startsWith('/posts') ? 'active' : null}>blog</a>
             </Link>
           </li>
         </ul>

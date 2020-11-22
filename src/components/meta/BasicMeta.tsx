@@ -1,39 +1,27 @@
-import Head from "next/head";
-import config from "../../lib/config";
+import Head from 'next/head';
+import config from '../../lib/config.json';
 
-type Props = {
+interface Props {
   title?: string;
   description?: string;
   keywords?: string[];
   author?: string;
   url: string;
-};
-export default function BasicMeta({
-  title,
-  description,
-  keywords,
-  author,
-  url,
-}: Props) {
+}
+
+export default function BasicMeta({ title, description, keywords, author, url }: Props) {
   return (
     <Head>
-      <title>
-        {title ? [title, config.site_title].join(" | ") : config.site_title}
-      </title>
-      <meta
-        name="description"
-        content={description ? description : config.site_description}
-      />
+      <title>{title ? [title, config.siteTitle].join(' | ') : config.siteTitle}</title>
+      <meta name="description" content={description || config.siteDescription} />
       <meta
         name="keywords"
         content={
-          keywords
-            ? keywords.join(",")
-            : config.site_keywords.map((it) => it.keyword).join(",")
+          keywords ? keywords.join(',') : config.siteKeywords.map((it) => it.keyword).join(',')
         }
       />
       {author ? <meta name="author" content={author} /> : null}
-      <link rel="canonical" href={config.base_url + url} />
+      <link rel="canonical" href={config.baseUrl + url} />
     </Head>
   );
 }

@@ -9,9 +9,10 @@ import OpenGraphMeta from '../../components/meta/OpenGraphMeta';
 import TwitterCardMeta from '../../components/meta/TwitterCardMeta';
 import PostList from '../../components/PostList';
 import { TagContent } from '../../lib/tags';
+import { PostContent } from '../../lib/posts';
 
 interface Props {
-  posts: any[];
+  posts: PostContent[];
   tags: TagContent[];
   pages: string[];
   pagination: {
@@ -43,7 +44,8 @@ export const getStaticProps: GetStaticProps = async () => {
   const grayMatters = paths.map((filePath) =>
     matter(fs.readFileSync(filePath, 'utf-8'), {
       engines: {
-        yaml: (s) => yaml.safeLoad(s, { schema: yaml.JSON_SCHEMA }) as any,
+        // eslint-disable-next-line @typescript-eslint/ban-types
+        yaml: (s) => yaml.safeLoad(s, { schema: yaml.JSON_SCHEMA }) as object,
       },
     })
   );

@@ -1,13 +1,19 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import fs from 'fs';
 import path from 'path';
-import renderToString from 'next-mdx-remote/render-to-string';
+import renderToString, { MdxSource } from 'next-mdx-remote/render-to-string';
 import hydrate from 'next-mdx-remote/hydrate';
 import matter from 'gray-matter';
 import yaml from 'js-yaml';
 import Layout from '../components/Layout';
 
-const Page = ({ source, title, pages }) => {
+interface Props {
+  source: MdxSource;
+  title: string;
+  pages: string[];
+}
+
+const Page = ({ source, title, pages }: Props) => {
   const content = hydrate(source, { components: { Page } });
   return (
     <Layout pages={pages}>
@@ -68,7 +74,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const matterResult = matter(fileContents, {
     engines: {
-      yaml: (s) => yaml.safeLoad(s, { schema: yaml.JSON_SCHEMA }) as any,
+      // eslint-disable-next-line @typescript-eslint/ban-types
+      yaml: (s) => yaml.safeLoad(s, { schema: yaml.JSON_SCHEMA }) as object,
     },
   });
   const mdxSource = await renderToString(matterResult.content);

@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import renderToString from 'next-mdx-remote/render-to-string';
+import renderToString, { MdxSource } from 'next-mdx-remote/render-to-string';
 import hydrate from 'next-mdx-remote/hydrate';
 import matter from 'gray-matter';
 import yaml from 'js-yaml';
@@ -35,7 +35,7 @@ interface Props {
   description: string;
   tags: TagContent[];
   author: AuthorContent;
-  source: any;
+  source: MdxSource;
   pages: string[];
 }
 
@@ -252,7 +252,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const matterResult = matter(fileContents, {
     engines: {
-      yaml: (s) => yaml.safeLoad(s, { schema: yaml.JSON_SCHEMA }) as any,
+      // eslint-disable-next-line @typescript-eslint/ban-types
+      yaml: (s) => yaml.safeLoad(s, { schema: yaml.JSON_SCHEMA }) as object,
     },
   });
   const mdxSource = await renderToString(matterResult.content, { components });

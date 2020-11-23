@@ -14,7 +14,7 @@ interface Props {
 }
 
 const Page = ({ source, title, pages }: Props) => {
-  const content = hydrate(source, { components: { Page } });
+  const content = hydrate(source);
   return (
     <Layout pages={pages}>
       <div className="container">
@@ -70,7 +70,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const pages = fs
     .readdirSync(path.join(process.cwd(), 'src', 'markdown', 'pages'))
     .map((page) => page.slice(0, page.length - 4));
-  const filePath = path.join(process.cwd(), 'src', 'markdown', 'pages', `${params.slug}.mdx`);
+  const filePath = path.join(process.cwd(), 'src', 'markdown', 'pages', `${params!.slug}.mdx`);
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const matterResult = matter(fileContents, {
     engines: {

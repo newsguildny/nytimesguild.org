@@ -17,7 +17,8 @@
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": "error",
     "import/extensions": ["error", {"ts": "never", "tsx": "never", "json": "always"}],
-    "@typescript-eslint/explicit-module-boundary-types": "off"
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-non-null-assertion": "off"
   },
   "settings": {
     "import/parsers": {

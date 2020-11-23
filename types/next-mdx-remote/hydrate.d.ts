@@ -1,7 +1,13 @@
-import { ReactNode } from 'react';
-import { MdxSource } from './MdxSource';
+/// <reference types="react" />
 
 declare module 'next-mdx-remote/hydrate' {
-  export function hydrate(source: MdxSource): ReactNode;
-  export { MdxSource };
+  interface Options {
+    components: Record<string, React.Component | ((props: never) => React.ReactNode)>;
+  }
+  export interface MdxSource {
+    compiledSource: string;
+    renderedOutput: string;
+    scope: Record<string, unknown>;
+  }
+  export default function hydrate(source: MdxSource, options?: Options): React.ReactNode;
 }

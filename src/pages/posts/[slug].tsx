@@ -8,6 +8,7 @@ import InstagramEmbed from 'react-instagram-embed';
 import YouTube from 'react-youtube';
 import { TwitterTweetEmbed } from 'react-twitter-embed';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { Component } from 'react';
 import styles from '../../../public/styles/content.module.css';
 import Author from '../../components/Author';
 import Copyright from '../../components/Copyright';
@@ -23,8 +24,8 @@ import { AuthorContent } from '../../lib/authors';
 import { TagContent } from '../../lib/tags';
 
 const components = {
-  InstagramEmbed,
-  YouTube,
+  InstagramEmbed: (InstagramEmbed as unknown) as Component,
+  YouTube: (YouTube as unknown) as Component,
   TwitterTweetEmbed,
 };
 
@@ -248,7 +249,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const pages = fs
     .readdirSync(path.join(process.cwd(), 'src', 'markdown', 'pages'))
     .map((page) => page.slice(0, page.length - 4));
-  const filePath = path.join(process.cwd(), 'src', 'markdown', 'posts', `${params.slug}.mdx`);
+  const filePath = path.join(process.cwd(), 'src', 'markdown', 'posts', `${params!.slug}.mdx`);
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const matterResult = matter(fileContents, {
     engines: {

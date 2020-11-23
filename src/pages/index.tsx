@@ -7,7 +7,11 @@ import OpenGraphMeta from '../components/meta/OpenGraphMeta';
 import TwitterCardMeta from '../components/meta/TwitterCardMeta';
 import { SocialList } from '../components/SocialList';
 
-export default function Index({ pages }) {
+interface Props {
+  pages: string[];
+}
+
+export default function Index({ pages }: Props) {
   return (
     <Layout pages={pages}>
       <BasicMeta url="/" />

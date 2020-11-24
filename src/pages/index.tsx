@@ -1,22 +1,26 @@
-import { GetStaticProps } from "next";
+import { GetStaticProps } from 'next';
 import fs from 'fs';
 import path from 'path';
-import Layout from "../components/Layout";
-import BasicMeta from "../components/meta/BasicMeta";
-import OpenGraphMeta from "../components/meta/OpenGraphMeta";
-import TwitterCardMeta from "../components/meta/TwitterCardMeta";
-import { SocialList } from "../components/SocialList";
+import Layout from '../components/Layout';
+import BasicMeta from '../components/meta/BasicMeta';
+import OpenGraphMeta from '../components/meta/OpenGraphMeta';
+import TwitterCardMeta from '../components/meta/TwitterCardMeta';
+import { SocialList } from '../components/SocialList';
 
-export default function Index({ pages }) {
+interface Props {
+  pages: string[];
+}
+
+export default function Index({ pages }: Props) {
   return (
     <Layout pages={pages}>
-      <BasicMeta url={"/"} />
-      <OpenGraphMeta url={"/"} />
-      <TwitterCardMeta url={"/"} />
+      <BasicMeta url="/" />
+      <OpenGraphMeta url="/" />
+      <TwitterCardMeta url="/" />
       <div className="container">
         <div>
           <h1>
-            Hi, We're Next.js &amp; Netlify<span className="fancy">.</span>
+            Hi, We&apos;re Next.js &amp; Netlify<span className="fancy">.</span>
           </h1>
           <span className="handle">@nextjs-netlify-blog</span>
           <h2>A blog template with Next.js and Netlify.</h2>
@@ -65,10 +69,12 @@ export default function Index({ pages }) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const pages = fs.readdirSync(path.join(process.cwd(), 'src', 'markdown', 'pages')).map(page => page.slice(0, page.length - 4))
+  const pages = fs
+    .readdirSync(path.join(process.cwd(), 'src', 'markdown', 'pages'))
+    .map((page) => page.slice(0, page.length - 4));
   return {
     props: {
-      pages
-    }
-  }
-}
+      pages,
+    },
+  };
+};

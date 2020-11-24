@@ -1,13 +1,24 @@
-type Props = {
+interface Props {
   active: boolean;
   onClick: () => void;
-};
+}
+
 export default function Burger({ active, onClick }: Props) {
   return (
-    <div className={"container " + (active ? "active" : "")} onClick={onClick}>
-      <div className={"meat meat-1"} />
-      <div className={"meat meat-2"} />
-      <div className={"meat meat-3"} />
+    <div
+      tabIndex={0}
+      className={`container ${active ? 'active' : ''}`}
+      onClick={onClick}
+      role="button"
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === 'Space') {
+          onClick();
+        }
+      }}
+    >
+      <div className="meat meat-1" />
+      <div className="meat meat-2" />
+      <div className="meat meat-3" />
       <style jsx>
         {`
           .container {

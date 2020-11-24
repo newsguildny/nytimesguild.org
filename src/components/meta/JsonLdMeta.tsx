@@ -31,7 +31,9 @@ export default function JsonLdMeta({
           '@type': 'BlogPosting',
           mainEntityOfPage: config.baseUrl + url,
           headline: title,
-          keywords: keywords ? undefined : keywords.join(','),
+          ...(keywords && {
+            keywords: keywords.join(','),
+          }),
           datePublished: formatISO(date),
           author,
           image,

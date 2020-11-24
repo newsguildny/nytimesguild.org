@@ -11,7 +11,7 @@ export function SocialList() {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <Twitter width={24} height={24} fill="#222" />
+        <Twitter />
       </a>
       <a
         title="GitHub"
@@ -19,7 +19,7 @@ export function SocialList() {
         target="_blank"
         rel="noopener noreferrer"
       >
-        <GitHub width={24} height={24} fill="#222" />
+        <GitHub />
       </a>
       <style jsx>{`
         a {

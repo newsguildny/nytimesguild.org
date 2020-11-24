@@ -15,12 +15,8 @@ interface Props {
   posts: PostContent[];
   tags: TagContent[];
   pages: string[];
-  pagination: {
-    current: number;
-    pages: number;
-  };
 }
-export default function Index({ posts, pages, tags, pagination }: Props) {
+export default function Index({ posts, pages, tags }: Props) {
   const url = '/posts';
   const title = 'All posts';
   return (
@@ -28,7 +24,7 @@ export default function Index({ posts, pages, tags, pagination }: Props) {
       <BasicMeta url={url} title={title} />
       <OpenGraphMeta url={url} title={title} />
       <TwitterCardMeta url={url} title={title} />
-      <PostList posts={posts} tags={tags} pagination={pagination} />
+      <PostList posts={posts} tags={tags} />
     </Layout>
   );
 }
@@ -52,16 +48,11 @@ export const getStaticProps: GetStaticProps = async () => {
   const posts = grayMatters.map((grayMatter) => grayMatter.data);
   const tagsFile = fs.readFileSync(path.join(process.cwd(), 'meta', 'tags.yml'), 'utf-8');
   const { tags } = yaml.safeLoad(tagsFile, { schema: yaml.JSON_SCHEMA }) as { tags: TagContent[] };
-  const pagination = {
-    current: 1,
-    pages: 1,
-  };
   return {
     props: {
       pages,
       posts,
       tags,
-      pagination,
     },
   };
 };

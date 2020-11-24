@@ -17,19 +17,19 @@ export default function Navigation({ pages }: Props) {
         <ul>
           <li>
             <Link href="/">
-              <a className={router.pathname === '/' ? 'active' : null}>home</a>
+              <a className={router.pathname === '/' ? 'active' : undefined}>home</a>
             </Link>
           </li>
           {pages.map((page) => (
             <li key={page}>
               <Link href={`/${page}`}>
-                <a className={router.pathname === `/${page}` ? 'active' : null}>{page}</a>
+                <a className={router.pathname === `/${page}` ? 'active' : undefined}>{page}</a>
               </Link>
             </li>
           ))}
           <li>
             <Link href="/posts">
-              <a className={router.pathname.startsWith('/posts') ? 'active' : null}>blog</a>
+              <a className={router.pathname.startsWith('/posts') ? 'active' : undefined}>blog</a>
             </Link>
           </li>
         </ul>

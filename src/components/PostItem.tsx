@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { parseISO } from 'date-fns';
-import { PostContent } from '../lib/posts';
+import { PostData } from '../lib/posts';
 import Date from './Date';
 
 interface Props {
-  post: PostContent;
+  post: PostData;
 }
 
 export default function PostItem({ post }: Props) {

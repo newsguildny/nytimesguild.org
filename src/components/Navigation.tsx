@@ -1,14 +1,12 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { PageTitlesContext } from '../lib/PageTitlesContext';
 import Burger from './Burger';
 
-interface Props {
-  pages: string[];
-}
-
-export default function Navigation({ pages }: Props) {
+export default function Navigation() {
   const router = useRouter();
+  const pageTitles = useContext(PageTitlesContext);
   const [active, setActive] = useState(false);
   return (
     <>
@@ -20,7 +18,7 @@ export default function Navigation({ pages }: Props) {
               <a className={router.pathname === '/' ? 'active' : undefined}>home</a>
             </Link>
           </li>
-          {pages.map((page) => (
+          {pageTitles.map((page) => (
             <li key={page}>
               <Link href={`/${page}`}>
                 <a className={router.pathname === `/${page}` ? 'active' : undefined}>{page}</a>

@@ -1,19 +1,14 @@
 import { GetStaticProps } from 'next';
-import fs from 'fs';
-import path from 'path';
 import Layout from '../components/Layout';
 import BasicMeta from '../components/meta/BasicMeta';
 import OpenGraphMeta from '../components/meta/OpenGraphMeta';
 import TwitterCardMeta from '../components/meta/TwitterCardMeta';
 import { SocialList } from '../components/SocialList';
+import { withNav } from '../lib/withNav';
 
-interface Props {
-  pages: string[];
-}
-
-export default function Index({ pages }: Props) {
+export default function Index() {
   return (
-    <Layout pages={pages}>
+    <Layout>
       <BasicMeta url="/" />
       <OpenGraphMeta url="/" />
       <TwitterCardMeta url="/" />
@@ -69,12 +64,5 @@ export default function Index({ pages }: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const pages = fs
-    .readdirSync(path.join(process.cwd(), 'src', 'markdown', 'pages'))
-    .map((page) => page.slice(0, page.length - 4));
-  return {
-    props: {
-      pages,
-    },
-  };
+  return withNav({ props: {} });
 };

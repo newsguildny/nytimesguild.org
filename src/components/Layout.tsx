@@ -2,11 +2,7 @@ import { FC } from 'react';
 import Head from 'next/head';
 import Navigation from './Navigation';
 
-interface Props {
-  pages: string[];
-}
-
-const Layout: FC<Props> = ({ pages, children }) => {
+const Layout: FC = ({ children }) => {
   return (
     <div className="root">
       <Head>
@@ -17,7 +13,7 @@ const Layout: FC<Props> = ({ pages, children }) => {
         <meta name="theme-color" content="#fff" />
       </Head>
       <nav>
-        <Navigation pages={pages} />
+        <Navigation />
       </nav>
       <main>{children}</main>
       <style jsx>

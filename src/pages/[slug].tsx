@@ -1,22 +1,19 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
-import fs from 'fs';
-import path from 'path';
-import renderToString, { MdxSource } from 'next-mdx-remote/render-to-string';
+import { MdxSource } from 'next-mdx-remote/render-to-string';
 import hydrate from 'next-mdx-remote/hydrate';
-import matter from 'gray-matter';
-import yaml from 'js-yaml';
+import { getPageData, getPageTitles } from '../lib/pages';
 import Layout from '../components/Layout';
+import { withNav } from '../lib/withNav';
 
 interface Props {
   source: MdxSource;
   title: string;
-  pages: string[];
 }
 
-const Page = ({ source, title, pages }: Props) => {
+const Page = ({ source, title }: Props) => {
   const content = hydrate(source);
   return (
-    <Layout pages={pages}>
+    <Layout>
       <div className="container">
         <div>
           <h1>{title}</h1>
@@ -66,33 +63,19 @@ const Page = ({ source, title, pages }: Props) => {
 
 export default Page;
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const pages = fs
-    .readdirSync(path.join(process.cwd(), 'src', 'markdown', 'pages'))
-    .map((page) => page.slice(0, page.length - 4));
-  const filePath = path.join(process.cwd(), 'src', 'markdown', 'pages', `${params!.slug}.mdx`);
-  const fileContents = fs.readFileSync(filePath, 'utf8');
-  const matterResult = matter(fileContents, {
-    engines: {
-      // eslint-disable-next-line @typescript-eslint/ban-types
-      yaml: (s) => yaml.safeLoad(s, { schema: yaml.JSON_SCHEMA }) as object,
+export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({ params }) => {
+  const { source, title } = await getPageData(params!.slug);
+  return withNav({
+    props: {
+      source,
+      title,
     },
   });
-  const mdxSource = await renderToString(matterResult.content);
-  return {
-    props: {
-      pages,
-      source: mdxSource,
-      title: matterResult.data.title,
-    },
-  };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const pages = fs
-    .readdirSync(path.join(process.cwd(), 'src', 'markdown', 'pages'))
-    .map((page) => page.slice(0, page.length - 4));
-  const paths = pages.map((page) => ({ params: { slug: page } }));
+  const pageTitles = getPageTitles();
+  const paths = pageTitles.map((pageTitle) => ({ params: { slug: pageTitle } }));
   return {
     paths,
     fallback: false,

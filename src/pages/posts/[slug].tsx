@@ -1,9 +1,5 @@
-import fs from 'fs';
-import path from 'path';
-import renderToString, { MdxSource } from 'next-mdx-remote/render-to-string';
+import { MdxSource } from 'next-mdx-remote/render-to-string';
 import hydrate from 'next-mdx-remote/hydrate';
-import matter from 'gray-matter';
-import yaml from 'js-yaml';
 import InstagramEmbed from 'react-instagram-embed';
 import YouTube from 'react-youtube';
 import { TwitterTweetEmbed } from 'react-twitter-embed';
@@ -20,8 +16,10 @@ import OpenGraphMeta from '../../components/meta/OpenGraphMeta';
 import TwitterCardMeta from '../../components/meta/TwitterCardMeta';
 import { SocialList } from '../../components/SocialList';
 import TagButton from '../../components/TagButton';
-import { AuthorContent } from '../../lib/authors';
-import { TagContent } from '../../lib/tags';
+import { AuthorContent, getAuthors } from '../../lib/authors';
+import { getTags, TagContent } from '../../lib/tags';
+import { getPostData, getPostSlugs } from '../../lib/posts';
+import { withNav } from '../../lib/withNav';
 
 const components = {
   InstagramEmbed: (InstagramEmbed as unknown) as Component,
@@ -31,45 +29,28 @@ const components = {
 
 interface Props {
   title: string;
-  date: Date;
+  dateString: string;
   slug: string;
-  description: string;
   tags: TagContent[];
   author: AuthorContent;
   source: MdxSource;
-  pages: string[];
 }
 
-export default function Post({
-  title,
-  date,
-  slug,
-  author,
-  tags,
-  description,
-  source,
-  pages,
-}: Props) {
+export default function Post({ title, dateString, slug, author, tags, source }: Props) {
   const keywords = tags.map((tag) => tag.slug);
   const authorName = author.name;
-  date = new globalThis.Date(date);
+  const date = new globalThis.Date(dateString);
   return (
-    <Layout pages={pages}>
-      <BasicMeta
-        url={`/posts/${slug}`}
-        title={title}
-        keywords={keywords}
-        description={description}
-      />
-      <TwitterCardMeta url={`/posts/${slug}`} title={title} description={description} />
-      <OpenGraphMeta url={`/posts/${slug}`} title={title} description={description} />
+    <Layout>
+      <BasicMeta url={`/posts/${slug}`} title={title} keywords={keywords} />
+      <TwitterCardMeta url={`/posts/${slug}`} title={title} />
+      <OpenGraphMeta url={`/posts/${slug}`} title={title} />
       <JsonLdMeta
         url={`/posts/${slug}`}
         title={title}
         keywords={keywords}
         date={date}
         author={authorName}
-        description={description}
       />
       <div className="container">
         <article>
@@ -245,41 +226,25 @@ export default function Post({
   );
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const pages = fs
-    .readdirSync(path.join(process.cwd(), 'src', 'markdown', 'pages'))
-    .map((page) => page.slice(0, page.length - 4));
-  const filePath = path.join(process.cwd(), 'src', 'markdown', 'posts', `${params!.slug}.mdx`);
-  const fileContents = fs.readFileSync(filePath, 'utf8');
-  const matterResult = matter(fileContents, {
-    engines: {
-      // eslint-disable-next-line @typescript-eslint/ban-types
-      yaml: (s) => yaml.safeLoad(s, { schema: yaml.JSON_SCHEMA }) as object,
+export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({ params }) => {
+  const { date, title, slug, tags, author, source } = await getPostData(params!.slug);
+  const allTags = getTags();
+  const authors = getAuthors();
+  return withNav({
+    props: {
+      dateString: date,
+      title,
+      slug,
+      source,
+      tags: tags ? allTags.filter(({ slug: tagSlug }) => tags.includes(tagSlug)) : [],
+      author: authors.find(({ slug: authorSlug }) => author === authorSlug)!,
     },
   });
-  const mdxSource = await renderToString(matterResult.content, { components });
-  const tagsFile = fs.readFileSync(path.join(process.cwd(), 'meta', 'tags.yml'), 'utf-8');
-  const { tags } = yaml.safeLoad(tagsFile, { schema: yaml.JSON_SCHEMA }) as { tags: TagContent[] };
-  const authorsFile = fs.readFileSync(path.join(process.cwd(), 'meta', 'authors.yml'), 'utf-8');
-  const { authors } = yaml.safeLoad(authorsFile, { schema: yaml.JSON_SCHEMA }) as {
-    authors: AuthorContent[];
-  };
-  return {
-    props: {
-      source: mdxSource,
-      ...matterResult.data,
-      tags: tags.filter((tag) => matterResult.data.tags.includes(tag.slug)),
-      authors: authors.find((author) => matterResult.data.author === author.slug),
-      pages,
-    },
-  };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const pages = fs
-    .readdirSync(path.join(process.cwd(), 'src', 'markdown', 'posts'))
-    .map((page) => page.slice(0, page.length - 4));
-  const paths = pages.map((page) => ({ params: { slug: page } }));
+  const postTitles = getPostSlugs();
+  const paths = postTitles.map((postTitle) => ({ params: { slug: postTitle } }));
   return {
     paths,
     fallback: false,

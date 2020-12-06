@@ -1,10 +1,10 @@
-import { PostContent } from '../lib/posts';
+import { PostData } from '../lib/posts';
 import PostItem from './PostItem';
 import TagLink from './TagLink';
 import { TagContent } from '../lib/tags';
 
 interface Props {
-  posts: PostContent[];
+  posts: PostData[];
   tags: TagContent[];
 }
 

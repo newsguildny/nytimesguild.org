@@ -38,9 +38,6 @@ collections:
           - label: "Twitter account"
             name: "twitterAccount"
             widget: "string"
-          - label: "GitHub account"
-            name: "githubAccount"
-            widget: "string"
 
   - name: "meta"
     label: "Meta"
@@ -50,7 +47,7 @@ collections:
     files:
       - name: "authors"
         label: "Authors"
-        file: "meta/authors.yml"
+        file: "src/markdown/meta/authors.yml"
         description: "Author descriptions"
         fields:
           - name: authors
@@ -71,7 +68,7 @@ collections:
                 widget: "text"
       - name: "tags"
         label: "Tags"
-        file: "meta/tags.yml"
+        file: "src/markdown/meta/tags.yml"
         description: "List of tags"
         fields:
           - name: tags

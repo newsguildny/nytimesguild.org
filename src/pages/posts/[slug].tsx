@@ -14,7 +14,6 @@ import BasicMeta from '../../components/meta/BasicMeta';
 import JsonLdMeta from '../../components/meta/JsonLdMeta';
 import OpenGraphMeta from '../../components/meta/OpenGraphMeta';
 import TwitterCardMeta from '../../components/meta/TwitterCardMeta';
-import { SocialList } from '../../components/SocialList';
 import TagButton from '../../components/TagButton';
 import { AuthorContent, getAuthors } from '../../lib/authors';
 import { getTags, TagContent } from '../../lib/tags';
@@ -75,9 +74,6 @@ export default function Post({ title, dateString, slug, author, tags, source }: 
           </ul>
         </article>
         <footer>
-          <div className="social-list">
-            <SocialList />
-          </div>
           <Copyright />
         </footer>
       </div>
@@ -237,7 +233,7 @@ export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({ 
       slug,
       source,
       tags: tags ? allTags.filter(({ slug: tagSlug }) => tags.includes(tagSlug)) : [],
-      author: authors.find(({ slug: authorSlug }) => author === authorSlug)!,
+      author: authors.find(({ slug: authorSlug }) => author === authorSlug)! || {},
     },
   });
 };

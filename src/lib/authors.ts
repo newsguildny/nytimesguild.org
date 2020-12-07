@@ -9,7 +9,10 @@ export interface AuthorContent {
 }
 
 export function getAuthors() {
-  const authorsFile = fs.readFileSync(path.join(process.cwd(), 'meta', 'authors.yml'), 'utf-8');
+  const authorsFile = fs.readFileSync(
+    path.join(process.cwd(), 'src', 'markdown', 'meta', 'authors.yml'),
+    'utf-8'
+  );
   const { authors } = yaml.safeLoad(authorsFile, { schema: yaml.JSON_SCHEMA }) as {
     authors: AuthorContent[];
   };

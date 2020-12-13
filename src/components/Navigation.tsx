@@ -1,95 +1,102 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { useContext, useState } from 'react';
-import { PageTitlesContext } from '../lib/PageTitlesContext';
+import { useState } from 'react';
+import css from 'styled-jsx/css';
 import Burger from './Burger';
 
-export default function Navigation() {
-  const router = useRouter();
-  const pageTitles = useContext(PageTitlesContext);
-  const [active, setActive] = useState(false);
+const burgerStyles = css.resolve`
+  display: block;
+  position: absolute;
+  top: 1.5rem;
+  right: 0;
+
+  @media (min-width: 769px) {
+    display: none;
+  }
+`;
+
+interface Props {
+  pagesMetadata: Array<{ slug: string; title: string }>;
+}
+
+export default function Navigation({ pagesMetadata }: Props) {
+  const [isNavShown, setIsNavShown] = useState(false);
   return (
     <>
-      <Burger active={active} onClick={() => setActive(!active)} />
-      <div className={`container ${active ? 'active' : ''}`}>
-        <ul>
-          <li>
-            <Link href="/">
-              <a className={router.pathname === '/' ? 'active' : undefined}>home</a>
-            </Link>
-          </li>
-          {pageTitles.map((page) => (
-            <li key={page}>
-              <Link href={`/${page}`}>
-                <a className={router.pathname === `/${page}` ? 'active' : undefined}>{page}</a>
+      <nav>
+        <div>NYT tech workers</div>
+        <ul className={isNavShown ? 'shown' : ''}>
+          {pagesMetadata?.map((pageMetadata) => (
+            <li key={pageMetadata.slug}>
+              <Link href={`/${pageMetadata.slug}`}>
+                <a>{pageMetadata.title}</a>
               </Link>
             </li>
           ))}
-          <li>
-            <Link href="/posts">
-              <a className={router.pathname.startsWith('/posts') ? 'active' : undefined}>blog</a>
-            </Link>
-          </li>
         </ul>
-        <style jsx>
-          {`
-            .container {
-              width: 0;
+        <Burger
+          className={burgerStyles.className}
+          active={isNavShown}
+          onClick={() => setIsNavShown((oldValue) => !oldValue)}
+        />
+      </nav>
+      <style jsx>
+        {`
+          nav {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            padding: 1.125rem 0 1.25rem;
+            border-bottom: 0.125rem solid #dedede;
+            background: white;
+            font-family: Public Sans;
+            font-size: 1.5rem;
+            font-weight: normal;
+            line-height: 1.875rem;
+            color: #666;
+            text-decoration: none;
+          }
+          ul {
+            display: none;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+          }
+          ul.shown {
+            display: block;
+          }
+          li {
+            display: block;
+            margin-top: 1rem;
+          }
+          li:last-child {
+            margin-right: 0;
+          }
+          a {
+            font-size: 1rem;
+            line-height: 1.25rem;
+            color: #666;
+            text-decoration: none;
+          }
+
+          @media (min-width: 769px) {
+            nav {
+              flex-direction: row;
+              padding: 1.875rem 0 1.875rem;
             }
             ul {
-              opacity: 0;
-              width: 100%;
-              height: 100vh;
-              text-align: right;
-              list-style: none;
-              margin: 0;
-              padding: 0;
-              position: fixed;
-              top: 0;
-              background-color: #fff;
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-              z-index: 1;
-              transform: translateY(100%);
-              transition: opacity 200ms;
-            }
-            .active ul {
-              opacity: 1;
-              transform: translateY(0);
+              display: block;
             }
             li {
-              margin-bottom: 1.75rem;
-              font-size: 2rem;
-              padding: 0 1.5rem 0 0;
+              display: inline-block;
+              margin-top: 0;
+              margin-right: 1.875rem;
             }
-            li:last-child {
-              margin-bottom: 0;
-            }
-            .active {
-              color: #222;
-            }
-
-            @media (min-width: 769px) {
-              .container {
-                width: 7rem;
-                display: block;
-              }
-              ul {
-                opacity: 1;
-                width: 7rem;
-                top: auto;
-                display: block;
-                transform: translateY(0);
-              }
-              li {
-                font-size: 1rem;
-                padding: 0;
-              }
-            }
-          `}
-        </style>
-      </div>
+          }
+        `}
+      </style>
+      {burgerStyles.styles}
     </>
   );
 }

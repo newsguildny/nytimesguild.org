@@ -5,6 +5,12 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <link
+            rel="preload"
+            href="/fonts/PublicSans/variations/Public-Sans-Roman-VF.ttf"
+            as="font"
+            crossOrigin=""
+          />
           <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" />
         </Head>
         <body>

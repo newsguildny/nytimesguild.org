@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import Head from 'next/head';
-import Navigation from './Navigation';
 
 const Layout: FC = ({ children }) => {
   return (
@@ -12,9 +11,6 @@ const Layout: FC = ({ children }) => {
         <link rel="apple-touch-icon" href="/icon.png" />
         <meta name="theme-color" content="#fff" />
       </Head>
-      <nav>
-        <Navigation />
-      </nav>
       <main>{children}</main>
       <style jsx>
         {`

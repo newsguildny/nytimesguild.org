@@ -1,17 +1,38 @@
 import 'normalize.css';
 import { AppProps } from 'next/app';
-import { PageTitlesContext } from '../lib/PageTitlesContext';
+import Navigation from '../components/Navigation';
 // NOTE: Do not move the styles dir to the src.
 // They are used by the Netlify CMS preview feature.
 import '../../public/styles/global.css';
 
 export default function AppWithContext({
   Component,
-  pageProps: { pageTitles, ...pageProps },
+  pageProps: { pagesMetadata, ...pageProps },
 }: AppProps) {
   return (
-    <PageTitlesContext.Provider value={pageTitles}>
+    <>
+      <Navigation pagesMetadata={pagesMetadata} />
       <Component {...pageProps} />
-    </PageTitlesContext.Provider>
+      <style jsx global>{`
+        @font-face {
+          font-family: 'Public Sans';
+          src: url('/fonts/PublicSans/webfonts/PublicSans-Regular.woff2') format('woff2');
+          font-style: normal;
+        }
+
+        @supports (font-variation-settings: 'wdth' 115) {
+          @font-face {
+            font-family: 'Public Sans';
+            src: url('/fonts/PublicSans/variable/Public-Sans-Roman-VF.ttf')
+              format('truetype-variations');
+            font-style: normal;
+          }
+        }
+
+        body {
+          padding: 0 2rem;
+        }
+      `}</style>
+    </>
   );
 }

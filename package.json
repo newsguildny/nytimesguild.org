@@ -35,6 +35,7 @@
     "@types/jest": "^26.0.9",
     "@types/node": "^13.11.0",
     "@types/react": "^16.9.32",
+    "@types/styled-jsx": "^2.2.8",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
     "eslint": "^7.13.0",

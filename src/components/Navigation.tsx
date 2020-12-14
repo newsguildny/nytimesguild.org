@@ -15,10 +15,11 @@ const burgerStyles = css.resolve`
 `;
 
 interface Props {
+  activeSlug: string;
   pagesMetadata: Array<{ slug: string; title: string }>;
 }
 
-export default function Navigation({ pagesMetadata }: Props) {
+export default function Navigation({ activeSlug, pagesMetadata }: Props) {
   const [isNavShown, setIsNavShown] = useState(false);
   return (
     <>
@@ -30,7 +31,9 @@ export default function Navigation({ pagesMetadata }: Props) {
           {pagesMetadata?.map((pageMetadata) => (
             <li key={pageMetadata.slug}>
               <Link href={`/${pageMetadata.slug}`}>
-                <a>{pageMetadata.title}</a>
+                <a className={activeSlug === pageMetadata.slug ? 'active' : ''}>
+                  {pageMetadata.title}
+                </a>
               </Link>
             </li>
           ))}
@@ -61,7 +64,7 @@ export default function Navigation({ pagesMetadata }: Props) {
           }
           ul {
             display: none;
-            margin: 0;
+            margin: 0.5rem 0 0;
             padding: 0;
             list-style: none;
           }
@@ -70,16 +73,26 @@ export default function Navigation({ pagesMetadata }: Props) {
           }
           li {
             display: block;
-            margin-top: 1rem;
+            margin: 0.5rem 0;
           }
           li:last-child {
-            margin-right: 0;
+            margin: 0;
           }
           a {
+            color: #666;
+            width: max-content;
+          }
+          li > a {
+            display: block;
+            width: 100%;
+            padding: 0.5rem 0;
             font-size: 1rem;
             line-height: 1.25rem;
             color: #666;
             text-decoration: none;
+          }
+          li > a.active {
+            font-weight: 600;
           }
 
           @media (min-width: 769px) {
@@ -89,11 +102,17 @@ export default function Navigation({ pagesMetadata }: Props) {
             }
             ul {
               display: block;
+              margin: 0;
             }
             li {
               display: inline-block;
-              margin-top: 0;
-              margin-right: 1.875rem;
+              margin: 0 1.875rem 0 0;
+            }
+            li:last-child {
+              margin-right: 0;
+            }
+            li > a {
+              padding: 0;
             }
           }
         `}

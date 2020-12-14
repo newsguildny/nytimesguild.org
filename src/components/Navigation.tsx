@@ -23,7 +23,9 @@ export default function Navigation({ pagesMetadata }: Props) {
   return (
     <>
       <nav>
-        <div>NYT tech workers</div>
+        <Link href="/">
+          <a>NYT tech workers</a>
+        </Link>
         <ul className={isNavShown ? 'shown' : ''}>
           {pagesMetadata?.map((pageMetadata) => (
             <li key={pageMetadata.slug}>

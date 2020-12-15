@@ -1,8 +1,6 @@
-interface Props {
-  children: (props: never) => React.ReactNode;
-}
+import { FC } from 'react';
 
-export function Heading1({ children }: Props) {
+export const Heading1: FC = ({ children }) => {
   return (
     <>
       <h1>{children}</h1>
@@ -10,14 +8,14 @@ export function Heading1({ children }: Props) {
         {`
           h1 {
             font-family: Crimson Pro;
-            font-size: 42px;
+            font-size: 2.625rem;
             font-weight: 200;
             color: #ff4040;
           }
           @media (min-width: 769px) {
             h1 {
               font-family: Crimson Pro;
-              font-size: 68px;
+              font-size: 4.25rem;
               font-weight: 200;
               color: #ff4040;
             }
@@ -26,9 +24,9 @@ export function Heading1({ children }: Props) {
       </style>
     </>
   );
-}
+};
 
-export function Heading2({ children }: Props) {
+export const Heading2: FC = ({ children }) => {
   return (
     <>
       <h2>{children}</h2>
@@ -36,14 +34,14 @@ export function Heading2({ children }: Props) {
         {`
           h2 {
             font-family: Crimson Pro;
-            font-size: 32px;
+            font-size: 2rem;
             font-weight: 200;
             color: #666666;
           }
           @media (min-width: 769px) {
             h2 {
               font-family: Crimson Pro;
-              font-size: 44px;
+              font-size: 2.75rem;
               font-weight: 200;
               color: #666666;
             }
@@ -52,9 +50,35 @@ export function Heading2({ children }: Props) {
       </style>
     </>
   );
-}
+};
 
-export function Paragraph({ children }: Props) {
+export const Heading3: FC = ({ children }) => {
+  return (
+    <>
+      <h3>{children}</h3>
+      <style jsx>
+        {`
+          h3 {
+            font-family: Crimson Pro;
+            font-size: 2rem;
+            font-weight: 200;
+            color: #ff4040;
+          }
+          @media (min-width: 769px) {
+            h3 {
+              font-family: Crimson Pro;
+              font-size: 2.75rem;
+              font-weight: 200;
+              color: #ff4040;
+            }
+          }
+        `}
+      </style>
+    </>
+  );
+};
+
+export const Paragraph: FC = ({ children }) => {
   return (
     <>
       <p>{children}</p>
@@ -62,7 +86,7 @@ export function Paragraph({ children }: Props) {
         {`
           p {
             font-family: Crimson Pro;
-            font-size: 24px;
+            font-size: 1.5rem;
             font-weight: 200;
             color: #666666;
           }
@@ -70,4 +94,4 @@ export function Paragraph({ children }: Props) {
       </style>
     </>
   );
-}
+};

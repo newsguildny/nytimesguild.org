@@ -6,7 +6,7 @@ import { getPageData, getPagesMetadata } from '../lib/pages';
 import { withNav } from '../lib/withNav';
 import Navigation from '../components/Navigation';
 import CallToAction from '../components/CallToAction';
-import { Heading1, Heading2, Paragraph } from '../components/Markdown';
+import { Heading1, Heading2, Heading3, Paragraph } from '../components/Markdown';
 
 interface Props {
   source: MdxSource;
@@ -18,6 +18,7 @@ const components = {
   CallToAction,
   h1: Heading1,
   h2: Heading2,
+  h3: Heading3,
   p: Paragraph,
 };
 

@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { getPageData, getPagesMetadata } from '../lib/pages';
 import { withNav } from '../lib/withNav';
 import Navigation from '../components/Navigation';
+import CallToAction from '../components/CallToAction';
 
 interface Props {
   source: MdxSource;
@@ -12,7 +13,7 @@ interface Props {
 }
 
 const Page = ({ source, title }: Props) => {
-  const content = hydrate(source, { components: { Navigation } });
+  const content = hydrate(source, { components: { Navigation, CallToAction } });
   return (
     <>
       <Head>

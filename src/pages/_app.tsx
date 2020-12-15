@@ -10,7 +10,7 @@ export default function AppWithContext({
   pageProps: { pagesMetadata, ...pageProps },
   router,
 }: AppProps) {
-  const activeSlug = router.asPath.split('/')[1] || '';
+  const activeSlug = router.asPath.split('/')[1] || 'index';
   return (
     <>
       <Navigation activeSlug={activeSlug} pagesMetadata={pagesMetadata} />

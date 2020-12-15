@@ -13,6 +13,23 @@ export default function AppWithContext({
       <Component {...pageProps} />
       <style jsx global>{`
         @font-face {
+          font-family: 'Crimson Pro';
+          src: url('/fonts/Crimson_Pro/webfonts/crimson-pro-v13-latin-regular.woff2')
+            format('woff2');
+          font-style: normal;
+        }
+
+        @supports (font-variation-settings: 'wdth' 115) {
+          @font-face {
+            font-family: 'Crimson Pro';
+            src: url('/fonts/Crimson_Pro/variable/CrimsonPro-VariableFont_wght.ttf')
+              format('truetype-variations');
+            font-style: normal;
+            font-weight: 100 900;
+          }
+        }
+
+        @font-face {
           font-family: 'Public Sans';
           src: url('/fonts/PublicSans/webfonts/PublicSans-Regular.woff2') format('woff2');
           font-style: normal;

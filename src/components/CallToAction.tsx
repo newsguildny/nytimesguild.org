@@ -45,7 +45,7 @@ const CallToAction: FC<Props> = ({ to, children }) => (
 
       svg {
         margin-left: 1rem;
-        transition: transform 0.5s;
+        transition: transform 0.3s ease-out;
       }
 
       a:hover > svg {

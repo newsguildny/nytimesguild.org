@@ -1,9 +1,10 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { MdxSource } from 'next-mdx-remote/render-to-string';
 import hydrate from 'next-mdx-remote/hydrate';
+import Head from 'next/head';
 import { getPageData, getPageTitles } from '../lib/pages';
-import Layout from '../components/Layout';
 import { withNav } from '../lib/withNav';
+import Navigation from '../components/Navigation';
 
 interface Props {
   source: MdxSource;
@@ -11,23 +12,16 @@ interface Props {
 }
 
 const Page = ({ source, title }: Props) => {
-  const content = hydrate(source);
+  const content = hydrate(source, { components: { Navigation } });
   return (
-    <Layout>
-      <div className="container">
-        <div>
-          <h1>{title}</h1>
-          {content}
-        </div>
-      </div>
+    <>
+      <Head>
+        <title>{title} - The New York Times Guild</title>
+      </Head>
+      <main>
+        <div>{content}</div>
+      </main>
       <style jsx>{`
-        .container {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex: 1 1 auto;
-          padding: 0 1.5rem;
-        }
         h1 {
           font-size: 2.5rem;
           margin: 0;
@@ -57,14 +51,14 @@ const Page = ({ source, title }: Props) => {
           }
         }
       `}</style>
-    </Layout>
+    </>
   );
 };
 
 export default Page;
 
-export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({ params }) => {
-  const { source, title } = await getPageData(params!.slug);
+export const getStaticProps: GetStaticProps<Props, { slug: [string] }> = async ({ params }) => {
+  const { source, title } = await getPageData(params!.slug?.[0] || 'index');
   return withNav({
     props: {
       source,
@@ -75,7 +69,9 @@ export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({ 
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const pageTitles = getPageTitles();
-  const paths = pageTitles.map((pageTitle) => ({ params: { slug: pageTitle } }));
+  const paths = pageTitles.map((pageTitle) => ({
+    params: { slug: pageTitle === 'index' ? [] : [pageTitle] },
+  }));
   return {
     paths,
     fallback: false,

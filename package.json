@@ -25,6 +25,7 @@
     "react-schemaorg": "^1.2.0",
     "react-twitter-embed": "^3.0.3",
     "react-youtube": "^7.11.3",
+    "rehype-slug": "^4.0.1",
     "schema-dts": "^0.6.0"
   },
   "devDependencies": {
@@ -34,6 +35,7 @@
     "@types/jest": "^26.0.9",
     "@types/node": "^13.11.0",
     "@types/react": "^16.9.32",
+    "@types/styled-jsx": "^2.2.8",
     "@typescript-eslint/eslint-plugin": "^4.8.1",
     "@typescript-eslint/parser": "^4.8.1",
     "eslint": "^7.13.0",

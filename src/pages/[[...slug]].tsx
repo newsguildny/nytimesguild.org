@@ -6,14 +6,23 @@ import { getPageData, getPagesMetadata } from '../lib/pages';
 import { withNav } from '../lib/withNav';
 import Navigation from '../components/Navigation';
 import CallToAction from '../components/CallToAction';
+import { Heading1, Heading2, Paragraph } from '../components/Markdown';
 
 interface Props {
   source: MdxSource;
   title: string;
 }
 
+const components = {
+  Navigation,
+  CallToAction,
+  h1: Heading1,
+  h2: Heading2,
+  p: Paragraph,
+};
+
 const Page = ({ source, title }: Props) => {
-  const content = hydrate(source, { components: { Navigation, CallToAction } });
+  const content = hydrate(source, { components });
   return (
     <>
       <Head>

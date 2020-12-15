@@ -25,7 +25,7 @@ export default function Navigation({ activeSlug, pagesMetadata }: Props) {
     <>
       <nav>
         <Link href="/">
-          <a>NYT tech workers</a>
+          <a>NYT Tech Workers</a>
         </Link>
         <ul className={isNavShown ? 'shown' : ''}>
           {pagesMetadata?.map((pageMetadata) => (
@@ -79,7 +79,7 @@ export default function Navigation({ activeSlug, pagesMetadata }: Props) {
             margin: 0;
           }
           a {
-            color: #666;
+            color: #222;
             width: max-content;
           }
           li > a {
@@ -90,9 +90,14 @@ export default function Navigation({ activeSlug, pagesMetadata }: Props) {
             line-height: 1.25rem;
             color: #666;
             text-decoration: none;
+            transition: color 0.3s ease;
           }
           li > a.active {
             font-weight: 600;
+            color: #222;
+          }
+          li > a:hover {
+            color: #222;
           }
 
           @media (min-width: 769px) {

@@ -26,6 +26,7 @@
     "react-twitter-embed": "^3.0.3",
     "react-youtube": "^7.11.3",
     "rehype-slug": "^4.0.1",
+    "remark-sectionize": "^1.1.1",
     "schema-dts": "^0.6.0"
   },
   "devDependencies": {

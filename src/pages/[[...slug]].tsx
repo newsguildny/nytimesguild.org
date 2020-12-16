@@ -11,6 +11,7 @@ import { Heading1, Heading2, Heading3, Paragraph } from '../components/Markdown'
 interface Props {
   source: MdxSource;
   title: string;
+  seoHeadline: string;
 }
 
 const components = {
@@ -22,7 +23,7 @@ const components = {
   p: Paragraph,
 };
 
-const Page = ({ source, title }: Props) => {
+const Page = ({ source, title, seoHeadline }: Props) => {
   const content = hydrate(source, { components });
   return (
     <>
@@ -30,8 +31,27 @@ const Page = ({ source, title }: Props) => {
         <title>{title} - The New York Times Guild</title>
       </Head>
       <main>
-        <div>{content}</div>
+        <div>
+          {seoHeadline ? (
+            <section>
+              <h1>{seoHeadline}</h1>
+              {content}
+            </section>
+          ) : (
+            <>
+              {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
+              {content}
+            </>
+          )}
+        </div>
       </main>
+      <style jsx>
+        {`
+          h1 {
+            display: none;
+          }
+        `}
+      </style>
     </>
   );
 };
@@ -39,11 +59,12 @@ const Page = ({ source, title }: Props) => {
 export default Page;
 
 export const getStaticProps: GetStaticProps<Props, { slug: [string] }> = async ({ params }) => {
-  const { source, title } = await getPageData(params!.slug?.[0] || 'index');
+  const { source, title, seoHeadline } = await getPageData(params!.slug?.[0] || 'index');
   return withNav({
     props: {
       source,
       title,
+      seoHeadline: seoHeadline ?? null,
     },
   });
 };

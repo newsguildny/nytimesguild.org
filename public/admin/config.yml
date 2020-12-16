@@ -156,3 +156,6 @@ collections:
       - label: Body
         name: body
         widget: markdown
+      - label: SEO Headline
+        name: seoHeadline
+        widget: string

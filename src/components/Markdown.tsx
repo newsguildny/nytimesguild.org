@@ -3,17 +3,17 @@ import { FC } from 'react';
 export const Heading1: FC = ({ children }) => {
   return (
     <>
-      <h1>{children}</h1>
+      <h2>{children}</h2>
       <style jsx>
         {`
-          h1 {
+          h2 {
             font-family: Crimson Pro;
             font-size: 2.625rem;
             font-weight: 200;
             color: #ff4040;
           }
           @media (min-width: 769px) {
-            h1 {
+            h2 {
               font-family: Crimson Pro;
               font-size: 4.25rem;
               font-weight: 200;
@@ -55,17 +55,17 @@ export const Heading2: FC = ({ children }) => {
 export const Heading3: FC = ({ children }) => {
   return (
     <>
-      <h3>{children}</h3>
+      <h2>{children}</h2>
       <style jsx>
         {`
-          h3 {
+          h2 {
             font-family: Crimson Pro;
             font-size: 2rem;
             font-weight: 200;
             color: #ff4040;
           }
           @media (min-width: 769px) {
-            h3 {
+            h2 {
               font-family: Crimson Pro;
               font-size: 2.75rem;
               font-weight: 200;

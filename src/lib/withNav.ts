@@ -16,7 +16,7 @@ import { getPagesMetadata } from './pages';
  * }
  */
 export function withNav<Props>(propsResult: GetStaticPropsResult<Props>) {
-  const pagesMetadata = getPagesMetadata().filter(({ slug }) => !!slug);
+  const pagesMetadata = getPagesMetadata().filter(({ slug }) => slug !== 'index');
   return {
     ...propsResult,
     props: {

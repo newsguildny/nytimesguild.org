@@ -2,9 +2,10 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import { MdxSource } from 'next-mdx-remote/render-to-string';
 import hydrate from 'next-mdx-remote/hydrate';
 import Head from 'next/head';
-import { getPageData, getPageTitles } from '../lib/pages';
+import { getPageData, getPagesMetadata } from '../lib/pages';
 import { withNav } from '../lib/withNav';
 import Navigation from '../components/Navigation';
+import CallToAction from '../components/CallToAction';
 
 interface Props {
   source: MdxSource;
@@ -12,7 +13,7 @@ interface Props {
 }
 
 const Page = ({ source, title }: Props) => {
-  const content = hydrate(source, { components: { Navigation } });
+  const content = hydrate(source, { components: { Navigation, CallToAction } });
   return (
     <>
       <Head>
@@ -68,9 +69,9 @@ export const getStaticProps: GetStaticProps<Props, { slug: [string] }> = async (
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const pageTitles = getPageTitles();
-  const paths = pageTitles.map((pageTitle) => ({
-    params: { slug: pageTitle === 'index' ? [] : [pageTitle] },
+  const pagesMetadata = getPagesMetadata();
+  const paths = pagesMetadata.map(({ slug }) => ({
+    params: { slug: slug === 'index' ? [] : [slug] },
   }));
   return {
     paths,

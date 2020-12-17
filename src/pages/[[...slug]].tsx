@@ -38,10 +38,7 @@ const Page = ({ source, title, seoHeadline }: Props) => {
               {content}
             </section>
           ) : (
-            <>
-              {/* eslint-disable-next-line react/jsx-no-useless-fragment */}
-              {content}
-            </>
+            content
           )}
         </div>
       </main>

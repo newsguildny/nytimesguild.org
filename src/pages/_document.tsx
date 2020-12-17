@@ -7,7 +7,7 @@ class MyDocument extends Document {
         <Head>
           <link
             rel="preload"
-            href="/fonts/PublicSans/variations/Public-Sans-Roman-VF.ttf"
+            href="/fonts/PublicSans/variable/Public-Sans-Roman-VF.ttf"
             as="font"
             crossOrigin=""
           />

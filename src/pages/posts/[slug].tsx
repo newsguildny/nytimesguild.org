@@ -5,7 +5,6 @@ import YouTube from 'react-youtube';
 import { TwitterTweetEmbed } from 'react-twitter-embed';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { Component } from 'react';
-import styles from '../../../public/styles/content.module.css';
 import Author from '../../components/Author';
 import Copyright from '../../components/Copyright';
 import Date from '../../components/Date';
@@ -64,7 +63,7 @@ export default function Post({ title, dateString, slug, author, tags, source }: 
               </div>
             </div>
           </header>
-          <div className={styles.content}>{hydrate(source, { components })}</div>
+          <div>{hydrate(source, { components })}</div>
           <ul className="tag-list">
             {tags.map((it) => (
               <li key={it.slug}>

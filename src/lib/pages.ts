@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import renderToString from 'next-mdx-remote/render-to-string';
 import rehypeSlug from 'rehype-slug';
+import sectionize from 'remark-sectionize';
 import { getMarkdownData, MarkdownSource } from './markdown';
 import Navigation from '../components/Navigation';
 import CallToAction from '../components/CallToAction';
@@ -9,6 +10,7 @@ import CallToAction from '../components/CallToAction';
 interface PageData {
   slug: string;
   title: string;
+  seoHeadline: string;
 }
 
 export function getPageTitles() {
@@ -29,11 +31,13 @@ export async function getPageData(slug: string) {
     components: { Navigation, CallToAction },
     mdxOptions: {
       rehypePlugins: [rehypeSlug],
+      remarkPlugins: [sectionize],
     },
   });
   return {
     title: markdownData.data.title,
     slug: markdownData.data.slug,
+    seoHeadline: markdownData.data.seoHeadline,
     source: mdxSource,
   };
 }

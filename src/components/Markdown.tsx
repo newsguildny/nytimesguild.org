@@ -36,14 +36,14 @@ export const Heading2: FC = ({ children }) => {
             font-family: Crimson Pro;
             font-size: 2rem;
             font-weight: 200;
-            color: #666666;
+            color: #ff4040;
           }
           @media (min-width: 769px) {
             h2 {
               font-family: Crimson Pro;
               font-size: 2.75rem;
               font-weight: 200;
-              color: #666666;
+              color: #ff4040;
             }
           }
         `}
@@ -62,14 +62,14 @@ export const Heading3: FC = ({ children }) => {
             font-family: Crimson Pro;
             font-size: 2rem;
             font-weight: 200;
-            color: #ff4040;
+            color: #666666;
           }
           @media (min-width: 769px) {
             h3 {
               font-family: Crimson Pro;
               font-size: 2.75rem;
               font-weight: 200;
-              color: #ff4040;
+              color: #666666;
             }
           }
         `}

@@ -31,16 +31,14 @@ const Page = ({ source, title, seoHeadline }: Props) => {
         <title>{title} - The New York Times Guild</title>
       </Head>
       <main>
-        <div>
-          {seoHeadline ? (
-            <section>
-              <h1>{seoHeadline}</h1>
-              {content}
-            </section>
-          ) : (
-            content
-          )}
-        </div>
+        {seoHeadline ? (
+          <section>
+            <h1>{seoHeadline}</h1>
+            {content}
+          </section>
+        ) : (
+          content
+        )}
       </main>
       <style jsx>
         {`

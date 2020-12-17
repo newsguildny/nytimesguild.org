@@ -20,6 +20,7 @@ export default function AppWithContext({
           font-family: 'Public Sans';
           src: url('/fonts/PublicSans/webfonts/PublicSans-Regular.woff2') format('woff2');
           font-style: normal;
+          font-weight: 400;
         }
 
         @font-face {

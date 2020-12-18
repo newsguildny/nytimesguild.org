@@ -95,3 +95,19 @@ export const Paragraph: FC = ({ children }) => {
     </>
   );
 };
+
+export const HorizontalRule: FC = () => {
+  return (
+    <>
+      <hr />
+      <style jsx>
+        {`
+          hr {
+            border-top: 0.125rem solid #dedede;
+            margin-top: 2.5rem;
+          }
+        `}
+      </style>
+    </>
+  );
+};

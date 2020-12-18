@@ -6,7 +6,7 @@ import { getPageData, getPagesMetadata } from '../lib/pages';
 import { withNav } from '../lib/withNav';
 import Navigation from '../components/Navigation';
 import CallToAction from '../components/CallToAction';
-import { Heading1, Heading2, Heading3, Paragraph } from '../components/Markdown';
+import { Heading1, Heading2, Heading3, Paragraph, HorizontalRule } from '../components/Markdown';
 
 interface Props {
   source: MdxSource;
@@ -21,6 +21,7 @@ const components = {
   h2: Heading2,
   h3: Heading3,
   p: Paragraph,
+  hr: HorizontalRule,
 };
 
 const Page = ({ source, title, seoHeadline }: Props) => {
@@ -44,6 +45,12 @@ const Page = ({ source, title, seoHeadline }: Props) => {
         {`
           h1 {
             display: none;
+          }
+
+          @media (min-width: 769px) {
+            main {
+              max-width: 47rem;
+            }
           }
         `}
       </style>

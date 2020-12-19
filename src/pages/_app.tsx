@@ -9,7 +9,7 @@ export default function AppWithContext({
   const activeSlug = router.asPath.split('/')[1] || 'index';
   return (
     <>
-      <Navigation activeSlug={activeSlug} pagesMetadata={pagesMetadata} />
+      {pagesMetadata && <Navigation activeSlug={activeSlug} pagesMetadata={pagesMetadata} />}
       <Component {...pageProps} />
       <style jsx global>{`
         @font-face {

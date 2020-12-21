@@ -103,7 +103,7 @@ export const HorizontalRule: FC = () => {
       <style jsx>
         {`
           hr {
-            border-top: 0.125rem solid #dedede;
+            border: 0.0625rem solid #dedede;
             margin-top: 2.5rem;
           }
         `}

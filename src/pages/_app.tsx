@@ -56,6 +56,12 @@ export default function AppWithContext({
         body {
           padding: 0 2rem;
         }
+
+        @media (min-width: 769px) {
+          body {
+            padding: 0 5rem;
+          }
+        }
       `}</style>
     </>
   );

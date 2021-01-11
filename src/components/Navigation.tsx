@@ -37,6 +37,11 @@ export default function Navigation({ activeSlug, pagesMetadata }: Props) {
               </Link>
             </li>
           ))}
+          <li>
+            <Link href="/papers">
+              <a className={activeSlug === 'papers' ? 'active' : ''}>Updates</a>
+            </Link>
+          </li>
         </ul>
         <Burger
           className={burgerStyles.className}

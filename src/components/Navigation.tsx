@@ -79,6 +79,7 @@ export default function Navigation({ activeSlug, pagesMetadata }: Props) {
             margin: 0;
           }
           a {
+            text-decoration: none;
             color: #222;
             width: max-content;
           }

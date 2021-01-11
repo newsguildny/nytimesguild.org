@@ -7,6 +7,7 @@ export const Heading1: FC = ({ children }) => {
       <style jsx>
         {`
           h1 {
+            margin: 3.5rem 0 2rem 0;
             font-family: Crimson Pro;
             font-size: 2.625rem;
             font-weight: 200;
@@ -33,6 +34,7 @@ export const Heading2: FC = ({ children }) => {
       <style jsx>
         {`
           h2 {
+            margin: 3rem 0;
             font-family: Crimson Pro;
             font-size: 2rem;
             font-weight: 200;
@@ -59,6 +61,7 @@ export const Heading3: FC = ({ children }) => {
       <style jsx>
         {`
           h3 {
+            margin: 2rem 0;
             font-family: Crimson Pro;
             font-size: 2rem;
             font-weight: 200;
@@ -104,7 +107,7 @@ export const HorizontalRule: FC = () => {
         {`
           hr {
             border: 0.0625rem solid #dedede;
-            margin-top: 2.5rem;
+            margin: 3rem 0;
           }
         `}
       </style>

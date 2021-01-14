@@ -16,6 +16,7 @@
     "date-fns": "^2.11.1",
     "gray-matter": "^4.0.2",
     "js-yaml": "^3.14.0",
+    "mdx-embed": "^0.0.17",
     "netlify-cms-app": "^2.14.6",
     "netlify-identity-widget": "^1.9.1",
     "next": "9.5.1",
@@ -26,7 +27,6 @@
     "react-instagram-embed": "^1.5.0",
     "react-schemaorg": "^1.2.0",
     "react-twitter-embed": "^3.0.3",
-    "react-youtube": "^7.11.3",
     "rehype-slug": "^4.0.1",
     "remark-sectionize": "^1.1.1",
     "schema-dts": "^0.6.0"

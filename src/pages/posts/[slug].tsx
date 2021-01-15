@@ -1,7 +1,7 @@
 import { MdxSource } from 'next-mdx-remote/render-to-string';
 import hydrate from 'next-mdx-remote/hydrate';
 import InstagramEmbed from 'react-instagram-embed';
-import YouTube from 'react-youtube';
+import { YouTube } from 'mdx-embed';
 import { TwitterTweetEmbed } from 'react-twitter-embed';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { Component } from 'react';

@@ -61,6 +61,7 @@ export default function Navigation({ activeSlug, pagesMetadata }: Props) {
             line-height: 1.875rem;
             color: #666;
             text-decoration: none;
+            z-index: 1;
           }
           ul {
             display: none;

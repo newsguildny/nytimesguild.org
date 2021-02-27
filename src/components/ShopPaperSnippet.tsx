@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import css from 'styled-jsx/css';
 import { ShopPaperContent } from '../lib/papers';
-import ArrowIcon from './icons/ArrowIcon';
+import ArrowIcon from './svgs/ArrowIcon';
 
 const arrowStyles = css.resolve`
   margin-top: 0.125rem;

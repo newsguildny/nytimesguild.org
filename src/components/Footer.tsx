@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import TwitterIcon from './icons/TwitterIcon';
-import MailIcon from './icons/MailIcon';
+import TwitterIcon from './svgs/TwitterIcon';
+import MailIcon from './svgs/MailIcon';
 import { sansSerif, serifSizes, serif, sansSerifSizes } from '../styles/tokens/fonts';
 import { bodyText, secondaryHeadingText, secondaryBackground } from '../styles/tokens/colors';
 

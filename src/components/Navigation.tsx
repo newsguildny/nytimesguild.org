@@ -1,7 +1,10 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import css from 'styled-jsx/css';
+import TGuild from './svgs/TGuild';
 import Burger from './Burger';
+import { headerBackground, headerText } from '../styles/tokens/colors';
+import { sansSerif, sansSerifSizes, serif, serifSizes } from '../styles/tokens/fonts';
 
 const burgerStyles = css.resolve`
   display: block;
@@ -25,7 +28,9 @@ export default function Navigation({ activeSlug, pagesMetadata }: Props) {
     <>
       <nav>
         <Link href="/">
-          <a>NYT Tech Workers</a>
+          <a>
+            <TGuild />
+          </a>
         </Link>
         <ul className={isNavShown ? 'shown' : ''}>
           {pagesMetadata?.map((pageMetadata) => (
@@ -57,18 +62,20 @@ export default function Navigation({ activeSlug, pagesMetadata }: Props) {
             justify-content: space-between;
             position: sticky;
             top: 0;
-            padding: 1.125rem 0 1.25rem;
+            padding: 1.125rem 1.5rem;
             border-bottom: 0.125rem solid #dedede;
             background: white;
-            font-family: Public Sans;
-            font-size: 1.5rem;
+            font-family: ${serif};
+            font-size: ${serifSizes.large};
             font-weight: normal;
             line-height: 1.875rem;
-            color: #666;
+            color: ${headerText};
+            background-color: ${headerBackground};
             text-decoration: none;
             z-index: 1;
           }
           ul {
+            font-family: ${sansSerif};
             display: none;
             margin: 0.5rem 0 0;
             padding: 0;
@@ -79,38 +86,30 @@ export default function Navigation({ activeSlug, pagesMetadata }: Props) {
           }
           li {
             display: block;
-            margin: 0.5rem 0;
-          }
-          li:last-child {
-            margin: 0;
-          }
-          a {
-            text-decoration: none;
-            color: #222;
-            width: max-content;
           }
           li > a {
             display: block;
-            width: 100%;
-            padding: 0.5rem 0;
-            font-size: 1rem;
+            padding: 0.625rem 1rem;
+            border-radius: 0.25rem;
+            font-size: ${sansSerifSizes.small};
             line-height: 1.25rem;
-            color: #666;
+            color: ${headerText};
             text-decoration: none;
             transition: color 0.3s ease;
           }
           li > a.active {
-            font-weight: 600;
-            color: #222;
+            background-color: rgba(18, 18, 18, 0.3);
           }
           li > a:hover {
-            color: #222;
+            color: ${headerText};
+            background-color: rgba(18, 18, 18, 0.15);
           }
 
           @media (min-width: 769px) {
             nav {
               flex-direction: row;
-              padding: 1.875rem 0 1.875rem;
+              padding: 3.5rem 5rem 2.5rem;
+              align-items: center;
             }
             ul {
               display: block;
@@ -118,13 +117,6 @@ export default function Navigation({ activeSlug, pagesMetadata }: Props) {
             }
             li {
               display: inline-block;
-              margin: 0 1.875rem 0 0;
-            }
-            li:last-child {
-              margin-right: 0;
-            }
-            li > a {
-              padding: 0;
             }
           }
         `}

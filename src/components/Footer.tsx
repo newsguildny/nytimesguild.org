@@ -1,41 +1,49 @@
 import { FC } from 'react';
 import TwitterIcon from './icons/TwitterIcon';
 import MailIcon from './icons/MailIcon';
-import { Heading3, Paragraph } from './Markdown';
+import { sansSerif, serifSizes, serif, sansSerifSizes } from '../styles/tokens/fonts';
+import { bodyText, secondaryHeadingText, secondaryBackground } from '../styles/tokens/colors';
 
 const Footer: FC = () => (
   <footer>
-    <Heading3>Contact Us</Heading3>
-    <Paragraph>
+    <h3>Contact Us</h3>
+    <p>
       <a href="mailto:example@newsguild.com">
         <MailIcon /> example@newsguild.com
       </a>
-    </Paragraph>
-    <Paragraph>
+    </p>
+    <p>
       <a href="https://twitter.com/nyguild">
         <TwitterIcon /> @nytimesguild
       </a>
-    </Paragraph>
+    </p>
     <style jsx>
       {`
         footer {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          background-color: #f3f3f3;
+          background-color: ${secondaryBackground};
           text-align: center;
           width: 100%;
           padding: 5em 0 5em 0;
-          color: #666;
+          color: ${secondaryHeadingText};
+        }
+
+        footer h3 {
+          font-family: ${serif};
+          font-size: ${serifSizes.medium};
+          font-weight: 200;
         }
 
         a {
           text-decoration: none;
-          color: #666;
-          font-family: 'Public Sans';
+          color: ${bodyText};
+          font-family: ${sansSerif};
+          font-size: ${sansSerifSizes.large};
         }
         a:visited {
-          color: #666;
+          color: ${bodyText};
+        }
+        a > :global(svg) {
+          margin-right: 0.75rem;
         }
       `}
     </style>

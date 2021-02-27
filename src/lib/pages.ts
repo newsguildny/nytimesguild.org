@@ -13,14 +13,14 @@ interface PageData {
   seoHeadline: string;
 }
 
-export function getPageTitles() {
+export function getPageSlugs() {
   return fs
     .readdirSync(path.join(process.cwd(), 'src', 'markdown', 'pages'))
     .map((page) => page.slice(0, page.length - 4));
 }
 
 export function getPagesMetadata() {
-  return getPageTitles().map((slug) => getMarkdownData<PageData>('pages', slug).data);
+  return getPageSlugs().map((slug) => getMarkdownData<PageData>('pages', slug).data);
 }
 
 export type PageContent = PageData & MarkdownSource;

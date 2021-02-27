@@ -1,0 +1,86 @@
+backend:
+  name: git-gateway
+  branch: main
+media_folder: public/images
+public_folder: /images
+publish_mode: editorial_workflow
+
+collections:
+  - name: "config"
+    label: "Config"
+    delete: false
+    editor:
+      preview: false
+    files:
+      - name: "general"
+        label: "Site Config"
+        file: "src/lib/config.json"
+        description: "General site settings"
+        fields:
+          - label: "URL"
+            name: "baseUrl"
+            widget: "string"
+            hint: "Do not enter the trailing slash of the URL"
+          - label: "Site title"
+            name: "siteTitle"
+            widget: "string"
+          - label: "Site description"
+            name: "siteDescription"
+            widget: "string"
+          - label: "Site keywords"
+            name: "siteKeywords"
+            widget: "list"
+            summary: "{{fields.keyword.keyword}}"
+            field:
+              label: Keyword
+              name: keyword
+              widget: "string"
+          - label: "Twitter account"
+            name: "twitterAccount"
+            widget: "string"
+
+  - name: papers
+    label: Shop Papers
+    folder: src/markdown/papers
+    extension: mdx
+    format: frontmatter
+    create: true
+    slug: "{{slug}}"
+    identifier_field: slug
+    summary: "{{headline}}"
+    fields:
+      - label: Slug
+        name: slug
+        widget: string
+      - label: Headline
+        name: headline
+        widget: string
+      - label: Snippet
+        name: snippet
+        widget: text
+      - label: Body
+        name: body
+        widget: markdown
+
+  - name: pages
+    label: Pages
+    folder: src/markdown/pages
+    extension: mdx
+    format: frontmatter
+    create: true
+    slug: "{{slug}}"
+    identifier_field: slug
+    summary: "{{title}}"
+    fields:
+      - label: Slug
+        name: slug
+        widget: string
+      - label: Title
+        name: title
+        widget: string
+      - label: Body
+        name: body
+        widget: markdown
+      - label: SEO Headline
+        name: seoHeadline
+        widget: string

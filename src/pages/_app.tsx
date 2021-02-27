@@ -1,5 +1,6 @@
 import { AppProps } from 'next/app';
 import Navigation from '../components/Navigation';
+import Footer from '../components/Footer';
 
 export default function AppWithContext({
   Component,
@@ -11,6 +12,7 @@ export default function AppWithContext({
     <>
       {pagesMetadata && <Navigation activeSlug={activeSlug} pagesMetadata={pagesMetadata} />}
       <Component {...pageProps} />
+      <Footer />
       <style jsx global>{`
         @font-face {
           font-family: 'Crimson Pro';
@@ -38,9 +40,16 @@ export default function AppWithContext({
 
         @font-face {
           font-family: 'Public Sans';
-          src: url('/fonts/PublicSans/webfonts/PublicSans-Bold.woff2') format('woff2');
+          src: url('/fonts/PublicSans/webfonts/PublicSans-SemiBold.woff2') format('woff2');
           font-style: normal;
           font-weight: 600;
+        }
+
+        @font-face {
+          font-family: 'Public Sans';
+          src: url('/fonts/PublicSans/webfonts/PublicSans-Bold.woff2') format('woff2');
+          font-style: normal;
+          font-weight: 700;
         }
 
         @supports (font-variation-settings: 'wdth' 115) {
@@ -54,11 +63,15 @@ export default function AppWithContext({
         }
 
         body {
+          margin: 0;
+        }
+
+        :global(main) {
           padding: 0 2rem;
         }
 
         @media (min-width: 769px) {
-          body {
+          :global(main) {
             padding: 0 5rem;
           }
         }

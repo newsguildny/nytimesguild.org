@@ -34,7 +34,7 @@ const AdminPage = ({ config }: Props) => {
 
 export function getStaticProps() {
   const configFile = fs.readFileSync(
-    path.join(process.cwd(), 'src', 'markdown', 'meta', 'config.yml'),
+    path.join(process.cwd(), 'src', 'markdown', 'config.yml'),
     'utf-8'
   );
   const config = yaml.safeLoad(configFile, {

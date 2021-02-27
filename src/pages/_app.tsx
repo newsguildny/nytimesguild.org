@@ -40,9 +40,16 @@ export default function AppWithContext({
 
         @font-face {
           font-family: 'Public Sans';
-          src: url('/fonts/PublicSans/webfonts/PublicSans-Bold.woff2') format('woff2');
+          src: url('/fonts/PublicSans/webfonts/PublicSans-SemiBold.woff2') format('woff2');
           font-style: normal;
           font-weight: 600;
+        }
+
+        @font-face {
+          font-family: 'Public Sans';
+          src: url('/fonts/PublicSans/webfonts/PublicSans-Bold.woff2') format('woff2');
+          font-style: normal;
+          font-weight: 700;
         }
 
         @supports (font-variation-settings: 'wdth' 115) {

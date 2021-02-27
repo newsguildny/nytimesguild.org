@@ -1,5 +1,6 @@
 import { AppProps } from 'next/app';
 import Navigation from '../components/Navigation';
+import Footer from '../components/Footer';
 
 export default function AppWithContext({
   Component,
@@ -11,6 +12,7 @@ export default function AppWithContext({
     <>
       {pagesMetadata && <Navigation activeSlug={activeSlug} pagesMetadata={pagesMetadata} />}
       <Component {...pageProps} />
+      <Footer />
       <style jsx global>{`
         @font-face {
           font-family: 'Crimson Pro';
@@ -61,11 +63,15 @@ export default function AppWithContext({
         }
 
         body {
+          margin: 0;
+        }
+
+        :global(main) {
           padding: 0 2rem;
         }
 
         @media (min-width: 769px) {
-          body {
+          :global(main) {
             padding: 0 5rem;
           }
         }

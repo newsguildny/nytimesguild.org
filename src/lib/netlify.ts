@@ -25,6 +25,43 @@ const customEditorComponents: EditorComponentOptions[] = [
     toBlock: (data) => `<CallToAction to="${data.destination}">${data.content}</CallToAction>`,
     toPreview: (data) => `<a href="${data.destination}">${data.content}</a>`,
   },
+  {
+    id: 'youtube',
+    label: 'YouTube Embed',
+    fields: [
+      {
+        name: 'title',
+        label: 'Title',
+        widget: 'string',
+      },
+      {
+        name: 'url',
+        label: 'Video URL',
+        widget: 'string',
+      },
+    ],
+    pattern: /<YouTube url="(.*)" title="(.*)" \/>/,
+    fromBlock: (match) => ({
+      url: match[1],
+      title: match[2],
+    }),
+    toBlock: (data) => `<YouTube url="${data.url}" title="${data.title}" />`,
+    toPreview: (data) => `
+      <iframe
+        title=${data.title}
+        width="560"
+        height="315"
+        src=${`https://www.youtube.com/embed/${
+          data.url.match(
+            /^.*(?:(?:youtu.be\/)|(?:v\/)|(?:\/u\/\w\/)|(?:embed\/)|(?:watch\?))\??v?=?([^#&?]*).*/
+          )?.[1] ?? ''
+        }`}
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      />
+    `,
+  },
 ];
 
 export async function init(config: CmsConfig) {

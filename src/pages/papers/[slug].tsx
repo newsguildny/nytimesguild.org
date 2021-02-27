@@ -2,7 +2,7 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import { MdxSource } from 'next-mdx-remote/render-to-string';
 import hydrate from 'next-mdx-remote/hydrate';
 import Head from 'next/head';
-import { YouTube } from 'mdx-embed';
+import YouTube from '../../components/YouTube';
 import { getPaperData, getPapersMetadata } from '../../lib/papers';
 import { withNav } from '../../lib/withNav';
 import Navigation from '../../components/Navigation';

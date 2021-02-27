@@ -16,7 +16,6 @@
     "date-fns": "^2.11.1",
     "gray-matter": "^4.0.2",
     "js-yaml": "^3.14.0",
-    "mdx-embed": "^0.0.17",
     "netlify-cms-app": "^2.14.6",
     "netlify-identity-widget": "^1.9.1",
     "next": "9.5.1",

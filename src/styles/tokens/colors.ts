@@ -1,5 +1,7 @@
 export const background = '#fff';
 
+export const headerText = '#fff';
+
 export const secondaryBackground = '#f3f3f3';
 
 export const bodyText = '#666';

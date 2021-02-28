@@ -7,18 +7,21 @@ import { getPageData, getPagesMetadata } from '../lib/pages';
 import { withNav } from '../lib/withNav';
 import Navigation from '../components/Navigation';
 import CallToAction from '../components/CallToAction';
-import { Heading1, Heading2, Heading3, Paragraph, HorizontalRule } from '../components/Markdown';
+import { Heading2, Heading3, Paragraph, HorizontalRule } from '../components/Markdown';
+import HomeHeader from '../components/HomeHeader';
+import PageHeader from '../components/PageHeader';
 
 interface Props {
+  slug: string;
   source: MdxSource;
   title: string;
-  seoHeadline: string;
+  heading: string;
+  subheading: string;
 }
 
 const components = {
   Navigation,
   CallToAction,
-  h1: Heading1,
   h2: Heading2,
   h3: Heading3,
   p: Paragraph,
@@ -26,36 +29,16 @@ const components = {
   YouTube,
 };
 
-const Page = ({ source, title, seoHeadline }: Props) => {
+const Page = ({ slug, source, title, heading, subheading }: Props) => {
+  const isHome = slug === 'index';
   const content = hydrate(source, { components });
   return (
     <>
       <Head>
         <title>{title} - The New York Times Guild</title>
       </Head>
-      <main>
-        {seoHeadline ? (
-          <section>
-            <h1>{seoHeadline}</h1>
-            {content}
-          </section>
-        ) : (
-          content
-        )}
-      </main>
-      <style jsx>
-        {`
-          h1 {
-            display: none;
-          }
-
-          @media (min-width: 769px) {
-            main {
-              max-width: 47rem;
-            }
-          }
-        `}
-      </style>
+      {isHome ? <HomeHeader /> : <PageHeader heading={heading} subheading={subheading} />}
+      <main>{content}</main>
     </>
   );
 };
@@ -63,12 +46,15 @@ const Page = ({ source, title, seoHeadline }: Props) => {
 export default Page;
 
 export const getStaticProps: GetStaticProps<Props, { slug: [string] }> = async ({ params }) => {
-  const { source, title, seoHeadline } = await getPageData(params!.slug?.[0] || 'index');
+  const slug = params?.slug?.[0] || 'index';
+  const { source, title, heading, subheading } = await getPageData(slug);
   return withNav({
     props: {
+      slug,
       source,
       title,
-      seoHeadline: seoHeadline ?? null,
+      heading: heading ?? '',
+      subheading: subheading ?? '',
     },
   });
 };

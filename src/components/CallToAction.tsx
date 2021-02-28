@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import css from 'styled-jsx/css';
 import { FC } from 'react';
-import ArrowIcon from './icons/ArrowIcon';
+import ArrowIcon from './svgs/ArrowIcon';
 
 const arrowStyles = css.resolve`
   transition: transform 0.3s ease-out;

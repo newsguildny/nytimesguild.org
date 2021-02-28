@@ -5,12 +5,10 @@ import Footer from '../components/Footer';
 export default function AppWithContext({
   Component,
   pageProps: { pagesMetadata, ...pageProps },
-  router,
 }: AppProps) {
-  const activeSlug = router.asPath.split('/')[1] || 'index';
   return (
     <>
-      {pagesMetadata && <Navigation activeSlug={activeSlug} pagesMetadata={pagesMetadata} />}
+      {pagesMetadata && <Navigation activeSlug={pageProps.slug} pagesMetadata={pagesMetadata} />}
       <Component {...pageProps} />
       <Footer />
       <style jsx global>{`
@@ -64,14 +62,31 @@ export default function AppWithContext({
 
         body {
           margin: 0;
+          --nyt-serif-large: 2.625rem;
+          --nyt-serif-medium: 2rem;
+          --nyt-serif-small: 1.25rem;
+
+          --nyt-sans-serif-large: 1.125rem;
+          --nyt-sans-serif-medium: 1rem;
+          --nyt-sans-serif-small: 0.875rem;
         }
 
-        :global(main) {
+        :global(main) > * {
           padding: 0 2rem;
         }
 
         @media (min-width: 769px) {
-          :global(main) {
+          body {
+            --nyt-serif-large: 4.25rem;
+            --nyt-serif-medium: 2.75rem;
+            --nyt-serif-small: 1.5rem;
+
+            --nyt-sans-serif-large: 1.375rem;
+            --nyt-sans-serif-medium: 1.125rem;
+            --nyt-sans-serif-small: 1rem;
+          }
+          :global(main) > * {
+            max-width: 57rem;
             padding: 0 5rem;
           }
         }

@@ -78,12 +78,14 @@ collections:
       - label: Title
         name: title
         widget: string
-      - label: Body
-        name: body
-        widget: markdown
       - label: Heading
         name: heading
         widget: string
+        required: false
       - label: Subheading
         name: subheading
         widget: string
+        required: false
+      - label: Body
+        name: body
+        widget: markdown

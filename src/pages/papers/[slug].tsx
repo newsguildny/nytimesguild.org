@@ -7,7 +7,7 @@ import { getPaperData, getPapersMetadata } from '../../lib/papers';
 import { withNav } from '../../lib/withNav';
 import Navigation from '../../components/Navigation';
 import CallToAction from '../../components/CallToAction';
-import { Heading1, Heading2, Heading3, Paragraph, HorizontalRule } from '../../components/Markdown';
+import { Heading2, Heading3, Paragraph, HorizontalRule } from '../../components/Markdown';
 
 interface Props {
   source: MdxSource;
@@ -17,7 +17,6 @@ interface Props {
 const components = {
   Navigation,
   CallToAction,
-  h1: Heading1,
   h2: Heading2,
   h3: Heading3,
   p: Paragraph,
@@ -32,12 +31,7 @@ const ShopPaper = ({ source, headline }: Props) => {
       <Head>
         <title>{headline} - The New York Times Guild</title>
       </Head>
-      <main>
-        <section>
-          <Heading1>{headline}</Heading1>
-          {content}
-        </section>
-      </main>
+      <main>{content}</main>
       <style jsx>
         {`
           @media (min-width: 769px) {

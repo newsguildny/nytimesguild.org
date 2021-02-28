@@ -62,6 +62,13 @@ export default function AppWithContext({
 
         body {
           margin: 0;
+          --nyt-serif-large: 2.625rem;
+          --nyt-serif-medium: 2rem;
+          --nyt-serif-small: 1.25rem;
+
+          --nyt-sans-serif-large: 1.125rem;
+          --nyt-sans-serif-medium: 1rem;
+          --nyt-sans-serif-small: 0.875rem;
         }
 
         :global(main) {
@@ -69,6 +76,15 @@ export default function AppWithContext({
         }
 
         @media (min-width: 769px) {
+          body {
+            --nyt-serif-large: 4.25rem;
+            --nyt-serif-medium: 2.75rem;
+            --nyt-serif-small: 1.5rem;
+
+            --nyt-sans-serif-large: 1.375rem;
+            --nyt-sans-serif-medium: 1.125rem;
+            --nyt-sans-serif-small: 1rem;
+          }
           :global(main) {
             padding: 0 5rem;
           }

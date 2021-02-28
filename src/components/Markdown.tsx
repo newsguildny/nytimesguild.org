@@ -1,116 +1,71 @@
-import { FC } from 'react';
+import { ReactNode } from 'react';
+import { bodyText, secondaryHeadingText, rule } from '../styles/tokens/colors';
+import { sansSerif, sansSerifSizes, serif, serifSizes } from '../styles/tokens/fonts';
 
-export const Heading1: FC = ({ children }) => {
-  return (
-    <>
-      <h1>{children}</h1>
-      <style jsx>
-        {`
-          h1 {
-            margin: 3.5rem 0 2rem 0;
-            font-family: Crimson Pro;
-            font-size: 2.625rem;
-            font-weight: 200;
-            color: #ff4040;
-          }
-          @media (min-width: 769px) {
-            h1 {
-              font-family: Crimson Pro;
-              font-size: 4.25rem;
-              font-weight: 200;
-              color: #ff4040;
-            }
-          }
-        `}
-      </style>
-    </>
-  );
-};
+interface Props {
+  children?: ReactNode;
+}
 
-export const Heading2: FC = ({ children }) => {
-  return (
-    <>
-      <h2>{children}</h2>
-      <style jsx>
-        {`
-          h2 {
-            margin: 3rem 0;
-            font-family: Crimson Pro;
-            font-size: 2rem;
-            font-weight: 200;
-            color: #ff4040;
-          }
-          @media (min-width: 769px) {
-            h2 {
-              font-family: Crimson Pro;
-              font-size: 2.75rem;
-              font-weight: 200;
-              color: #ff4040;
-            }
-          }
-        `}
-      </style>
-    </>
-  );
-};
+export const Heading2 = ({ children }: Props) => (
+  <>
+    <h2>{children}</h2>
+    <style jsx>
+      {`
+        h2 {
+          margin: 3rem 0;
+          font-family: ${serif};
+          font-size: ${serifSizes.medium};
+          font-weight: 200;
+          color: ${secondaryHeadingText};
+        }
+      `}
+    </style>
+  </>
+);
 
-export const Heading3: FC = ({ children }) => {
-  return (
-    <>
-      <h3>{children}</h3>
-      <style jsx>
-        {`
-          h3 {
-            margin: 2rem 0;
-            font-family: Crimson Pro;
-            font-size: 2rem;
-            font-weight: 200;
-            color: #666666;
-          }
-          @media (min-width: 769px) {
-            h3 {
-              font-family: Crimson Pro;
-              font-size: 2.75rem;
-              font-weight: 200;
-              color: #666666;
-            }
-          }
-        `}
-      </style>
-    </>
-  );
-};
+export const Heading3 = ({ children }: Props) => (
+  <>
+    <h3>{children}</h3>
+    <style jsx>
+      {`
+        h3 {
+          margin: 2rem 0;
+          font-family: ${sansSerif};
+          font-size: ${sansSerifSizes.large};
+          font-weight: 700;
+          color: ${secondaryHeadingText};
+        }
+      `}
+    </style>
+  </>
+);
 
-export const Paragraph: FC = ({ children }) => {
-  return (
-    <>
-      <p>{children}</p>
-      <style jsx>
-        {`
-          p {
-            font-family: Crimson Pro;
-            font-size: 1.5rem;
-            font-weight: 200;
-            color: #666666;
-          }
-        `}
-      </style>
-    </>
-  );
-};
+export const Paragraph = ({ children }: Props) => (
+  <>
+    <p>{children}</p>
+    <style jsx>
+      {`
+        p {
+          font-family: ${serif};
+          font-size: ${serifSizes.small};
+          font-weight: 400;
+          color: ${bodyText};
+        }
+      `}
+    </style>
+  </>
+);
 
-export const HorizontalRule: FC = () => {
-  return (
-    <>
-      <hr />
-      <style jsx>
-        {`
-          hr {
-            border: 0.0625rem solid #dedede;
-            margin: 3rem 0;
-          }
-        `}
-      </style>
-    </>
-  );
-};
+export const HorizontalRule = () => (
+  <>
+    <hr />
+    <style jsx>
+      {`
+        hr {
+          border: 0.0625rem solid ${rule};
+          margin: 3rem 0;
+        }
+      `}
+    </style>
+  </>
+);

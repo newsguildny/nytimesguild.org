@@ -7,7 +7,7 @@ import { getPageData, getPagesMetadata } from '../lib/pages';
 import { withNav } from '../lib/withNav';
 import Navigation from '../components/Navigation';
 import CallToAction from '../components/CallToAction';
-import { Heading1, Heading2, Heading3, Paragraph, HorizontalRule } from '../components/Markdown';
+import { Heading2, Heading3, Paragraph, HorizontalRule } from '../components/Markdown';
 import HomeHeader from '../components/HomeHeader';
 import PageHeader from '../components/PageHeader';
 
@@ -22,7 +22,6 @@ interface Props {
 const components = {
   Navigation,
   CallToAction,
-  h1: Heading1,
   h2: Heading2,
   h3: Heading3,
   p: Paragraph,

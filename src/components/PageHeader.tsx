@@ -2,15 +2,15 @@ import { headerBackground, headerText } from '../styles/tokens/colors';
 import { serif, serifSizes } from '../styles/tokens/fonts';
 
 interface Props {
-  heading: string;
-  subheading: string;
+  heading?: string;
+  subheading?: string;
 }
 
 const PageHeader = ({ heading, subheading }: Props) => (
   <>
     <header>
-      <h1>{heading}</h1>
-      <p className="subheading">{subheading}</p>
+      {heading && <h1>{heading}</h1>}
+      {subheading && <p className="subheading">{subheading}</p>}
     </header>
     <style jsx>{`
       header {

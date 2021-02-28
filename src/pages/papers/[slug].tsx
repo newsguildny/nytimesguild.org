@@ -8,6 +8,8 @@ import { withNav } from '../../lib/withNav';
 import Navigation from '../../components/Navigation';
 import CallToAction from '../../components/CallToAction';
 import { Heading2, Heading3, Paragraph, HorizontalRule } from '../../components/Markdown';
+import { serif, serifSizes } from '../../styles/tokens/fonts';
+import { secondaryHeadingText } from '../../styles/tokens/colors';
 
 interface Props {
   source: MdxSource;
@@ -31,9 +33,18 @@ const ShopPaper = ({ source, headline }: Props) => {
       <Head>
         <title>{headline} - The New York Times Guild</title>
       </Head>
-      <main>{content}</main>
+      <main>
+        <h1>{headline}</h1>
+        {content}
+      </main>
       <style jsx>
         {`
+          h1 {
+            font-family: ${serif};
+            font-size: ${serifSizes.large};
+            font-weight: 300;
+            color: ${secondaryHeadingText};
+          }
           @media (min-width: 769px) {
             main {
               max-width: 47rem;

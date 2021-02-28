@@ -56,7 +56,7 @@ const HomeHeader = () => (
       .desktop-header {
         display: none;
       }
-      @media (min-width: 1009px) {
+      @media (min-width: 769px) {
         .mobile-header {
           display: none;
         }
@@ -65,20 +65,29 @@ const HomeHeader = () => (
         }
         header {
           padding: 3rem 5rem 6rem;
-          font-size: 2.25rem;
-          line-height: 2.875rem;
+          font-size: 1.6rem;
+          line-height: 2rem;
         }
         header p:first-child {
           margin-top: 0;
         }
         header .justified-header-line {
-          margin: 0 0 0 13.7rem;
+          margin: 0 0 0 9.8rem;
         }
         header strong {
           font-weight: 600;
         }
         .header-conclusion > p {
           margin: 0;
+        }
+      }
+      @media (min-width: 1009px) {
+        header {
+          font-size: 2.25rem;
+          line-height: 2.875rem;
+        }
+        header .justified-header-line {
+          margin: 0 0 0 13.7rem;
         }
       }
     `}</style>

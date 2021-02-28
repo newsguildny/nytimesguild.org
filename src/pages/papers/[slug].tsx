@@ -3,8 +3,9 @@ import { MdxSource } from 'next-mdx-remote/render-to-string';
 import hydrate from 'next-mdx-remote/hydrate';
 import Head from 'next/head';
 import YouTube from '../../components/YouTube';
-import { getPaperData, getPapersMetadata } from '../../lib/papers';
+import { getPaperData, getPapersFilenames } from '../../lib/papers';
 import { withNav } from '../../lib/withNav';
+import { withRecentPapers } from '../../lib/withRecentPapers';
 import Navigation from '../../components/Navigation';
 import CallToAction from '../../components/CallToAction';
 import { Heading2, Heading3, Paragraph, HorizontalRule } from '../../components/Markdown';
@@ -55,18 +56,20 @@ export default ShopPaper;
 
 export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({ params }) => {
   const { source, headline } = await getPaperData(params!.slug);
-  return withNav({
-    props: {
-      source,
-      headline,
-    },
-  });
+  return withRecentPapers(
+    withNav({
+      props: {
+        source,
+        headline,
+      },
+    })
+  );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const papersMetadata = getPapersMetadata();
-  const paths = papersMetadata.map(({ slug }) => ({
-    params: { slug },
+  const filenames = getPapersFilenames();
+  const paths = filenames.map((filename) => ({
+    params: { slug: filename },
   }));
   return {
     paths,

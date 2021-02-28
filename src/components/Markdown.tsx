@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { Children, ReactNode, ReactElement, cloneElement } from 'react';
 import { bodyText, secondaryHeadingText, rule } from '../styles/tokens/colors';
 import { sansSerif, sansSerifSizes, serif, serifSizes } from '../styles/tokens/fonts';
 
@@ -40,9 +40,30 @@ export const Heading3 = ({ children }: Props) => (
   </>
 );
 
+function isImageChild(
+  children: ReactNode
+): children is ReactElement<{ className?: string; originalType: 'img' }> {
+  if (typeof children !== 'object') {
+    return false;
+  }
+  const child = Children.only(children);
+  if (!child) {
+    return false;
+  }
+  if (!('props' in child)) {
+    return false;
+  }
+  if (!('originalType' in child.props)) {
+    return false;
+  }
+  return child.props.originalType === 'img';
+}
+
 export const Paragraph = ({ children }: Props) => (
   <>
-    <p>{children}</p>
+    <p className={isImageChild(children) ? 'image-wrapper' : ''}>
+      {isImageChild(children) ? cloneElement(children, { className: 'full-bleed' }) : children}
+    </p>
     <style jsx>
       {`
         p {
@@ -50,6 +71,16 @@ export const Paragraph = ({ children }: Props) => (
           font-size: ${serifSizes.small};
           font-weight: 400;
           color: ${bodyText};
+        }
+
+        p.image-wrapper {
+          padding: 0;
+          width: 100%;
+          max-width: 100%;
+        }
+
+        :global(img.full-bleed) {
+          width: 100%;
         }
       `}
     </style>

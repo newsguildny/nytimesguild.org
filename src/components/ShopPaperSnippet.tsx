@@ -22,7 +22,7 @@ const ShopPaperSnippet = ({ paper }: Props) => {
       <div className="snippet">
         <h3>{paper.headline}</h3>
         <p>{paper.snippet}</p>
-        <Link href={`/papers/${paper.slug}`}>
+        <Link href={`/papers/${paper.filename}`}>
           <a>
             Continue Reading <ArrowIcon className={arrowStyles.className} />
           </a>

@@ -45,7 +45,7 @@ collections:
     extension: mdx
     format: frontmatter
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{fields.slug}}"
     identifier_field: slug
     summary: "{{headline}}"
     fields:
@@ -55,6 +55,11 @@ collections:
       - label: Headline
         name: headline
         widget: string
+      - label: Published Date
+        name: date
+        widget: datetime
+        date_format: MM/DD/YYYY
+        time_format: HH:mm
       - label: Snippet
         name: snippet
         widget: text
@@ -68,7 +73,7 @@ collections:
     extension: mdx
     format: frontmatter
     create: true
-    slug: "{{slug}}"
+    slug: "{{fields.slug}}"
     identifier_field: slug
     summary: "{{title}}"
     fields:

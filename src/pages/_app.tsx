@@ -1,15 +1,17 @@
 import { AppProps } from 'next/app';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import RecentPapers from '../components/RecentPapers';
 
 export default function AppWithContext({
   Component,
-  pageProps: { pagesMetadata, ...pageProps },
+  pageProps: { pagesMetadata, recentPapers, ...pageProps },
 }: AppProps) {
   return (
     <>
       {pagesMetadata && <Navigation activeSlug={pageProps.slug} pagesMetadata={pagesMetadata} />}
       <Component {...pageProps} />
+      {recentPapers && <RecentPapers papers={recentPapers} />}
       <Footer />
       <style jsx global>{`
         @font-face {

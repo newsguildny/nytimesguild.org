@@ -10,6 +10,7 @@ import CallToAction from '../components/CallToAction';
 import { Heading2, Heading3, Paragraph, HorizontalRule } from '../components/Markdown';
 import HomeHeader from '../components/HomeHeader';
 import PageHeader from '../components/PageHeader';
+import { withRecentPapers } from '../lib/withRecentPapers';
 
 interface Props {
   slug: string;
@@ -48,15 +49,17 @@ export default Page;
 export const getStaticProps: GetStaticProps<Props, { slug: [string] }> = async ({ params }) => {
   const slug = params?.slug?.[0] || 'index';
   const { source, title, heading, subheading } = await getPageData(slug);
-  return withNav({
-    props: {
-      slug,
-      source,
-      title,
-      heading: heading ?? '',
-      subheading: subheading ?? '',
-    },
-  });
+  return withRecentPapers(
+    withNav({
+      props: {
+        slug,
+        source,
+        title,
+        heading: heading ?? '',
+        subheading: subheading ?? '',
+      },
+    })
+  );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {

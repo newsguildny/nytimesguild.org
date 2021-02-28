@@ -9,8 +9,8 @@ import { sansSerif, sansSerifSizes, serif, serifSizes } from '../styles/tokens/f
 const burgerStyles = css.resolve`
   display: block;
   position: absolute;
-  top: 1.5rem;
-  right: 0;
+  top: 3.125rem;
+  right: 2.5rem;
 
   @media (min-width: 769px) {
     display: none;
@@ -60,10 +60,7 @@ export default function Navigation({ activeSlug, pagesMetadata }: Props) {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            position: sticky;
-            top: 0;
             padding: 1.125rem 1.5rem;
-            border-bottom: 0.125rem solid #dedede;
             background: white;
             font-family: ${serif};
             font-size: ${serifSizes.large};

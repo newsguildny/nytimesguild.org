@@ -5,12 +5,10 @@ import Footer from '../components/Footer';
 export default function AppWithContext({
   Component,
   pageProps: { pagesMetadata, ...pageProps },
-  router,
 }: AppProps) {
-  const activeSlug = router.asPath.split('/')[1] || 'index';
   return (
     <>
-      {pagesMetadata && <Navigation activeSlug={activeSlug} pagesMetadata={pagesMetadata} />}
+      {pagesMetadata && <Navigation activeSlug={pageProps.slug} pagesMetadata={pagesMetadata} />}
       <Component {...pageProps} />
       <Footer />
       <style jsx global>{`

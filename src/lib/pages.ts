@@ -10,7 +10,8 @@ import CallToAction from '../components/CallToAction';
 interface PageData {
   slug: string;
   title: string;
-  seoHeadline: string;
+  heading?: string;
+  subheading?: string;
 }
 
 export function getPageSlugs() {
@@ -37,7 +38,8 @@ export async function getPageData(slug: string) {
   return {
     title: markdownData.data.title,
     slug: markdownData.data.slug,
-    seoHeadline: markdownData.data.seoHeadline,
+    heading: markdownData.data.heading,
+    subheading: markdownData.data.subheading,
     source: mdxSource,
   };
 }

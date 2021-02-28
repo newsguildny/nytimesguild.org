@@ -81,6 +81,9 @@ collections:
       - label: Body
         name: body
         widget: markdown
-      - label: SEO Headline
-        name: seoHeadline
+      - label: Heading
+        name: heading
+        widget: string
+      - label: Subheading
+        name: subheading
         widget: string

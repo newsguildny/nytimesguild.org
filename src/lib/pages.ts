@@ -5,6 +5,7 @@ import rehypeSlug from 'rehype-slug';
 import { getMarkdownData, MarkdownSource } from './markdown';
 import Navigation from '../components/Navigation';
 import CallToAction from '../components/CallToAction';
+import YouTube from '../components/YouTube';
 
 interface PageData {
   slug: string;
@@ -28,7 +29,7 @@ export type PageContent = PageData & MarkdownSource;
 export async function getPageData(slug: string) {
   const markdownData = getMarkdownData<PageData>('pages', slug);
   const mdxSource = await renderToString(markdownData.content, {
-    components: { Navigation, CallToAction },
+    components: { Navigation, CallToAction, YouTube },
     mdxOptions: {
       rehypePlugins: [rehypeSlug],
     },

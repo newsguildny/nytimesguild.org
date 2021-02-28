@@ -37,18 +37,8 @@ const Page = ({ slug, source, title, heading, subheading }: Props) => {
       <Head>
         <title>{title} - The New York Times Guild</title>
       </Head>
-
       {isHome ? <HomeHeader /> : <PageHeader heading={heading} subheading={subheading} />}
       <main>{content}</main>
-      <style jsx>
-        {`
-          @media (min-width: 769px) {
-            main {
-              max-width: 47rem;
-            }
-          }
-        `}
-      </style>
     </>
   );
 };

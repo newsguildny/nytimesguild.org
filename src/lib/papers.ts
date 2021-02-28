@@ -2,7 +2,6 @@ import fs from 'fs';
 import path from 'path';
 import renderToString from 'next-mdx-remote/render-to-string';
 import rehypeSlug from 'rehype-slug';
-import sectionize from 'remark-sectionize';
 import { getMarkdownData, MarkdownSource } from './markdown';
 import Navigation from '../components/Navigation';
 import CallToAction from '../components/CallToAction';
@@ -31,7 +30,6 @@ export async function getPaperData(slug: string) {
     components: { Navigation, CallToAction },
     mdxOptions: {
       rehypePlugins: [rehypeSlug],
-      remarkPlugins: [sectionize],
     },
   });
   return {

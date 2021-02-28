@@ -71,7 +71,7 @@ export default function AppWithContext({
           --nyt-sans-serif-small: 0.875rem;
         }
 
-        :global(main) {
+        :global(main) > * {
           padding: 0 2rem;
         }
 
@@ -85,7 +85,8 @@ export default function AppWithContext({
             --nyt-sans-serif-medium: 1.125rem;
             --nyt-sans-serif-small: 1rem;
           }
-          :global(main) {
+          :global(main) > * {
+            max-width: 57rem;
             padding: 0 5rem;
           }
         }

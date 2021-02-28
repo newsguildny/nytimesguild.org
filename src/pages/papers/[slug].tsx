@@ -45,11 +45,6 @@ const ShopPaper = ({ source, headline }: Props) => {
             font-weight: 300;
             color: ${secondaryHeadingText};
           }
-          @media (min-width: 769px) {
-            main {
-              max-width: 47rem;
-            }
-          }
         `}
       </style>
     </>

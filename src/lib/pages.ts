@@ -3,11 +3,14 @@ import path from 'path';
 import renderToString from 'next-mdx-remote/render-to-string';
 import rehypeSlug from 'rehype-slug';
 import { getMarkdownData, MarkdownSource } from './markdown';
-import Navigation from '../components/Navigation';
 import CallToAction from '../components/CallToAction';
 import YouTube from '../components/YouTube';
+import HighlightedTestimonials from '../components/HighlightedTestimonials';
+import RecentPapers from '../components/RecentPapers';
+import { FullBleedImage } from '../components/Markdown';
 
 interface PageData {
+  filename: string;
   slug: string;
   title: string;
   heading?: string;
@@ -26,15 +29,16 @@ export function getPagesMetadata() {
 
 export type PageContent = PageData & MarkdownSource;
 
-export async function getPageData(slug: string) {
-  const markdownData = getMarkdownData<PageData>('pages', slug);
+export async function getPageData(filename: string) {
+  const markdownData = getMarkdownData<PageData>('pages', filename);
   const mdxSource = await renderToString(markdownData.content, {
-    components: { Navigation, CallToAction, YouTube },
+    components: { CallToAction, YouTube, HighlightedTestimonials, FullBleedImage, RecentPapers },
     mdxOptions: {
       rehypePlugins: [rehypeSlug],
     },
   });
   return {
+    filename: markdownData.data.filename,
     title: markdownData.data.title,
     slug: markdownData.data.slug,
     heading: markdownData.data.heading,

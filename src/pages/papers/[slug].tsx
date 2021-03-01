@@ -4,13 +4,19 @@ import hydrate from 'next-mdx-remote/hydrate';
 import Head from 'next/head';
 import YouTube from '../../components/YouTube';
 import { getPaperData, getPapersFilenames } from '../../lib/papers';
-import { withNav } from '../../lib/withNav';
-import { withRecentPapers } from '../../lib/withRecentPapers';
 import Navigation from '../../components/Navigation';
 import CallToAction from '../../components/CallToAction';
-import { Heading2, Heading3, Paragraph, HorizontalRule } from '../../components/Markdown';
+import RecentPapers from '../../components/RecentPapers';
+import {
+  Heading2,
+  Heading3,
+  Paragraph,
+  HorizontalRule,
+  FullBleedImage,
+} from '../../components/Markdown';
 import { serif, serifSizes } from '../../styles/tokens/fonts';
 import { secondaryHeadingText } from '../../styles/tokens/colors';
+import withStaticContext from '../../staticContext/withStaticContext';
 
 interface Props {
   source: MdxSource;
@@ -24,6 +30,7 @@ const components = {
   h3: Heading3,
   p: Paragraph,
   hr: HorizontalRule,
+  FullBleedImage,
   YouTube,
 };
 
@@ -37,6 +44,7 @@ const ShopPaper = ({ source, headline }: Props) => {
       <main>
         <h1>{headline}</h1>
         {content}
+        <RecentPapers />
       </main>
       <style jsx>
         {`
@@ -56,14 +64,13 @@ export default ShopPaper;
 
 export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({ params }) => {
   const { source, headline } = await getPaperData(params!.slug);
-  return withRecentPapers(
-    withNav({
-      props: {
-        source,
-        headline,
-      },
-    })
-  );
+  return withStaticContext({
+    props: {
+      slug: params!.slug,
+      source,
+      headline,
+    },
+  });
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {

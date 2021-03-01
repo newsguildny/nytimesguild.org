@@ -5,6 +5,7 @@ import TGuild from './svgs/TGuild';
 import Burger from './Burger';
 import { headerBackground, headerText } from '../styles/tokens/colors';
 import { sansSerif, sansSerifSizes, serif, serifSizes } from '../styles/tokens/fonts';
+import { useStaticContext } from '../staticContext/useStaticContext';
 
 const burgerStyles = css.resolve`
   display: block;
@@ -17,12 +18,15 @@ const burgerStyles = css.resolve`
   }
 `;
 
-interface Props {
+export interface StaticContextType {
   activeSlug: string;
   pagesMetadata: Array<{ slug: string; title: string }>;
 }
 
-export default function Navigation({ activeSlug, pagesMetadata }: Props) {
+export const staticContextKey = 'navigation';
+
+export default function Navigation() {
+  const staticContext = useStaticContext<StaticContextType>(staticContextKey);
   const [isNavShown, setIsNavShown] = useState(false);
   return (
     <>
@@ -33,10 +37,10 @@ export default function Navigation({ activeSlug, pagesMetadata }: Props) {
           </a>
         </Link>
         <ul className={isNavShown ? 'shown' : ''}>
-          {pagesMetadata?.map((pageMetadata) => (
+          {staticContext?.pagesMetadata?.map((pageMetadata) => (
             <li key={pageMetadata.slug}>
               <Link href={`/${pageMetadata.slug}`}>
-                <a className={activeSlug === pageMetadata.slug ? 'active' : ''}>
+                <a className={staticContext?.activeSlug === pageMetadata.slug ? 'active' : ''}>
                   {pageMetadata.title}
                 </a>
               </Link>
@@ -44,7 +48,7 @@ export default function Navigation({ activeSlug, pagesMetadata }: Props) {
           ))}
           <li>
             <Link href="/papers">
-              <a className={activeSlug === 'papers' ? 'active' : ''}>Updates</a>
+              <a className={staticContext?.activeSlug === 'papers' ? 'active' : ''}>Updates</a>
             </Link>
           </li>
         </ul>
@@ -60,7 +64,7 @@ export default function Navigation({ activeSlug, pagesMetadata }: Props) {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding: 1.125rem 1.5rem;
+            padding: 1.5rem 1.5rem 0;
             background: white;
             font-family: ${serif};
             font-size: ${serifSizes.large};
@@ -86,9 +90,10 @@ export default function Navigation({ activeSlug, pagesMetadata }: Props) {
           }
           li > a {
             display: block;
-            padding: 0.625rem 1rem;
+            width: max-content;
+            padding: 0.625rem 0.625rem;
             border-radius: 0.25rem;
-            font-size: ${sansSerifSizes.small};
+            font-size: ${sansSerifSizes.large};
             line-height: 1.25rem;
             color: ${headerText};
             text-decoration: none;
@@ -104,6 +109,7 @@ export default function Navigation({ activeSlug, pagesMetadata }: Props) {
 
           @media (min-width: 769px) {
             nav {
+              padding: 1.5rem 1.5rem;
               flex-direction: row;
               padding: 3.5rem 5rem 2.5rem;
               align-items: center;
@@ -114,6 +120,9 @@ export default function Navigation({ activeSlug, pagesMetadata }: Props) {
             }
             li {
               display: inline-block;
+            }
+            li > a {
+              font-size: ${sansSerifSizes.small};
             }
           }
         `}

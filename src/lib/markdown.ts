@@ -12,13 +12,14 @@ interface GrayMatterData<Data> extends GrayMatterFile<string> {
   data: Data;
 }
 
-export function getMarkdownData<Data>(category: string, slug: string) {
-  const filePath = path.join(process.cwd(), 'src', 'markdown', category, `${slug}.mdx`);
+export function getMarkdownData<Data>(category: string, filename: string) {
+  const filePath = path.join(process.cwd(), 'src', 'markdown', category, `${filename}.mdx`);
   const fileContents = fs.readFileSync(filePath, 'utf8');
-  return matter(fileContents, {
+  const grayMatter = matter(fileContents, {
     engines: {
       // eslint-disable-next-line @typescript-eslint/ban-types
       yaml: (s) => yaml.safeLoad(s, { schema: yaml.JSON_SCHEMA }) as object,
     },
   }) as GrayMatterData<Data>;
+  return { ...grayMatter, data: { filename, ...grayMatter.data } };
 }

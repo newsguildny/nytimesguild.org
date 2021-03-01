@@ -1,0 +1,35 @@
+import { GetStaticProps } from 'next';
+import Head from 'next/head';
+import PageHeader from '../components/PageHeader';
+import Testimonial from '../components/Testimonial';
+import { getTestimonialsData, TestimonialContent } from '../lib/testimonials';
+import withStaticContext from '../staticContext/withStaticContext';
+
+interface Props {
+  testimonials: TestimonialContent[];
+}
+
+const Testimonials = ({ testimonials }: Props) => (
+  <>
+    <Head>
+      <title>Testimonials - The New York Times Guild</title>
+    </Head>
+    <PageHeader heading="Testimonials" />
+    <main>
+      {testimonials.map((testimonial) => (
+        <Testimonial key={testimonial.name} testimonial={testimonial} />
+      ))}
+    </main>
+  </>
+);
+
+export const getStaticProps: GetStaticProps = async () => {
+  const testimonials = await getTestimonialsData();
+  return withStaticContext({
+    props: {
+      testimonials,
+    },
+  });
+};
+
+export default Testimonials;

@@ -39,6 +39,33 @@ collections:
             name: "twitterAccount"
             widget: "string"
 
+  - name: testimonials
+    label: Testimonials
+    folder: src/markdown/testimonials
+    extension: mdx
+    format: frontmatter
+    create: true
+    slug: "{{fields.name}}"
+    identifier_field: name
+    summary: "{{name}}"
+    fields:
+      - label: Name
+        name: name
+        widget: string
+      - label: Role
+        name: role
+        widget: string
+      - label: Highlight
+        name: highlight
+        widget: boolean
+        default: false
+      - label: Headshot
+        name: headshot
+        widget: image
+      - label: Body
+        name: body
+        widget: markdown
+
   - name: papers
     label: Shop Papers
     folder: src/markdown/papers

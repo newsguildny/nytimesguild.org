@@ -62,6 +62,38 @@ const customEditorComponents: EditorComponentOptions[] = [
       />
     `,
   },
+  {
+    id: 'full-bleed-image',
+    label: 'Full Bleed Image',
+    fields: [
+      {
+        name: 'alt',
+        label: 'Alt text',
+        widget: 'string',
+      },
+      {
+        name: 'src',
+        label: 'Image',
+        widget: 'image',
+      },
+    ],
+    pattern: /<FullBleedImage alt="(.*)" src="(.*)" \/>/,
+    fromBlock: (match) => ({
+      alt: match[1],
+      src: match[2],
+    }),
+    toBlock: (data) => `<FullBleedImage alt="${data.alt}" src="${data.src}" />`,
+    toPreview: (data) => `<img alt="${data.alt}" src="${data.src}" />`,
+  },
+  {
+    id: 'recent-papers',
+    label: 'Recent Shop Papers',
+    fields: [],
+    pattern: /<RecentPapers \/>/,
+    fromBlock: () => ({}),
+    toBlock: () => `<RecentPapers />`,
+    toPreview: () => `<p><strong>Recent Shop Papers Block</strong></p>`,
+  },
 ];
 
 export async function init(config: CmsConfig) {

@@ -10,8 +10,8 @@ import { useStaticContext } from '../staticContext/useStaticContext';
 const burgerStyles = css.resolve`
   display: block;
   position: absolute;
-  top: 3.125rem;
-  right: 2.5rem;
+  top: 2.5rem;
+  right: 2rem;
 
   @media (min-width: 769px) {
     display: none;

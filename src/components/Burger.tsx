@@ -18,8 +18,8 @@ export default function Burger({ active, onClick, className }: Props) {
       <style jsx>
         {`
           button {
-            width: 18px;
-            height: 18px;
+            width: 36px;
+            height: 32px;
             border: none;
             background: none;
             cursor: pointer;
@@ -30,7 +30,7 @@ export default function Burger({ active, onClick, className }: Props) {
             height: 2px;
             background: ${headerText};
             top: calc(50% - 2px / 2);
-            left: calc(50% - 28px / 2);
+            left: calc(50% / 2);
             transition: all 150ms ease-in;
           }
           .bun-1 {

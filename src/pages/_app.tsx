@@ -5,7 +5,7 @@ import StaticContext from '../staticContext/StaticContext';
 
 export default function AppWithContext({
   Component,
-  pageProps: { staticContext, ...pageProps },
+  pageProps: { staticContext = {}, ...pageProps },
 }: AppProps) {
   return (
     <>

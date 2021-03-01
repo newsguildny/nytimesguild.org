@@ -88,9 +88,11 @@ export default function Navigation() {
           li {
             display: block;
           }
+          a {
+            width: max-content;
+          }
           li > a {
             display: block;
-            width: max-content;
             padding: 0.625rem 0.625rem;
             border-radius: 0.25rem;
             font-size: ${sansSerifSizes.large};

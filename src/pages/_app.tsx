@@ -1,18 +1,19 @@
 import { AppProps } from 'next/app';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
-import RecentPapers from '../components/RecentPapers';
+import StaticContext from '../staticContext/StaticContext';
 
 export default function AppWithContext({
   Component,
-  pageProps: { pagesMetadata, recentPapers, ...pageProps },
+  pageProps: { staticContext, ...pageProps },
 }: AppProps) {
   return (
     <>
-      {pagesMetadata && <Navigation activeSlug={pageProps.slug} pagesMetadata={pagesMetadata} />}
-      <Component {...pageProps} />
-      {recentPapers && <RecentPapers papers={recentPapers} />}
-      <Footer />
+      <StaticContext.Provider value={staticContext}>
+        <Navigation />
+        <Component {...pageProps} />
+        <Footer />
+      </StaticContext.Provider>
       <style jsx global>{`
         @font-face {
           font-family: 'Crimson Pro';
@@ -68,6 +69,7 @@ export default function AppWithContext({
           --nyt-serif-medium: 2rem;
           --nyt-serif-small: 1.25rem;
 
+          --nyt-sans-serif-extra-large: 1.25rem;
           --nyt-sans-serif-large: 1.125rem;
           --nyt-sans-serif-medium: 1rem;
           --nyt-sans-serif-small: 0.875rem;
@@ -83,12 +85,13 @@ export default function AppWithContext({
             --nyt-serif-medium: 2.75rem;
             --nyt-serif-small: 1.5rem;
 
+            --nyt-sans-serif-extra-large: 1.5rem;
             --nyt-sans-serif-large: 1.375rem;
             --nyt-sans-serif-medium: 1.125rem;
             --nyt-sans-serif-small: 1rem;
           }
           :global(main) > * {
-            max-width: 57rem;
+            max-width: 47rem;
             padding: 0 5rem;
           }
         }

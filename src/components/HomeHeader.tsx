@@ -6,7 +6,7 @@ const HomeHeader = () => (
     <header>
       <div className="mobile-header">
         <p>
-          We&apos;re building
+          We&rsquo;re building
           <ul>
             <li>
               A <strong>diverse and equitable</strong> New York Times
@@ -28,7 +28,7 @@ const HomeHeader = () => (
       </div>
       <div className="desktop-header">
         <p>
-          We&apos;re building a <strong>diverse and equitable</strong> New York Times
+          We&rsquo;re building a <strong>diverse and equitable</strong> New York Times
           <p className="justified-header-line">
             a <strong>transparent and inclusive</strong> media industry
           </p>
@@ -49,6 +49,7 @@ const HomeHeader = () => (
         padding: 1rem 1.125rem 2.75rem;
         font-size: 1.5rem;
         line-height: 2rem;
+        font-weight: 300;
         font-family: ${serif};
         background-color: ${headerBackground};
         color: ${headerText};

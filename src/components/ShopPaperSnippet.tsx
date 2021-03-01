@@ -30,13 +30,13 @@ const ShopPaperSnippet = ({ paper }: Props) => {
       </div>
       <style jsx>{`
         .snippet {
-          margin-bottom: 2rem;
+          margin: 3rem 0;
         }
 
         h3 {
           font-family: ${sansSerif};
           font-weight: 700;
-          font-size: 1.5rem;
+          font-size: ${sansSerifSizes.extraLarge};
           color: ${secondaryHeadingText};
         }
 

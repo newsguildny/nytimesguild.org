@@ -9,6 +9,7 @@ export const serifSizes = {
 };
 
 export const sansSerifSizes = {
+  extraLarge: 'var(--nyt-sans-serif-extra-large)',
   large: 'var(--nyt-sans-serif-large)',
   medium: 'var(--nyt-sans-serif-medium)',
   small: 'var(--nyt-sans-serif-small)',

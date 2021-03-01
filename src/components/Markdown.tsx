@@ -1,4 +1,4 @@
-import { Children, ReactNode, ReactElement, cloneElement } from 'react';
+import { ReactNode } from 'react';
 import { bodyText, secondaryHeadingText, rule } from '../styles/tokens/colors';
 import { sansSerif, sansSerifSizes, serif, serifSizes } from '../styles/tokens/fonts';
 
@@ -12,7 +12,7 @@ export const Heading2 = ({ children }: Props) => (
     <style jsx>
       {`
         h2 {
-          margin: 3rem 0;
+          margin: 3rem 0 1.5rem;
           font-family: ${serif};
           font-size: ${serifSizes.medium};
           font-weight: 200;
@@ -29,7 +29,7 @@ export const Heading3 = ({ children }: Props) => (
     <style jsx>
       {`
         h3 {
-          margin: 2rem 0;
+          margin: 2rem 0 1rem;
           font-family: ${sansSerif};
           font-size: ${sansSerifSizes.large};
           font-weight: 700;
@@ -40,53 +40,42 @@ export const Heading3 = ({ children }: Props) => (
   </>
 );
 
-function isImageChild(
-  children: ReactNode
-): children is ReactElement<{ className?: string; originalType: 'img' }> {
-  if (typeof children !== 'object') {
-    return false;
-  }
-  const child = Children.only(children);
-  if (!child) {
-    return false;
-  }
-  if (!('props' in child)) {
-    return false;
-  }
-  if (!('originalType' in child.props)) {
-    return false;
-  }
-  return child.props.originalType === 'img';
-}
-
 export const Paragraph = ({ children }: Props) => (
   <>
-    <p className={isImageChild(children) ? 'image-wrapper' : ''}>
-      {isImageChild(children) ? cloneElement(children, { className: 'full-bleed' }) : children}
-    </p>
+    <p>{children}</p>
     <style jsx>
       {`
         p {
           font-family: ${serif};
           font-size: ${serifSizes.small};
+          line-height: 1.3em;
           font-weight: 400;
           color: ${bodyText};
-        }
-
-        p.image-wrapper {
-          padding: 0;
-          width: 100%;
-          max-width: 100%;
-        }
-
-        :global(img.full-bleed) {
-          width: 100%;
         }
       `}
     </style>
   </>
 );
 
+interface FullBleedImageProps {
+  src: string;
+  alt: string;
+  title: string;
+}
+
+export const FullBleedImage = ({ src, alt, title }: FullBleedImageProps) => (
+  <>
+    <img src={src} alt={alt} title={title} />
+    <style jsx>{`
+      img {
+        margin-top: 3rem;
+        padding: 0;
+        width: 100%;
+        max-width: 100%;
+      }
+    `}</style>
+  </>
+);
 export const HorizontalRule = () => (
   <>
     <hr />

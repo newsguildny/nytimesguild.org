@@ -23,7 +23,7 @@ const Footer: FC = () => (
           background-color: ${secondaryBackground};
           text-align: center;
           width: 100%;
-          padding: 5em 0 5em 0;
+          padding: 33vh 0;
           color: ${secondaryHeadingText};
         }
 

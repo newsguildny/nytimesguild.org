@@ -3,7 +3,7 @@ import Head from 'next/head';
 import PageHeader from '../../components/PageHeader';
 import ShopPaperSnippet from '../../components/ShopPaperSnippet';
 import { getPapersData, ShopPaperContent } from '../../lib/papers';
-import { withNav } from '../../lib/withNav';
+import withStaticContext from '../../staticContext/withStaticContext';
 
 interface Props {
   papers: ShopPaperContent[];
@@ -25,7 +25,7 @@ const ShopPapers = ({ papers }: Props) => (
 
 export const getStaticProps: GetStaticProps = async () => {
   const papers = await getPapersData();
-  return withNav({
+  return withStaticContext({
     props: {
       papers,
     },

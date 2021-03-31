@@ -3,7 +3,7 @@ import path from 'path';
 import renderToString from 'next-mdx-remote/render-to-string';
 import rehypeSlug from 'rehype-slug';
 import { getMarkdownData } from './markdown';
-import { components } from './customEditorComponents';
+import { components } from '../components/customEditorComponents';
 import { TestimonialData } from '../components/Testimonial';
 
 export function getTestimonialsFilenames() {

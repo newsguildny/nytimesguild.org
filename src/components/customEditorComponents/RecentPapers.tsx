@@ -1,6 +1,17 @@
-import ShopPaperSnippet, { ShopPaperContent } from './ShopPaperSnippet';
-import { rule } from '../styles/tokens/colors';
-import { useStaticContext } from '../staticContext/useStaticContext';
+import { EditorComponentOptions } from 'netlify-cms-core';
+import ShopPaperSnippet, { ShopPaperContent } from '../ShopPaperSnippet';
+import { rule } from '../../styles/tokens/colors';
+import { useStaticContext } from '../../staticContext/useStaticContext';
+
+export const options: EditorComponentOptions = {
+  id: 'recent-papers',
+  label: 'Recent Shop Papers',
+  fields: [],
+  pattern: /<RecentPapers \/>/,
+  fromBlock: () => ({}),
+  toBlock: () => `<RecentPapers />`,
+  toPreview: () => `<p><strong>Recent Shop Papers Block</strong></p>`,
+};
 
 export type StaticContextType = ShopPaperContent[];
 

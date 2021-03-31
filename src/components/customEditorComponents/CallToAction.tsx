@@ -1,8 +1,33 @@
 import Link from 'next/link';
 import css from 'styled-jsx/css';
 import { FC } from 'react';
-import ArrowIcon from './svgs/ArrowIcon';
-import { sansSerif, sansSerifSizes } from '../styles/tokens/fonts';
+import { EditorComponentOptions } from 'netlify-cms-core';
+import ArrowIcon from '../svgs/ArrowIcon';
+import { sansSerif, sansSerifSizes } from '../../styles/tokens/fonts';
+
+export const options: EditorComponentOptions = {
+  id: 'call-to-action',
+  label: 'Call To Action',
+  fields: [
+    {
+      name: 'destination',
+      label: 'Destination',
+      widget: 'string',
+    },
+    {
+      name: 'content',
+      label: 'Content',
+      widget: 'string',
+    },
+  ],
+  pattern: /<CallToAction to="([^\s]*)">(.*)<\/CallToAction>/,
+  fromBlock: (match) => ({
+    destination: match[1],
+    content: match[2],
+  }),
+  toBlock: (data) => `<CallToAction to="${data.destination}">${data.content}</CallToAction>`,
+  toPreview: (data) => `<a href="${data.destination}">${data.content}</a>`,
+};
 
 const arrowStyles = css.resolve`
   transition: transform 0.3s ease-out;

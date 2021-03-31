@@ -1,5 +1,6 @@
 import { CmsConfig, EditorComponentOptions } from 'netlify-cms-core';
 import netlifyIdentityWidget from 'netlify-identity-widget';
+import frequentlyAskedQuestions from './frequentlyAskedQuestions';
 
 const customEditorComponents: EditorComponentOptions[] = [
   {
@@ -94,6 +95,7 @@ const customEditorComponents: EditorComponentOptions[] = [
     toBlock: () => `<RecentPapers />`,
     toPreview: () => `<p><strong>Recent Shop Papers Block</strong></p>`,
   },
+  frequentlyAskedQuestions,
 ];
 
 export async function init(config: CmsConfig) {

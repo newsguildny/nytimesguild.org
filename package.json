@@ -22,6 +22,7 @@
     "next-mdx-remote": "^1.0.0",
     "normalize.css": "^8.0.1",
     "react": "16.13.1",
+    "react-accessible-accordion": "^3.3.4",
     "react-dom": "16.13.1",
     "react-instagram-embed": "^1.5.0",
     "react-schemaorg": "^1.2.0",

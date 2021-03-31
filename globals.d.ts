@@ -42,3 +42,9 @@ declare module 'react-twitter-embed' {
 }
 
 declare module 'remark-sectionize';
+
+declare module 'netlify-cms-core' {
+  export interface EditorComponentField {
+    fields?: EditorComponentField[];
+  }
+}

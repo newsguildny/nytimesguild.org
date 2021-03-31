@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import css from 'styled-jsx/css';
-import TGuild from './svgs/TGuild';
-import Burger from './Burger';
+import { TGuild } from './svgs/TGuild';
+import { Burger } from './Burger';
 import { headerBackground, headerText } from '../styles/tokens/colors';
 import { sansSerif, sansSerifSizes, serif, serifSizes } from '../styles/tokens/fonts';
 import { useStaticContext } from '../staticContext/useStaticContext';
@@ -25,7 +25,7 @@ export interface StaticContextType {
 
 export const staticContextKey = 'navigation';
 
-export default function Navigation() {
+export function Navigation() {
   const staticContext = useStaticContext<StaticContextType>(staticContextKey);
   const [isNavShown, setIsNavShown] = useState(false);
   return (

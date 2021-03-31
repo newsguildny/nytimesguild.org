@@ -4,8 +4,8 @@ import hydrate from 'next-mdx-remote/hydrate';
 import Head from 'next/head';
 import { getPageData, getPagesMetadata } from '../lib/pages';
 import { components } from '../components/customEditorComponents';
-import HomeHeader from '../components/HomeHeader';
-import PageHeader from '../components/PageHeader';
+import { HomeHeader } from '../components/HomeHeader';
+import { PageHeader } from '../components/PageHeader';
 import withStaticContext from '../staticContext/withStaticContext';
 
 interface Props {

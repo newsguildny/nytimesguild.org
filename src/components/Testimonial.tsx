@@ -16,7 +16,7 @@ interface Props {
   testimonial: TestimonialContent;
 }
 
-const Testimonial = ({ testimonial }: Props) => {
+export function Testimonial({ testimonial }: Props) {
   const content = hydrate(testimonial.source);
   return (
     <>
@@ -59,6 +59,4 @@ const Testimonial = ({ testimonial }: Props) => {
       `}</style>
     </>
   );
-};
-
-export default Testimonial;
+}

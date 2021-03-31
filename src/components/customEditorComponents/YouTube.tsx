@@ -43,7 +43,7 @@ interface Props {
   title: string;
 }
 
-const YouTube = ({ url, title }: Props) => {
+export function YouTube({ url, title }: Props) {
   const videoId =
     url.match(
       /^.*(?:(?:youtu.be\/)|(?:v\/)|(?:\/u\/\w\/)|(?:embed\/)|(?:watch\?))\??v?=?([^#&?]*).*/
@@ -90,6 +90,4 @@ const YouTube = ({ url, title }: Props) => {
       `}</style>
     </>
   );
-};
-
-export default YouTube;
+}

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import css from 'styled-jsx/css';
 import { bodyText, secondaryHeadingText } from '../styles/tokens/colors';
 import { sansSerif, sansSerifSizes, serif, serifSizes } from '../styles/tokens/fonts';
-import ArrowIcon from './svgs/ArrowIcon';
+import { ArrowIcon } from './svgs/ArrowIcon';
 import { MarkdownSource } from '../lib/markdown';
 
 const arrowStyles = css.resolve`
@@ -25,7 +25,7 @@ interface Props {
   paper: ShopPaperContent;
 }
 
-const ShopPaperSnippet = ({ paper }: Props) => {
+export function ShopPaperSnippet({ paper }: Props) {
   return (
     <>
       <div className="snippet">
@@ -72,6 +72,4 @@ const ShopPaperSnippet = ({ paper }: Props) => {
       {arrowStyles.styles}
     </>
   );
-};
-
-export default ShopPaperSnippet;
+}

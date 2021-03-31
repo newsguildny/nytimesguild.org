@@ -4,7 +4,7 @@ import hydrate from 'next-mdx-remote/hydrate';
 import Head from 'next/head';
 import { getPaperData, getPapersFilenames } from '../../lib/papers';
 import { components } from '../../components/customEditorComponents';
-import RecentPapers from '../../components/customEditorComponents/RecentPapers';
+import { RecentPapers } from '../../components/customEditorComponents/RecentPapers';
 import { serif, serifSizes } from '../../styles/tokens/fonts';
 import { secondaryHeadingText } from '../../styles/tokens/colors';
 import withStaticContext from '../../staticContext/withStaticContext';

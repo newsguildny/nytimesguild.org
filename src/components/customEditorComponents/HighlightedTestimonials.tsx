@@ -1,7 +1,7 @@
 import { EditorComponentOptions } from 'netlify-cms-core';
 import { useStaticContext } from '../../staticContext/useStaticContext';
-import Testimonial, { TestimonialContent } from '../Testimonial';
-import CallToAction from './CallToAction';
+import { Testimonial, TestimonialContent } from '../Testimonial';
+import { CallToAction } from './CallToAction';
 
 export const options: EditorComponentOptions = {
   id: 'highlighted-testimonials',
@@ -17,7 +17,7 @@ export const staticContextKey = 'highlightedTestimonials';
 
 export type StaticContextType = TestimonialContent[];
 
-const HighlightedTestimonials = () => {
+export function HighlightedTestimonials() {
   const testimonials = useStaticContext<StaticContextType>(staticContextKey);
   return (
     <>
@@ -29,6 +29,4 @@ const HighlightedTestimonials = () => {
       </div>
     </>
   );
-};
-
-export default HighlightedTestimonials;
+}

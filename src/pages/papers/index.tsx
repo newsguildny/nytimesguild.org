@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import PageHeader from '../../components/PageHeader';
-import ShopPaperSnippet, { ShopPaperContent } from '../../components/ShopPaperSnippet';
+import { PageHeader } from '../../components/PageHeader';
+import { ShopPaperSnippet, ShopPaperContent } from '../../components/ShopPaperSnippet';
 import { getPapersData } from '../../lib/papers';
 import withStaticContext from '../../staticContext/withStaticContext';
 

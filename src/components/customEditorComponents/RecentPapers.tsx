@@ -1,5 +1,5 @@
 import { EditorComponentOptions } from 'netlify-cms-core';
-import ShopPaperSnippet, { ShopPaperContent } from '../ShopPaperSnippet';
+import { ShopPaperSnippet, ShopPaperContent } from '../ShopPaperSnippet';
 import { rule } from '../../styles/tokens/colors';
 import { useStaticContext } from '../../staticContext/useStaticContext';
 
@@ -17,7 +17,7 @@ export type StaticContextType = ShopPaperContent[];
 
 export const staticContextKey = 'recentPapers';
 
-const RecentPapers = () => {
+export function RecentPapers() {
   const papers = useStaticContext<StaticContextType>(staticContextKey);
   return (
     <>
@@ -49,6 +49,4 @@ const RecentPapers = () => {
       `}</style>
     </>
   );
-};
-
-export default RecentPapers;
+}

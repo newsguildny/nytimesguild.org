@@ -6,7 +6,7 @@ interface Props {
   className?: string;
 }
 
-export default function Burger({ active, onClick, className }: Props) {
+export function Burger({ active, onClick, className }: Props) {
   return (
     <button
       type="button"

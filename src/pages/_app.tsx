@@ -1,6 +1,6 @@
 import { AppProps } from 'next/app';
-import Navigation from '../components/Navigation';
-import Footer from '../components/Footer';
+import { Navigation } from '../components/Navigation';
+import { Footer } from '../components/Footer';
 import StaticContext from '../staticContext/StaticContext';
 import { bodyText, rule, secondaryHeadingText } from '../styles/tokens/colors';
 import { sansSerif, sansSerifSizes, serif, serifSizes } from '../styles/tokens/fonts';

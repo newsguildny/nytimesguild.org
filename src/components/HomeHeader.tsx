@@ -1,4 +1,3 @@
-import { serif } from '../styles/tokens/fonts';
 import { headerBackground, headerText } from '../styles/tokens/colors';
 
 const HomeHeader = () => (
@@ -47,11 +46,13 @@ const HomeHeader = () => (
     <style jsx>{`
       header {
         padding: 1rem 1.125rem 2.75rem;
+        background-color: ${headerBackground};
+        color: ${headerText};
+      }
+      p {
         font-size: 1.5rem;
         line-height: 2rem;
         font-weight: 300;
-        font-family: ${serif};
-        background-color: ${headerBackground};
         color: ${headerText};
       }
       .desktop-header {
@@ -66,6 +67,8 @@ const HomeHeader = () => (
         }
         header {
           padding: 3rem 5rem 6rem;
+        }
+        p {
           font-size: 1.6rem;
           line-height: 2rem;
         }
@@ -83,7 +86,7 @@ const HomeHeader = () => (
         }
       }
       @media (min-width: 1009px) {
-        header {
+        p {
           font-size: 2.25rem;
           line-height: 2.875rem;
         }

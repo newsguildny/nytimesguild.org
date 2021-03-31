@@ -1,6 +1,5 @@
-import { TestimonialContent } from '../lib/testimonials';
 import { useStaticContext } from '../staticContext/useStaticContext';
-import Testimonial from './Testimonial';
+import Testimonial, { TestimonialContent } from './Testimonial';
 import CallToAction from './CallToAction';
 
 export const staticContextKey = 'highlightedTestimonials';

@@ -2,18 +2,9 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import { MdxSource } from 'next-mdx-remote/render-to-string';
 import hydrate from 'next-mdx-remote/hydrate';
 import Head from 'next/head';
-import YouTube from '../../components/YouTube';
 import { getPaperData, getPapersFilenames } from '../../lib/papers';
-import Navigation from '../../components/Navigation';
-import CallToAction from '../../components/CallToAction';
+import { components } from '../../lib/customEditorComponents';
 import RecentPapers from '../../components/RecentPapers';
-import {
-  Heading2,
-  Heading3,
-  Paragraph,
-  HorizontalRule,
-  FullBleedImage,
-} from '../../components/Markdown';
 import { serif, serifSizes } from '../../styles/tokens/fonts';
 import { secondaryHeadingText } from '../../styles/tokens/colors';
 import withStaticContext from '../../staticContext/withStaticContext';
@@ -22,17 +13,6 @@ interface Props {
   source: MdxSource;
   headline: string;
 }
-
-const components = {
-  Navigation,
-  CallToAction,
-  h2: Heading2,
-  h3: Heading3,
-  p: Paragraph,
-  hr: HorizontalRule,
-  FullBleedImage,
-  YouTube,
-};
 
 const ShopPaper = ({ source, headline }: Props) => {
   const content = hydrate(source, { components });

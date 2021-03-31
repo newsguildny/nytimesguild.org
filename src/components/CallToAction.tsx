@@ -2,6 +2,7 @@ import Link from 'next/link';
 import css from 'styled-jsx/css';
 import { FC } from 'react';
 import ArrowIcon from './svgs/ArrowIcon';
+import { sansSerif, sansSerifSizes } from '../styles/tokens/fonts';
 
 const arrowStyles = css.resolve`
   transition: transform 0.3s ease-out;
@@ -30,13 +31,13 @@ const CallToAction: FC<Props> = ({ to, children }) => (
     )}
     <style jsx>{`
       a {
-        font-family: Public Sans;
+        font-family: ${sansSerif};
         display: block;
         margin: 3rem 0 6rem 0;
         width: max-content;
-        padding: 1.5rem;
+        padding: 1rem 1.5rem;
         border: 2px solid #dedede;
-        font-size: 1.5rem;
+        font-size: ${sansSerifSizes.large};
         line-height: 1.875rem;
         color: #666;
         text-decoration: none;

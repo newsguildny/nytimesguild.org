@@ -2,6 +2,8 @@ import { AppProps } from 'next/app';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 import StaticContext from '../staticContext/StaticContext';
+import { bodyText, rule, secondaryHeadingText } from '../styles/tokens/colors';
+import { sansSerif, sansSerifSizes, serif, serifSizes } from '../styles/tokens/fonts';
 
 export default function AppWithContext({
   Component,
@@ -77,6 +79,35 @@ export default function AppWithContext({
 
         :global(main) > * {
           padding: 0 2rem;
+        }
+
+        :global(p) {
+          font-family: ${serif};
+          font-size: ${serifSizes.small};
+          line-height: 1.3em;
+          font-weight: 400;
+          color: ${bodyText};
+        }
+
+        :global(h3) {
+          margin: 2rem 0 1rem;
+          font-family: ${sansSerif};
+          font-size: ${sansSerifSizes.large};
+          font-weight: 700;
+          color: ${secondaryHeadingText};
+        }
+
+        :global(h2) {
+          margin: 3rem 0 1.5rem;
+          font-family: ${serif};
+          font-size: ${serifSizes.medium};
+          font-weight: 200;
+          color: ${secondaryHeadingText};
+        }
+
+        :global(hr) {
+          border: 0.0625rem solid ${rule};
+          margin: 3rem 0;
         }
 
         @media (min-width: 769px) {

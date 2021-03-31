@@ -2,17 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import renderToString from 'next-mdx-remote/render-to-string';
 import rehypeSlug from 'rehype-slug';
-import { getMarkdownData, MarkdownSource } from './markdown';
-import CallToAction from '../components/CallToAction';
-import YouTube from '../components/YouTube';
-import { FullBleedImage } from '../components/Markdown';
-
-interface ShopPaperData {
-  filename: string;
-  slug: string;
-  headline: string;
-  snippet: string;
-}
+import { getMarkdownData } from './markdown';
+import { components } from './customEditorComponents';
+import { ShopPaperData } from '../components/ShopPaperSnippet';
 
 export function getPapersFilenames() {
   return fs
@@ -38,12 +30,10 @@ export function getPapersMetadata() {
   return getPapersFilenames().map((slug) => getMarkdownData<ShopPaperData>('papers', slug).data);
 }
 
-export type ShopPaperContent = ShopPaperData & MarkdownSource;
-
 export async function getPaperData(filename: string) {
   const markdownData = getMarkdownData<ShopPaperData>('papers', filename);
   const mdxSource = await renderToString(markdownData.content, {
-    components: { CallToAction, YouTube, FullBleedImage },
+    components,
     mdxOptions: {
       rehypePlugins: [rehypeSlug],
     },

@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import css from 'styled-jsx/css';
-import { ShopPaperContent } from '../lib/papers';
 import { bodyText, secondaryHeadingText } from '../styles/tokens/colors';
 import { sansSerif, sansSerifSizes, serif, serifSizes } from '../styles/tokens/fonts';
 import ArrowIcon from './svgs/ArrowIcon';
+import { MarkdownSource } from '../lib/markdown';
 
 const arrowStyles = css.resolve`
   margin-top: 0.125rem;
@@ -11,6 +11,15 @@ const arrowStyles = css.resolve`
   width: 2rem;
   transition: transform 0.3s ease-out;
 `;
+
+export interface ShopPaperData {
+  filename: string;
+  slug: string;
+  headline: string;
+  snippet: string;
+}
+
+export type ShopPaperContent = ShopPaperData & MarkdownSource;
 
 interface Props {
   paper: ShopPaperContent;

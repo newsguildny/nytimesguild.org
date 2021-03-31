@@ -1,6 +1,4 @@
-import { ShopPaperContent } from '../lib/papers';
-import ShopPaperSnippet from './ShopPaperSnippet';
-import { Heading2 } from './Markdown';
+import ShopPaperSnippet, { ShopPaperContent } from './ShopPaperSnippet';
 import { rule } from '../styles/tokens/colors';
 import { useStaticContext } from '../staticContext/useStaticContext';
 
@@ -14,7 +12,7 @@ const RecentPapers = () => {
     <>
       <hr />
       <aside>
-        <Heading2>Guild updates</Heading2>
+        <h2>Guild updates</h2>
         {papers?.map((paper) => (
           <ShopPaperSnippet key={paper.slug} paper={paper} />
         ))}

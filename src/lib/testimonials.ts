@@ -2,17 +2,9 @@ import fs from 'fs';
 import path from 'path';
 import renderToString from 'next-mdx-remote/render-to-string';
 import rehypeSlug from 'rehype-slug';
-import { getMarkdownData, MarkdownSource } from './markdown';
-import CallToAction from '../components/CallToAction';
-import YouTube from '../components/YouTube';
-
-interface TestimonialData {
-  filename: string;
-  name: string;
-  role: string;
-  highlight: boolean;
-  headshot: string;
-}
+import { getMarkdownData } from './markdown';
+import { components } from './customEditorComponents';
+import { TestimonialData } from '../components/Testimonial';
 
 export function getTestimonialsFilenames() {
   return fs
@@ -26,12 +18,10 @@ export function getTestimonialsMetadata() {
   );
 }
 
-export type TestimonialContent = TestimonialData & MarkdownSource;
-
 export async function getTestimonialData(filename: string) {
   const markdownData = getMarkdownData<TestimonialData>('testimonials', filename);
   const mdxSource = await renderToString(markdownData.content, {
-    components: { CallToAction, YouTube },
+    components,
     mdxOptions: {
       rehypePlugins: [rehypeSlug],
     },

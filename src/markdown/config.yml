@@ -65,6 +65,8 @@ collections:
       - label: Body
         name: body
         widget: markdown
+        # Don't allow any custom components within testimonials
+        editor_components: []
 
   - name: papers
     label: Shop Papers

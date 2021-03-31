@@ -1,6 +1,16 @@
 import hydrate from 'next-mdx-remote/hydrate';
-import { TestimonialContent } from '../lib/testimonials';
 import { sansSerif, sansSerifSizes } from '../styles/tokens/fonts';
+import { MarkdownSource } from '../lib/markdown';
+
+export interface TestimonialData {
+  filename: string;
+  name: string;
+  role: string;
+  highlight: boolean;
+  headshot: string;
+}
+
+export type TestimonialContent = TestimonialData & MarkdownSource;
 
 interface Props {
   testimonial: TestimonialContent;
@@ -11,6 +21,7 @@ const Testimonial = ({ testimonial }: Props) => {
   return (
     <>
       <div className="container">
+        {testimonial.headshot && <img src={testimonial.headshot} alt="" />}
         <div className="text-container">
           {content}
           <p>
@@ -19,27 +30,31 @@ const Testimonial = ({ testimonial }: Props) => {
             </strong>
           </p>
         </div>
-        <div>
-          <img src={testimonial.headshot} alt="" />
-        </div>
       </div>
       <style jsx>{`
         .container {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
           font-family: ${sansSerif};
           font-size: ${sansSerifSizes.medium};
         }
 
-        .text-container {
-          display: flex;
-          flex-direction: column;
-          padding-right: 2rem;
+        img {
+          margin: 0 0 1rem 0.5rem;
+          border-radius: 50%;
+          float: right;
         }
 
-        img {
-          border-radius: 50%;
+        @media (min-width: 769px) {
+          .container {
+            display: flex;
+            flex-direction: row-reverse;
+            align-items: center;
+          }
+
+          .text-container {
+            display: flex;
+            flex-direction: column;
+            padding-right: 2rem;
+          }
         }
       `}</style>
     </>

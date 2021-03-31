@@ -28,10 +28,8 @@ const PageHeader = ({ heading, subheading }: Props) => (
       .subheading {
         margin-top: 0.875rem;
         font-size: ${serifSizes.small};
+        color: ${headerText};
       }
-      // @media (min-width: 769px) {
-
-      // }
     `}</style>
   </>
 );

@@ -1,8 +1,8 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import PageHeader from '../../components/PageHeader';
-import ShopPaperSnippet from '../../components/ShopPaperSnippet';
-import { getPapersData, ShopPaperContent } from '../../lib/papers';
+import ShopPaperSnippet, { ShopPaperContent } from '../../components/ShopPaperSnippet';
+import { getPapersData } from '../../lib/papers';
 import withStaticContext from '../../staticContext/withStaticContext';
 
 interface Props {

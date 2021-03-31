@@ -2,21 +2,10 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 import { MdxSource } from 'next-mdx-remote/render-to-string';
 import hydrate from 'next-mdx-remote/hydrate';
 import Head from 'next/head';
-import YouTube from '../components/YouTube';
 import { getPageData, getPagesMetadata } from '../lib/pages';
-import Navigation from '../components/Navigation';
-import CallToAction from '../components/CallToAction';
-import {
-  Heading2,
-  Heading3,
-  Paragraph,
-  HorizontalRule,
-  FullBleedImage,
-} from '../components/Markdown';
+import { components } from '../lib/customEditorComponents';
 import HomeHeader from '../components/HomeHeader';
 import PageHeader from '../components/PageHeader';
-import HighlightedTestimonials from '../components/HighlightedTestimonials';
-import RecentPapers from '../components/RecentPapers';
 import withStaticContext from '../staticContext/withStaticContext';
 
 interface Props {
@@ -26,19 +15,6 @@ interface Props {
   heading: string;
   subheading: string;
 }
-
-const components = {
-  Navigation,
-  CallToAction,
-  h2: Heading2,
-  h3: Heading3,
-  p: Paragraph,
-  hr: HorizontalRule,
-  FullBleedImage,
-  YouTube,
-  HighlightedTestimonials,
-  RecentPapers,
-};
 
 const Page = ({ slug, source, title, heading, subheading }: Props) => {
   const isHome = slug === 'index';

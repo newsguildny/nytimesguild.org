@@ -1,8 +1,8 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import PageHeader from '../components/PageHeader';
-import Testimonial from '../components/Testimonial';
-import { getTestimonialsData, TestimonialContent } from '../lib/testimonials';
+import Testimonial, { TestimonialContent } from '../components/Testimonial';
+import { getTestimonialsData } from '../lib/testimonials';
 import withStaticContext from '../staticContext/withStaticContext';
 
 interface Props {

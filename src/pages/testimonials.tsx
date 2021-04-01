@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { PageHeader } from '../components/PageHeader';
 import { Testimonial, TestimonialContent } from '../components/Testimonial';
 import { getTestimonialsData } from '../lib/testimonials';
-import withStaticContext from '../staticContext/withStaticContext';
+import { getStaticContext } from '../staticContext/contextGetters';
 
 interface Props {
   testimonials: TestimonialContent[];
@@ -24,12 +24,14 @@ const Testimonials = ({ testimonials }: Props) => (
 );
 
 export const getStaticProps: GetStaticProps = async () => {
+  const staticContext = await getStaticContext('testimonials');
   const testimonials = await getTestimonialsData();
-  return withStaticContext({
+  return {
     props: {
       testimonials,
+      staticContext,
     },
-  });
+  };
 };
 
 export default Testimonials;

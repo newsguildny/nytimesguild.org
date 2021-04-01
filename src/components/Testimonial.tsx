@@ -1,4 +1,4 @@
-import { hydrate } from '../lib/hydrate';
+import { useHydratedMdx } from '../lib/hydrate';
 import { sansSerif, sansSerifSizes } from '../styles/tokens/fonts';
 import { MarkdownSource } from '../lib/markdown';
 
@@ -17,7 +17,7 @@ interface Props {
 }
 
 export function Testimonial({ testimonial }: Props) {
-  const content = hydrate(testimonial.source);
+  const content = useHydratedMdx(testimonial.source);
   return (
     <>
       <div className="container">

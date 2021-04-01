@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { PageHeader } from '../../components/PageHeader';
 import { ShopPaperSnippet, ShopPaperContent } from '../../components/ShopPaperSnippet';
 import { getPapersData } from '../../lib/papers';
-import withStaticContext from '../../staticContext/withStaticContext';
+import { getStaticContext } from '../../staticContext/contextGetters';
 
 interface Props {
   papers: ShopPaperContent[];
@@ -24,12 +24,14 @@ const ShopPapers = ({ papers }: Props) => (
 );
 
 export const getStaticProps: GetStaticProps = async () => {
-  const papers = await getPapersData();
-  return withStaticContext({
+  const staticContext = await getStaticContext('papers');
+  const papers = await getPapersData(staticContext);
+  return {
     props: {
       papers,
+      staticContext,
     },
-  });
+  };
 };
 
 export default ShopPapers;

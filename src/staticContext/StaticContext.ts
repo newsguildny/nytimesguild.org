@@ -1,5 +1,7 @@
 import { createContext } from 'react';
 
-const StaticContext = createContext<Record<string, unknown>>({});
+export type StaticContextValue = Record<string, unknown>;
+
+const StaticContext = createContext<StaticContextValue>({});
 
 export default StaticContext;

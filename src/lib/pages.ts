@@ -1,9 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import renderToString from 'next-mdx-remote/render-to-string';
-import rehypeSlug from 'rehype-slug';
+import { renderToString } from './renderToString';
 import { getMarkdownData, MarkdownSource } from './markdown';
 import { components } from '../components/customEditorComponents';
+import { StaticContextValue } from '../staticContext/StaticContext';
 
 interface PageData {
   filename: string;
@@ -25,13 +25,11 @@ export function getPagesMetadata() {
 
 export type PageContent = PageData & MarkdownSource;
 
-export async function getPageData(filename: string) {
+export async function getPageData(filename: string, staticContext?: StaticContextValue) {
   const markdownData = getMarkdownData<PageData>('pages', filename);
   const mdxSource = await renderToString(markdownData.content, {
     components,
-    mdxOptions: {
-      rehypePlugins: [rehypeSlug],
-    },
+    staticContext,
   });
   return {
     filename: markdownData.data.filename,

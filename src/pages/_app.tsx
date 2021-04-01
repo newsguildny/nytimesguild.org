@@ -1,14 +1,22 @@
 import { AppProps } from 'next/app';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
-import StaticContext from '../staticContext/StaticContext';
+import StaticContext, { StaticContextValue } from '../staticContext/StaticContext';
 import { bodyText, rule, secondaryHeadingText } from '../styles/tokens/colors';
 import { sansSerif, sansSerifSizes, serif, serifSizes } from '../styles/tokens/fonts';
+
+interface PagePropsWithContext extends Record<string, unknown> {
+  staticContext: StaticContextValue;
+}
+
+interface AppPropsWithContext extends AppProps {
+  pageProps: PagePropsWithContext;
+}
 
 export default function AppWithContext({
   Component,
   pageProps: { staticContext = {}, ...pageProps },
-}: AppProps) {
+}: AppPropsWithContext) {
   return (
     <>
       <StaticContext.Provider value={staticContext}>

@@ -1,14 +1,19 @@
 import hydrateMdxRemote from 'next-mdx-remote/hydrate';
 import { MdxRemote } from 'next-mdx-remote/types';
-import { Children, cloneElement, isValidElement } from 'react';
+import { Children, cloneElement, isValidElement, useContext } from 'react';
+import StaticContext from '../staticContext/StaticContext';
 
-interface Options {
-  components?: MdxRemote.Components;
-  provider?: MdxRemote.Provider;
-}
-
-export function hydrate(source: MdxRemote.Source, options?: Options) {
-  const content = hydrateMdxRemote(source, options);
+export function useHydratedMdx(
+  source: MdxRemote.Source,
+  params?: {
+    components?: MdxRemote.Components;
+  }
+) {
+  const staticContext = useContext(StaticContext);
+  const content = hydrateMdxRemote(source, {
+    ...params,
+    provider: { component: StaticContext.Provider, props: { value: staticContext } },
+  });
   // On the server side, next-mdx-remote wraps its mdx content with a div,
   // which we need to target with global styles to avoid a flash of incorrectly
   // styled content first page load (see pages/_app.tsx for more details),

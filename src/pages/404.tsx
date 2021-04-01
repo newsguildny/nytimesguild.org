@@ -1,10 +1,11 @@
 import { GetStaticProps } from 'next';
-import withStaticContext from '../staticContext/withStaticContext';
+import { getStaticContext } from '../staticContext/contextGetters';
 
 export default function Custom404() {
   return <h1>404 - Page Not Found</h1>;
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  return withStaticContext({ props: {} });
+  const staticContext = await getStaticContext('404');
+  return { props: { staticContext } };
 };

@@ -1,10 +1,10 @@
 import fs from 'fs';
 import path from 'path';
-import renderToString from 'next-mdx-remote/render-to-string';
-import rehypeSlug from 'rehype-slug';
+import { renderToString } from './renderToString';
 import { getMarkdownData } from './markdown';
 import { components } from '../components/customEditorComponents';
 import { ShopPaperData } from '../components/ShopPaperSnippet';
+import { StaticContextValue } from '../staticContext/StaticContext';
 
 export function getPapersFilenames() {
   return fs
@@ -30,13 +30,11 @@ export function getPapersMetadata() {
   return getPapersFilenames().map((slug) => getMarkdownData<ShopPaperData>('papers', slug).data);
 }
 
-export async function getPaperData(filename: string) {
+export async function getPaperData(filename: string, staticContext?: StaticContextValue) {
   const markdownData = getMarkdownData<ShopPaperData>('papers', filename);
   const mdxSource = await renderToString(markdownData.content, {
     components,
-    mdxOptions: {
-      rehypePlugins: [rehypeSlug],
-    },
+    staticContext,
   });
   return {
     filename: markdownData.data.filename,
@@ -47,8 +45,8 @@ export async function getPaperData(filename: string) {
   };
 }
 
-export async function getPapersData() {
-  return Promise.all(getPapersFilenames().map((filename) => getPaperData(filename)));
+export async function getPapersData(staticContext: StaticContextValue) {
+  return Promise.all(getPapersFilenames().map((filename) => getPaperData(filename, staticContext)));
 }
 
 export async function getRecentPapersData() {

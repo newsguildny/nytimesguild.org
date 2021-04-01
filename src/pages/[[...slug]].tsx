@@ -5,8 +5,8 @@ import { getPageData, getPagesMetadata } from '../lib/pages';
 import { components } from '../components/customEditorComponents';
 import { HomeHeader } from '../components/HomeHeader';
 import { PageHeader } from '../components/PageHeader';
-import withStaticContext from '../staticContext/withStaticContext';
-import { hydrate } from '../lib/hydrate';
+import { getStaticContext } from '../staticContext/contextGetters';
+import { useHydratedMdx } from '../lib/hydrate';
 
 interface Props {
   slug: string;
@@ -18,7 +18,7 @@ interface Props {
 
 const Page = ({ slug, source, title, heading, subheading }: Props) => {
   const isHome = slug === 'index';
-  const content = hydrate(source, { components });
+  const content = useHydratedMdx(source, { components });
   return (
     <>
       <Head>
@@ -34,16 +34,18 @@ export default Page;
 
 export const getStaticProps: GetStaticProps<Props, { slug: [string] }> = async ({ params }) => {
   const slug = params?.slug?.[0] || 'index';
-  const { source, title, heading, subheading } = await getPageData(slug);
-  return withStaticContext({
+  const staticContext = await getStaticContext(slug);
+  const { source, title, heading, subheading } = await getPageData(slug, staticContext);
+  return {
     props: {
       slug,
       source,
       title,
       heading: heading ?? '',
       subheading: subheading ?? '',
+      staticContext,
     },
-  });
+  };
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {

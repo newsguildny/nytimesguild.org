@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import renderToString from 'next-mdx-remote/render-to-string';
-import rehypeSlug from 'rehype-slug';
+import { renderToString } from './renderToString';
 import { getMarkdownData } from './markdown';
 import { components } from '../components/customEditorComponents';
 import { TestimonialData } from '../components/Testimonial';
@@ -22,9 +21,6 @@ export async function getTestimonialData(filename: string) {
   const markdownData = getMarkdownData<TestimonialData>('testimonials', filename);
   const mdxSource = await renderToString(markdownData.content, {
     components,
-    mdxOptions: {
-      rehypePlugins: [rehypeSlug],
-    },
   });
   return {
     filename: markdownData.data.filename,

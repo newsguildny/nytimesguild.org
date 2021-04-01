@@ -1,4 +1,4 @@
-import hydrate from 'next-mdx-remote/hydrate';
+import { hydrate } from '../lib/hydrate';
 import { sansSerif, sansSerifSizes } from '../styles/tokens/fonts';
 import { MarkdownSource } from '../lib/markdown';
 

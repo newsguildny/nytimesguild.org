@@ -1,7 +1,7 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
-import { MdxSource } from 'next-mdx-remote/render-to-string';
-import hydrate from 'next-mdx-remote/hydrate';
+import { MdxRemote } from 'next-mdx-remote/types';
 import Head from 'next/head';
+import { hydrate } from '../../lib/hydrate';
 import { getPaperData, getPapersFilenames } from '../../lib/papers';
 import { components } from '../../components/customEditorComponents';
 import { RecentPapers } from '../../components/customEditorComponents/RecentPapers';
@@ -10,7 +10,7 @@ import { secondaryHeadingText } from '../../styles/tokens/colors';
 import withStaticContext from '../../staticContext/withStaticContext';
 
 interface Props {
-  source: MdxSource;
+  source: MdxRemote.Source;
   headline: string;
 }
 

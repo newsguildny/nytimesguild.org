@@ -2,10 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import matter, { GrayMatterFile } from 'gray-matter';
 import yaml from 'js-yaml';
-import { MdxSource } from 'next-mdx-remote/hydrate';
+import { MdxRemote } from 'next-mdx-remote/types';
 
 export interface MarkdownSource {
-  source: MdxSource;
+  source: MdxRemote.Source;
 }
 
 interface GrayMatterData<Data> extends GrayMatterFile<string> {

@@ -33,9 +33,11 @@ interface FullBleedImageProps {
 export function FullBleedImage({ src, alt, title }: FullBleedImageProps) {
   return (
     <>
-      <img src={src} alt={alt} title={title} />
+      {/* We need the extra specificity from the class here to content with the
+          hack in _app.tsx to get around next-mdx-remote's SSR */}
+      <img className="full-bleed-image" src={src} alt={alt} title={title} />
       <style jsx>{`
-        img {
+        img.full-bleed-image {
           margin-top: 3rem;
           padding: 0;
           width: 100%;

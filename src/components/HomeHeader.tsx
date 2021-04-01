@@ -5,20 +5,18 @@ export function HomeHeader() {
     <>
       <header>
         <div className="mobile-header">
-          <p>
-            We&rsquo;re building
-            <ul>
-              <li>
-                A <strong>diverse and equitable</strong> New York Times
-              </li>
-              <li className="justified-header-line">
-                A <strong>transparent and inclusive</strong> media industry
-              </li>
-              <li className="justified-header-line">
-                A <strong>stronger and united</strong> workplace
-              </li>
-            </ul>
-          </p>
+          <p>We&rsquo;re building</p>
+          <ul>
+            <li>
+              A <strong>diverse and equitable</strong> New York Times
+            </li>
+            <li className="justified-header-line">
+              A <strong>transparent and inclusive</strong> media industry
+            </li>
+            <li className="justified-header-line">
+              A <strong>stronger and united</strong> workplace
+            </li>
+          </ul>
           <div className="header-conclusion">
             <p>We have more power together than we do apart.</p>
             <p>
@@ -29,12 +27,12 @@ export function HomeHeader() {
         <div className="desktop-header">
           <p>
             We&rsquo;re building a <strong>diverse and equitable</strong> New York Times
-            <p className="justified-header-line">
-              a <strong>transparent and inclusive</strong> media industry
-            </p>
-            <p className="justified-header-line">
-              a <strong>stronger and united</strong> workplace
-            </p>
+          </p>
+          <p className="justified-header-line">
+            a <strong>transparent and inclusive</strong> media industry
+          </p>
+          <p className="justified-header-line">
+            a <strong>stronger and united</strong> workplace
           </p>
           <div className="header-conclusion">
             <p>We have more power together than we do apart.</p>
@@ -50,7 +48,8 @@ export function HomeHeader() {
           background-color: ${headerBackground};
           color: ${headerText};
         }
-        p {
+        p,
+        li {
           font-size: 1.5rem;
           line-height: 2rem;
           font-weight: 300;
@@ -74,13 +73,16 @@ export function HomeHeader() {
             line-height: 2rem;
           }
           header p:first-child {
-            margin-top: 0;
+            margin: 0;
           }
           header .justified-header-line {
             margin: 0 0 0 9.8rem;
           }
           header strong {
             font-weight: 600;
+          }
+          .header-conclusion > p:first-child {
+            margin: 1em 0 0;
           }
           .header-conclusion > p {
             margin: 0;

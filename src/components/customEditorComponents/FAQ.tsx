@@ -7,7 +7,7 @@ import {
   AccordionItemState,
 } from 'react-accessible-accordion';
 import { EditorComponentOptions } from 'netlify-cms-core';
-import { sansSerif, serif, serifSizes } from '../../styles/tokens/fonts';
+import { sansSerif, serif, serifSizes } from '../../lib/styles/tokens/fonts';
 
 interface QuestionPair {
   question: string;

@@ -3,9 +3,9 @@ import { useState } from 'react';
 import css from 'styled-jsx/css';
 import { TGuild } from './svgs/TGuild';
 import { Burger } from './Burger';
-import { headerBackground, headerText } from '../styles/tokens/colors';
-import { sansSerif, sansSerifSizes, serif, serifSizes } from '../styles/tokens/fonts';
-import { useStaticContext } from '../staticContext/useStaticContext';
+import { headerBackground, headerText } from '../lib/styles/tokens/colors';
+import { sansSerif, sansSerifSizes, serif, serifSizes } from '../lib/styles/tokens/fonts';
+import { useStaticContext } from '../lib/staticContext/useStaticContext';
 
 const burgerStyles = css.resolve`
   display: block;

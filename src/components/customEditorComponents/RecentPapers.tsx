@@ -1,7 +1,7 @@
 import { EditorComponentOptions } from 'netlify-cms-core';
 import { ShopPaperSnippet, ShopPaperContent } from '../ShopPaperSnippet';
-import { rule } from '../../styles/tokens/colors';
-import { useStaticContext } from '../../staticContext/useStaticContext';
+import { rule } from '../../lib/styles/tokens/colors';
+import { useStaticContext } from '../../lib/staticContext/useStaticContext';
 
 export const options: EditorComponentOptions = {
   id: 'recent-papers',

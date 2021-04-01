@@ -1,9 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import { renderToString } from './renderToString';
-import { getMarkdownData } from './markdown';
-import { components } from '../components/customEditorComponents';
-import { TestimonialData } from '../components/Testimonial';
+import { renderToString } from '../mdx/renderToString';
+import { getMarkdownData } from '../mdx/read';
+import { components } from '../../components/customEditorComponents';
+import { TestimonialData } from '../../components/Testimonial';
 
 export function getTestimonialsFilenames() {
   return fs

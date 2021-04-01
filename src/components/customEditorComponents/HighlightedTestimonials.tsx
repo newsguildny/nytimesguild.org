@@ -1,5 +1,5 @@
 import { EditorComponentOptions } from 'netlify-cms-core';
-import { useStaticContext } from '../../staticContext/useStaticContext';
+import { useStaticContext } from '../../lib/staticContext/useStaticContext';
 import { Testimonial, TestimonialContent } from '../Testimonial';
 import { CallToAction } from './CallToAction';
 

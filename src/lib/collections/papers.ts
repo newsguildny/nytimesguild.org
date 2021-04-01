@@ -1,9 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import { renderToString } from './renderToString';
-import { getMarkdownData } from './markdown';
-import { components } from '../components/customEditorComponents';
-import { ShopPaperData } from '../components/ShopPaperSnippet';
+import { renderToString } from '../mdx/renderToString';
+import { getMarkdownData } from '../mdx/read';
+import { components } from '../../components/customEditorComponents';
+import { ShopPaperData } from '../../components/ShopPaperSnippet';
 import { StaticContextValue } from '../staticContext/StaticContext';
 
 export function getPapersFilenames() {

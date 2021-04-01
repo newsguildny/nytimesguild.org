@@ -1,4 +1,4 @@
-import { headerBackground, headerText } from '../styles/tokens/colors';
+import { headerBackground, headerText } from '../lib/styles/tokens/colors';
 
 export function HomeHeader() {
   return (

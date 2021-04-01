@@ -1,9 +1,9 @@
-import { getHighlightedTestimonialsData } from '../lib/testimonials';
-import { getPagesMetadata } from '../lib/pages';
-import { getRecentPapersData } from '../lib/papers';
-import { staticContextKey as highlightedTestimonialsKey } from '../components/customEditorComponents/HighlightedTestimonials';
-import { staticContextKey as navigationKey } from '../components/Navigation';
-import { staticContextKey as recentPapersKey } from '../components/customEditorComponents/RecentPapers';
+import { getHighlightedTestimonialsData } from '../collections/testimonials';
+import { getPagesMetadata } from '../collections/pages';
+import { getRecentPapersData } from '../collections/papers';
+import { staticContextKey as highlightedTestimonialsKey } from '../../components/customEditorComponents/HighlightedTestimonials';
+import { staticContextKey as navigationKey } from '../../components/Navigation';
+import { staticContextKey as recentPapersKey } from '../../components/customEditorComponents/RecentPapers';
 
 export const highlightedTestimonials = {
   staticContextKey: highlightedTestimonialsKey,

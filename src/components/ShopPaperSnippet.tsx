@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import css from 'styled-jsx/css';
-import { bodyText, secondaryHeadingText } from '../styles/tokens/colors';
-import { sansSerif, sansSerifSizes, serif, serifSizes } from '../styles/tokens/fonts';
+import { bodyText, secondaryHeadingText } from '../lib/styles/tokens/colors';
+import { sansSerif, sansSerifSizes, serif, serifSizes } from '../lib/styles/tokens/fonts';
 import { ArrowIcon } from './svgs/ArrowIcon';
-import { MarkdownSource } from '../lib/markdown';
+import { MarkdownSource } from '../lib/mdx/read';
 
 const arrowStyles = css.resolve`
   margin-top: 0.125rem;

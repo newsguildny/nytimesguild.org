@@ -1,13 +1,13 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { MdxRemote } from 'next-mdx-remote/types';
 import Head from 'next/head';
-import { useHydratedMdx } from '../../lib/hydrate';
-import { getPaperData, getPapersFilenames } from '../../lib/papers';
+import { useHydratedMdx } from '../../lib/mdx/hydrate';
+import { getPaperData, getPapersFilenames } from '../../lib/collections/papers';
 import { components } from '../../components/customEditorComponents';
 import { RecentPapers } from '../../components/customEditorComponents/RecentPapers';
-import { serif, serifSizes } from '../../styles/tokens/fonts';
-import { secondaryHeadingText } from '../../styles/tokens/colors';
-import { getStaticContext } from '../../staticContext/contextGetters';
+import { serif, serifSizes } from '../../lib/styles/tokens/fonts';
+import { secondaryHeadingText } from '../../lib/styles/tokens/colors';
+import { getStaticContext } from '../../lib/staticContext/contextGetters';
 
 interface Props {
   source: MdxRemote.Source;

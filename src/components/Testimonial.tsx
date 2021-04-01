@@ -1,6 +1,6 @@
-import { useHydratedMdx } from '../lib/hydrate';
-import { sansSerif, sansSerifSizes } from '../styles/tokens/fonts';
-import { MarkdownSource } from '../lib/markdown';
+import { useHydratedMdx } from '../lib/mdx/hydrate';
+import { sansSerif, sansSerifSizes } from '../lib/styles/tokens/fonts';
+import { MarkdownSource } from '../lib/mdx/read';
 
 export interface TestimonialData {
   filename: string;

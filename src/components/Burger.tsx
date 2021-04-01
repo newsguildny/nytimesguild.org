@@ -1,4 +1,4 @@
-import { headerText } from '../styles/tokens/colors';
+import { headerText } from '../lib/styles/tokens/colors';
 
 interface Props {
   active: boolean;

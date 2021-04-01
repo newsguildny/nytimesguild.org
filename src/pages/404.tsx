@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { getStaticContext } from '../staticContext/contextGetters';
+import { getStaticContext } from '../lib/staticContext/contextGetters';
 
 export default function Custom404() {
   return <h1>404 - Page Not Found</h1>;

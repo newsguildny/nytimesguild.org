@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import { renderToString } from './renderToString';
-import { getMarkdownData, MarkdownSource } from './markdown';
-import { components } from '../components/customEditorComponents';
+import { renderToString } from '../mdx/renderToString';
+import { getMarkdownData, MarkdownSource } from '../mdx/read';
+import { components } from '../../components/customEditorComponents';
 import { StaticContextValue } from '../staticContext/StaticContext';
 
 interface PageData {

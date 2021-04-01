@@ -1,7 +1,7 @@
 import { TwitterIcon } from './svgs/TwitterIcon';
 import { MailIcon } from './svgs/MailIcon';
-import { sansSerif, serifSizes, serif, sansSerifSizes } from '../styles/tokens/fonts';
-import { bodyText, secondaryHeadingText, secondaryBackground } from '../styles/tokens/colors';
+import { sansSerif, serifSizes, serif, sansSerifSizes } from '../lib/styles/tokens/fonts';
+import { bodyText, secondaryHeadingText, secondaryBackground } from '../lib/styles/tokens/colors';
 
 export function Footer() {
   return (

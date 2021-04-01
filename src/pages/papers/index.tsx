@@ -2,8 +2,8 @@ import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { PageHeader } from '../../components/PageHeader';
 import { ShopPaperSnippet, ShopPaperContent } from '../../components/ShopPaperSnippet';
-import { getPapersData } from '../../lib/papers';
-import { getStaticContext } from '../../staticContext/contextGetters';
+import { getPapersData } from '../../lib/collections/papers';
+import { getStaticContext } from '../../lib/staticContext/contextGetters';
 
 interface Props {
   papers: ShopPaperContent[];

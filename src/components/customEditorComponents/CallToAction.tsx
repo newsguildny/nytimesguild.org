@@ -3,7 +3,7 @@ import css from 'styled-jsx/css';
 import { ReactNode } from 'react';
 import { EditorComponentOptions } from 'netlify-cms-core';
 import { ArrowIcon } from '../svgs/ArrowIcon';
-import { sansSerif, sansSerifSizes } from '../../styles/tokens/fonts';
+import { sansSerif, sansSerifSizes } from '../../lib/styles/tokens/fonts';
 
 export const options: EditorComponentOptions = {
   id: 'call-to-action',

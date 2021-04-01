@@ -1,4 +1,4 @@
-import hydrateMdxRemote from 'next-mdx-remote/hydrate';
+import hydrate from 'next-mdx-remote/hydrate';
 import { MdxRemote } from 'next-mdx-remote/types';
 import { Children, cloneElement, isValidElement, useContext } from 'react';
 import StaticContext from '../staticContext/StaticContext';
@@ -10,7 +10,7 @@ export function useHydratedMdx(
   }
 ) {
   const staticContext = useContext(StaticContext);
-  const content = hydrateMdxRemote(source, {
+  const content = hydrate(source, {
     ...params,
     provider: { component: StaticContext.Provider, props: { value: staticContext } },
   });

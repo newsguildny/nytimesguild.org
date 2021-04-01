@@ -1,5 +1,5 @@
-import { headerBackground, headerText } from '../styles/tokens/colors';
-import { serif, serifSizes } from '../styles/tokens/fonts';
+import { headerBackground, headerText } from '../lib/styles/tokens/colors';
+import { serif, serifSizes } from '../lib/styles/tokens/fonts';
 
 interface Props {
   heading?: string;

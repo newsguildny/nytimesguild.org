@@ -1,12 +1,12 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { MdxRemote } from 'next-mdx-remote/types';
 import Head from 'next/head';
-import { getPageData, getPagesMetadata } from '../lib/pages';
+import { getPageData, getPagesMetadata } from '../lib/collections/pages';
 import { components } from '../components/customEditorComponents';
 import { HomeHeader } from '../components/HomeHeader';
 import { PageHeader } from '../components/PageHeader';
-import { getStaticContext } from '../staticContext/contextGetters';
-import { useHydratedMdx } from '../lib/hydrate';
+import { getStaticContext } from '../lib/staticContext/contextGetters';
+import { useHydratedMdx } from '../lib/mdx/hydrate';
 
 interface Props {
   slug: string;

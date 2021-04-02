@@ -46,9 +46,9 @@ You can use the provided Visual Studio Code configs to debug both the dev server
 4. Once the browser launches, perform an action (such as loading the page or clicking on an element) which will trigger the breakpoint/s.
 5. Wait for the VSCode debugger to pause on your breakpoint/s.
 
-### Demo Video: VSCode Dev Server and Client Debugging
+### [Demo Video: VSCode Dev Server and Client Debugging](https://user-images.githubusercontent.com/191304/113455951-eee36b80-93d9-11eb-8a1c-dadc57b4da81.mp4)
 
-https://user-images.githubusercontent.com/191304/113455951-eee36b80-93d9-11eb-8a1c-dadc57b4da81.mp4
+<a href="https://user-images.githubusercontent.com/191304/113455951-eee36b80-93d9-11eb-8a1c-dadc57b4da81.mp4"><img src="./docs/img/vscode-dev-server-and-client-debugging-thumb.jpg" width="400"></a>
 
 ### See Also
 

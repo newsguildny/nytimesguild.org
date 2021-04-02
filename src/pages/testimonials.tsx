@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { PageHeader } from '../components/PageHeader';
 import { Testimonial, TestimonialContent } from '../components/Testimonial';
 import { getTestimonialsData } from '../lib/collections/testimonials';
-import { getStaticContext } from '../lib/staticContext/contextGetters';
+import { getStaticContext } from '../lib/staticContext/getStaticContext';
 
 interface Props {
   testimonials: TestimonialContent[];

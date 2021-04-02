@@ -3,8 +3,6 @@
     "dbaeumer.vscode-eslint",
     "divlo.vscode-styled-jsx-languageserver",
     "divlo.vscode-styled-jsx-syntax",
-    "jounqin.vscode-mdx",
-    "msjsdiag.debugger-for-chrome",
-    "msjsdiag.debugger-for-edge"
+    "jounqin.vscode-mdx"
   ]
 }

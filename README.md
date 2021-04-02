@@ -49,6 +49,11 @@ You can use the provided Visual Studio Code configs to debug both the dev server
 ### Demo Video: VSCode Dev Server and Client Debugging
 
 
+### See Also
+
+- [Debugging in Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)
+- [Advanced Features: Debugging | Next.js](https://nextjs.org/docs/advanced-features/debugging)
+- [vscode-js-debug](https://github.com/microsoft/vscode-js-debug) - VSCode's built-in, [DAP](https://microsoft.github.io/debug-adapter-protocol/)-based JavaScript debugger for Node.js, Chrome, Edge, etc.
 
 ## References
 

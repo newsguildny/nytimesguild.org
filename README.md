@@ -32,7 +32,7 @@ You can use the provided Visual Studio Code configs to debug both the dev server
 
 1. Use Visual Studio Code to [set debugger breakpoints](https://code.visualstudio.com/docs/editor/debugging).
 2. Start `yarn dev` in a terminal.
-3. In Visual Studio Code's **Run and Debug** sidebar (<kbd>Command</kbd> + <kbd>Shit</kbd> + <kbd>D</kbd>), select the **Dev Server** debugger profile from the menu and start it.
+3. In Visual Studio Code's **Run and Debug** sidebar (<kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd>), select the **Dev Server** debugger profile from the menu and start it.
    - **Note:** You can click the "…" menu and choose "Start Additional Session" to run multiple debugger sessions simultaneously.
 4. Perform an action (such as loading a web page in-browser) which will trigger the breakpoint/s.
 5. Wait for the VSCode debugger to pause on your breakpoint/s.

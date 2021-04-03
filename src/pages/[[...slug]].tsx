@@ -5,8 +5,8 @@ import { getPageData, getPagesMetadata } from '../lib/collections/pages';
 import { components } from '../components/customEditorComponents';
 import { HomeHeader } from '../components/HomeHeader';
 import { PageHeader } from '../components/PageHeader';
-import { useHydratedMdx } from '../lib/mdx/hydrate';
 import { getStaticContext } from '../lib/staticContext/getStaticContext';
+import { useHydratedMdx } from '../lib/mdx/hydrate';
 
 interface Props {
   slug: string;

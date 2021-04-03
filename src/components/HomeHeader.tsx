@@ -1,4 +1,5 @@
 import { headerBackground, headerText } from '../lib/styles/tokens/colors';
+import { serif } from '../lib/styles/tokens/fonts';
 
 export function HomeHeader() {
   return (
@@ -50,6 +51,7 @@ export function HomeHeader() {
         }
         p,
         li {
+          font-family: ${serif};
           font-size: 1.5rem;
           line-height: 2rem;
           font-weight: 300;

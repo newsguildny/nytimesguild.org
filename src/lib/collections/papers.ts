@@ -3,7 +3,7 @@ import path from 'path';
 import { renderToString } from '../mdx/renderToString';
 import { getMarkdownData } from '../mdx/read';
 import { components } from '../../components/customEditorComponents';
-import { ShopPaperData } from '../../components/ShopPaperSnippet';
+import { ShopPaperContent, ShopPaperData } from '../../components/ShopPaperSnippet';
 import { StaticContextValue } from '../staticContext/StaticContext';
 
 export function getPapersFilenames() {
@@ -49,6 +49,6 @@ export async function getPapersData(staticContext: StaticContextValue) {
   return Promise.all(getPapersFilenames().map((filename) => getPaperData(filename, staticContext)));
 }
 
-export async function getRecentPapersData() {
+export async function getRecentPapersData(): Promise<ShopPaperContent[]> {
   return Promise.all(getRecentPapersFilenames().map((filename) => getPaperData(filename)));
 }

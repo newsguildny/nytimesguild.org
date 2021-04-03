@@ -18,15 +18,10 @@ const burgerStyles = css.resolve`
   }
 `;
 
-export interface StaticContextType {
-  activeSlug: string;
-  pagesMetadata: Array<{ slug: string; title: string }>;
-}
-
-export const staticContextKey = 'navigation';
-
 export function Navigation() {
-  const staticContext = useStaticContext<StaticContextType>(staticContextKey);
+  const {
+    navigation: { activeSlug, pagesMetadata },
+  } = useStaticContext();
   const [isNavShown, setIsNavShown] = useState(false);
   return (
     <>
@@ -37,10 +32,10 @@ export function Navigation() {
           </a>
         </Link>
         <ul className={isNavShown ? 'shown' : ''}>
-          {staticContext?.pagesMetadata?.map((pageMetadata) => (
+          {pagesMetadata?.map((pageMetadata) => (
             <li key={pageMetadata.slug}>
               <Link href={`/${pageMetadata.slug}`}>
-                <a className={staticContext?.activeSlug === pageMetadata.slug ? 'active' : ''}>
+                <a className={activeSlug === pageMetadata.slug ? 'active' : ''}>
                   {pageMetadata.title}
                 </a>
               </Link>
@@ -48,7 +43,7 @@ export function Navigation() {
           ))}
           <li>
             <Link href="/papers">
-              <a className={staticContext?.activeSlug === 'papers' ? 'active' : ''}>Updates</a>
+              <a className={activeSlug === 'papers' ? 'active' : ''}>Updates</a>
             </Link>
           </li>
         </ul>

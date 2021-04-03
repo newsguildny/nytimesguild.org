@@ -35,31 +35,26 @@ export const options: EditorComponentOptions = {
         {
           name: 'answer',
           label: 'Answer',
-          widget: 'string',
+          widget: 'text',
         },
       ],
     },
   ],
-  pattern: /<FAQ>(.*)<\/FAQ>/,
+  pattern: /<FAQ questionPairs=\{(.*)\} \/>/,
   fromBlock: (match): FrequentlyAskedQuestionsData => ({
-    questions: match[1]
-      .split('<li>')
-      .slice(1)
-      .map((pair) => pair.slice(3, -9).split('</p><p>'))
-      .map(([question, answer]) => ({ question, answer })),
+    questions: JSON.parse(match[1]),
   }),
   toBlock: (data: FrequentlyAskedQuestionsData) =>
     `<FAQ questionPairs={${JSON.stringify(data.questions)}} />`,
   toPreview: (data: FrequentlyAskedQuestionsData) =>
-    `
-    ${data.questions
-      ?.map(
+    data.questions
+      .map(
         (questionPair) => `
             <h3>${questionPair.question}</h3>
             <p>${questionPair.answer}</p>
         `
       )
-      .join('')}`,
+      .join(''),
 };
 
 interface Props {

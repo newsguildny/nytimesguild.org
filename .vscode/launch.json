@@ -1,0 +1,29 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    // @see https://nextjs.org/docs/advanced-features/debugging#using-the-debugger-in-visual-studio-code
+    {
+      "type": "pwa-node",
+      "request": "attach",
+      "name": "Dev Server",
+      "skipFiles": ["<node_internals>/**"],
+      "port": 9229
+    },
+    {
+      "name": "[Chrome] Launch Dev Client",
+      "port": 9222,
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "type": "pwa-chrome",
+      "webRoot": "${workspaceFolder}"
+    },
+    {
+      "name": "[Edge] Launch Dev Client",
+      "port": 9222,
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "type": "pwa-msedge",
+      "webRoot": "${workspaceFolder}"
+    }
+  ]
+}

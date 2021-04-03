@@ -24,6 +24,38 @@ yarn dev
 
 View the CMS interface at [http://localhost:3000/admin/index.html](http://localhost:3000/admin/index.html).
 
+## Debugging
+
+You can use the provided Visual Studio Code configs to debug both the dev server and client.
+
+### Attach the VSCode Debugger to the Dev Server
+
+1. Use Visual Studio Code to [set debugger breakpoints](https://code.visualstudio.com/docs/editor/debugging).
+2. Start `yarn dev:inspect` in a terminal.
+3. In Visual Studio Code's **Run and Debug** sidebar (<kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd>), select the **Dev Server** debugger profile from the menu and start it.
+   - **Note:** You can click the "…" menu and choose "Start Additional Session" to run multiple debugger sessions simultaneously.
+4. Perform an action (such as loading a web page in-browser) which will trigger the breakpoint/s.
+5. Wait for the VSCode debugger to pause on your breakpoint/s.
+
+### Launch and Debug Google Chrome or Microsoft Edge
+
+1. Use Visual Studio Code to [set debugger breakpoints](https://code.visualstudio.com/docs/editor/debugging).
+2. Start `yarn dev:inspect` in a terminal.
+3. In Visual Studio Code's **Run and Debug** sidebar (<kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd>), select either the **\[Chrome\] Launch Dev Client** or **\[Edge\] Launch Dev Client** debugger profile from the menu and start it.
+   - **Note:** You can click the "…" menu and choose "Start Additional Session" to run multiple debugger sessions simultaneously.
+4. Once the browser launches, perform an action (such as loading the page or clicking on an element) which will trigger the breakpoint/s.
+5. Wait for the VSCode debugger to pause on your breakpoint/s.
+
+### [Demo Video: VSCode Dev Server and Client Debugging](https://user-images.githubusercontent.com/191304/113455951-eee36b80-93d9-11eb-8a1c-dadc57b4da81.mp4)
+
+<a href="https://user-images.githubusercontent.com/191304/113455951-eee36b80-93d9-11eb-8a1c-dadc57b4da81.mp4"><img src="./docs/img/vscode-dev-server-and-client-debugging-thumb.jpg" width="400"></a>
+
+### See Also
+
+- [Debugging in Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)
+- [Advanced Features: Debugging | Next.js](https://nextjs.org/docs/advanced-features/debugging)
+- [vscode-js-debug](https://github.com/microsoft/vscode-js-debug) - VSCode's built-in, [DAP](https://microsoft.github.io/debug-adapter-protocol/)-based JavaScript debugger for Node.js, Chrome, Edge, etc.
+
 ## References
 
 - [Netlify CMS Documentation](https://www.netlifycms.org/docs/intro/)

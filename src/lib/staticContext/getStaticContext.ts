@@ -1,7 +1,7 @@
 import { getHighlightedTestimonialsData } from '../collections/testimonials';
 import { getNavigationData } from '../collections/pages';
 import { getRecentPapersData } from '../collections/papers';
-import type { StaticContextValue } from './StaticContext';
+import { StaticContextValue } from './StaticContext';
 
 export const contextGetters = {
   highlightedTestimonials: getHighlightedTestimonialsData,

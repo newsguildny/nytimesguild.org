@@ -26,7 +26,7 @@ export default function AppWithContext({
       </StaticContext.Provider>
       <style jsx global>{`
         @font-face {
-          font-family: 'Crimson Pro';
+          font-family: ${serif};
           src: url('/fonts/Crimson_Pro/webfonts/crimson-pro-v13-latin-regular.woff2')
             format('woff2');
           font-style: normal;
@@ -34,7 +34,7 @@ export default function AppWithContext({
 
         @supports (font-variation-settings: 'wdth' 115) {
           @font-face {
-            font-family: 'Crimson Pro';
+            font-family: ${serif};
             src: url('/fonts/Crimson_Pro/variable/CrimsonPro-VariableFont_wght.ttf')
               format('truetype-variations');
             font-style: normal;
@@ -43,21 +43,21 @@ export default function AppWithContext({
         }
 
         @font-face {
-          font-family: 'Public Sans';
+          font-family: ${sansSerif};
           src: url('/fonts/PublicSans/webfonts/PublicSans-Regular.woff2') format('woff2');
           font-style: normal;
           font-weight: 400;
         }
 
         @font-face {
-          font-family: 'Public Sans';
+          font-family: ${sansSerif};
           src: url('/fonts/PublicSans/webfonts/PublicSans-SemiBold.woff2') format('woff2');
           font-style: normal;
           font-weight: 600;
         }
 
         @font-face {
-          font-family: 'Public Sans';
+          font-family: ${sansSerif};
           src: url('/fonts/PublicSans/webfonts/PublicSans-Bold.woff2') format('woff2');
           font-style: normal;
           font-weight: 700;
@@ -65,7 +65,7 @@ export default function AppWithContext({
 
         @supports (font-variation-settings: 'wdth' 115) {
           @font-face {
-            font-family: 'Public Sans';
+            font-family: ${sansSerif};
             src: url('/fonts/PublicSans/variable/Public-Sans-Roman-VF.ttf')
               format('truetype-variations');
             font-style: normal;

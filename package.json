@@ -3,6 +3,7 @@
   "version": "0.1.1",
   "private": true,
   "scripts": {
+    "clean": "rm -rf .next tsconfig.tsbuildinfo",
     "dev": "next dev",
     "dev:inspect": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
@@ -11,7 +12,7 @@
     "lint": "eslint src --report-unused-disable-directives",
     "lint:fix": "yarn lint --fix",
     "test": "jest",
-    "type-check": "tsc -p tsconfig.json --noEmit",
+    "type-check": "tsc -b tsconfig.json --incremental",
     "postinstall": "husky install"
   },
   "dependencies": {

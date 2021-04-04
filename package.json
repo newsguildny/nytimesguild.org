@@ -12,7 +12,7 @@
     "lint": "eslint src --report-unused-disable-directives",
     "lint:fix": "yarn lint --fix",
     "test": "jest",
-    "type-check": "tsc -b tsconfig.json --incremental",
+    "type-check": "tsc -p tsconfig.json --incremental",
     "postinstall": "husky install"
   },
   "dependencies": {

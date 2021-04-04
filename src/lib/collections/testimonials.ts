@@ -3,7 +3,7 @@ import path from 'path';
 import { renderToString } from '../mdx/renderToString';
 import { getMarkdownData } from '../mdx/read';
 import { components } from '../../components/customEditorComponents';
-import { TestimonialData } from '../../components/Testimonial';
+import { TestimonialContent, TestimonialData } from '../../components/Testimonial';
 
 export function getTestimonialsFilenames() {
   return fs
@@ -26,7 +26,7 @@ export async function getTestimonialData(filename: string) {
     filename: markdownData.data.filename,
     name: markdownData.data.name,
     role: markdownData.data.role,
-    highlighted: markdownData.data.highlight,
+    highlight: markdownData.data.highlight,
     headshot: markdownData.data.headshot,
     source: mdxSource,
   };
@@ -36,7 +36,7 @@ export async function getTestimonialsData() {
   return Promise.all(getTestimonialsFilenames().map((filename) => getTestimonialData(filename)));
 }
 
-export async function getHighlightedTestimonialsData() {
+export async function getHighlightedTestimonialsData(): Promise<TestimonialContent[]> {
   const allTestimonialsMetadata = getTestimonialsMetadata();
   const highlightedTestimonialsMetadata = allTestimonialsMetadata.filter(
     (testimonial) => testimonial.highlight

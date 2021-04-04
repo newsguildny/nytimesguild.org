@@ -40,3 +40,8 @@ export async function getPageData(filename: string, staticContext?: StaticContex
     source: mdxSource,
   };
 }
+
+export const getNavigationData = async (slug?: string) => ({
+  activeSlug: slug ?? null,
+  pagesMetadata: getPagesMetadata().filter(({ slug: pageSlug }) => pageSlug !== 'index'),
+});

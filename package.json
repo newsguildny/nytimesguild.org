@@ -3,12 +3,16 @@
   "version": "0.1.1",
   "private": true,
   "scripts": {
+    "clean": "rm -rf .next tsconfig.tsbuildinfo",
     "dev": "next dev",
     "dev:inspect": "NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "export": "next build && next export -o ./dist",
+    "lint": "eslint src --report-unused-disable-directives",
+    "lint:fix": "yarn lint --fix",
     "test": "jest",
+    "type-check": "tsc -p tsconfig.json --incremental",
     "postinstall": "husky install"
   },
   "dependencies": {
@@ -41,8 +45,8 @@
     "@types/node": "^13.11.0",
     "@types/react": "^16.9.32",
     "@types/styled-jsx": "^2.2.8",
-    "@typescript-eslint/eslint-plugin": "^4.8.1",
-    "@typescript-eslint/parser": "^4.8.1",
+    "@typescript-eslint/eslint-plugin": "4.20.0",
+    "@typescript-eslint/parser": "4.20.0",
     "eslint": "^7.13.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-kyt": "^1.3.6",
@@ -60,8 +64,8 @@
     "jest": "^26.3.0",
     "lint-staged": "^10.5.1",
     "prettier": "^2.1.2",
-    "ts-jest": "^26.2.0",
-    "typescript": "^3.8.3",
+    "ts-jest": "26.5.4",
+    "typescript": "4.2.3",
     "yaml-loader": "^0.6.0"
   }
 }

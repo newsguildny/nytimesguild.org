@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { PageHeader } from '../../components/PageHeader';
 import { ShopPaperSnippet, ShopPaperContent } from '../../components/ShopPaperSnippet';
 import { getPapersData } from '../../lib/collections/papers';
-import { getStaticContext } from '../../lib/staticContext/contextGetters';
+import { getStaticContext } from '../../lib/staticContext/getStaticContext';
 
 interface Props {
   papers: ShopPaperContent[];

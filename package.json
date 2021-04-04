@@ -9,6 +9,7 @@
     "start": "next start",
     "export": "next build && next export -o ./dist",
     "lint": "eslint src --report-unused-disable-directives",
+    "lint:fix": "yarn lint --fix",
     "test": "jest",
     "type-check": "tsc -p tsconfig.json --noEmit",
     "postinstall": "husky install"

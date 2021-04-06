@@ -5,12 +5,13 @@ import {
   options as highlightedTestimonialsOptions,
 } from './HighlightedTestimonials';
 import { RecentPapers, options as recentPapersOptions } from './RecentPapers';
-import { FAQ, options as faqOptions } from './FAQ';
+import { FAQ, FAQItem, options as faqOptions } from './FAQ';
 import { FullBleedImage, options as fullBleedImageOptions } from './FullBleedImage';
 
 export const components = {
   CallToAction,
   FAQ,
+  FAQItem,
   FullBleedImage,
   HighlightedTestimonials,
   RecentPapers,

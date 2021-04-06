@@ -1,3 +1,11 @@
+import { ReactNode } from 'react';
+import unified from 'unified';
+import remarkParse from 'remark-parse';
+import remarkStringify from 'remark-stringify';
+import remarkToRehype from 'remark-rehype';
+import rehypeToRemark from 'rehype-remark';
+import rehypeParse from 'rehype-parse';
+import rehypeStringify from 'rehype-stringify';
 import {
   Accordion,
   AccordionItem,
@@ -10,12 +18,28 @@ import { EditorComponentOptions } from 'netlify-cms-core';
 import { sansSerif, serif, serifSizes } from '../../lib/styles/tokens/fonts';
 
 interface QuestionPair {
-  question: string;
+  question?: string;
   answer: string;
 }
 
 interface FrequentlyAskedQuestionsData {
-  questions: QuestionPair[];
+  questions?: QuestionPair[];
+}
+
+function getMarkdownToHtmlProcessor() {
+  return unified().use(remarkParse).use(remarkToRehype).use(rehypeStringify);
+}
+
+function getHtmlToMarkdownProcessor() {
+  return unified().use(rehypeParse).use(rehypeToRemark).use(remarkStringify);
+}
+
+function convertMarkdownToHtml(markdown: string) {
+  return getMarkdownToHtmlProcessor().processSync(markdown).contents.toString();
+}
+
+function convertHtmlToMarkdown(html: string) {
+  return getHtmlToMarkdownProcessor().processSync(html).contents.toString();
 }
 
 export const options: EditorComponentOptions = {
@@ -35,69 +59,74 @@ export const options: EditorComponentOptions = {
         {
           name: 'answer',
           label: 'Answer',
-          widget: 'text',
+          widget: 'markdown',
         },
       ],
     },
   ],
-  pattern: /<FAQ questionPairs=\{(.*)\} \/>/,
-  fromBlock: (match): FrequentlyAskedQuestionsData => ({
-    questions: JSON.parse(match[1]),
-  }),
+  // [\s\S]* is an alternative to .* that captures newline characters.
+  pattern: /<FAQ>([\s\S]*)<\/FAQ>/,
+  fromBlock: (match): FrequentlyAskedQuestionsData => {
+    const questionsJsx = match[1];
+    const questions = Array.from(
+      // [\s\S]* is an alternative to .* that captures newline characters.
+      questionsJsx.matchAll(/<FAQItem question="(.*?)">\n\s*([\s\S]*?)\n\s*<\/FAQItem>/g)
+    );
+
+    return {
+      questions: questions.map(([, question, answer]) => ({
+        question: question.replaceAll('&quot;', '"'),
+        answer: convertHtmlToMarkdown(answer),
+      })),
+    };
+  },
   toBlock: (data: FrequentlyAskedQuestionsData) =>
-    `<FAQ questionPairs={${JSON.stringify(data.questions)}} />`,
+    `
+<FAQ>${
+      data.questions
+        ?.map(
+          (questionPair) =>
+            `
+  <FAQItem question="${questionPair.question?.replaceAll('"', '&quot;') ?? ''}">
+    ${convertMarkdownToHtml(questionPair.answer)}
+  </FAQItem>`
+        )
+        .join('') ?? ''
+    }
+</FAQ>
+  `,
   toPreview: (data: FrequentlyAskedQuestionsData) =>
     data.questions
-      .map(
+      ?.map(
         (questionPair) => `
-            <h3>${questionPair.question}</h3>
-            <p>${questionPair.answer}</p>
+          <h3>${questionPair.question}</h3>
+          <div>${convertMarkdownToHtml(questionPair.answer)}</div>
         `
       )
-      .join(''),
+      .join('') ?? '',
 };
 
-interface Props {
-  questionPairs: QuestionPair[];
+interface QuestionProps {
+  question: string;
+  children: ReactNode;
 }
 
-export function FAQ({ questionPairs }: Props) {
+export function FAQItem({ question, children }: QuestionProps) {
   return (
-    <div>
-      <Accordion allowMultipleExpanded allowZeroExpanded>
-        {questionPairs?.map((pair, index) => (
-          <AccordionItem key={index.toString()}>
-            <AccordionItemHeading>
-              <AccordionItemButton className="accordion-item-button">
-                <h3>{pair.question}</h3>
-                <AccordionItemState>
-                  {({ expanded }) => (
-                    <span className={`icon ${expanded ? 'expanded' : 'collapsed'}`} />
-                  )}
-                </AccordionItemState>
-              </AccordionItemButton>
-            </AccordionItemHeading>
-            <AccordionItemPanel>
-              <p>{pair.answer}</p>
-            </AccordionItemPanel>
-          </AccordionItem>
-        ))}
-      </Accordion>
+    <>
+      <AccordionItem>
+        <AccordionItemHeading className="accordion-item-heading">
+          <AccordionItemButton className="accordion-item-button">
+            <span className="question">{question}</span>
+            <AccordionItemState>
+              {({ expanded }) => <span className={`icon ${expanded ? 'expanded' : 'collapsed'}`} />}
+            </AccordionItemState>
+          </AccordionItemButton>
+        </AccordionItemHeading>
+        <AccordionItemPanel>{children}</AccordionItemPanel>
+      </AccordionItem>
       <style jsx>{`
-        div {
-          max-width: 100%;
-          margin-bottom: 1em;
-        }
-
-        div :global(.accordion-item-button:hover h3) {
-          color: #000;
-        }
-
-        div :global(.accordion-item-button:hover .icon) {
-          color: #000;
-        }
-
-        div :global(.accordion-item-button) {
+        :global(.accordion-item-button) {
           display: flex;
           align-items: center;
           width: 100%;
@@ -109,14 +138,21 @@ export function FAQ({ questionPairs }: Props) {
           cursor: pointer;
         }
 
-        div h3 {
-          width: 95%;
+        :global(.accordion-item-heading) {
           font-family: ${serif};
           font-size: ${serifSizes.medium};
           font-weight: 200;
         }
 
-        div .icon {
+        :global(.accordion-item-button):hover {
+          color: #000;
+        }
+
+        .question {
+          width: 95%;
+        }
+
+        .icon {
           float: right;
           font-size: 4rem;
           font-weight: 100;
@@ -124,26 +160,48 @@ export function FAQ({ questionPairs }: Props) {
           margin-left: 10px;
         }
 
-        div .expanded::after {
+        .expanded::after {
           content: '–';
         }
 
-        div .collapsed::after {
+        .collapsed::after {
           content: '+';
+        }
+
+        @media (min-width: 769px) {
+          .icon {
+            font-size: 3.5rem;
+          }
+
+          .question {
+            width: 97%;
+          }
+        }
+      `}</style>
+    </>
+  );
+}
+
+interface FAQProps {
+  children: ReactNode;
+}
+
+export function FAQ({ children }: FAQProps) {
+  return (
+    <div>
+      <Accordion allowMultipleExpanded allowZeroExpanded>
+        {children}
+      </Accordion>
+      <style jsx>{`
+        div {
+          max-width: 100%;
+          margin-bottom: 1em;
         }
 
         @media (min-width: 769px) {
           div {
             min-width: 65%;
             max-width: 65%;
-          }
-
-          div :global(.icon) {
-            font-size: 3.5rem;
-          }
-
-          div :global(h3) {
-            width: 97%;
           }
         }
       `}</style>

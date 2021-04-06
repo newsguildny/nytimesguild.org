@@ -6,6 +6,8 @@ declare module 'react-twitter-embed' {
 
 declare module 'remark-sectionize';
 
+declare module 'rehype-remark';
+
 declare module 'netlify-cms-core' {
   export interface EditorComponentField {
     fields?: EditorComponentField[];

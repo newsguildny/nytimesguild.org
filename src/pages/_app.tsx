@@ -86,6 +86,11 @@ export default function AppWithContext({
           --nyt-sans-serif-large: 1.125rem;
           --nyt-sans-serif-medium: 1rem;
           --nyt-sans-serif-small: 0.875rem;
+
+          font-family: ${serif};
+          font-size: ${serifSizes.small};
+          height: 400;
+          color: ${bodyText};
         }
 
         // next-mdx-remote initially renders MDX content into
@@ -99,16 +104,11 @@ export default function AppWithContext({
         }
 
         p {
-          font-family: ${serif};
-          font-size: ${serifSizes.small};
           line-height: 1.3em;
-          font-weight: 400;
-          color: ${bodyText};
         }
 
         h3 {
           margin: 2rem 0 1rem;
-          font-family: ${sansSerif};
           font-size: ${sansSerifSizes.large};
           font-weight: 700;
           color: ${secondaryHeadingText};
@@ -116,7 +116,6 @@ export default function AppWithContext({
 
         h2 {
           margin: 3rem 0 1.5rem;
-          font-family: ${serif};
           font-size: ${serifSizes.medium};
           font-weight: 200;
           color: ${secondaryHeadingText};

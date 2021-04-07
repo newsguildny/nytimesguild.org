@@ -15,5 +15,8 @@
   ],
   "postCreateCommand": "yarn install",
   // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-  "remoteUser": "node"
+  "remoteUser": "node",
+  // 3000 is the port that the dev server runs on. 8081 is the port that the local
+  // identity backend runs on.
+  "forwardPorts": [3000, 8081]
 }

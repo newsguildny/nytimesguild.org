@@ -63,10 +63,38 @@ collections:
       - label: Headshot
         name: headshot
         widget: image
+        required: false
       - label: Body
         name: body
         widget: markdown
         # Don't allow any custom components within testimonials
+        editor_components: []
+
+  - name: solidarityStatements
+    label: Solidarity Statements
+    folder: src/markdown/solidarityStatements
+    extension: mdx
+    format: frontmatter
+    create: true
+    slug: "{{fields.name}}"
+    identifier_field: name
+    summary: "{{name}}"
+    fields:
+      - label: Name
+        name: name
+        widget: string
+      - label: Highlight
+        name: highlight
+        widget: boolean
+        default: false
+      - label: Logo
+        name: logo
+        widget: image
+        required: false
+      - label: Body
+        name: body
+        widget: markdown
+        # Don't allow any custom components within solidarity-statements
         editor_components: []
 
   - name: papers

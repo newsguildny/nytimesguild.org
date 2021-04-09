@@ -11,6 +11,7 @@ export type StaticContextValue = {
 };
 
 export const defaultStaticContextValue = {
+  highlightedSolidarityStatements: [],
   highlightedTestimonials: [],
   navigation: { activeSlug: null, pagesMetadata: [] },
   recentPapers: [],

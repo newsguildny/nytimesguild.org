@@ -27,7 +27,7 @@ export async function getTestimonialData(filename: string) {
     name: markdownData.data.name,
     role: markdownData.data.role,
     highlight: markdownData.data.highlight,
-    headshot: markdownData.data.headshot,
+    ...(markdownData.data.headshot && { headshot: markdownData.data.headshot }),
     source: mdxSource,
   };
 }

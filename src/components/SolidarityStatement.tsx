@@ -2,32 +2,29 @@ import { useHydratedMdx } from '../lib/mdx/hydrate';
 import { sansSerif, sansSerifSizes } from '../lib/styles/tokens/fonts';
 import { MarkdownSource } from '../lib/mdx/read';
 
-export interface TestimonialData {
+export interface SolidarityStatementData {
   filename: string;
   name: string;
-  role: string;
   highlight: boolean;
-  headshot?: string;
+  logo?: string;
 }
 
-export type TestimonialContent = TestimonialData & MarkdownSource;
+export type SolidarityStatementContent = SolidarityStatementData & MarkdownSource;
 
 interface Props {
-  testimonial: TestimonialContent;
+  solidarityStatement: SolidarityStatementContent;
 }
 
-export function Testimonial({ testimonial }: Props) {
-  const content = useHydratedMdx(testimonial.source);
+export function SolidarityStatement({ solidarityStatement }: Props) {
+  const content = useHydratedMdx(solidarityStatement.source);
   return (
     <>
       <div className="container">
-        {testimonial.headshot && <img src={testimonial.headshot} alt="" />}
+        {solidarityStatement.logo && <img src={solidarityStatement.logo} alt="" />}
         <div className="text-container">
           {content}
           <p>
-            <strong>
-              {testimonial.name}, {testimonial.role}
-            </strong>
+            <strong>{solidarityStatement.name}</strong>
           </p>
         </div>
       </div>

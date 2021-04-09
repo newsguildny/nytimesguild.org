@@ -1,10 +1,12 @@
 import { getHighlightedTestimonialsData } from '../collections/testimonials';
+import { getHighlightedSolidarityStatementsData } from '../collections/solidarityStatements';
 import { getNavigationData } from '../collections/pages';
 import { getRecentPapersData } from '../collections/papers';
 import { StaticContextValue } from './StaticContext';
 
 export const contextGetters = {
   highlightedTestimonials: getHighlightedTestimonialsData,
+  highlightedSolidarityStatements: getHighlightedSolidarityStatementsData,
   navigation: getNavigationData,
   recentPapers: getRecentPapersData,
 };

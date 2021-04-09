@@ -4,6 +4,10 @@ import {
   HighlightedTestimonials,
   options as highlightedTestimonialsOptions,
 } from './HighlightedTestimonials';
+import {
+  HighlightedSolidarityStatements,
+  options as highlightedSolidarityStatementsOptions,
+} from './HighlightedSolidarityStatements';
 import { RecentPapers, options as recentPapersOptions } from './RecentPapers';
 import { FAQ, FAQItem, options as faqOptions } from './FAQ';
 import { FullBleedImage, options as fullBleedImageOptions } from './FullBleedImage';
@@ -14,6 +18,7 @@ export const components = {
   FAQItem,
   FullBleedImage,
   HighlightedTestimonials,
+  HighlightedSolidarityStatements,
   RecentPapers,
   YouTube,
 };
@@ -22,6 +27,7 @@ export const options = [
   callToActionOptions,
   youTubeOptions,
   highlightedTestimonialsOptions,
+  highlightedSolidarityStatementsOptions,
   recentPapersOptions,
   faqOptions,
   fullBleedImageOptions,

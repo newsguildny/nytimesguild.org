@@ -92,23 +92,7 @@ export function YouTube({ url, title, aspectRatio = '16:9' }: Props) {
        * we don't want to override because it'll misalign the video with the rest of the content
        */}
       <div>
-        <div
-          className="wrapper"
-          style={
-            /**
-             * First half of the Aspect Ratio Boxes layout technique:
-             * @see https://css-tricks.com/aspect-ratio-boxes/
-             *
-             * Use a percentage-based padding-bottom to set up a responsive 16:9 aspect ratio for
-             * embedded YouTube videos.
-             *
-             * Remember, percentage-based padding, even vertically, is based on the element's width.
-             *
-             * The second half is below, where we set `height: 0;` in the `<styled jsx>` element.
-             */
-            { paddingBottom: `${getAspectRatioHeight(100, aspectRatio)}%` }
-          }
-        >
+        <div className="wrapper">
           <iframe
             title={title}
             src={embedUrl}
@@ -121,15 +105,17 @@ export function YouTube({ url, title, aspectRatio = '16:9' }: Props) {
       <style jsx>{`
         .wrapper {
           position: relative;
-          /**
-           * Second half of the Aspect Ratio Boxes layout technique:
-           * @see https://css-tricks.com/aspect-ratio-boxes/
-           *
-           * The first half is above, where we set a prop-specific aspect ratio
-           * using the \`style\` prop.
-           */
           height: 0;
-          padding-bottom: calc(9 / 16 * 100%);
+          /**
+           * Use a percentage-based padding-bottom to set up a responsive, prop-based aspect ratio
+           * for embedded YouTube videos.
+           *
+           * Remember, percentage-based padding, even vertically, is based on the element's width.
+           * 
+           * This is known as the Aspect Ratio Boxes layout technique:
+           * @see https://css-tricks.com/aspect-ratio-boxes/
+           */
+          padding-bottom: ${getAspectRatioHeight(100, aspectRatio)}%;
         }
 
         iframe {

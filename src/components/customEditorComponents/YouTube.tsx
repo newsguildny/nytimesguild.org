@@ -48,6 +48,7 @@ export const options: EditorComponentOptions = {
       default: '16:9' as AspectRatio,
     },
   ],
+  /** Use a non-capturing group `(?:)` for aspectRatio JSX prop markup */
   pattern: /<YouTube url="(.*)" title="(.*?)"(?: aspectRatio="(\d+:\d+)")? \/>/,
   fromBlock: (match): Props => ({
     url: match[1],

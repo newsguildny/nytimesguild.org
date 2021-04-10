@@ -48,11 +48,11 @@ export const options: EditorComponentOptions = {
       default: '16:9' as AspectRatio,
     },
   ],
-  pattern: /<YouTube url="(.*)" title="(.*?)"( aspectRatio="(\d+:\d+)")? \/>/,
+  pattern: /<YouTube url="(.*)" title="(.*?)"(?: aspectRatio="(\d+:\d+)")? \/>/,
   fromBlock: (match): Props => ({
     url: match[1],
     title: match[2],
-    aspectRatio: match[4] as AspectRatio,
+    aspectRatio: match[3] as AspectRatio,
   }),
   toBlock: (data: Props) =>
     `<YouTube url="${data.url}" title="${data.title}"${

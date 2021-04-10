@@ -11,6 +11,14 @@ declare module 'rehype-remark';
 declare module 'netlify-cms-core' {
   export interface EditorComponentField {
     fields?: EditorComponentField[];
+    /**
+     * For some reason, the `EditorComponentOptions` type definition doesn't have `options`,
+     * even though this is supported for `widget: 'select'`:
+     * @see https://www.netlifycms.org/docs/widgets/#select
+     */
+    options?: unknown[];
+    /** Same issue as above: the `EditorComponentOptions` type definition doesn't have `default` */
+    default?: unknown;
   }
 }
 

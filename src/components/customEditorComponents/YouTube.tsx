@@ -44,13 +44,6 @@ export const options: EditorComponentOptions = {
       name: 'aspectRatio',
       label: 'Aspect Ratio',
       widget: 'select',
-      /**
-       * For some reason, the `EditorComponentOptions` type definition doesn't have `options`,
-       * even though this is supported for `widget: 'select'`:
-       * @see https://www.netlifycms.org/docs/widgets/#select
-       */
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       options: ['16:9', '4:3', '1:1', '3:4', '9:16'] as AspectRatio[],
       default: '16:9' as AspectRatio,
     },

@@ -10,7 +10,7 @@ import { EditorComponentOptions } from 'netlify-cms-core';
  */
 export type AspectRatio = string;
 
-function parseAspectRatio(aspectRatio: AspectRatio): Record<'width' | 'height', number> {
+function parseAspectRatio(aspectRatio: AspectRatio) {
   const [width, height] = aspectRatio.split(':').map((dimension) => parseInt(dimension, 10));
   return { width, height };
 }

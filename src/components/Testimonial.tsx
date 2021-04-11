@@ -20,13 +20,14 @@ export function Testimonial({ testimonial }: Props) {
   const content = useHydratedMdx(testimonial.source);
   return (
     <>
-      <div className="container">
+      <div className={`container ${testimonial.headshot ? '' : 'no-headshot'}`}>
         {testimonial.headshot && <img src={testimonial.headshot} alt="" />}
         <div className="text-container">
           {content}
           <div>
             <strong>
-              {testimonial.name}, {testimonial.role}
+              {testimonial.name}
+              {testimonial.role && `, ${testimonial.role}`}
             </strong>
           </div>
         </div>
@@ -35,10 +36,12 @@ export function Testimonial({ testimonial }: Props) {
         .container {
           font-family: ${sansSerif};
           font-size: ${sansSerifSizes.medium};
+          margin-bottom: 2rem;
         }
 
         img {
-          margin: 1rem 0 1rem 0.5rem;
+          width: 120px;
+          margin: 1rem 0 1rem;
           border-radius: 50%;
           float: right;
         }
@@ -50,10 +53,18 @@ export function Testimonial({ testimonial }: Props) {
             align-items: flex-start;
           }
 
+          .container.no-headshot {
+            display: block;
+          }
+
           .text-container {
             display: flex;
             flex-direction: column;
             padding-right: 2rem;
+          }
+
+          .container.no-headshot .text-container {
+            width: calc(100% - 2rem - 120px);
           }
         }
       `}</style>

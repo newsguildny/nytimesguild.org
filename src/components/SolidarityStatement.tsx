@@ -38,7 +38,6 @@ export function SolidarityStatement({ solidarityStatement }: Props) {
         img {
           width: 120px;
           margin: 1rem 0 1rem;
-          border-radius: 50%;
           float: right;
         }
 

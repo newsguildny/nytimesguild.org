@@ -20,9 +20,7 @@ export function HighlightedTestimonials() {
       {highlightedTestimonials?.map((testimonial) => (
         <Testimonial key={testimonial.name} testimonial={testimonial} />
       ))}
-      <div>
-        <CallToAction to="/testimonials">Read more testimonials</CallToAction>
-      </div>
+      <CallToAction to="/testimonials">Read more testimonials</CallToAction>
     </>
   );
 }

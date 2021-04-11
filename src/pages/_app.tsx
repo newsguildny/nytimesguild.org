@@ -5,7 +5,7 @@ import StaticContext, {
   StaticContextValue,
   defaultStaticContextValue,
 } from '../lib/staticContext/StaticContext';
-import { bodyText, rule, secondaryHeadingText } from '../lib/styles/tokens/colors';
+import { bodyText, link, rule, secondaryHeadingText } from '../lib/styles/tokens/colors';
 import { sansSerif, sansSerifSizes, serif, serifSizes } from '../lib/styles/tokens/fonts';
 
 interface PagePropsWithContext extends Record<string, unknown> {
@@ -100,11 +100,21 @@ export default function AppWithContext({
         // specific case here.
         main > .mdx-wrapper > *,
         main > :not(.mdx-wrapper) {
-          padding: 0 2rem;
+          margin-left: 2rem;
+          margin-right: 2rem;
         }
 
-        p {
+        a {
+          color: ${link};
+        }
+
+        p,
+        li {
           line-height: 1.3em;
+        }
+
+        h1 {
+          line-height: 1em;
         }
 
         h3 {
@@ -123,7 +133,12 @@ export default function AppWithContext({
 
         hr {
           border: 0.0625rem solid ${rule};
-          margin: 3rem 0;
+          margin: 3rem 5rem;
+        }
+
+        ul {
+          // middle dot followed by en space
+          list-style-type: '${'\\00B7\\2002'}';
         }
 
         @media (min-width: 769px) {
@@ -140,7 +155,8 @@ export default function AppWithContext({
           main > .mdx-wrapper > *,
           main > :not(.mdx-wrapper) {
             max-width: 47rem;
-            padding: 0 5rem;
+            margin-left: 5rem;
+            margin-right: 5rem;
           }
         }
       `}</style>

@@ -1,6 +1,6 @@
 import { EditorComponentOptions } from 'netlify-cms-core';
 import { ShopPaperSnippet } from '../ShopPaperSnippet';
-import { rule } from '../../lib/styles/tokens/colors';
+import { secondaryBackground } from '../../lib/styles/tokens/colors';
 import { useStaticContext } from '../../lib/staticContext/useStaticContext';
 
 export const options: EditorComponentOptions = {
@@ -17,7 +17,7 @@ export function RecentPapers() {
   const { recentPapers } = useStaticContext();
   return (
     <>
-      <hr />
+      <hr className="recent-papers-rule" />
       <aside>
         <h2>Guild updates</h2>
         {recentPapers?.map((paper) => (
@@ -25,10 +25,11 @@ export function RecentPapers() {
         ))}
       </aside>
       <style jsx>{`
-        hr {
-          border: ${rule} solid 0.25rem;
+        hr.recent-papers-rule {
+          border: ${secondaryBackground} solid 0.25rem;
           margin-top: 5.375rem;
-          padding: 0;
+          margin-left: 0;
+          margin-right: 0;
           max-width: 100%;
         }
 

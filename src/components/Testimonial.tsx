@@ -24,11 +24,11 @@ export function Testimonial({ testimonial }: Props) {
         {testimonial.headshot && <img src={testimonial.headshot} alt="" />}
         <div className="text-container">
           {content}
-          <p>
+          <div>
             <strong>
               {testimonial.name}, {testimonial.role}
             </strong>
-          </p>
+          </div>
         </div>
       </div>
       <style jsx>{`
@@ -38,7 +38,7 @@ export function Testimonial({ testimonial }: Props) {
         }
 
         img {
-          margin: 0 0 1rem 0.5rem;
+          margin: 1rem 0 1rem 0.5rem;
           border-radius: 50%;
           float: right;
         }
@@ -47,7 +47,7 @@ export function Testimonial({ testimonial }: Props) {
           .container {
             display: flex;
             flex-direction: row-reverse;
-            align-items: center;
+            align-items: flex-start;
           }
 
           .text-container {

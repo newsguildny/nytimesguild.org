@@ -20,10 +20,11 @@ export function Footer() {
       <style jsx>
         {`
           footer {
+            margin-top: 4rem;
             background-color: ${secondaryBackground};
             text-align: center;
             width: 100%;
-            padding: 33vh 0;
+            padding: 20vh 0;
             color: ${secondaryHeadingText};
           }
 
@@ -44,6 +45,12 @@ export function Footer() {
           }
           a > :global(svg) {
             margin-right: 0.75rem;
+          }
+
+          @media (min-width: 769px) {
+            footer {
+              margin-top: 10rem;
+            }
           }
         `}
       </style>

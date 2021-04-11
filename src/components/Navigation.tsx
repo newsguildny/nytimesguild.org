@@ -25,13 +25,13 @@ export function Navigation() {
   const [isNavShown, setIsNavShown] = useState(false);
   return (
     <>
-      <nav>
+      <nav className={isNavShown ? 'shown' : ''}>
         <Link href="/">
           <a>
             <TGuild />
           </a>
         </Link>
-        <ul className={isNavShown ? 'shown' : ''}>
+        <ul>
           {pagesMetadata?.map((pageMetadata) => (
             <li key={pageMetadata.slug}>
               <Link href={`/${pageMetadata.slug}`}>
@@ -41,11 +41,6 @@ export function Navigation() {
               </Link>
             </li>
           ))}
-          <li>
-            <Link href="/papers">
-              <a className={activeSlug === 'papers' ? 'active' : ''}>Updates</a>
-            </Link>
-          </li>
         </ul>
         <Burger
           className={burgerStyles.className}
@@ -59,6 +54,7 @@ export function Navigation() {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative;
             padding: 1.5rem 1.5rem 0;
             background: white;
             font-family: ${serif};
@@ -70,18 +66,25 @@ export function Navigation() {
             text-decoration: none;
             z-index: 1;
           }
+          nav.shown {
+            box-shadow: 0 0 0 10000px rgba(20, 20, 20, 0.4);
+          }
           ul {
             font-family: ${sansSerif};
             display: none;
-            margin: 0.5rem 0 0;
+            margin: 1.5rem 0;
             padding: 0;
             list-style: none;
           }
-          ul.shown {
+          nav.shown > ul {
             display: block;
           }
           li {
             display: block;
+            margin-bottom: 0.5rem;
+          }
+          li:last-child {
+            margin-bottom: 0;
           }
           a {
             width: max-content;
@@ -110,6 +113,7 @@ export function Navigation() {
               flex-direction: row;
               padding: 3.5rem 5rem 2.5rem;
               align-items: center;
+              box-shadow: 0;
             }
             ul {
               display: block;
@@ -117,6 +121,10 @@ export function Navigation() {
             }
             li {
               display: inline-block;
+              margin-right: 0.5rem;
+            }
+            li:last-child {
+              margin-right: 0;
             }
             li > a {
               font-size: ${sansSerifSizes.small};

@@ -21,13 +21,18 @@ export function PageHeader({ heading, subheading }: Props) {
           color: ${headerText};
           text-align: center;
         }
+        header > * {
+          max-width: 47rem;
+          margin-left: auto;
+          margin-right: auto;
+        }
         h1 {
           margin: 0;
           font-weight: 300;
           font-size: ${serifSizes.large};
         }
         .subheading {
-          margin-top: 0.875rem;
+          margin-top: 1.75rem;
           font-size: ${serifSizes.small};
           color: ${headerText};
         }

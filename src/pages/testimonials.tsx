@@ -14,7 +14,7 @@ const Testimonials = ({ testimonials }: Props) => (
     <Head>
       <title>Testimonials - The New York Times Guild</title>
     </Head>
-    <PageHeader heading="Testimonials" />
+    <PageHeader heading="Testimonials&ensp;" />
     <main>
       {testimonials.map((testimonial) => (
         <Testimonial key={testimonial.name} testimonial={testimonial} />

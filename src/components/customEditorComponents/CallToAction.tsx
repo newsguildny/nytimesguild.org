@@ -41,21 +41,23 @@ interface Props {
 export function CallToAction({ to, children }: Props) {
   return (
     <>
-      {/* CallToActions can point to internal or external links.
+      <div>
+        {/* CallToActions can point to internal or external links.
         If links are external, then we can't use next/link. */}
-      {to.includes('://') ? (
-        <a href={to}>
-          {children}
-          <ArrowIcon className={arrowStyles.className} />
-        </a>
-      ) : (
-        <Link href={to} passHref>
-          <a>
+        {to.includes('://') ? (
+          <a href={to}>
             {children}
             <ArrowIcon className={arrowStyles.className} />
           </a>
-        </Link>
-      )}
+        ) : (
+          <Link href={to} passHref>
+            <a>
+              {children}
+              <ArrowIcon className={arrowStyles.className} />
+            </a>
+          </Link>
+        )}
+      </div>
       <style jsx>{`
         a {
           font-family: ${sansSerif};

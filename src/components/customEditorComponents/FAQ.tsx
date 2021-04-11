@@ -114,7 +114,7 @@ interface QuestionProps {
 export function FAQItem({ question, children }: QuestionProps) {
   return (
     <>
-      <AccordionItem>
+      <AccordionItem className="accordion-item">
         <AccordionItemHeading className="accordion-item-heading">
           <AccordionItemButton className="accordion-item-button">
             <span className="question">{question}</span>
@@ -126,21 +126,24 @@ export function FAQItem({ question, children }: QuestionProps) {
         <AccordionItemPanel>{children}</AccordionItemPanel>
       </AccordionItem>
       <style jsx>{`
+        :global(.accordion-item) {
+          border-bottom: 0.15rem solid #f3f3f3;
+        }
         :global(.accordion-item-button) {
           display: flex;
           align-items: center;
           width: 100%;
           border: none;
           background-color: #fff;
-          border-bottom: 0.15rem solid #f3f3f3;
           text-align: left;
           color: #666666;
           cursor: pointer;
         }
 
         :global(.accordion-item-heading) {
+          padding: 0.5rem 0;
           font-family: ${serif};
-          font-size: ${serifSizes.medium};
+          font-size: ${serifSizes.small};
           font-weight: 200;
         }
 
@@ -154,7 +157,7 @@ export function FAQItem({ question, children }: QuestionProps) {
 
         .icon {
           float: right;
-          font-size: 4rem;
+          font-size: 2rem;
           font-weight: 100;
           font-family: ${sansSerif};
           margin-left: 10px;
@@ -170,7 +173,7 @@ export function FAQItem({ question, children }: QuestionProps) {
 
         @media (min-width: 769px) {
           .icon {
-            font-size: 3.5rem;
+            font-size: 2rem;
           }
 
           .question {
@@ -194,15 +197,7 @@ export function FAQ({ children }: FAQProps) {
       </Accordion>
       <style jsx>{`
         div {
-          max-width: 100%;
           margin-bottom: 1em;
-        }
-
-        @media (min-width: 769px) {
-          div {
-            min-width: 65%;
-            max-width: 65%;
-          }
         }
       `}</style>
     </div>

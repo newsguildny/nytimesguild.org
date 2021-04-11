@@ -39,7 +39,8 @@ export function FullBleedImage({ src, alt, title }: FullBleedImageProps) {
       <style jsx>{`
         img.full-bleed-image {
           margin-top: 3rem;
-          padding: 0;
+          margin-left: 0;
+          margin-right: 0;
           width: 100%;
           max-width: 100%;
         }

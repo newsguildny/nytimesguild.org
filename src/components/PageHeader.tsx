@@ -29,7 +29,7 @@ export function PageHeader({ heading, subheading }: Props) {
         h1 {
           margin: 0;
           font-weight: 300;
-          font-size: ${serifSizes.large};
+          font-size: ${serifSizes.extraLarge};
         }
         .subheading {
           margin-top: 1.75rem;

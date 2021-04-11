@@ -143,7 +143,7 @@ export function FAQItem({ question, children }: QuestionProps) {
         :global(.accordion-item-heading) {
           padding: 0.5rem 0;
           font-family: ${serif};
-          font-size: ${serifSizes.small};
+          font-size: ${serifSizes.medium};
           font-weight: 200;
         }
 
@@ -157,7 +157,7 @@ export function FAQItem({ question, children }: QuestionProps) {
 
         .icon {
           float: right;
-          font-size: 2rem;
+          font-size: 1.5em;
           font-weight: 100;
           font-family: ${sansSerif};
           margin-left: 10px;
@@ -172,10 +172,6 @@ export function FAQItem({ question, children }: QuestionProps) {
         }
 
         @media (min-width: 769px) {
-          .icon {
-            font-size: 2rem;
-          }
-
           .question {
             width: 97%;
           }

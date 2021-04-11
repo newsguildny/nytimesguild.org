@@ -30,7 +30,7 @@ export function Footer() {
 
           footer h3 {
             font-family: ${serif};
-            font-size: ${serifSizes.medium};
+            font-size: ${serifSizes.large};
             font-weight: 200;
           }
 

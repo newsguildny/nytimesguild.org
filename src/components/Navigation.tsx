@@ -58,7 +58,7 @@ export function Navigation() {
             padding: 1.5rem 1.5rem 0;
             background: white;
             font-family: ${serif};
-            font-size: ${serifSizes.large};
+            font-size: ${serifSizes.extraLarge};
             font-weight: normal;
             line-height: 1.875rem;
             color: ${headerText};

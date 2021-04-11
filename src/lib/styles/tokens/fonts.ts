@@ -3,6 +3,7 @@ export const sansSerif = "'Public Sans'";
 export const serif = "'Crimson Pro'";
 
 export const serifSizes = {
+  extraLarge: 'var(--nyt-serif-extra-large)',
   large: 'var(--nyt-serif-large)',
   medium: 'var(--nyt-serif-medium)',
   small: 'var(--nyt-serif-small)',

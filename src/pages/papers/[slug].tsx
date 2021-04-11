@@ -30,7 +30,7 @@ const ShopPaper = ({ source, headline }: Props) => {
         {`
           h1 {
             font-family: ${serif};
-            font-size: ${serifSizes.large};
+            font-size: ${serifSizes.extraLarge};
             font-weight: 300;
             color: ${secondaryHeadingText};
           }

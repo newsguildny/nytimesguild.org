@@ -78,8 +78,9 @@ export default function AppWithContext({
 
         body {
           margin: 0;
-          --nyt-serif-large: 2.625rem;
-          --nyt-serif-medium: 2rem;
+          --nyt-serif-extra-large: 2.625rem;
+          --nyt-serif-large: 2rem;
+          --nyt-serif-medium: 1.5rem;
           --nyt-serif-small: 1.25rem;
 
           --nyt-sans-serif-extra-large: 1.25rem;
@@ -126,7 +127,7 @@ export default function AppWithContext({
 
         h2 {
           margin: 3rem 0 1.5rem;
-          font-size: ${serifSizes.medium};
+          font-size: ${serifSizes.large};
           font-weight: 200;
           color: ${secondaryHeadingText};
         }
@@ -143,8 +144,9 @@ export default function AppWithContext({
 
         @media (min-width: 769px) {
           body {
-            --nyt-serif-large: 4.25rem;
-            --nyt-serif-medium: 2.75rem;
+            --nyt-serif-extra-large: 4.25rem;
+            --nyt-serif-large: 2.75rem;
+            --nyt-serif-medium: 2rem;
             --nyt-serif-small: 1.5rem;
 
             --nyt-sans-serif-extra-large: 1.5rem;

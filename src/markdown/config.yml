@@ -149,6 +149,17 @@ collections:
         name: subheading
         widget: string
         required: false
+      - label: Navigation Order
+        name: navigationOrder
+        widget: number
+        # @see https://www.netlifycms.org/docs/configuration-options/#collections
+        pattern:
+          - "^[^-]?\\d+$"
+          - "Cannot be a negative number"
       - label: Body
         name: body
         widget: markdown
+    sortable_fields:
+      - navigationOrder
+      - slug
+      - title

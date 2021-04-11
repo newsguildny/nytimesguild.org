@@ -11,6 +11,7 @@ interface PageData {
   title: string;
   heading?: string;
   subheading?: string;
+  navigationOrder: number;
 }
 
 export function getPageSlugs() {
@@ -43,5 +44,11 @@ export async function getPageData(filename: string, staticContext?: StaticContex
 
 export const getNavigationData = async (slug?: string) => ({
   activeSlug: slug ?? null,
-  pagesMetadata: getPagesMetadata().filter(({ slug: pageSlug }) => pageSlug !== 'index'),
+  pagesMetadata: getPagesMetadata()
+    .filter(({ slug: pageSlug }) => pageSlug !== 'index')
+    .sort((first, second) => {
+      if (first.navigationOrder < second.navigationOrder) return -1;
+      if (first.navigationOrder > second.navigationOrder) return 1;
+      return 0;
+    }),
 });

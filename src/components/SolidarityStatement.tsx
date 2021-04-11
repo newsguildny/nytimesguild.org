@@ -19,7 +19,7 @@ export function SolidarityStatement({ solidarityStatement }: Props) {
   const content = useHydratedMdx(solidarityStatement.source);
   return (
     <>
-      <div className="container">
+      <div className={`container ${solidarityStatement.logo ? '' : 'no-logo'}`}>
         {solidarityStatement.logo && <img src={solidarityStatement.logo} alt="" />}
         <div className="text-container">
           {content}
@@ -32,10 +32,12 @@ export function SolidarityStatement({ solidarityStatement }: Props) {
         .container {
           font-family: ${sansSerif};
           font-size: ${sansSerifSizes.medium};
+          margin-bottom: 2rem;
         }
 
         img {
-          margin: 0 0 1rem 0.5rem;
+          width: 120px;
+          margin: 1rem 0 1rem;
           border-radius: 50%;
           float: right;
         }
@@ -44,13 +46,21 @@ export function SolidarityStatement({ solidarityStatement }: Props) {
           .container {
             display: flex;
             flex-direction: row-reverse;
-            align-items: center;
+            align-items: flex-start;
+          }
+
+          .container.no-logo {
+            display: block;
           }
 
           .text-container {
             display: flex;
             flex-direction: column;
             padding-right: 2rem;
+          }
+
+          .container.no-logo .text-container {
+            width: calc(100% - 2rem - 120px);
           }
         }
       `}</style>

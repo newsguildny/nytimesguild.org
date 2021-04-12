@@ -34,12 +34,12 @@ export function RecentPapers() {
         }
 
         aside {
-          padding: 2.25rem 2rem;
+          padding: 2.25rem 0;
         }
 
         @media (min-width: 769px) {
           aside {
-            padding: 0 5rem 3.5rem;
+            padding: 0 0 3.5rem;
             max-width: 47rem;
           }
         }

@@ -23,7 +23,7 @@ export function getRecentPapersFilenames() {
     }
     return 0;
   });
-  return allFilenames.slice(0, 2);
+  return allFilenames.slice(0, 3);
 }
 
 export function getPapersMetadata() {

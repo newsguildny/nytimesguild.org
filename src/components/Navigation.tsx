@@ -55,7 +55,7 @@ export function Navigation() {
             flex-direction: column;
             justify-content: space-between;
             position: relative;
-            padding: 1.5rem 1.5rem 0;
+            padding: 1.5rem;
             background: white;
             font-family: ${serif};
             font-size: ${serifSizes.extraLarge};

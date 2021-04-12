@@ -8,13 +8,13 @@ export function Footer() {
     <footer>
       <h3>Contact Us</h3>
       <p>
-        <a href="mailto:example@newsguild.com">
-          <MailIcon /> example@newsguild.com
+        <a href="mailto:nyttech@nyguild.org">
+          <MailIcon /> nyttech@nyguild.org
         </a>
       </p>
       <p>
-        <a href="https://twitter.com/nyguild">
-          <TwitterIcon /> @nytimesguild
+        <a href="https://twitter.com/NYTimesGuildTech">
+          <TwitterIcon /> @NYTimesGuildTech
         </a>
       </p>
       <style jsx>

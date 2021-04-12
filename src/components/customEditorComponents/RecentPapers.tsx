@@ -19,7 +19,7 @@ export function RecentPapers() {
     <>
       <hr className="recent-papers-rule" />
       <aside>
-        <h2>Guild updates</h2>
+        <h2>Guild Updates</h2>
         {recentPapers?.map((paper) => (
           <ShopPaperSnippet key={paper.slug} paper={paper} />
         ))}

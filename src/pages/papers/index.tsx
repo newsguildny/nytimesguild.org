@@ -14,7 +14,7 @@ const ShopPapers = ({ papers }: Props) => (
     <Head>
       <title>Shop Papers - The New York Times Guild</title>
     </Head>
-    <PageHeader heading="Guild updates" />
+    <PageHeader heading="Guild Updates" />
     <main>
       {papers.map((paper) => (
         <ShopPaperSnippet key={paper.slug} paper={paper} />

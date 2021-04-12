@@ -7,7 +7,7 @@ import StaticContext, {
   defaultStaticContextValue,
 } from '../lib/staticContext/StaticContext';
 import { bodyText, link, rule, secondaryHeadingText } from '../lib/styles/tokens/colors';
-import { sansSerif, sansSerifSizes, serif, serifSizes } from '../lib/styles/tokens/fonts';
+import { sansSerif, serif, serifSizes } from '../lib/styles/tokens/fonts';
 
 interface PagePropsWithContext extends Record<string, unknown> {
   staticContext: StaticContextValue;
@@ -130,8 +130,8 @@ export default function AppWithContext({
 
         h3 {
           margin: 2rem 0 1rem;
-          font-size: ${sansSerifSizes.large};
-          font-weight: 700;
+          font-size: ${serifSizes.medium};
+          font-weight: 200;
           color: ${secondaryHeadingText};
         }
 

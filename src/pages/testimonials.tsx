@@ -20,6 +20,17 @@ const Testimonials = ({ testimonials }: Props) => (
         <Testimonial key={testimonial.name} testimonial={testimonial} />
       ))}
     </main>
+    <style jsx>{`
+      main {
+        padding-top: 2rem;
+      }
+
+      @media (min-width: 769px) {
+        main {
+          padding-top: 5rem;
+        }
+      }
+    `}</style>
   </>
 );
 

@@ -39,9 +39,13 @@ export function Testimonial({ testimonial }: Props) {
           margin-bottom: 2rem;
         }
 
+        .text-container :global(p) {
+          margin-bottom: 0.5rem;
+        }
+
         img {
           width: 120px;
-          margin: 1rem 0 1rem;
+          margin: 0 0 1rem 0.5rem;
           border-radius: 50%;
           float: right;
         }
@@ -51,6 +55,11 @@ export function Testimonial({ testimonial }: Props) {
             display: flex;
             flex-direction: row-reverse;
             align-items: flex-start;
+          }
+
+          img {
+            margin-top: 1rem;
+            margin-left: 0;
           }
 
           .container.no-headshot {

@@ -23,9 +23,9 @@ export function SolidarityStatement({ solidarityStatement }: Props) {
         {solidarityStatement.logo && <img src={solidarityStatement.logo} alt="" />}
         <div className="text-container">
           {content}
-          <p>
+          <div>
             <strong>{solidarityStatement.name}</strong>
-          </p>
+          </div>
         </div>
       </div>
       <style jsx>{`
@@ -35,9 +35,13 @@ export function SolidarityStatement({ solidarityStatement }: Props) {
           margin-bottom: 2rem;
         }
 
+        .text-container :global(p) {
+          margin-bottom: 0.5rem;
+        }
+
         img {
           width: 120px;
-          margin: 1rem 0 1rem;
+          margin: 0 0 1rem 0.5rem;
           float: right;
         }
 
@@ -46,6 +50,11 @@ export function SolidarityStatement({ solidarityStatement }: Props) {
             display: flex;
             flex-direction: row-reverse;
             align-items: flex-start;
+          }
+
+          img {
+            margin-top: 1rem;
+            margin-left: 0;
           }
 
           .container.no-logo {

@@ -34,6 +34,10 @@ const ShopPaper = ({ source, headline }: Props) => {
             font-weight: 300;
             color: ${secondaryHeadingText};
           }
+
+          :global(img) {
+            max-width: 100%;
+          }
         `}
       </style>
     </>

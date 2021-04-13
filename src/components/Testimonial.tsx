@@ -45,9 +45,10 @@ export function Testimonial({ testimonial }: Props) {
 
         img {
           width: 120px;
-          margin: 0 0 1rem 0.5rem;
+          margin: 0 0 1rem 0.25rem;
           border-radius: 50%;
           float: right;
+          shape-outside: circle(50%);
         }
 
         @media (min-width: 769px) {

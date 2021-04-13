@@ -118,6 +118,7 @@ export default function AppWithContext({
 
         a {
           color: ${link};
+          word-wrap: break-word;
         }
 
         p,

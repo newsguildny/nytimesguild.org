@@ -150,7 +150,7 @@ collections:
         widget: string
         required: false
       - label: Show in Navigation Menu
-        name: navigationShow
+        name: showInNavigation
         widget: boolean
         default: false
       - label: Navigation Menu Order

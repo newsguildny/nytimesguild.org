@@ -46,7 +46,7 @@ export async function getPageData(filename: string, staticContext?: StaticContex
 export const getNavigationData = async (slug?: string) => ({
   activeSlug: slug ?? null,
   pagesMetadata: getPagesMetadata()
-    .filter(({ showInNavigation, slug: pageSlug }) => pageSlug !== 'index' && !!showInNavigation)
+    .filter(({ showInNavigation }) => showInNavigation)
     .sort((first, second) => {
       if (first.navigationOrder < second.navigationOrder) return -1;
       if (first.navigationOrder > second.navigationOrder) return 1;

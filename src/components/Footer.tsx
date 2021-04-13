@@ -13,7 +13,7 @@ export function Footer() {
         </a>
       </p>
       <p>
-        <a href="https://twitter.com/NYTimesGuildTech">
+        <a href="https://twitter.com/NYTGuildTech">
           <TwitterIcon /> @NYTimesGuildTech
         </a>
       </p>

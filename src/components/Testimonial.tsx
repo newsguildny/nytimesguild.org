@@ -1,6 +1,19 @@
+import css from 'styled-jsx/css';
 import { useHydratedMdx } from '../lib/mdx/hydrate';
 import { sansSerif, sansSerifSizes } from '../lib/styles/tokens/fonts';
 import { MarkdownSource } from '../lib/mdx/read';
+import { TGuild } from './svgs/TGuild';
+import { headerBackground } from '../lib/styles/tokens/colors';
+
+const tGuildStyles = css.resolve`
+  top: calc(50% - (3.875rem / 2));
+  left: calc(50% - (4.25rem / 2));
+
+  @media (min-width: 769px) {
+    top: calc(50% - (6rem / 2));
+    left: calc(50% - (6.625rem / 2));
+  }
+`;
 
 export interface TestimonialData {
   filename: string;
@@ -20,16 +33,20 @@ export function Testimonial({ testimonial }: Props) {
   const content = useHydratedMdx(testimonial.source);
   return (
     <>
-      <div className={`container ${testimonial.headshot ? '' : 'no-headshot'}`}>
-        {testimonial.headshot && <img src={testimonial.headshot} alt="" />}
-        <div className="text-container">
-          {content}
-          <div>
-            <strong>
-              {testimonial.name}
-              {testimonial.role && `, ${testimonial.role}`}
-            </strong>
+      <div className="container">
+        {testimonial.headshot ? (
+          <img src={testimonial.headshot} alt="" />
+        ) : (
+          <div className="tguild-wrapper">
+            <TGuild className={tGuildStyles.className} />
           </div>
+        )}
+        <div className="text-container">
+          <h4>
+            {testimonial.name}
+            {testimonial.role && `, ${testimonial.role}`}
+          </h4>
+          {content}
         </div>
       </div>
       <style jsx>{`
@@ -37,14 +54,26 @@ export function Testimonial({ testimonial }: Props) {
           font-family: ${sansSerif};
           font-size: ${sansSerifSizes.medium};
           margin-bottom: 2rem;
+          clear: right;
+        }
+
+        h4 {
+          margin: 0;
         }
 
         .text-container :global(p) {
-          margin-bottom: 0.5rem;
+          margin-top: 0.5rem;
         }
 
-        img {
-          width: 120px;
+        .tguild-wrapper {
+          background-color: ${headerBackground};
+          flex-shrink: 0;
+        }
+
+        img,
+        .tguild-wrapper {
+          width: 5.25rem;
+          height: 5.25rem;
           margin: 0 0 1rem 0.25rem;
           border-radius: 50%;
           float: right;
@@ -58,13 +87,11 @@ export function Testimonial({ testimonial }: Props) {
             align-items: flex-start;
           }
 
-          img {
-            margin-top: 1rem;
+          img,
+          .tguild-wrapper {
+            width: 7.5rem;
+            height: 7.5rem;
             margin-left: 0;
-          }
-
-          .container.no-headshot {
-            display: block;
           }
 
           .text-container {
@@ -72,12 +99,9 @@ export function Testimonial({ testimonial }: Props) {
             flex-direction: column;
             padding-right: 2rem;
           }
-
-          .container.no-headshot .text-container {
-            width: calc(100% - 2rem - 120px);
-          }
         }
       `}</style>
+      {tGuildStyles.styles}
     </>
   );
 }

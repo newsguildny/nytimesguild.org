@@ -22,10 +22,8 @@ export function SolidarityStatement({ solidarityStatement }: Props) {
       <div className={`container ${solidarityStatement.logo ? '' : 'no-logo'}`}>
         {solidarityStatement.logo && <img src={solidarityStatement.logo} alt="" />}
         <div className="text-container">
+          <h4>{solidarityStatement.name}</h4>
           {content}
-          <div>
-            <strong>{solidarityStatement.name}</strong>
-          </div>
         </div>
       </div>
       <style jsx>{`
@@ -33,6 +31,11 @@ export function SolidarityStatement({ solidarityStatement }: Props) {
           font-family: ${sansSerif};
           font-size: ${sansSerifSizes.medium};
           margin-bottom: 2rem;
+          clear: right;
+        }
+
+        h4 {
+          margin: 0;
         }
 
         .text-container :global(p) {
@@ -53,7 +56,6 @@ export function SolidarityStatement({ solidarityStatement }: Props) {
           }
 
           img {
-            margin-top: 1rem;
             margin-left: 0;
           }
 

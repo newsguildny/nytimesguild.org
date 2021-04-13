@@ -16,13 +16,15 @@ interface Props {
   subheading: string;
 }
 
+const siteTitle = 'The New York Times Guild';
+
 const Page = ({ slug, source, title, heading, subheading }: Props) => {
   const isHome = slug === 'index';
   const content = useHydratedMdx(source, { components });
   return (
     <>
       <Head>
-        <title>{title} - The New York Times Guild</title>
+        <title>{isHome ? siteTitle : `${title} - ${siteTitle}`}</title>
       </Head>
       {isHome ? <HomeHeader /> : <PageHeader heading={heading} subheading={subheading} />}
       <main>{content}</main>

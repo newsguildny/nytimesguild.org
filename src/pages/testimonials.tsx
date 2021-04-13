@@ -13,6 +13,8 @@ const Testimonials = ({ testimonials }: Props) => (
   <>
     <Head>
       <title>Testimonials - The New York Times Guild</title>
+      <meta name="og:title" content="Testimonials" />
+      <meta name="og:type" content="website" />
     </Head>
     <PageHeader heading="Testimonials" />
     <main>

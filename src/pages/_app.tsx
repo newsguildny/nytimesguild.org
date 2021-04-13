@@ -32,6 +32,7 @@ export default function AppWithContext({
         <meta name="apple-mobile-web-app-title" content="NYT Guild" />
         <meta name="msapplication-TileColor" content="#ff4040" />
         <meta name="theme-color" content="#ffffff" />
+        <meta name="og:image" content="/og-image.png" />
       </Head>
       <StaticContext.Provider value={staticContext}>
         <Navigation />

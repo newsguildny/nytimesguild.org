@@ -25,6 +25,8 @@ const Page = ({ slug, source, title, heading, subheading }: Props) => {
     <>
       <Head>
         <title>{isHome ? siteTitle : `${title} - ${siteTitle}`}</title>
+        <meta name="og:title" content={title} />
+        <meta name="og:type" content="website" />
       </Head>
       {isHome ? <HomeHeader /> : <PageHeader heading={heading} subheading={subheading} />}
       <main>{content}</main>

@@ -13,6 +13,8 @@ const ShopPapers = ({ papers }: Props) => (
   <>
     <Head>
       <title>Shop Papers - The New York Times Guild</title>
+      <meta name="og:title" content="Shop Papers" />
+      <meta name="og:type" content="website" />
     </Head>
     <PageHeader heading="Guild Updates" />
     <main>

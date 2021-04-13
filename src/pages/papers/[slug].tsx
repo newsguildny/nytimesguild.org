@@ -12,14 +12,18 @@ import { getStaticContext } from '../../lib/staticContext/getStaticContext';
 interface Props {
   source: MdxRemote.Source;
   headline: string;
+  snippet: string;
 }
 
-const ShopPaper = ({ source, headline }: Props) => {
+const ShopPaper = ({ source, headline, snippet }: Props) => {
   const content = useHydratedMdx(source, { components });
   return (
     <>
       <Head>
         <title>{headline} - The New York Times Guild</title>
+        <meta name="og:title" content={headline} />
+        <meta name="og:type" content="article" />
+        <meta name="og:description" content={snippet} />
       </Head>
       <main>
         <h1>{headline}</h1>
@@ -51,11 +55,12 @@ export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({ 
     throw new Error('getStaticProps called without a slug in papers/[slug].tsx');
   }
   const staticContext = await getStaticContext(params.slug);
-  const { source, headline } = await getPaperData(params.slug, staticContext);
+  const { source, headline, snippet } = await getPaperData(params.slug, staticContext);
   return {
     props: {
       slug: params!.slug,
       source,
+      snippet,
       headline,
       staticContext,
     },

@@ -13,6 +13,8 @@ const SolidarityStatements = ({ solidarityStatements }: Props) => (
   <>
     <Head>
       <title>Solidarity Statements - The New York Times Guild</title>
+      <meta name="og:title" content="Solidarity Statements" />
+      <meta name="og:type" content="website" />
     </Head>
     <PageHeader heading="Solidarity Statements" />
     <main>

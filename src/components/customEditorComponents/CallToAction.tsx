@@ -64,6 +64,7 @@ export function CallToAction({ to, children }: Props) {
           display: block;
           margin: 3rem 0 6rem 0;
           width: max-content;
+          max-width: calc(100% - 4rem);
           padding: 1rem 1.5rem;
           border: 2px solid #dedede;
           font-size: ${sansSerifSizes.large};

@@ -101,7 +101,7 @@ export default function AppWithContext({
 
           font-family: ${serif};
           font-size: ${serifSizes.small};
-          height: 400;
+          font-weight: 400;
           color: ${bodyText};
         }
 

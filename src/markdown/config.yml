@@ -149,9 +149,14 @@ collections:
         name: subheading
         widget: string
         required: false
-      - label: Navigation Order
+      - label: Show in Navigation Menu
+        name: showInNavigation
+        widget: boolean
+        default: false
+      - label: Navigation Menu Order
         name: navigationOrder
         widget: number
+        default: 0
         # @see https://www.netlifycms.org/docs/configuration-options/#collections
         pattern:
           - "^[^-]?\\d+$"

@@ -4,3 +4,25 @@
 
 [[plugins]]
 package = "netlify-plugin-cache-nextjs"
+
+# @see https://docs.netlify.com/routing/redirects/#syntax-for-the-netlify-configuration-file
+[[redirects]]
+  from = "/tech/meeting-invite"
+  # General Meeting RSVP - Google Forms
+  to = "https://docs.google.com/forms/d/e/1FAIpQLSf5Z7oKq_bIAD9Cqhaqc0cq6E1cR7D_V7FLb97REHEGFozBVg/viewform"
+  status = 302
+  force = true # COMMENT: ensure that we always redirect
+
+[[redirects]]
+  from = "/tech/join-slack"
+  # Pinkertimes Slack Join Request - Google Forms
+  to = "https://docs.google.com/forms/d/e/1FAIpQLSdw4KE9MPjRCKFp3GjPwbmkVnSJ6g6bYNfMV9ITGizpDfc0kg/viewform"
+  status = 302
+  force = true # COMMENT: ensure that we always redirect
+
+[[redirects]]
+  from = "/tech/union-pride"
+  # Show your union pride - Google Slides
+  to = "https://docs.google.com/presentation/d/1FZYQ8xBXQLM8n973jVnCsYJ_wz-DT6YSyf_Dgi5E_8s/edit?usp=sharing"
+  status = 302
+  force = true # COMMENT: ensure that we always redirect

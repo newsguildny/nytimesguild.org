@@ -7,7 +7,7 @@ package = "netlify-plugin-cache-nextjs"
 
 # @see https://docs.netlify.com/routing/redirects/#syntax-for-the-netlify-configuration-file
 [[redirects]]
-  from = "/tech/meeting-invite"
+  from = "/tech/meeting-rsvp"
   # General Meeting RSVP - Google Forms
   to = "https://docs.google.com/forms/d/e/1FAIpQLSf5Z7oKq_bIAD9Cqhaqc0cq6E1cR7D_V7FLb97REHEGFozBVg/viewform"
   status = 302

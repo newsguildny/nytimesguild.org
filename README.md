@@ -50,6 +50,14 @@ You can use the provided Visual Studio Code configs to debug both the dev server
 
 <a href="https://user-images.githubusercontent.com/191304/113455951-eee36b80-93d9-11eb-8a1c-dadc57b4da81.mp4"><img src="./docs/img/vscode-dev-server-and-client-debugging-thumb.jpg" width="400"></a>
 
+## Scripts
+
+### Processing Headshots
+
+To preprocess headshots for the testimonials section of the website, you'll need to make sure you have `imagemagick`s `mogrify` command installed (on macOS, this can be installed via homebrew with `brew install imagemagick`).
+
+Create a directory somewhere with your input files (say, `~/headshots`). Then run `yarn process:headshots ~/headshots/*`, which will process your input files (desaturate, adjust levels, resize, crop, and strip metadata) and output them in `public/images`, where they will be available to set as headshots for testimonials!
+
 ### See Also
 
 - [Debugging in Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)

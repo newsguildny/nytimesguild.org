@@ -13,7 +13,8 @@
     "lint:fix": "yarn lint --fix",
     "test": "jest",
     "type-check": "tsc -p tsconfig.json --incremental",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "process:headshots": "./scripts/process_testimonial_headshots.sh"
   },
   "dependencies": {
     "@svgr/webpack": "^5.4.0",

@@ -7,6 +7,13 @@ package = "netlify-plugin-cache-nextjs"
 
 # @see https://docs.netlify.com/routing/redirects/#syntax-for-the-netlify-configuration-file
 [[redirects]]
+  from = "/tech/avatar"
+  # Avatar Generator
+  to = "https://guild-avatar.surge.sh"
+  status = 302
+  force = true # COMMENT: ensure that we always redirect
+
+[[redirects]]
   from = "/tech/meeting-rsvp"
   # General Meeting RSVP - Google Forms
   to = "https://docs.google.com/forms/d/e/1FAIpQLSf5Z7oKq_bIAD9Cqhaqc0cq6E1cR7D_V7FLb97REHEGFozBVg/viewform"
@@ -17,6 +24,13 @@ package = "netlify-plugin-cache-nextjs"
   from = "/tech/join-slack"
   # Pinkertimes Slack Join Request - Google Forms
   to = "https://docs.google.com/forms/d/e/1FAIpQLSdw4KE9MPjRCKFp3GjPwbmkVnSJ6g6bYNfMV9ITGizpDfc0kg/viewform"
+  status = 302
+  force = true # COMMENT: ensure that we always redirect
+
+[[redirects]]
+  from = "/tech/selfie-mosaic"
+  # Selfie Mosaic Submission - Google Forms
+  to = "https://docs.google.com/forms/d/e/1FAIpQLSfH8q1R8JxpLFSUahecpNUdD6Mx5YBMfqsxWXLYXl_IbnYK8Q/viewform"
   status = 302
   force = true # COMMENT: ensure that we always redirect
 

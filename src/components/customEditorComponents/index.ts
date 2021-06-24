@@ -11,6 +11,7 @@ import {
 import { RecentPapers, options as recentPapersOptions } from './RecentPapers';
 import { FAQ, FAQItem, options as faqOptions } from './FAQ';
 import { FullBleedImage, options as fullBleedImageOptions } from './FullBleedImage';
+import { PDFEmbed, options as pdfEmbedOptions } from './PDFEmbed';
 
 export const components = {
   CallToAction,
@@ -19,6 +20,7 @@ export const components = {
   FullBleedImage,
   HighlightedTestimonials,
   HighlightedSolidarityStatements,
+  PDFEmbed,
   RecentPapers,
   YouTube,
 };
@@ -31,4 +33,5 @@ export const options = [
   recentPapersOptions,
   faqOptions,
   fullBleedImageOptions,
+  pdfEmbedOptions,
 ];

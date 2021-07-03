@@ -168,3 +168,47 @@ collections:
       - navigationOrder
       - slug
       - title
+
+  - name: theTable
+    label: The Table
+    folder: src/markdown/theTable
+    extension: mdx
+    format: frontmatter
+    create: true
+    slug: "{{fields.slug}}"
+    identifier_field: slug
+    summary: "{{title}}"
+    fields:
+      - label: Slug
+        name: slug
+        widget: string
+      - label: Title
+        name: title
+        widget: string
+      - label: Heading
+        name: heading
+        widget: string
+        required: false
+      - label: Subheading
+        name: subheading
+        widget: string
+        required: false
+      - label: Show in Navigation Menu
+        name: showInNavigation
+        widget: boolean
+        default: false
+      - label: Navigation Menu Order
+        name: navigationOrder
+        widget: number
+        default: 0
+        # @see https://www.netlifycms.org/docs/configuration-options/#collections
+        pattern:
+          - "^[^-]?\\d+$"
+          - "Cannot be a negative number"
+      - label: Body
+        name: body
+        widget: markdown
+    sortable_fields:
+      - navigationOrder
+      - slug
+      - title

@@ -8,7 +8,25 @@ import { PageHeader } from '../components/PageHeader';
 import { getStaticContext } from '../lib/staticContext/getStaticContext';
 import { useHydratedMdx } from '../lib/mdx/hydrate';
 
-interface Props {
+interface HeaderProps {
+  slug: string;
+  heading: string;
+  subheading: string;
+}
+
+const siteTitle = 'The New York Times Guild';
+
+const Header = ({ slug, heading, subheading }: HeaderProps) => {
+  // if (slug === 'the-table') return null
+
+  return slug === 'index' ? (
+    <HomeHeader />
+  ) : (
+    <PageHeader heading={heading} subheading={subheading} />
+  );
+};
+
+interface PageProps {
   slug: string;
   source: MdxRemote.Source;
   title: string;
@@ -16,9 +34,7 @@ interface Props {
   subheading: string;
 }
 
-const siteTitle = 'The New York Times Guild';
-
-const Page = ({ slug, source, title, heading, subheading }: Props) => {
+const Page = ({ slug, source, title, heading, subheading }: PageProps) => {
   const isHome = slug === 'index';
   const content = useHydratedMdx(source, { components });
   return (
@@ -28,7 +44,7 @@ const Page = ({ slug, source, title, heading, subheading }: Props) => {
         <meta name="og:title" content={title} />
         <meta name="og:type" content="website" />
       </Head>
-      {isHome ? <HomeHeader /> : <PageHeader heading={heading} subheading={subheading} />}
+      <Header slug={slug} heading={heading} subheading={subheading} />
       <main>{content}</main>
     </>
   );
@@ -36,7 +52,7 @@ const Page = ({ slug, source, title, heading, subheading }: Props) => {
 
 export default Page;
 
-export const getStaticProps: GetStaticProps<Props, { slug: [string] }> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<PageProps, { slug: [string] }> = async ({ params }) => {
   const slug = params?.slug?.[0] || 'index';
   const staticContext = await getStaticContext(slug);
   const { source, title, heading, subheading } = await getPageData(slug, staticContext);

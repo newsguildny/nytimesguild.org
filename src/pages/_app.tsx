@@ -21,6 +21,7 @@ export default function AppWithContext({
   Component,
   pageProps: { staticContext = defaultStaticContextValue, ...pageProps },
 }: AppPropsWithContext) {
+  console.log('whaaat page props:', pageProps);
   return (
     <>
       <Head>

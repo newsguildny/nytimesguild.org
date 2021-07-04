@@ -175,7 +175,7 @@ collections:
     extension: mdx
     format: frontmatter
     create: true
-    slug: "{{fields.slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{fields.slug}}"
     identifier_field: slug
     summary: "{{headline}}"
     fields:

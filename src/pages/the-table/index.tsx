@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { getLatestIssue } from '../../lib/collections/theTable';
 import { useHydratedMdx } from '../../lib/mdx/hydrate';
 import { components } from '../../components/customEditorComponents';
+import { sansSerif, sansSerifSizes } from '../../lib/styles/tokens/fonts';
 
 interface Props {
   source: MdxRemote.Source;
@@ -18,20 +19,27 @@ const TheTable = ({ source }: Props) => {
         <meta name="og:title" content="The Table" />
         <meta name="og:type" content="website" />
       </Head>
-      <main>
-        <div>Most recent edition will go here</div>
-        <div>Links to all previous issues</div>
-        {content}
-      </main>
+      <header>
+        <img src="/images/the-table-temp-header.jpg" alt="The Table logo" />
+      </header>
+      <main>{content}</main>
       <style jsx>{`
-        main {
-          padding-top: 2rem;
+        header {
+          display: flex;
+          justify-content: center;
         }
 
-        @media (min-width: 769px) {
-          main {
-            padding-top: 5rem;
-          }
+        main {
+          font-family: ${sansSerif};
+          font-size: ${sansSerifSizes.medium};
+          max-width: 720px;
+          background-color: #ffebed;
+          margin: 0 auto;
+          padding: 0 10px 30px 10px;
+        }
+
+        img {
+          max-width: 740px;
         }
       `}</style>
     </>

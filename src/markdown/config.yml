@@ -177,38 +177,22 @@ collections:
     create: true
     slug: "{{fields.slug}}"
     identifier_field: slug
-    summary: "{{title}}"
+    summary: "{{headline}}"
     fields:
       - label: Slug
         name: slug
         widget: string
-      - label: Title
-        name: title
+      - label: Headline
+        name: headline
         widget: string
-      - label: Heading
-        name: heading
-        widget: string
-        required: false
-      - label: Subheading
-        name: subheading
-        widget: string
-        required: false
-      - label: Show in Navigation Menu
-        name: showInNavigation
-        widget: boolean
-        default: false
-      - label: Navigation Menu Order
-        name: navigationOrder
-        widget: number
-        default: 0
-        # @see https://www.netlifycms.org/docs/configuration-options/#collections
-        pattern:
-          - "^[^-]?\\d+$"
-          - "Cannot be a negative number"
+      - label: Published Date
+        name: date
+        widget: datetime
+        date_format: MM/DD/YYYY
+        time_format: HH:mm
+      - label: Snippet
+        name: snippet
+        widget: text
       - label: Body
         name: body
         widget: markdown
-    sortable_fields:
-      - navigationOrder
-      - slug
-      - title

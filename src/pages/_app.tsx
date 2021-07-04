@@ -21,7 +21,9 @@ export default function AppWithContext({
   Component,
   pageProps: { staticContext = defaultStaticContextValue, ...pageProps },
 }: AppPropsWithContext) {
-  console.log('whaaat page props:', pageProps);
+  // For now, we'd like to hide navigation on The Table's landing page
+  const showNav = !(pageProps.slug === 'the-table');
+
   return (
     <>
       <Head>
@@ -36,7 +38,7 @@ export default function AppWithContext({
         <meta name="og:image" content="https://nytimesguild.org/og-image.png" />
       </Head>
       <StaticContext.Provider value={staticContext}>
-        <Navigation />
+        {showNav && <Navigation />}
         <Component {...pageProps} />
         <Footer />
       </StaticContext.Provider>

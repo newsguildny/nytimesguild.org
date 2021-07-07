@@ -19,12 +19,12 @@ const TheTable = ({ source }: Props) => {
         <meta name="og:title" content="The Table" />
         <meta name="og:type" content="website" />
       </Head>
-      <header>
-        <img src="/images/the-table-temp-header.jpg" alt="The Table logo" />
-      </header>
+      <header>The Table</header>
       <main>{content}</main>
       <style jsx>{`
         header {
+          font-family: ${sansSerif}
+          font-size: ${sansSerifSizes.extraLarge}
           display: flex;
           justify-content: center;
         }

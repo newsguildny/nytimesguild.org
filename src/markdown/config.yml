@@ -168,3 +168,31 @@ collections:
       - navigationOrder
       - slug
       - title
+
+  - name: theTable
+    label: The Table
+    folder: src/markdown/theTable
+    extension: mdx
+    format: frontmatter
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{fields.slug}}"
+    identifier_field: slug
+    summary: "{{headline}}"
+    fields:
+      - label: Slug
+        name: slug
+        widget: string
+      - label: Headline
+        name: headline
+        widget: string
+      - label: Published Date
+        name: date
+        widget: datetime
+        date_format: MM/DD/YYYY
+        time_format: HH:mm
+      - label: Issue No.
+        name: issue
+        widget: number
+      - label: Body
+        name: body
+        widget: markdown

@@ -11,7 +11,6 @@ export interface IssueData {
   headline: string;
   issue: string;
   slug: string;
-  snippet: string;
 }
 
 export function getIssueFiles() {

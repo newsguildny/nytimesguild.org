@@ -190,9 +190,9 @@ collections:
         widget: datetime
         date_format: MM/DD/YYYY
         time_format: HH:mm
-      - label: Snippet
-        name: snippet
-        widget: text
+      - label: Issue No.
+        name: issue
+        widget: number
       - label: Body
         name: body
         widget: markdown

@@ -23,7 +23,6 @@ export default function AppWithContext({
 }: AppPropsWithContext) {
   // For now, we'd like to hide header/footer on The Table's landing page
   const pageContext = `${pageProps?.context}` || '';
-  console.log('what are pageProps?', pageProps);
   const showChrome = !pageContext.includes('the-table');
 
   return (

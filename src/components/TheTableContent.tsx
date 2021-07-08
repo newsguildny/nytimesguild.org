@@ -12,7 +12,7 @@ const TheTableContent = ({ content, date, issue }: Props) => (
       <div className="description center">
         A joint zine from the Times Guild, the Times Tech Guild and the Wirecutter Union
       </div>
-      <div className="title center">The Table</div>
+      <h1 className="title center">The Table</h1>
     </header>
     <div className="info">
       <div className="issue">Issue {issue}</div>
@@ -27,18 +27,20 @@ const TheTableContent = ({ content, date, issue }: Props) => (
         font-family: 'Public Sans';
         color: #490606;
         position: relative;
-        top: 130px;
-        margin-top: -80px;
+        top: 7.4rem;
+        margin-top: -4rem;
       }
 
       .title {
-        font-size: 6em;
+        margin: 0;
+        font-size: 9rem;
         font-weight: 900;
       }
 
       .description {
         font-weight: 700;
-        font-size: 18px;
+        font-size: 1.2rem;
+        padding-bottom: 1rem;
       }
 
       .info {

@@ -21,8 +21,10 @@ export default function AppWithContext({
   Component,
   pageProps: { staticContext = defaultStaticContextValue, ...pageProps },
 }: AppPropsWithContext) {
-  // For now, we'd like to hide navigation on The Table's landing page
-  const showNav = !(pageProps.slug === 'the-table');
+  // For now, we'd like to hide header/footer on The Table's landing page
+  const pageContext = `${pageProps?.context}` || '';
+  console.log('what are pageProps?', pageProps);
+  const showChrome = !pageContext.includes('the-table');
 
   return (
     <>
@@ -38,9 +40,9 @@ export default function AppWithContext({
         <meta name="og:image" content="https://nytimesguild.org/og-image.png" />
       </Head>
       <StaticContext.Provider value={staticContext}>
-        {showNav && <Navigation />}
+        {showChrome && <Navigation />}
         <Component {...pageProps} />
-        <Footer />
+        {showChrome && <Footer />}
       </StaticContext.Provider>
       <style jsx global>{`
         @font-face {

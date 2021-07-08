@@ -6,9 +6,11 @@ import { renderToString } from '../mdx/renderToString';
 import { components } from '../../components/customEditorComponents';
 
 export interface IssueData {
+  date: string;
   filename: string;
-  slug: string;
   headline: string;
+  issue: string;
+  slug: string;
   snippet: string;
 }
 
@@ -40,12 +42,14 @@ export async function getIssueData(filename: string, staticContext?: StaticConte
     components,
     staticContext,
   });
+  const formattedDate = new Date(markdownData.data.date).toString().slice(3, 15);
 
   return {
-    filename: markdownData.data.filename,
+    date: formattedDate,
     headline: markdownData.data.headline,
+    issue: markdownData.data.issue,
     slug: markdownData.data.slug,
-    snippet: markdownData.data.snippet,
+    context: 'the-table',
     source: mdxSource,
   };
 }

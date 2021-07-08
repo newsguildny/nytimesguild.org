@@ -1,66 +1,60 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
-import { MdxRemote } from 'next-mdx-remote/types';
+import Link from 'next/link';
 import Head from 'next/head';
 import { getIssueData, getIssueFiles } from '../../lib/collections/theTable';
 import { useHydratedMdx } from '../../lib/mdx/hydrate';
 import { components } from '../../components/customEditorComponents';
-import { sansSerif, sansSerifSizes } from '../../lib/styles/tokens/fonts';
+import TheTableContent from '../../components/TheTableContent';
+import { IssueProps } from './index';
 
-interface Props {
-  source: MdxRemote.Source;
-}
-
-const TheTable = ({ source }: Props) => {
+const TheTableIssue = ({ date, headline, issue, source }: IssueProps) => {
   const content = useHydratedMdx(source, { components });
+  const title = `The Table: ${headline}`;
+
   return (
     <>
       <Head>
-        <title>The Table</title>
-        <meta name="og:title" content="The Table" />
+        <title>{title}</title>
+        <meta name="og:title" content={title} />
         <meta name="og:type" content="website" />
       </Head>
-      <header>The Table</header>
-      <main>{content}</main>
+      <div className="link">
+        <Link href="/the-table">
+          <a>← Back to Current Issue</a>
+        </Link>
+      </div>
+      <TheTableContent content={content} date={date} issue={issue} />
       <style jsx>{`
-        header {
-          font-family: ${sansSerif}
-          font-size: ${sansSerifSizes.extraLarge}
-          display: flex;
-          justify-content: center;
+        .link {
+          font-family: 'Public Sans';
+          font-size: 18px;
+          margin: 48px 0 0 48px;
         }
 
-        main {
-          font-family: ${sansSerif};
-          font-size: ${sansSerifSizes.medium};
-          max-width: 720px;
-          background-color: #ffebed;
-          margin: 0 auto;
-          padding: 0 10px 30px 10px;
-        }
-
-        img {
-          max-width: 740px;
+        a {
+          text-decoration: none;
         }
       `}</style>
     </>
   );
 };
 
-export default TheTable;
+export default TheTableIssue;
 
-export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<IssueProps, { slug: string }> = async ({ params }) => {
   if (!params?.slug) {
     throw new Error('getStaticProps called without a slug in theTable/[slug].tsx');
   }
 
-  const { source, headline, snippet } = await getIssueData(params.slug);
+  const { context, date, issue, source, headline } = await getIssueData(params.slug);
 
   return {
     props: {
-      source,
-      snippet,
+      date,
       headline,
-      slug: 'the-table',
+      issue,
+      source,
+      context,
     },
   };
 };

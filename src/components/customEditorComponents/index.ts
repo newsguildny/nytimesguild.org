@@ -12,9 +12,11 @@ import { RecentPapers, options as recentPapersOptions } from './RecentPapers';
 import { FAQ, FAQItem, options as faqOptions } from './FAQ';
 import { FullBleedImage, options as fullBleedImageOptions } from './FullBleedImage';
 import { PDFEmbed, options as pdfEmbedOptions } from './PDFEmbed';
+import { CenteredText } from './CenteredText';
 
 export const components = {
   CallToAction,
+  CenteredText,
   FAQ,
   FAQItem,
   FullBleedImage,

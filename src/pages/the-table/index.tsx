@@ -1,17 +1,22 @@
 import { GetStaticProps } from 'next';
+import Link from 'next/link';
 import { MdxRemote } from 'next-mdx-remote/types';
 import Head from 'next/head';
 import { getLatestIssue } from '../../lib/collections/theTable';
 import { useHydratedMdx } from '../../lib/mdx/hydrate';
 import { components } from '../../components/customEditorComponents';
-import { sansSerif, sansSerifSizes } from '../../lib/styles/tokens/fonts';
+import TheTableContent from '../../components/TheTableContent';
 
-interface Props {
+export interface IssueProps {
+  date: string;
+  headline?: string;
+  issue: string;
   source: MdxRemote.Source;
 }
 
-const TheTable = ({ source }: Props) => {
+const TheTable = ({ date, issue, source }: IssueProps) => {
   const content = useHydratedMdx(source, { components });
+
   return (
     <>
       <Head>
@@ -19,35 +24,21 @@ const TheTable = ({ source }: Props) => {
         <meta name="og:title" content="The Table" />
         <meta name="og:type" content="website" />
       </Head>
-      <header>The Table</header>
-      <main>
-        <article>{content}</article>
-      </main>
+      <div className="link">
+        <Link href="/">
+          <a>← The Times Guild Site</a>
+        </Link>
+      </div>
+      <TheTableContent content={content} date={date} issue={issue} />
       <style jsx>{`
-        header {
+        .link {
           font-family: 'Public Sans';
-          font-size: 6em;
-          font-weight: 900;
-          display: flex;
-          justify-content: center;
-          color: #490606;
-          position: relative;
-          top: 0.4em;
+          font-size: 18px;
+          margin: 48px 0 0 48px;
         }
 
-        main {
-          background-color: #ffebed;
-          padding-bottom: 48px;
-        }
-
-        article {
-          font-family: ${sansSerif};
-          font-size: ${sansSerifSizes.medium};
-          margin: 0 auto;
-        }
-
-        img {
-          max-width: 740px;
+        a {
+          text-decoration: none;
         }
       `}</style>
     </>
@@ -57,13 +48,14 @@ const TheTable = ({ source }: Props) => {
 export default TheTable;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { source, headline, snippet } = await getLatestIssue();
+  const { context, date, issue, source } = await getLatestIssue();
 
   return {
     props: {
+      date,
+      issue,
       source,
-      snippet,
-      headline,
+      context,
       slug: 'the-table',
     },
   };

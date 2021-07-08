@@ -1,13 +1,25 @@
+import Link from 'next/link';
 import { sansSerif, sansSerifSizes } from '../lib/styles/tokens/fonts';
+
+interface Link {
+  link: string;
+  label: string;
+}
 
 interface Props {
   content: any;
   date: string;
   issue: string;
+  navLink: Link;
 }
 
-const TheTableContent = ({ content, date, issue }: Props) => (
+const TheTableContent = ({ content, date, issue, navLink }: Props) => (
   <>
+    <div className="link">
+      <Link href={navLink.link}>
+        <a>{navLink.label}</a>
+      </Link>
+    </div>
     <header>
       <div className="description center">
         A joint zine from the Times Guild, the Times Tech Guild and the Wirecutter Union
@@ -26,37 +38,34 @@ const TheTableContent = ({ content, date, issue }: Props) => (
         display: block;
         font-family: 'Public Sans';
         color: #490606;
-        position: relative;
-        top: 7.4rem;
-        margin-top: -4rem;
       }
 
       .title {
-        margin: 0;
-        font-size: 9rem;
+        font-size: 3rem;
         font-weight: 900;
+        margin: 0 1rem;
       }
 
       .description {
         font-weight: 700;
-        font-size: 1.2rem;
-        padding-bottom: 1rem;
+        font-size: 0.9rem;
+        text-align: center;
+        margin: 0.5rem;
       }
 
       .info {
         font-family: 'Public Sans';
         color: #490606;
-        margin: 0 48px 52px 48px;
         font-weight: 400;
-        font-size: 16px;
+        font-size: 0.9rem;
         display: flex;
         justify-content: space-between;
+        margin: 1rem;
       }
 
       main {
         background-color: #ffebed;
-        padding-bottom: 48px;
-        margin: 0 48px;
+        padding-bottom: 3rem;
       }
 
       article {
@@ -71,6 +80,63 @@ const TheTableContent = ({ content, date, issue }: Props) => (
       .center {
         display: flex;
         justify-content: center;
+      }
+
+      .link {
+        font-family: 'Public Sans';
+        font-size: 0.9rem;
+        margin: 1.5rem;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      @media (min-width: 769px) {
+        .title {
+          font-size: 8rem;
+        }
+
+        .description {
+          font-size: 1rem;
+        }
+
+        .info {
+          font-size: 1rem;
+        }
+
+        .link {
+          font-size: 1rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        header {
+          position: relative;
+          top: 6rem;
+          margin-top: -4rem;
+        }
+
+        .title {
+          font-size: 9rem;
+        }
+
+        .description {
+          font-size: 1.2rem;
+        }
+
+        .info {
+          margin: 0 2rem 2rem 2rem;
+        }
+
+        main {
+          margin-left: 2rem;
+          margin-right: 2rem;
+        }
+
+        .link {
+          margin: 2rem;
+        }
       }
     `}</style>
   </>

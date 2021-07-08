@@ -1,5 +1,4 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
-import Link from 'next/link';
 import Head from 'next/head';
 import { getIssueData, getIssueFiles } from '../../lib/collections/theTable';
 import { useHydratedMdx } from '../../lib/mdx/hydrate';
@@ -18,23 +17,15 @@ const TheTableIssue = ({ date, headline, issue, source }: IssueProps) => {
         <meta name="og:title" content={title} />
         <meta name="og:type" content="website" />
       </Head>
-      <div className="link">
-        <Link href="/the-table">
-          <a>← Back to Current Issue</a>
-        </Link>
-      </div>
-      <TheTableContent content={content} date={date} issue={issue} />
-      <style jsx>{`
-        .link {
-          font-family: 'Public Sans';
-          font-size: 18px;
-          margin: 48px 0 0 48px;
-        }
-
-        a {
-          text-decoration: none;
-        }
-      `}</style>
+      <TheTableContent
+        content={content}
+        date={date}
+        issue={issue}
+        navLink={{
+          label: '← Back to Current Issue',
+          link: '/the-table',
+        }}
+      />
     </>
   );
 };

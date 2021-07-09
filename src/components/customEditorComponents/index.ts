@@ -12,7 +12,7 @@ import { RecentPapers, options as recentPapersOptions } from './RecentPapers';
 import { FAQ, FAQItem, options as faqOptions } from './FAQ';
 import { FullBleedImage, options as fullBleedImageOptions } from './FullBleedImage';
 import { PDFEmbed, options as pdfEmbedOptions } from './PDFEmbed';
-import { CenteredContent } from './CenteredContent';
+import { CenteredContent, options as centeredContentOptions } from './CenteredContent';
 
 export const components = {
   CallToAction,
@@ -29,6 +29,7 @@ export const components = {
 
 export const options = [
   callToActionOptions,
+  centeredContentOptions,
   youTubeOptions,
   highlightedTestimonialsOptions,
   highlightedSolidarityStatementsOptions,

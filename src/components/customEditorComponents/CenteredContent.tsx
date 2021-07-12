@@ -11,7 +11,7 @@ export const options: EditorComponentOptions = {
       widget: 'string',
     },
   ],
-  pattern: /<CenteredContent>([^\s]*)<\/CenteredContent>/,
+  pattern: /<CenteredContent>(.*)<\/CenteredContent>/,
   fromBlock: (match) => ({
     content: match[1],
   }),

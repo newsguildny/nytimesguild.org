@@ -16,7 +16,7 @@
   "mounts": [
     // Following instructions at https://code.visualstudio.com/docs/remote/containers-advanced#_use-a-targeted-named-volume,
     // create a targeted named volume to speed up node module installation performance
-    "source=oak_node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+    "source=nytunion_node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
   ],
   // 3000 is the port that the dev server runs on. 8081 is the port that the local
   // identity backend runs on.

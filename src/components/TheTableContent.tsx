@@ -69,6 +69,7 @@ const TheTableContent = ({ content, date, issue, navLink }: Props) => (
       }
 
       article {
+        margin-top: 2rem;
         font-family: ${sansSerif};
         font-size: ${sansSerifSizes.medium};
       }

@@ -170,7 +170,7 @@ collections:
       - title
 
   - name: theTable
-    label: The Table
+    label: Zine Issue
     folder: src/markdown/theTable
     extension: mdx
     format: frontmatter

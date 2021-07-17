@@ -11,12 +11,12 @@ export const options: EditorComponentOptions = {
       widget: 'string',
     },
   ],
-  pattern: /<CenteredContent to="([^\s]*)">(.*)<\/CenteredContent>/,
+  pattern: /<CenteredContent>(.*)<\/CenteredContent>/,
   fromBlock: (match) => ({
     content: match[1],
   }),
   toBlock: (data) => `<CenteredContent>${data.content}</CenteredContent>`,
-  toPreview: (data) => `<div style="text-align: center;">${data.content}</div>`,
+  toPreview: (data) => `<div style="text-align:center;">${data.content}</div>`,
 };
 
 interface Props {

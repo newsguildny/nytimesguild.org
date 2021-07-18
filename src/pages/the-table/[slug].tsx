@@ -1,17 +1,19 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Head from 'next/head';
-import { getIssueData, getIssueFiles } from '../../lib/collections/theTable';
+import { getIssueData, getIssueFiles, getPreviousIssues } from '../../lib/collections/theTable';
 import { useHydratedMdx } from '../../lib/mdx/hydrate';
 import { components } from '../../components/customEditorComponents';
 import TheTableContent from '../../components/TheTableContent';
 import { IssueProps } from './index';
+import TheTableFooter, { TeaserProps } from '../../components/TheTableFooter';
 
 interface IssuePageProps {
   context: string;
   issue: IssueProps;
+  previousIssues: Array<TeaserProps>;
 }
 
-const TheTableIssue = ({ context, issue }: IssuePageProps) => {
+const TheTableIssue = ({ context, issue, previousIssues }: IssuePageProps) => {
   const { date, headline, issue: issueNumber, source } = issue;
   const content = useHydratedMdx(source, { components });
   const title = `The Table: ${headline}`;
@@ -33,6 +35,7 @@ const TheTableIssue = ({ context, issue }: IssuePageProps) => {
           link: '/the-table',
         }}
       />
+      {!!previousIssues.length && <TheTableFooter teasers={previousIssues} />}
     </>
   );
 };
@@ -46,6 +49,8 @@ export const getStaticProps: GetStaticProps<IssuePageProps, { slug: string }> = 
     throw new Error('getStaticProps called without a slug in theTable/[slug].tsx');
   }
 
+  const previousIssues = await Promise.all(await getPreviousIssues(params.slug));
+
   const { context, date, issue, source, headline } = await getIssueData(params.slug);
 
   return {
@@ -57,6 +62,7 @@ export const getStaticProps: GetStaticProps<IssuePageProps, { slug: string }> = 
         issue,
         source,
       },
+      previousIssues,
     },
   };
 };

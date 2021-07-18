@@ -40,7 +40,7 @@ const TheTable = ({ latestIssue, previousIssues }: Props) => {
           link: '/',
         }}
       />
-      <TheTableFooter teasers={previousIssues} />
+      {!!previousIssues.length && <TheTableFooter teasers={previousIssues} />}
     </>
   );
 };

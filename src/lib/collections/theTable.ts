@@ -11,6 +11,7 @@ export interface IssueData {
   headline: string;
   issue: string;
   slug: string;
+  thumbnail?: string;
 }
 
 export function getIssueFiles() {
@@ -54,7 +55,7 @@ export async function getIssueData(filename: string, staticContext?: StaticConte
     date: formattedDate,
     headline: markdownData.data.headline,
     issue: markdownData.data.issue,
-    slug: markdownData.data.slug,
+    slug: filename,
     context: 'the-table',
     source: mdxSource,
   };
@@ -67,7 +68,8 @@ export async function getTeaserData(filename: string) {
     date: formattedDate,
     headline: markdownData.data.headline,
     issue: markdownData.data.issue,
-    slug: markdownData.data.slug,
+    slug: filename,
+    thumbnail: markdownData.data.thumbnail,
   };
 }
 
@@ -76,8 +78,12 @@ export function getLatestIssue() {
   return getIssueData(latestIssue);
 }
 
-export async function getPreviousIssues() {
-  const previousIssueFiles = getIssueFiles().slice(1);
+export async function getPreviousIssues(selectedIssue?: string) {
+  const previousIssueFiles = getIssueFiles()
+    .slice(1)
+    .filter((file) => {
+      return file !== selectedIssue;
+    });
 
   return previousIssueFiles.map(async (file: string) => {
     const teaserData = await getTeaserData(file);

@@ -6,7 +6,13 @@ import { components } from '../../components/customEditorComponents';
 import TheTableContent from '../../components/TheTableContent';
 import { IssueProps } from './index';
 
-const TheTableIssue = ({ date, headline, issue, source }: IssueProps) => {
+interface IssuePageProps {
+  context: string;
+  issue: IssueProps;
+}
+
+const TheTableIssue = ({ context, issue }: IssuePageProps) => {
+  const { date, headline, issue: issueNumber, source } = issue;
   const content = useHydratedMdx(source, { components });
   const title = `The Table: ${headline}`;
 
@@ -16,11 +22,12 @@ const TheTableIssue = ({ date, headline, issue, source }: IssueProps) => {
         <title>{title}</title>
         <meta name="og:title" content={title} />
         <meta name="og:type" content="website" />
+        <meta name="context" content={context} />
       </Head>
       <TheTableContent
         content={content}
         date={date}
-        issue={issue}
+        issue={issueNumber}
         navLink={{
           label: '← Back to Current Issue',
           link: '/the-table',
@@ -32,7 +39,9 @@ const TheTableIssue = ({ date, headline, issue, source }: IssueProps) => {
 
 export default TheTableIssue;
 
-export const getStaticProps: GetStaticProps<IssueProps, { slug: string }> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<IssuePageProps, { slug: string }> = async ({
+  params,
+}) => {
   if (!params?.slug) {
     throw new Error('getStaticProps called without a slug in theTable/[slug].tsx');
   }
@@ -41,11 +50,13 @@ export const getStaticProps: GetStaticProps<IssueProps, { slug: string }> = asyn
 
   return {
     props: {
-      date,
-      headline,
-      issue,
-      source,
       context,
+      issue: {
+        date,
+        headline,
+        issue,
+        source,
+      },
     },
   };
 };

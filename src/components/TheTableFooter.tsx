@@ -16,7 +16,7 @@ const TheTableFooter = ({ teasers }: Props) => {
   return (
     <>
       <footer>
-        <h2>Previous Editions of The Table</h2>
+        <h2>Previous Issues</h2>
         {teasers &&
           teasers.map(({ date, headline, issue, slug, thumbnail }) => (
             <Link key={date} href={`/the-table/${slug}`}>
@@ -35,40 +35,39 @@ const TheTableFooter = ({ teasers }: Props) => {
         footer {
           display: flex;
           flex-direction: column;
-          margin: 1rem 0 3rem 0;
-          padding: 1rem 0 3rem 0;
+          margin-top: 1rem;
+          padding: 0 2rem 2rem 2rem;
           font-family: 'Public Sans';
           background-color: #ffebed;
           color: #490606;
         }
 
-        .link,
-        h2 {
-          display: flex;
-          align-self: center;
-        }
-
         h2 {
           font-weight: 700;
+          text-align: center;
           color: #490606;
         }
 
         .link {
+          display: flex;
+          flex-direction: column;
           cursor: pointer;
           padding-left: 1rem;
-          margin-top: 2rem;
           border-left: solid 1px red;
         }
 
         .issueInfo {
-          padding-left: 1rem;
-        }
-
-        img {
-          max-height: 150px;
+          padding-top: 1rem;
         }
 
         @media (min-width: 769px) {
+          .link {
+            flex-direction: row;
+          }
+
+          img {
+            max-height: 150px;
+          }
         }
 
         @media (min-width: 1024px) {
@@ -77,9 +76,9 @@ const TheTableFooter = ({ teasers }: Props) => {
             margin-right: 2rem;
           }
 
-          .link,
-          h2 {
-            min-width: 47rem;
+          .issueInfo {
+            padding-top: 0;
+            padding-left: 1rem;
           }
         }
       `}</style>

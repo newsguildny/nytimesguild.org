@@ -24,7 +24,6 @@ const TheTableIssue = ({ context, issue, previousIssues }: IssuePageProps) => {
         <title>{title}</title>
         <meta name="og:title" content={title} />
         <meta name="og:type" content="website" />
-        <meta name="context" content={context} />
       </Head>
       <TheTableContent
         content={content}

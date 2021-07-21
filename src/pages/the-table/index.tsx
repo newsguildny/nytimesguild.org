@@ -1,20 +1,28 @@
 import { GetStaticProps } from 'next';
 import { MdxRemote } from 'next-mdx-remote/types';
 import Head from 'next/head';
-import { getLatestIssue } from '../../lib/collections/theTable';
+import { getLatestIssue, getPreviousIssues } from '../../lib/collections/theTable';
 import { useHydratedMdx } from '../../lib/mdx/hydrate';
 import { components } from '../../components/customEditorComponents';
 import TheTableContent from '../../components/TheTableContent';
+import TheTableFooter, { TeaserProps } from '../../components/TheTableFooter';
 
 export interface IssueProps {
   date: string;
-  headline?: string;
+  headline: string;
   issue: string;
+  slug?: string;
   source: MdxRemote.Source;
 }
 
-const TheTable = ({ date, issue, source }: IssueProps) => {
-  const content = useHydratedMdx(source, { components });
+export interface Props {
+  context: string;
+  latestIssue: IssueProps;
+  previousIssues: Array<TeaserProps>;
+}
+
+const TheTable = ({ latestIssue, previousIssues }: Props) => {
+  const content = useHydratedMdx(latestIssue.source, { components });
 
   return (
     <>
@@ -25,13 +33,14 @@ const TheTable = ({ date, issue, source }: IssueProps) => {
       </Head>
       <TheTableContent
         content={content}
-        date={date}
-        issue={issue}
+        date={latestIssue.date}
+        issue={latestIssue.issue}
         navLink={{
           label: '← The Times Guild Site',
           link: '/',
         }}
       />
+      {!!previousIssues.length && <TheTableFooter teasers={previousIssues} />}
     </>
   );
 };
@@ -40,14 +49,17 @@ export default TheTable;
 
 export const getStaticProps: GetStaticProps = async () => {
   const { context, date, issue, source } = await getLatestIssue();
+  const previousIssues = await Promise.all(await getPreviousIssues());
 
   return {
     props: {
-      date,
-      issue,
-      source,
       context,
-      slug: 'the-table',
+      latestIssue: {
+        date,
+        issue,
+        source,
+      },
+      previousIssues,
     },
   };
 };

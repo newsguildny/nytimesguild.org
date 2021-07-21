@@ -1,12 +1,20 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import Head from 'next/head';
-import { getIssueData, getIssueFiles } from '../../lib/collections/theTable';
+import { getIssueData, getIssueFiles, getPreviousIssues } from '../../lib/collections/theTable';
 import { useHydratedMdx } from '../../lib/mdx/hydrate';
 import { components } from '../../components/customEditorComponents';
 import TheTableContent from '../../components/TheTableContent';
 import { IssueProps } from './index';
+import TheTableFooter, { TeaserProps } from '../../components/TheTableFooter';
 
-const TheTableIssue = ({ date, headline, issue, source }: IssueProps) => {
+interface IssuePageProps {
+  context: string;
+  issue: IssueProps;
+  previousIssues: Array<TeaserProps>;
+}
+
+const TheTableIssue = ({ context, issue, previousIssues }: IssuePageProps) => {
+  const { date, headline, issue: issueNumber, source } = issue;
   const content = useHydratedMdx(source, { components });
   const title = `The Table: ${headline}`;
 
@@ -20,32 +28,40 @@ const TheTableIssue = ({ date, headline, issue, source }: IssueProps) => {
       <TheTableContent
         content={content}
         date={date}
-        issue={issue}
+        issue={issueNumber}
         navLink={{
           label: '← Back to Current Issue',
           link: '/the-table',
         }}
       />
+      {!!previousIssues.length && <TheTableFooter teasers={previousIssues} />}
     </>
   );
 };
 
 export default TheTableIssue;
 
-export const getStaticProps: GetStaticProps<IssueProps, { slug: string }> = async ({ params }) => {
+export const getStaticProps: GetStaticProps<IssuePageProps, { slug: string }> = async ({
+  params,
+}) => {
   if (!params?.slug) {
     throw new Error('getStaticProps called without a slug in theTable/[slug].tsx');
   }
+
+  const previousIssues = await Promise.all(await getPreviousIssues(params.slug));
 
   const { context, date, issue, source, headline } = await getIssueData(params.slug);
 
   return {
     props: {
-      date,
-      headline,
-      issue,
-      source,
       context,
+      issue: {
+        date,
+        headline,
+        issue,
+        source,
+      },
+      previousIssues,
     },
   };
 };

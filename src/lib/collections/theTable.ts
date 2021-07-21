@@ -11,18 +11,15 @@ export interface IssueData {
   headline: string;
   issue: string;
   slug: string;
+  thumbnail?: string;
 }
 
 export function getIssueFiles() {
-  return fs
+  const files = fs
     .readdirSync(path.join(process.cwd(), 'src', 'markdown', 'theTable'))
     .map((issue) => issue.slice(0, issue.length - 4));
-}
 
-export function getLatestIssueFile() {
-  const allFilenames = getIssueFiles();
-
-  allFilenames.sort((a, b) => {
+  files.sort((a, b) => {
     if (a < b) {
       return 1;
     }
@@ -32,28 +29,64 @@ export function getLatestIssueFile() {
     return 0;
   });
 
-  return allFilenames.slice(0, 1);
+  return files;
 }
 
-export async function getIssueData(filename: string, staticContext?: StaticContextValue) {
+export function getLatestIssueFile() {
+  return getIssueFiles().slice(0, 1);
+}
+
+const formatMarkdownData = (filename: string) => {
   const markdownData = getMarkdownData<IssueData>('theTable', filename);
+  const formattedDate = new Date(markdownData.data.date).toString().slice(3, 15);
+
+  return { markdownData, formattedDate };
+};
+
+export async function getIssueData(filename: string, staticContext?: StaticContextValue) {
+  const { markdownData, formattedDate } = formatMarkdownData(filename);
+
   const mdxSource = await renderToString(markdownData.content, {
     components,
     staticContext,
   });
-  const formattedDate = new Date(markdownData.data.date).toString().slice(3, 15);
 
   return {
     date: formattedDate,
     headline: markdownData.data.headline,
     issue: markdownData.data.issue,
-    slug: markdownData.data.slug,
+    slug: filename,
     context: 'the-table',
     source: mdxSource,
+  };
+}
+
+export async function getTeaserData(filename: string) {
+  const { markdownData, formattedDate } = formatMarkdownData(filename);
+
+  return {
+    date: formattedDate,
+    headline: markdownData.data.headline,
+    issue: markdownData.data.issue,
+    slug: filename,
+    thumbnail: markdownData.data.thumbnail,
   };
 }
 
 export function getLatestIssue() {
   const [latestIssue] = getLatestIssueFile();
   return getIssueData(latestIssue);
+}
+
+export async function getPreviousIssues(selectedIssue?: string) {
+  const previousIssueFiles = getIssueFiles()
+    .slice(1)
+    .filter((file) => {
+      return file !== selectedIssue;
+    });
+
+  return previousIssueFiles.map(async (file: string) => {
+    const teaserData = await getTeaserData(file);
+    return teaserData;
+  });
 }

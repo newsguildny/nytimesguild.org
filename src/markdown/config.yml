@@ -196,3 +196,7 @@ collections:
       - label: Body
         name: body
         widget: markdown
+      - label: Thumbnail Image
+        name: thumbnail
+        widget: image
+        required: false

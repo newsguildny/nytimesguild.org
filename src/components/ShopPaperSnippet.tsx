@@ -22,7 +22,7 @@ export interface ShopPaperData {
 export type ShopPaperContent = ShopPaperData & MarkdownSource;
 
 interface Props {
-  paper: ShopPaperContent;
+  paper: ShopPaperData;
 }
 
 export function ShopPaperSnippet({ paper }: Props) {

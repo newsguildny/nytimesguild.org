@@ -1,9 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import { renderToString } from '../mdx/renderToString';
 import { getMarkdownData } from '../mdx/read';
-import { components } from '../../components/customEditorComponents';
-import { TestimonialContent, TestimonialData } from '../../components/Testimonial';
+import { TestimonialData } from '../../components/Testimonial';
 
 export function getTestimonialsFilenames() {
   return fs
@@ -17,31 +15,18 @@ export function getTestimonialsMetadata() {
   );
 }
 
-export async function getTestimonialData(filename: string) {
+export function getTestimonialData(filename: string) {
   const markdownData = getMarkdownData<TestimonialData>('testimonials', filename);
-  const mdxSource = await renderToString(markdownData.content, {
-    components,
-  });
   return {
     filename: markdownData.data.filename,
     name: markdownData.data.name,
     role: markdownData.data.role,
     highlight: markdownData.data.highlight,
     ...(markdownData.data.headshot && { headshot: markdownData.data.headshot }),
-    source: mdxSource,
+    content: markdownData.content,
   };
 }
 
-export async function getTestimonialsData() {
-  return Promise.all(getTestimonialsFilenames().map((filename) => getTestimonialData(filename)));
-}
-
-export async function getHighlightedTestimonialsData(): Promise<TestimonialContent[]> {
-  const allTestimonialsMetadata = getTestimonialsMetadata();
-  const highlightedTestimonialsMetadata = allTestimonialsMetadata.filter(
-    (testimonial) => testimonial.highlight
-  );
-  return Promise.all(
-    highlightedTestimonialsMetadata.map(({ filename }) => getTestimonialData(filename))
-  );
+export function getTestimonialsData() {
+  return getTestimonialsFilenames().map((filename) => getTestimonialData(filename));
 }

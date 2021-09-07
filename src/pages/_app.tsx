@@ -1,16 +1,14 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
+import { StaticContext } from 'next-static-context';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
-import StaticContext, {
-  StaticContextValue,
-  defaultStaticContextValue,
-} from '../lib/staticContext/StaticContext';
 import { bodyText, link, rule, secondaryHeadingText } from '../lib/styles/tokens/colors';
 import { sansSerif, serif, serifSizes } from '../lib/styles/tokens/fonts';
 
 interface PagePropsWithContext extends Record<string, unknown> {
-  staticContext: StaticContextValue;
+  staticContext: Record<string, unknown>;
+  slug?: string;
 }
 
 interface AppPropsWithContext extends AppProps {
@@ -19,7 +17,7 @@ interface AppPropsWithContext extends AppProps {
 
 export default function AppWithContext({
   Component,
-  pageProps: { staticContext = defaultStaticContextValue, ...pageProps },
+  pageProps: { staticContext = {}, ...pageProps },
 }: AppPropsWithContext) {
   // For now, we'd like to hide header/footer on The Table's landing page
   const pageContext = `${pageProps?.context}` || '';
@@ -39,8 +37,8 @@ export default function AppWithContext({
         <meta name="og:image" content="https://nytimesguild.org/og-image.png" />
       </Head>
       <StaticContext.Provider value={staticContext}>
-        {showChrome && <Navigation />}
-        <Component {...pageProps} />
+        {showChrome && <Navigation slug={pageProps.slug} />}
+        <Component {...(pageProps as never)} />
         {showChrome && <Footer />}
       </StaticContext.Provider>
       <style jsx global>{`

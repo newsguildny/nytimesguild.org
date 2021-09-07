@@ -1,9 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { renderToString } from '../mdx/renderToString';
 import { getMarkdownData, MarkdownSource } from '../mdx/read';
-import { components } from '../../components/customEditorComponents';
-import { StaticContextValue } from '../staticContext/StaticContext';
 
 interface PageData {
   filename: string;
@@ -27,29 +24,14 @@ export function getPagesMetadata() {
 
 export type PageContent = PageData & MarkdownSource;
 
-export async function getPageData(filename: string, staticContext?: StaticContextValue) {
+export function getPageData(filename: string) {
   const markdownData = getMarkdownData<PageData>('pages', filename);
-  const mdxSource = await renderToString(markdownData.content, {
-    components,
-    staticContext,
-  });
   return {
     filename: markdownData.data.filename,
     title: markdownData.data.title,
     slug: markdownData.data.slug,
     heading: markdownData.data.heading,
     subheading: markdownData.data.subheading,
-    source: mdxSource,
+    content: markdownData.content,
   };
 }
-
-export const getNavigationData = async (slug?: string) => ({
-  activeSlug: slug ?? null,
-  pagesMetadata: getPagesMetadata()
-    .filter(({ showInNavigation }) => showInNavigation)
-    .sort((first, second) => {
-      if (first.navigationOrder < second.navigationOrder) return -1;
-      if (first.navigationOrder > second.navigationOrder) return 1;
-      return 0;
-    }),
-});

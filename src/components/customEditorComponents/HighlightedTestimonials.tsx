@@ -1,7 +1,9 @@
+import { StaticContextKey, useStaticContext } from 'next-static-context';
 import { EditorComponentOptions } from 'netlify-cms-core';
-import { useStaticContext } from '../../lib/staticContext/useStaticContext';
 import { Testimonial } from '../Testimonial';
 import { CallToAction } from './CallToAction';
+import { getTestimonialData, getTestimonialsMetadata } from '../../lib/collections/testimonials';
+import { render } from '../../lib/collections/render';
 
 export const options: EditorComponentOptions = {
   id: 'highlighted-testimonials',
@@ -13,8 +15,22 @@ export const options: EditorComponentOptions = {
   toPreview: () => `<p><strong>Highlighted Testimonials Block</strong></p>`,
 };
 
+export function getStaticContext() {
+  const allTestimonialsMetadata = getTestimonialsMetadata();
+  const highlightedTestimonialsMetadata = allTestimonialsMetadata.filter(
+    (testimonial) => testimonial.highlight
+  );
+  return Promise.all(
+    highlightedTestimonialsMetadata.map(({ filename }) => render(getTestimonialData(filename)))
+  );
+}
+
+export const staticContextKey = new StaticContextKey<typeof getStaticContext>(
+  'highlightedTestimonials'
+);
+
 export function HighlightedTestimonials() {
-  const { highlightedTestimonials } = useStaticContext();
+  const highlightedTestimonials = useStaticContext(staticContextKey);
   return (
     <>
       {highlightedTestimonials?.map((testimonial) => (

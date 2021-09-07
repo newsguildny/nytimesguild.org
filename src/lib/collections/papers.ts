@@ -1,10 +1,7 @@
 import fs from 'fs';
 import path from 'path';
-import { renderToString } from '../mdx/renderToString';
 import { getMarkdownData } from '../mdx/read';
-import { components } from '../../components/customEditorComponents';
-import { ShopPaperContent, ShopPaperData } from '../../components/ShopPaperSnippet';
-import { StaticContextValue } from '../staticContext/StaticContext';
+import { ShopPaperData } from '../../components/ShopPaperSnippet';
 
 export function getPapersFilenames() {
   return fs
@@ -30,25 +27,17 @@ export function getPapersMetadata() {
   return getPapersFilenames().map((slug) => getMarkdownData<ShopPaperData>('papers', slug).data);
 }
 
-export async function getPaperData(filename: string, staticContext?: StaticContextValue) {
+export function getPaperData(filename: string) {
   const markdownData = getMarkdownData<ShopPaperData>('papers', filename);
-  const mdxSource = await renderToString(markdownData.content, {
-    components,
-    staticContext,
-  });
   return {
     filename: markdownData.data.filename,
     headline: markdownData.data.headline,
     slug: markdownData.data.slug,
     snippet: markdownData.data.snippet,
-    source: mdxSource,
+    content: markdownData.content,
   };
 }
 
-export async function getPapersData(staticContext: StaticContextValue) {
-  return Promise.all(getPapersFilenames().map((filename) => getPaperData(filename, staticContext)));
-}
-
-export async function getRecentPapersData(): Promise<ShopPaperContent[]> {
-  return Promise.all(getRecentPapersFilenames().map((filename) => getPaperData(filename)));
+export function getPapersData() {
+  return getPapersFilenames().map((filename) => getPaperData(filename));
 }

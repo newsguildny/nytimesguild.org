@@ -1,13 +1,14 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { MdxRemote } from 'next-mdx-remote/types';
 import Head from 'next/head';
+import { getStaticContext } from 'next-static-context';
 import { useHydratedMdx } from '../../lib/mdx/hydrate';
 import { getPaperData, getPapersFilenames } from '../../lib/collections/papers';
 import { components } from '../../components/customEditorComponents';
 import { RecentPapers } from '../../components/customEditorComponents/RecentPapers';
 import { serif, serifSizes } from '../../lib/styles/tokens/fonts';
 import { secondaryHeadingText } from '../../lib/styles/tokens/colors';
-import { getStaticContext } from '../../lib/staticContext/getStaticContext';
+import { render } from '../../lib/collections/render';
 
 interface Props {
   source: MdxRemote.Source;
@@ -54,15 +55,18 @@ export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({ 
   if (!params?.slug) {
     throw new Error('getStaticProps called without a slug in papers/[slug].tsx');
   }
-  const staticContext = await getStaticContext(params.slug);
-  const { source, headline, snippet } = await getPaperData(params.slug, staticContext);
+  const staticContext = await getStaticContext(require.context('../../components'));
+  const { source, headline, snippet } = await render(
+    getPaperData(params.slug),
+    components,
+    staticContext
+  );
   return {
     props: {
       slug: params!.slug,
       source,
       snippet,
       headline,
-      staticContext,
     },
   };
 };

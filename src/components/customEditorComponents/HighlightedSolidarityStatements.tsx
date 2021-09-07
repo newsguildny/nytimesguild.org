@@ -1,5 +1,10 @@
 import { EditorComponentOptions } from 'netlify-cms-core';
-import { useStaticContext } from '../../lib/staticContext/useStaticContext';
+import { StaticContextKey, useStaticContext } from 'next-static-context';
+import { render } from '../../lib/collections/render';
+import {
+  getSolidarityStatementData,
+  getSolidarityStatementsMetadata,
+} from '../../lib/collections/solidarityStatements';
 import { SolidarityStatement } from '../SolidarityStatement';
 import { CallToAction } from './CallToAction';
 
@@ -13,8 +18,24 @@ export const options: EditorComponentOptions = {
   toPreview: () => `<p><strong>Highlighted Solidarity Statements Block</strong></p>`,
 };
 
+export function getStaticContext() {
+  const allSolidarityStatementsMetadata = getSolidarityStatementsMetadata();
+  const highlightedSolidarityStatementsMetadata = allSolidarityStatementsMetadata.filter(
+    (solidarityStatement) => solidarityStatement.highlight
+  );
+  return Promise.all(
+    highlightedSolidarityStatementsMetadata.map(({ filename }) =>
+      render(getSolidarityStatementData(filename))
+    )
+  );
+}
+
+export const staticContextKey = new StaticContextKey<typeof getStaticContext>(
+  'highlightedSolidarityStatements'
+);
+
 export function HighlightedSolidarityStatements() {
-  const { highlightedSolidarityStatements } = useStaticContext();
+  const highlightedSolidarityStatements = useStaticContext(staticContextKey);
   return (
     <>
       {highlightedSolidarityStatements?.map((solidarityStatement) => (

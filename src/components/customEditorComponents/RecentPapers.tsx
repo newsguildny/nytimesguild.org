@@ -1,7 +1,8 @@
+import { StaticContextKey, useStaticContext } from 'next-static-context';
 import { EditorComponentOptions } from 'netlify-cms-core';
 import { ShopPaperSnippet } from '../ShopPaperSnippet';
 import { secondaryBackground } from '../../lib/styles/tokens/colors';
-import { useStaticContext } from '../../lib/staticContext/useStaticContext';
+import { getPaperData, getRecentPapersFilenames } from '../../lib/collections/papers';
 
 export const options: EditorComponentOptions = {
   id: 'recent-papers',
@@ -13,8 +14,14 @@ export const options: EditorComponentOptions = {
   toPreview: () => `<p><strong>Recent Shop Papers Block</strong></p>`,
 };
 
+export async function getStaticContext() {
+  return getRecentPapersFilenames().map((filename) => getPaperData(filename));
+}
+
+export const staticContextKey = new StaticContextKey<typeof getStaticContext>('recentPapers');
+
 export function RecentPapers() {
-  const { recentPapers } = useStaticContext();
+  const recentPapers = useStaticContext(staticContextKey);
   return (
     <>
       <hr className="recent-papers-rule" />

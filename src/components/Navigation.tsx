@@ -1,3 +1,4 @@
+import { StaticContextKey, useStaticContext } from 'next-static-context';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import css from 'styled-jsx/css';
@@ -5,7 +6,7 @@ import { TGuild } from './svgs/TGuild';
 import { Burger } from './Burger';
 import { headerBackground, headerText } from '../lib/styles/tokens/colors';
 import { sansSerif, sansSerifSizes, serif, serifSizes } from '../lib/styles/tokens/fonts';
-import { useStaticContext } from '../lib/staticContext/useStaticContext';
+import { getPagesMetadata } from '../lib/collections/pages';
 
 const burgerStyles = css.resolve`
   display: block;
@@ -18,10 +19,26 @@ const burgerStyles = css.resolve`
   }
 `;
 
-export function Navigation() {
-  const {
-    navigation: { activeSlug, pagesMetadata },
-  } = useStaticContext();
+export async function getStaticContext() {
+  return {
+    pagesMetadata: getPagesMetadata()
+      .filter(({ showInNavigation }) => showInNavigation)
+      .sort((first, second) => {
+        if (first.navigationOrder < second.navigationOrder) return -1;
+        if (first.navigationOrder > second.navigationOrder) return 1;
+        return 0;
+      }),
+  };
+}
+
+export const staticContextKey = new StaticContextKey<typeof getStaticContext>('navigation');
+
+interface Props {
+  slug?: string;
+}
+
+export function Navigation({ slug }: Props) {
+  const { pagesMetadata } = useStaticContext(staticContextKey) ?? {};
   const [isNavShown, setIsNavShown] = useState(false);
 
   useEffect(() => {
@@ -36,7 +53,7 @@ export function Navigation() {
 
   useEffect(() => {
     setIsNavShown(false);
-  }, [activeSlug]);
+  }, [slug]);
 
   return (
     <>
@@ -62,9 +79,7 @@ export function Navigation() {
           {pagesMetadata?.map((pageMetadata) => (
             <li key={pageMetadata.slug}>
               <Link href={`/${pageMetadata.slug}`}>
-                <a className={activeSlug === pageMetadata.slug ? 'active' : ''}>
-                  {pageMetadata.title}
-                </a>
+                <a className={slug === pageMetadata.slug ? 'active' : ''}>{pageMetadata.title}</a>
               </Link>
             </li>
           ))}

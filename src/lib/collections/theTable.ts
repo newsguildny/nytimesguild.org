@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import { getMarkdownData } from '../mdx/read';
-import { StaticContextValue } from '../staticContext/StaticContext';
 import { renderToString } from '../mdx/renderToString';
 import { components } from '../../components/customEditorComponents';
 
@@ -43,7 +42,7 @@ const formatMarkdownData = (filename: string) => {
   return { markdownData, formattedDate };
 };
 
-export async function getIssueData(filename: string, staticContext?: StaticContextValue) {
+export async function getIssueData(filename: string, staticContext?: Record<string, unknown>) {
   const { markdownData, formattedDate } = formatMarkdownData(filename);
 
   const mdxSource = await renderToString(markdownData.content, {

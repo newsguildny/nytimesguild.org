@@ -2,8 +2,8 @@ import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { PageHeader } from '../components/PageHeader';
 import { SolidarityStatement, SolidarityStatementContent } from '../components/SolidarityStatement';
+import { render } from '../lib/collections/render';
 import { getSolidarityStatementsData } from '../lib/collections/solidarityStatements';
-import { getStaticContext } from '../lib/staticContext/getStaticContext';
 
 interface Props {
   solidarityStatements: SolidarityStatementContent[];
@@ -40,12 +40,10 @@ const SolidarityStatements = ({ solidarityStatements }: Props) => (
 );
 
 export const getStaticProps: GetStaticProps = async () => {
-  const staticContext = await getStaticContext('solidarity-statements');
-  const solidarityStatements = await getSolidarityStatementsData();
+  const solidarityStatements = await render(getSolidarityStatementsData());
   return {
     props: {
       solidarityStatements,
-      staticContext,
     },
   };
 };

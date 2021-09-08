@@ -28,6 +28,6 @@ jobs:
         env: 
           SYNC_MIRROR_DEPLOY_KEY: ${{ secrets.SYNC_MIRROR_DEPLOY_KEY }}
         run: |
-          echo $SYNC_MIRROR_DEPLOY_KEY | base64 -D > ./deploy_key
+          echo $SYNC_MIRROR_DEPLOY_KEY | base64 -d > ./deploy_key
           chmod 600 ./deploy_key
           ssh-agent bash -c 'ssh-add ./deploy_key; git push git@github.com:newsguildny/nytimesguild.org main'

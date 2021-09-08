@@ -25,5 +25,8 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Push to mirror
+        env: 
+          SYNC_MIRROR_DEPLOY_KEY: ${{ secrets.SYNC_MIRROR_DEPLOY_KEY }}
         run: |
-          git push git@github.com:newsguildny/nytimesguild.org main
+          echo $SYNC_MIRROR_DEPLOY_KEY > ./deploy_key
+          ssh-agent bash -c 'ssh-add ./deploy_key; git push git@github.com:newsguildny/nytimesguild.org main'

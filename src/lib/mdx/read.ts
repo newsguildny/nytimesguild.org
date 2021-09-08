@@ -17,8 +17,7 @@ export function getMarkdownData<Data>(category: string, filename: string) {
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const grayMatter = matter(fileContents, {
     engines: {
-      // eslint-disable-next-line @typescript-eslint/ban-types
-      yaml: (s) => yaml.safeLoad(s, { schema: yaml.JSON_SCHEMA }) as object,
+      yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as Record<string, unknown>,
     },
   }) as GrayMatterData<Data>;
   return { ...grayMatter, data: { filename, ...grayMatter.data } };

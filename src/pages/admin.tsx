@@ -37,7 +37,7 @@ export function getStaticProps() {
     path.join(process.cwd(), 'src', 'markdown', 'config.yml'),
     'utf-8'
   );
-  const config = yaml.safeLoad(configFile, {
+  const config = yaml.load(configFile, {
     schema: yaml.JSON_SCHEMA,
   }) as CmsConfig;
   return {

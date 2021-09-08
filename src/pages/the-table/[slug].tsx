@@ -8,12 +8,11 @@ import { IssueProps } from './index';
 import TheTableFooter, { TeaserProps } from '../../components/TheTableFooter';
 
 interface IssuePageProps {
-  context: string;
   issue: IssueProps;
   previousIssues: Array<TeaserProps>;
 }
 
-const TheTableIssue = ({ context, issue, previousIssues }: IssuePageProps) => {
+const TheTableIssue = ({ issue, previousIssues }: IssuePageProps) => {
   const { date, headline, issue: issueNumber, source } = issue;
   const content = useHydratedMdx(source, { components });
   const title = `The Table: ${headline}`;
@@ -50,11 +49,10 @@ export const getStaticProps: GetStaticProps<IssuePageProps, { slug: string }> = 
 
   const previousIssues = await Promise.all(await getPreviousIssues(params.slug));
 
-  const { context, date, issue, source, headline } = await getIssueData(params.slug);
+  const { date, issue, source, headline } = await getIssueData(params.slug);
 
   return {
     props: {
-      context,
       issue: {
         date,
         headline,

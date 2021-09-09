@@ -24,15 +24,27 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      - name: Push to mirror
+      - name: Create deploy key
         env: 
           SYNC_MIRROR_DEPLOY_KEY: ${{ secrets.SYNC_MIRROR_DEPLOY_KEY }}
         run: |
           echo $SYNC_MIRROR_DEPLOY_KEY | base64 -d > ./deploy_key
           chmod 600 ./deploy_key
+      
+      - name: Add deploy key to SSH agent
+        run: |
           eval "$(ssh-agent -s)"
           ssh-add ./deploy_key
+      
+      - name: Fetch mirror
+        run: |
           git remote add mirror git@github.com:newsguildny/nytimesguild.org.git
           git fetch mirror main
+      
+      - name: Log history
+        run: |
           git log --oneline --graph
+      
+      - name: Push to mirror
+        run: |
           git push mirror main

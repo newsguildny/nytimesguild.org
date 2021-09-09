@@ -32,4 +32,4 @@ jobs:
           chmod 600 ./deploy_key
           git remote add mirror git@github.com:newsguildny/nytimesguild.org
           git fetch mirror main
-          ssh-agent bash -c 'ssh-add ./deploy_key; git push mirror main'
+          ssh-agent bash -c 'ssh-add ./deploy_key; git fetch mirror main && git push mirror main'

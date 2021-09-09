@@ -31,13 +31,10 @@ jobs:
           echo $SYNC_MIRROR_DEPLOY_KEY | base64 -d > ./deploy_key
           chmod 600 ./deploy_key
       
-      - name: Add deploy key to SSH agent
+      - name: Fetch mirror
         run: |
           eval "$(ssh-agent -s)"
           ssh-add ./deploy_key
-      
-      - name: Fetch mirror
-        run: |
           git remote add mirror git@github.com:newsguildny/nytimesguild.org.git
           git fetch mirror main
       
@@ -47,4 +44,6 @@ jobs:
       
       - name: Push to mirror
         run: |
+          eval "$(ssh-agent -s)"
+          ssh-add ./deploy_key
           git push mirror main

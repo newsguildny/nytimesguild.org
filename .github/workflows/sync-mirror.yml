@@ -31,5 +31,4 @@ jobs:
           echo $SYNC_MIRROR_DEPLOY_KEY | base64 -d > ./deploy_key
           chmod 600 ./deploy_key
           git remote add mirror git@github.com:newsguildny/nytimesguild.org
-          git fetch mirror main
           ssh-agent bash -c 'ssh-add ./deploy_key; git fetch mirror main && git push mirror main'

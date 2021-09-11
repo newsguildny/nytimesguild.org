@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import css from 'styled-jsx/css';
 import { TGuild } from './svgs/TGuild';
 import { Burger } from './Burger';
@@ -23,14 +23,41 @@ export function Navigation() {
     navigation: { activeSlug, pagesMetadata },
   } = useStaticContext();
   const [isNavShown, setIsNavShown] = useState(false);
+
+  useEffect(() => {
+    const escapeKeyListener = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsNavShown(false);
+      }
+    };
+    document.addEventListener('keydown', escapeKeyListener);
+    return () => document.removeEventListener('keydown', escapeKeyListener);
+  }, []);
+
+  useEffect(() => {
+    setIsNavShown(false);
+  }, [activeSlug]);
+
   return (
     <>
-      <nav className={isNavShown ? 'shown' : ''}>
+      <nav
+        className={isNavShown ? 'shown' : ''}
+        onBlur={(e) => {
+          if (!e.currentTarget.contains(e.relatedTarget as HTMLElement)) {
+            setIsNavShown(false);
+          }
+        }}
+      >
         <Link href="/">
           <a>
             <TGuild />
           </a>
         </Link>
+        <Burger
+          className={burgerStyles.className}
+          active={isNavShown}
+          onClick={() => setIsNavShown((oldValue) => !oldValue)}
+        />
         <ul>
           {pagesMetadata?.map((pageMetadata) => (
             <li key={pageMetadata.slug}>
@@ -42,11 +69,6 @@ export function Navigation() {
             </li>
           ))}
         </ul>
-        <Burger
-          className={burgerStyles.className}
-          active={isNavShown}
-          onClick={() => setIsNavShown((oldValue) => !oldValue)}
-        />
       </nav>
       <style jsx>
         {`

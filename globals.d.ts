@@ -1,5 +1,22 @@
 /// <reference types="react" />
 
+interface LiteYoutubeEmbedProps extends React.HTMLAttributes {
+  videoid: string;
+  playlabel?: string;
+  params?: string;
+  style?: React.CSSProperties;
+  // eslint-disable-next-line no-use-before-define
+  children?: JSX.Element;
+}
+
+declare namespace JSX {
+  interface IntrinsicElements {
+    'lite-youtube': LiteYoutubeEmbedProps;
+  }
+}
+
+declare module 'lite-youtube-embed/src/lite-yt-embed';
+
 declare module 'react-twitter-embed' {
   export const TwitterTweetEmbed: React.Component;
 }

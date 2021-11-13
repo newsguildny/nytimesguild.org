@@ -10381,6 +10381,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"lite-youtube-embed@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "lite-youtube-embed@npm:0.2.0"
+  checksum: 249b67a0c35e54292fd0576f00acf5aabfbce9840cf9f2adf4ceb950a343209e78fe2970c46cc7a06263ca5ba55a8a69e9c88e9469dbbba5945363f4531d1a0e
+  languageName: node
+  linkType: hard
+
 "load-json-file@npm:^2.0.0":
   version: 2.0.0
   resolution: "load-json-file@npm:2.0.0"
@@ -12173,6 +12180,7 @@ __metadata:
     jest: ^27.1.0
     js-yaml: ^4.1.0
     lint-staged: ^10.5.1
+    lite-youtube-embed: ^0.2.0
     netlify-cms-app: ^2.15.38
     netlify-cms-proxy-server: ^1.3.12
     netlify-identity-widget: ^1.9.1

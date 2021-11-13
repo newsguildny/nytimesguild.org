@@ -5,6 +5,7 @@ import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { bodyText, link, rule, secondaryHeadingText } from '../lib/styles/tokens/colors';
 import { sansSerif, serif, serifSizes } from '../lib/styles/tokens/fonts';
+import 'lite-youtube-embed/src/lite-yt-embed.css';
 
 interface PagePropsWithContext extends Record<string, unknown> {
   staticContext: Record<string, unknown>;

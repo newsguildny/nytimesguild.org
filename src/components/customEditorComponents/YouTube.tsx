@@ -1,4 +1,5 @@
 import { EditorComponentOptions } from 'netlify-cms-core';
+import { useEffect, useMemo } from 'react';
 
 /**
  * TODO: Upgrade @babel/core and replace with template literal type `${number}:${number}`
@@ -81,11 +82,18 @@ export const options: EditorComponentOptions = {
 };
 
 export function YouTube({ url, title, aspectRatio = '16:9' }: Props) {
-  const videoId =
-    url?.match(
-      /^.*(?:(?:youtu.be\/)|(?:v\/)|(?:\/u\/\w\/)|(?:embed\/)|(?:watch\?))\??v?=?([^#&?]*).*/
-    )?.[1] ?? '';
-  const embedUrl = `https://www.youtube.com/embed/${videoId}`;
+  useEffect(() => {
+    import('lite-youtube-embed/src/lite-yt-embed');
+  }, []);
+
+  const videoId = useMemo(
+    () =>
+      url?.match(
+        /^.*(?:(?:youtu.be\/)|(?:v\/)|(?:\/u\/\w\/)|(?:embed\/)|(?:watch\?))\??v?=?([^#&?]*).*/
+      )?.[1] ?? '',
+    [url]
+  );
+
   return (
     <>
       {/**
@@ -94,13 +102,17 @@ export function YouTube({ url, title, aspectRatio = '16:9' }: Props) {
        */}
       <div>
         <div className="wrapper">
-          <iframe
-            title={title}
-            src={embedUrl}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
+          <lite-youtube
+            videoid={videoId}
+            playlabel={title}
+            style={{
+              backgroundImage: `url('https://i.ytimg.com/vi/${videoId}/hqdefault.jpg')`,
+            }}
+          >
+            <button type="button" className="lty-playbtn">
+              <span className="lyt-visually-hidden">Play Video: Keynote (Google I/O &apos;18)</span>
+            </button>
+          </lite-youtube>
         </div>
       </div>
       <style jsx>{`
@@ -119,7 +131,7 @@ export function YouTube({ url, title, aspectRatio = '16:9' }: Props) {
           padding-bottom: ${getAspectRatioHeight(100, aspectRatio)}%;
         }
 
-        iframe {
+        .wrapper :global(lite-youtube) {
           position: absolute;
           left: 0;
           top: 0;

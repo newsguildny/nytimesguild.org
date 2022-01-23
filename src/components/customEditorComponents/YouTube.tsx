@@ -110,7 +110,7 @@ export function YouTube({ url, title, aspectRatio = '16:9' }: Props) {
             }}
           >
             <button type="button" className="lty-playbtn">
-              <span className="lyt-visually-hidden">Play Video: Keynote (Google I/O &apos;18)</span>
+              <span className="lyt-visually-hidden">{title}</span>
             </button>
           </lite-youtube>
         </div>

@@ -16,6 +16,7 @@ const tGuildStyles = css.resolve`
 `;
 
 export interface TestimonialData {
+  category: string;
   filename: string;
   name: string;
   role: string;

@@ -8,10 +8,17 @@ import { render } from '../../lib/collections/render';
 export const options: EditorComponentOptions = {
   id: 'highlighted-testimonials',
   label: 'Highlighted Testimonials',
-  fields: [],
-  pattern: /<HighlightedTestimonials \/>/,
-  fromBlock: () => ({}),
-  toBlock: () => `<HighlightedTestimonials />`,
+  fields: [
+    {
+      name: 'category',
+      label: 'Category',
+      widget: 'select',
+      options: ['why-union', 'dei'],
+    },
+  ],
+  pattern: /<HighlightedTestimonials category="([a-z-]*)" \/>/,
+  fromBlock: (match) => ({ category: match?.[1] }),
+  toBlock: ({ category }) => `<HighlightedTestimonials category="${category}" />`,
   toPreview: () => `<p><strong>Highlighted Testimonials Block</strong></p>`,
 };
 
@@ -29,14 +36,20 @@ export const staticContextKey = new StaticContextKey<typeof getStaticContext>(
   'highlightedTestimonials'
 );
 
-export function HighlightedTestimonials() {
+interface Props {
+  category: string;
+}
+
+export function HighlightedTestimonials({ category }: Props) {
   const highlightedTestimonials = useStaticContext(staticContextKey);
   return (
     <>
-      {highlightedTestimonials?.map((testimonial) => (
-        <Testimonial key={testimonial.name} testimonial={testimonial} />
-      ))}
-      <CallToAction to="/testimonials">Read more testimonials</CallToAction>
+      {highlightedTestimonials
+        ?.filter((testimonial) => testimonial.category === category)
+        .map((testimonial) => (
+          <Testimonial key={testimonial.name} testimonial={testimonial} />
+        ))}
+      <CallToAction to={`/testimonials/${category}`}>Read more testimonials</CallToAction>
     </>
   );
 }

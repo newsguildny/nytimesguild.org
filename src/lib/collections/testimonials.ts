@@ -1,5 +1,7 @@
+import yaml from 'js-yaml';
 import fs from 'fs';
 import path from 'path';
+import { CmsConfig, CmsFieldSelect, CmsSelectWidgetOptionObject } from 'netlify-cms-core';
 import { getMarkdownData } from '../mdx/read';
 import { TestimonialData } from '../../components/Testimonial';
 
@@ -18,6 +20,7 @@ export function getTestimonialsMetadata() {
 export function getTestimonialData(filename: string) {
   const markdownData = getMarkdownData<TestimonialData>('testimonials', filename);
   return {
+    category: markdownData.data.category,
     filename: markdownData.data.filename,
     name: markdownData.data.name,
     role: markdownData.data.role,
@@ -27,6 +30,22 @@ export function getTestimonialData(filename: string) {
   };
 }
 
-export function getTestimonialsData() {
-  return getTestimonialsFilenames().map((filename) => getTestimonialData(filename));
+export function getTestimonialCategories() {
+  const configFile = fs.readFileSync(
+    path.join(process.cwd(), 'src', 'markdown', 'config.yml'),
+    'utf-8'
+  );
+  const config = yaml.load(configFile, {
+    schema: yaml.JSON_SCHEMA,
+  }) as CmsConfig;
+  const categoryField = config.collections
+    .find((collection) => collection.name === 'testimonials')!
+    .fields!.find((field) => field.name === 'category')! as CmsFieldSelect;
+  return categoryField.options as CmsSelectWidgetOptionObject[];
+}
+
+export function getTestimonialsData(category: string) {
+  return getTestimonialsFilenames()
+    .map((filename) => getTestimonialData(filename))
+    .filter((testimonial) => testimonial.category === category);
 }

@@ -60,6 +60,18 @@ collections:
         name: highlight
         widget: boolean
         default: false
+      - label: Category
+        name: category
+        widget: select
+        # If adding a new Testimonial category, be sure
+        # to update src/components/customEditorComponents/HighlightedTestimonials.tsx,
+        # too!
+        options:
+          - value: why-union
+            label: Why do we support a union?
+          - value: dei
+            label: How can a union support diversity, equity, and inclusion?
+        default: why-union
       - label: Headshot
         name: headshot
         widget: image

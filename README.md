@@ -48,7 +48,7 @@ You can use the provided Visual Studio Code configs to debug both the dev server
 
 ### [Demo Video: VSCode Dev Server and Client Debugging](https://user-images.githubusercontent.com/191304/113455951-eee36b80-93d9-11eb-8a1c-dadc57b4da81.mp4)
 
-<a href="https://user-images.githubusercontent.com/191304/113455951-eee36b80-93d9-11eb-8a1c-dadc57b4da81.mp4"><img src="./docs/img/vscode-dev-server-and-client-debugging-thumb.jpg" width="400"></a>
+<a href="https://user-images.githubusercontent.com/191304/113455951-eee36b80-93d9-11eb-8a1c-dadc57b4da81.mp4"><img src="./docs/img/vscode-dev-server-and-client-debugging-thumb.webp" width="400"></a>
 
 ## Scripts
 

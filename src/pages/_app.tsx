@@ -27,15 +27,15 @@ export default function AppWithContext({
   return (
     <>
       <Head>
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.webp" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.webp" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.webp" />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff4040" />
         <meta name="apple-mobile-web-app-title" content="NYT Guild" />
         <meta name="msapplication-TileColor" content="#ff4040" />
         <meta name="theme-color" content="#ff4040" />
-        <meta name="og:image" content="https://nytimesguild.org/og-image.png" />
+        <meta name="og:image" content="https://nytimesguild.org/og-image.webp" />
       </Head>
       <StaticContext.Provider value={staticContext}>
         {showChrome && <Navigation slug={pageProps.slug} />}
@@ -45,6 +45,7 @@ export default function AppWithContext({
       <style jsx global>{`
         @font-face {
           font-family: ${serif};
+          font-display: swap;
           src: url('/fonts/Crimson_Pro/webfonts/crimson-pro-v13-latin-regular.woff2')
             format('woff2');
           font-style: normal;
@@ -53,6 +54,7 @@ export default function AppWithContext({
         @supports (font-variation-settings: 'wdth' 115) {
           @font-face {
             font-family: ${serif};
+            font-display: swap;
             src: url('/fonts/Crimson_Pro/variable/CrimsonPro-VariableFont_wght.ttf')
               format('truetype-variations');
             font-style: normal;
@@ -62,6 +64,7 @@ export default function AppWithContext({
 
         @font-face {
           font-family: ${sansSerif};
+          font-display: swap;
           src: url('/fonts/PublicSans/webfonts/PublicSans-Regular.woff2') format('woff2');
           font-style: normal;
           font-weight: 400;
@@ -69,6 +72,7 @@ export default function AppWithContext({
 
         @font-face {
           font-family: ${sansSerif};
+          font-display: swap;
           src: url('/fonts/PublicSans/webfonts/PublicSans-SemiBold.woff2') format('woff2');
           font-style: normal;
           font-weight: 600;
@@ -76,6 +80,7 @@ export default function AppWithContext({
 
         @font-face {
           font-family: ${sansSerif};
+          font-display: swap;
           src: url('/fonts/PublicSans/webfonts/PublicSans-Bold.woff2') format('woff2');
           font-style: normal;
           font-weight: 700;
@@ -84,6 +89,7 @@ export default function AppWithContext({
         @supports (font-variation-settings: 'wdth' 115) {
           @font-face {
             font-family: ${sansSerif};
+            font-display: swap;
             src: url('/fonts/PublicSans/variable/Public-Sans-Roman-VF.ttf')
               format('truetype-variations');
             font-style: normal;

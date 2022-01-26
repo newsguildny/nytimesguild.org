@@ -2,7 +2,7 @@
 # Manual changes might be lost - proceed with caution!
 
 __metadata:
-  version: 4
+  version: 5
   cacheKey: 8
 
 "@arcanis/slice-ansi@npm:^1.1.1":
@@ -99,52 +99,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:7.13.14, @babel/core@npm:^7.12.10":
-  version: 7.13.14
-  resolution: "@babel/core@npm:7.13.14"
-  dependencies:
-    "@babel/code-frame": ^7.12.13
-    "@babel/generator": ^7.13.9
-    "@babel/helper-compilation-targets": ^7.13.13
-    "@babel/helper-module-transforms": ^7.13.14
-    "@babel/helpers": ^7.13.10
-    "@babel/parser": ^7.13.13
-    "@babel/template": ^7.12.13
-    "@babel/traverse": ^7.13.13
-    "@babel/types": ^7.13.14
-    convert-source-map: ^1.7.0
-    debug: ^4.1.0
-    gensync: ^1.0.0-beta.2
-    json5: ^2.1.2
-    semver: ^6.3.0
-    source-map: ^0.5.0
-  checksum: 3c08166ab8497da44644f1a35ce0e75d0cfe1307ff8bb3b75be4d83a204eb2e565b4c305f47225b187374ec4e8972b109a7c70eb5b07471afe074bf33451c21e
-  languageName: node
-  linkType: hard
-
-"@babel/core@npm:7.15.5, @babel/core@npm:^7.7.2":
-  version: 7.15.5
-  resolution: "@babel/core@npm:7.15.5"
-  dependencies:
-    "@babel/code-frame": ^7.14.5
-    "@babel/generator": ^7.15.4
-    "@babel/helper-compilation-targets": ^7.15.4
-    "@babel/helper-module-transforms": ^7.15.4
-    "@babel/helpers": ^7.15.4
-    "@babel/parser": ^7.15.5
-    "@babel/template": ^7.15.4
-    "@babel/traverse": ^7.15.4
-    "@babel/types": ^7.15.4
-    convert-source-map: ^1.7.0
-    debug: ^4.1.0
-    gensync: ^1.0.0-beta.2
-    json5: ^2.1.2
-    semver: ^6.3.0
-    source-map: ^0.5.0
-  checksum: 8121bf74040d98562b773c1e92a174cd53c99a5158ae5a9ef25645ed35d6f821c64155e394cdb04e7dc77a0871ba42a638f6703b2c44a75bc04564b21cad9e1b
-  languageName: node
-  linkType: hard
-
 "@babel/core@npm:^7.1.0, @babel/core@npm:^7.7.5, @babel/core@npm:^7.9.0":
   version: 7.11.1
   resolution: "@babel/core@npm:7.11.1"
@@ -169,6 +123,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/core@npm:^7.12.10":
+  version: 7.13.14
+  resolution: "@babel/core@npm:7.13.14"
+  dependencies:
+    "@babel/code-frame": ^7.12.13
+    "@babel/generator": ^7.13.9
+    "@babel/helper-compilation-targets": ^7.13.13
+    "@babel/helper-module-transforms": ^7.13.14
+    "@babel/helpers": ^7.13.10
+    "@babel/parser": ^7.13.13
+    "@babel/template": ^7.12.13
+    "@babel/traverse": ^7.13.13
+    "@babel/types": ^7.13.14
+    convert-source-map: ^1.7.0
+    debug: ^4.1.0
+    gensync: ^1.0.0-beta.2
+    json5: ^2.1.2
+    semver: ^6.3.0
+    source-map: ^0.5.0
+  checksum: 3c08166ab8497da44644f1a35ce0e75d0cfe1307ff8bb3b75be4d83a204eb2e565b4c305f47225b187374ec4e8972b109a7c70eb5b07471afe074bf33451c21e
+  languageName: node
+  linkType: hard
+
 "@babel/core@npm:^7.12.3":
   version: 7.12.7
   resolution: "@babel/core@npm:7.12.7"
@@ -190,6 +167,29 @@ __metadata:
     semver: ^5.4.1
     source-map: ^0.5.0
   checksum: a57da325a4a6cc5dba5b05642ff227177d807d24bf1b18f91120b7edab836b85092c85ee7dd1e7b8b1b863fe6e1638b603d9e5f44f34c3b1a1b359f1841e731c
+  languageName: node
+  linkType: hard
+
+"@babel/core@npm:^7.7.2":
+  version: 7.15.5
+  resolution: "@babel/core@npm:7.15.5"
+  dependencies:
+    "@babel/code-frame": ^7.14.5
+    "@babel/generator": ^7.15.4
+    "@babel/helper-compilation-targets": ^7.15.4
+    "@babel/helper-module-transforms": ^7.15.4
+    "@babel/helpers": ^7.15.4
+    "@babel/parser": ^7.15.5
+    "@babel/template": ^7.15.4
+    "@babel/traverse": ^7.15.4
+    "@babel/types": ^7.15.4
+    convert-source-map: ^1.7.0
+    debug: ^4.1.0
+    gensync: ^1.0.0-beta.2
+    json5: ^2.1.2
+    semver: ^6.3.0
+    source-map: ^0.5.0
+  checksum: 8121bf74040d98562b773c1e92a174cd53c99a5158ae5a9ef25645ed35d6f821c64155e394cdb04e7dc77a0871ba42a638f6703b2c44a75bc04564b21cad9e1b
   languageName: node
   linkType: hard
 
@@ -3744,28 +3744,28 @@ __metadata:
 "@next/swc-darwin-arm64@npm:11.1.2":
   version: 11.1.2
   resolution: "@next/swc-darwin-arm64@npm:11.1.2"
-  checksum: e87481c2d1436e947f1101d4d3e45bc9486f3dc312d120a6042b4a2333f16150b3881f322103ef52431e09178093775b02d725b843a7dde441f3ee319495ec95
+  conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
 "@next/swc-darwin-x64@npm:11.1.2":
   version: 11.1.2
   resolution: "@next/swc-darwin-x64@npm:11.1.2"
-  checksum: 74717c27d2dd8e16ed6221ebc1fd0e212ffe467cc77dcd70f61b5ed9763b64dff36e6b3745791bc01771a2df9b60e609393d8ef848d894464cc15d45641a34f8
+  conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
 "@next/swc-linux-x64-gnu@npm:11.1.2":
   version: 11.1.2
   resolution: "@next/swc-linux-x64-gnu@npm:11.1.2"
-  checksum: 7cf8cf47cf007f7f1101fddb9850c03297950f84acc25b2b6ae2bce9f8ee860671adebde6c61df3cf721a50ec985304a98ea2ba7a5b594fd22032ae5f5cade02
+  conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
 "@next/swc-win32-x64-msvc@npm:11.1.2":
   version: 11.1.2
   resolution: "@next/swc-win32-x64-msvc@npm:11.1.2"
-  checksum: dec45ee30bf9edc8d46a59fa9c1c9fcf00352ab02f5e9ff3cfde3d83cc47aa2be2615ac47142495e63419bd6764a25d2f5a73190d261293dc959fe94de14e9e5
+  conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
 
@@ -8419,15 +8419,16 @@ __metadata:
   dependencies:
     node-gyp: latest
   checksum: 97ade64e75091afee5265e6956cb72ba34db7819b4c3e94c431d4be2b19b8bb7a2d4116da417950c3425f17c8fe693d25e20212cac583ac1521ad066b77ae31f
+  conditions: os=darwin
   languageName: node
   linkType: hard
 
 "fsevents@patch:fsevents@^2.3.2#~builtin<compat/fsevents>, fsevents@patch:fsevents@~2.3.1#~builtin<compat/fsevents>":
   version: 2.3.2
-  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=1cc4b2"
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=18f3a7"
   dependencies:
     node-gyp: latest
-  checksum: 78db9daf1f6526a49cefee3917cc988f62dc7f25b5dd80ad6de4ffc4af7f0cab7491ac737626ff53e482a111bc53aac9e411fe3602458eca36f6a003ecf69c16
+  conditions: os=darwin
   languageName: node
   linkType: hard
 
@@ -10277,7 +10278,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-resolve@npm:27.1.0, jest-resolve@npm:^27.1.0":
+"jest-resolve@npm:^27.1.0":
   version: 27.1.0
   resolution: "jest-resolve@npm:27.1.0"
   dependencies:
@@ -14834,30 +14835,30 @@ __metadata:
 
 "resolve@patch:resolve@^1.10.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.17.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.3.2#~builtin<compat/resolve>":
   version: 1.17.0
-  resolution: "resolve@patch:resolve@npm%3A1.17.0#~builtin<compat/resolve>::version=1.17.0&hash=00b1ff"
+  resolution: "resolve@patch:resolve@npm%3A1.17.0#~builtin<compat/resolve>::version=1.17.0&hash=07638b"
   dependencies:
     path-parse: ^1.0.6
-  checksum: a3606308046ca75c0a6350c26df636b64a71904a8e00f3181fd838b46b4fc303c32ae3e694c156eae5d9102cbe194c444f85822d8e6ce30cf7c510e412029908
+  checksum: 6fd799f282ddf078c4bc20ce863e3af01fa8cb218f0658d9162c57161a2dbafe092b13015b9a4c58d0e1e801cf7aa7a4f13115fea9db98c3f9a0c43e429bad6f
   languageName: node
   linkType: hard
 
 "resolve@patch:resolve@^1.12.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.13.1#~builtin<compat/resolve>, resolve@patch:resolve@^1.18.1#~builtin<compat/resolve>":
   version: 1.19.0
-  resolution: "resolve@patch:resolve@npm%3A1.19.0#~builtin<compat/resolve>::version=1.19.0&hash=00b1ff"
+  resolution: "resolve@patch:resolve@npm%3A1.19.0#~builtin<compat/resolve>::version=1.19.0&hash=07638b"
   dependencies:
     is-core-module: ^2.1.0
     path-parse: ^1.0.6
-  checksum: 4714fbea90c3a4b9c14af343f255193ab16bce50782309318e01c3e4113e89df69a2a9fb1f1d9f7791c9c5a52a56f10568ce82df92dbbe184557d309a96808e5
+  checksum: 2443b94d347e6946c87c85faf13071f605e609e0b54784829b0ed2b917d050bfc1cbaf4ecc6453f224cfa7d0c5dcd97cbb273454cd210bee68e4af15c1a5abc9
   languageName: node
   linkType: hard
 
 "resolve@patch:resolve@^1.14.2#~builtin<compat/resolve>, resolve@patch:resolve@^1.20.0#~builtin<compat/resolve>":
   version: 1.20.0
-  resolution: "resolve@patch:resolve@npm%3A1.20.0#~builtin<compat/resolve>::version=1.20.0&hash=00b1ff"
+  resolution: "resolve@patch:resolve@npm%3A1.20.0#~builtin<compat/resolve>::version=1.20.0&hash=07638b"
   dependencies:
     is-core-module: ^2.2.0
     path-parse: ^1.0.6
-  checksum: bed00be983cd20a8af0e7840664f655c4b269786dbd9595c5f156cd9d8a0050e65cdbbbdafc30ee9b6245b230c78a2c8ab6447a52545b582f476c29adb188cc5
+  checksum: a0dd7d16a8e47af23afa9386df2dff10e3e0debb2c7299a42e581d9d9b04d7ad5d2c53f24f1e043f7b3c250cbdc71150063e53d0b6559683d37f790b7c8c3cd5
   languageName: node
   linkType: hard
 
@@ -16565,11 +16566,11 @@ typescript@^4.4.2:
 
 "typescript@patch:typescript@^4.4.2#~builtin<compat/typescript>":
   version: 4.4.2
-  resolution: "typescript@patch:typescript@npm%3A4.4.2#~builtin<compat/typescript>::version=4.4.2&hash=32657b"
+  resolution: "typescript@patch:typescript@npm%3A4.4.2#~builtin<compat/typescript>::version=4.4.2&hash=493e53"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 3109ae25705746996007161cdd3271857db4f40356b894e34d4cabc216bf9e251f53e0bb6e48df2450b5e3fd948dcbee716a616a4ad4cf7251292025e6163cb1
+  checksum: 1f30617046271a94d6821fe9da9c4705111e0a2f5479269c82f65aa76b2421ff90def8838dd35b1aa464d015248b06c89ff867bd282f4822b5ee18b7f92f95ee
   languageName: node
   linkType: hard
 

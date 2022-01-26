@@ -6,6 +6,7 @@
   },
   "settings": {},
   "extensions": [
+    "arcanis.vscode-zipfs",
     "dbaeumer.vscode-eslint",
     "divlo.vscode-styled-jsx-languageserver",
     "divlo.vscode-styled-jsx-syntax",

@@ -3,6 +3,7 @@
     "dbaeumer.vscode-eslint",
     "divlo.vscode-styled-jsx-languageserver",
     "divlo.vscode-styled-jsx-syntax",
-    "jounqin.vscode-mdx"
+    "jounqin.vscode-mdx",
+    "arcanis.vscode-zipfs"
   ]
 }

@@ -2,6 +2,9 @@
   publish = "dist"
   command = "yarn run export"
 
+[build.environment]
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
+
 [[plugins]]
 package = "netlify-plugin-cache-nextjs"
 

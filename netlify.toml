@@ -2,11 +2,8 @@
   publish = "dist"
   command = "yarn run export"
 
-[build.environment]
-  NETLIFY_NEXT_PLUGIN_SKIP = "true"
-
 [[plugins]]
-package = "netlify-plugin-cache-nextjs"
+  package = "netlify-plugin-cache-nextjs"
 
 # @see https://docs.netlify.com/routing/redirects/#syntax-for-the-netlify-configuration-file
 [[redirects]]

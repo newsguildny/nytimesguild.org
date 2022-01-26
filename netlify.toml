@@ -3,7 +3,10 @@
   command = "yarn run export"
 
 [[plugins]]
-  package = "netlify-plugin-cache-nextjs"
+  package = "netlify-plugin-checklinks"
+
+  [plugins.inputs]
+    checkExternal = true
 
 # @see https://docs.netlify.com/routing/redirects/#syntax-for-the-netlify-configuration-file
 [[redirects]]

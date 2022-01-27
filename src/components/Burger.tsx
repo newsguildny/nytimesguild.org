@@ -12,6 +12,7 @@ export function Burger({ active, onClick, className }: Props) {
       type="button"
       className={`${className} container ${active ? 'active' : ''}`}
       onClick={onClick}
+      aria-label="Open navigation"
     >
       <div className="bun bun-1" />
       <div className="bun bun-3" />

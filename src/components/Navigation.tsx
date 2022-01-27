@@ -66,7 +66,7 @@ export function Navigation({ slug }: Props) {
         }}
       >
         <Link href="/">
-          <a>
+          <a aria-label="Home">
             <TGuild />
           </a>
         </Link>

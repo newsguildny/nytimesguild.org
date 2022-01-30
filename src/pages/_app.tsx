@@ -1,25 +1,13 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { StaticContext } from 'next-static-context';
+import { provideStaticContext } from 'next-static-context/app';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { bodyText, link, rule, secondaryHeadingText } from '../lib/styles/tokens/colors';
 import { sansSerif, serif, serifSizes } from '../lib/styles/tokens/fonts';
 import 'lite-youtube-embed/src/lite-yt-embed.css';
 
-interface PagePropsWithContext extends Record<string, unknown> {
-  staticContext: Record<string, unknown>;
-  slug?: string;
-}
-
-interface AppPropsWithContext extends AppProps {
-  pageProps: PagePropsWithContext;
-}
-
-export default function AppWithContext({
-  Component,
-  pageProps: { staticContext = {}, ...pageProps },
-}: AppPropsWithContext) {
+function App({ Component, pageProps }: AppProps) {
   // For now, we'd like to hide header/footer on The Table's landing page
   const pageContext = `${pageProps?.context}` || '';
   const showChrome = !pageContext.includes('the-table');
@@ -37,11 +25,9 @@ export default function AppWithContext({
         <meta name="theme-color" content="#ff4040" />
         <meta name="og:image" content="https://nytimesguild.org/og-image.webp" />
       </Head>
-      <StaticContext.Provider value={staticContext}>
-        {showChrome && <Navigation slug={pageProps.slug} />}
-        <Component {...(pageProps as never)} />
-        {showChrome && <Footer />}
-      </StaticContext.Provider>
+      {showChrome && <Navigation slug={pageProps.slug} />}
+      <Component {...pageProps} />
+      {showChrome && <Footer />}
       <style jsx global>{`
         @supports not (font-variation-settings: 'wdth' 115) {
           @font-face {
@@ -191,3 +177,5 @@ export default function AppWithContext({
     </>
   );
 }
+
+export default provideStaticContext(App);

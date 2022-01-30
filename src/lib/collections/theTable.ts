@@ -42,12 +42,11 @@ const formatMarkdownData = (filename: string) => {
   return { markdownData, formattedDate };
 };
 
-export async function getIssueData(filename: string, staticContext?: Record<string, unknown>) {
+export async function getIssueData(filename: string) {
   const { markdownData, formattedDate } = formatMarkdownData(filename);
 
   const mdxSource = await renderToString(markdownData.content, {
     components,
-    staticContext,
   });
 
   return {

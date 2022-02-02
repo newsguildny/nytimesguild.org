@@ -13,7 +13,7 @@ export const options: EditorComponentOptions = {
       name: 'category',
       label: 'Category',
       widget: 'select',
-      options: ['why-union', 'dei'],
+      options: ['why-union', 'dei', 'supporter'],
     },
   ],
   pattern: /<HighlightedTestimonials category="([a-z-]*)" \/>/,

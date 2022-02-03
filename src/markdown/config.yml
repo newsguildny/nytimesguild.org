@@ -71,8 +71,6 @@ collections:
             label: Why do we support a union?
           - value: dei
             label: How can a union support diversity, equity, and inclusion?
-          - value: supporter
-            label: How have unions helped others?
         default: why-union
       - label: Headshot
         name: headshot

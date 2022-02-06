@@ -3817,23 +3817,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/env@npm:11.1.2":
-  version: 11.1.2
-  resolution: "@next/env@npm:11.1.2"
-  checksum: df7a95e840af351b1c37fa6490b2c6330b8f8c587ff8b2212687d7557e99ae5642495095a9a3a15fe4ac2e6fb5b1cdb24ab8fb14e95ad363a5b7b1146ec62d15
+"@next/env@npm:11.1.4":
+  version: 11.1.4
+  resolution: "@next/env@npm:11.1.4"
+  checksum: d82c9d1550774b8aa7e1582cb43ace57eb408f433b1e5be0fc38d6f350c43a8da02523a61f3ae5ced8d5b2b5844e30de92d045da858a2b75e7e6d33197893d44
   languageName: node
   linkType: hard
 
-"@next/polyfill-module@npm:11.1.2":
-  version: 11.1.2
-  resolution: "@next/polyfill-module@npm:11.1.2"
-  checksum: f739b999b740ed55e5b5e45ba22127e4abba10ef3816df41277f13b23764005d88dfa4e914d06b6a4b321ba9c6b3df21d5b680d36c12f5db304128000130dc4d
+"@next/polyfill-module@npm:11.1.4":
+  version: 11.1.4
+  resolution: "@next/polyfill-module@npm:11.1.4"
+  checksum: 50ad572a62d23e60876c6af11a67f6841172cb2c059de62e2108bb254d73fad48a6e8bc93dbcecbe94a745ea782ffe96764a44c96905248876d99f8beffbd0f3
   languageName: node
   linkType: hard
 
-"@next/react-dev-overlay@npm:11.1.2":
-  version: 11.1.2
-  resolution: "@next/react-dev-overlay@npm:11.1.2"
+"@next/react-dev-overlay@npm:11.1.4":
+  version: 11.1.4
+  resolution: "@next/react-dev-overlay@npm:11.1.4"
   dependencies:
     "@babel/code-frame": 7.12.11
     anser: 1.4.9
@@ -3849,47 +3849,47 @@ __metadata:
   peerDependencies:
     react: ^17.0.2
     react-dom: ^17.0.2
-  checksum: 6b2215c90c6df5f7b96eec9235e7a0a0ea71d7c7501e25aa6a7004c064ca74a6eaf15b2661fe3cbe8aff417ebebb705df2dbbf252aec4a92b408f2c02891a983
+  checksum: 4272fcbc26e3efef48256c0a95f1e918a8764004cbf75b35038cb622323c9ee7f5de55b095ff61d8b0ce035c41856b5baf5a7b846cd95cd39086f16ebecaec45
   languageName: node
   linkType: hard
 
-"@next/react-refresh-utils@npm:11.1.2":
-  version: 11.1.2
-  resolution: "@next/react-refresh-utils@npm:11.1.2"
+"@next/react-refresh-utils@npm:11.1.4":
+  version: 11.1.4
+  resolution: "@next/react-refresh-utils@npm:11.1.4"
   peerDependencies:
     react-refresh: 0.8.3
     webpack: ^4 || ^5
   peerDependenciesMeta:
     webpack:
       optional: true
-  checksum: 443e2376279437d85b991175b8cd86fc1d0f3908ad23a523e7ede5dc9fb22f63d083a904502f6aef77af4769c96f165740fe196d54684136b1f3443561575fc1
+  checksum: b8b707276e5f81055930c5bab07d37da7b7af9b698c0c584bebe5698687368ef0436cbc6fe5f8473c587112b47e9d7c12830a1427b013cc19b5a9e81e5749295
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-arm64@npm:11.1.2":
-  version: 11.1.2
-  resolution: "@next/swc-darwin-arm64@npm:11.1.2"
+"@next/swc-darwin-arm64@npm:11.1.4":
+  version: 11.1.4
+  resolution: "@next/swc-darwin-arm64@npm:11.1.4"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-x64@npm:11.1.2":
-  version: 11.1.2
-  resolution: "@next/swc-darwin-x64@npm:11.1.2"
+"@next/swc-darwin-x64@npm:11.1.4":
+  version: 11.1.4
+  resolution: "@next/swc-darwin-x64@npm:11.1.4"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-gnu@npm:11.1.2":
-  version: 11.1.2
-  resolution: "@next/swc-linux-x64-gnu@npm:11.1.2"
+"@next/swc-linux-x64-gnu@npm:11.1.4":
+  version: 11.1.4
+  resolution: "@next/swc-linux-x64-gnu@npm:11.1.4"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@next/swc-win32-x64-msvc@npm:11.1.2":
-  version: 11.1.2
-  resolution: "@next/swc-win32-x64-msvc@npm:11.1.2"
+"@next/swc-win32-x64-msvc@npm:11.1.4":
+  version: 11.1.4
+  resolution: "@next/swc-win32-x64-msvc@npm:11.1.4"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -12502,20 +12502,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:^11.1.2":
-  version: 11.1.2
-  resolution: "next@npm:11.1.2"
+"next@npm:^11":
+  version: 11.1.4
+  resolution: "next@npm:11.1.4"
   dependencies:
     "@babel/runtime": 7.15.3
     "@hapi/accept": 5.0.2
-    "@next/env": 11.1.2
-    "@next/polyfill-module": 11.1.2
-    "@next/react-dev-overlay": 11.1.2
-    "@next/react-refresh-utils": 11.1.2
-    "@next/swc-darwin-arm64": 11.1.2
-    "@next/swc-darwin-x64": 11.1.2
-    "@next/swc-linux-x64-gnu": 11.1.2
-    "@next/swc-win32-x64-msvc": 11.1.2
+    "@next/env": 11.1.4
+    "@next/polyfill-module": 11.1.4
+    "@next/react-dev-overlay": 11.1.4
+    "@next/react-refresh-utils": 11.1.4
+    "@next/swc-darwin-arm64": 11.1.4
+    "@next/swc-darwin-x64": 11.1.4
+    "@next/swc-linux-x64-gnu": 11.1.4
+    "@next/swc-win32-x64-msvc": 11.1.4
     "@node-rs/helper": 1.2.1
     assert: 2.0.0
     ast-types: 0.13.2
@@ -12537,7 +12537,7 @@ __metadata:
     image-size: 1.0.0
     jest-worker: 27.0.0-next.5
     native-url: 0.3.4
-    node-fetch: 2.6.1
+    node-fetch: 2.6.7
     node-html-parser: 1.4.9
     node-libs-browser: ^2.2.1
     os-browserify: 0.3.0
@@ -12584,14 +12584,21 @@ __metadata:
       optional: true
   bin:
     next: dist/bin/next
-  checksum: c5a6d01b6d60de6e94bed11b199b8adb656521fed4abe0e816bec7991e8ff435006ef226ded40a0aecd277aa79e7d520e047c24bfb01521a12905b246ddd9177
+  checksum: e6648b52a0781657864a823d3fc6758f6606a2134d9192fb111282012cb9ef8de5f57cac39115ab9c910194956c2ec3b78c2dae52f217af404f0173b4d1b2d8f
   languageName: node
   linkType: hard
 
-"node-fetch@npm:2.6.1":
-  version: 2.6.1
-  resolution: "node-fetch@npm:2.6.1"
-  checksum: 91075bedd57879117e310fbcc36983ad5d699e522edb1ebcdc4ee5294c982843982652925c3532729fdc86b2d64a8a827797a745f332040d91823c8752ee4d7c
+"node-fetch@npm:2.6.7":
+  version: 2.6.7
+  resolution: "node-fetch@npm:2.6.7"
+  dependencies:
+    whatwg-url: ^5.0.0
+  peerDependencies:
+    encoding: ^0.1.0
+  peerDependenciesMeta:
+    encoding:
+      optional: true
+  checksum: 8d816ffd1ee22cab8301c7756ef04f3437f18dace86a1dae22cf81db8ef29c0bf6655f3215cb0cdb22b420b6fe141e64b26905e7f33f9377a7fa59135ea3e10b
   languageName: node
   linkType: hard
 
@@ -12849,7 +12856,7 @@ __metadata:
     netlify-cms-app: ^2.15.38
     netlify-cms-proxy-server: ^1.3.12
     netlify-identity-widget: ^1.9.1
-    next: ^11.1.2
+    next: ^11
     next-mdx-remote: ^2.1.3
     next-static-context: ^1.0.1
     normalize.css: ^8.0.1
@@ -16439,6 +16446,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tr46@npm:~0.0.3":
+  version: 0.0.3
+  resolution: "tr46@npm:0.0.3"
+  checksum: 726321c5eaf41b5002e17ffbd1fb7245999a073e8979085dacd47c4b4e8068ff5777142fc6726d6ca1fd2ff16921b48788b87225cbc57c72636f6efa8efbffe3
+  languageName: node
+  linkType: hard
+
 "treeify@npm:^1.1.0":
   version: 1.1.0
   resolution: "treeify@npm:1.1.0"
@@ -17365,6 +17379,13 @@ typescript@^4.4.2:
   languageName: node
   linkType: hard
 
+"webidl-conversions@npm:^3.0.0":
+  version: 3.0.1
+  resolution: "webidl-conversions@npm:3.0.1"
+  checksum: c92a0a6ab95314bde9c32e1d0a6dfac83b578f8fa5f21e675bc2706ed6981bc26b7eb7e6a1fab158e5ce4adf9caa4a0aee49a52505d4d13c7be545f15021b17c
+  languageName: node
+  linkType: hard
+
 "webidl-conversions@npm:^4.0.2":
   version: 4.0.2
   resolution: "webidl-conversions@npm:4.0.2"
@@ -17413,6 +17434,16 @@ typescript@^4.4.2:
   version: 2.3.0
   resolution: "whatwg-mimetype@npm:2.3.0"
   checksum: 23eb885940bcbcca4ff841c40a78e9cbb893ec42743993a42bf7aed16085b048b44b06f3402018931687153550f9a32d259dfa524e4f03577ab898b6965e5383
+  languageName: node
+  linkType: hard
+
+"whatwg-url@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "whatwg-url@npm:5.0.0"
+  dependencies:
+    tr46: ~0.0.3
+    webidl-conversions: ^3.0.0
+  checksum: b8daed4ad3356cc4899048a15b2c143a9aed0dfae1f611ebd55073310c7b910f522ad75d727346ad64203d7e6c79ef25eafd465f4d12775ca44b90fa82ed9e2c
   languageName: node
   linkType: hard
 

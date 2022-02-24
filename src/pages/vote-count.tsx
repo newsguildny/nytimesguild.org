@@ -15,7 +15,7 @@ import {
 } from '../lib/styles/tokens/colors';
 
 function format(n: number): string {
-  return `${(n * 100).toFixed(2)}%`;
+  return n ? `${(n * 100).toFixed(2)}%` : '--%';
 }
 
 function updater(db: Database, path: string, onUpdate: (n: number) => void) {
@@ -32,6 +32,8 @@ const VoteCounts = () => {
   const [no, setNo] = useState<number>(0);
   const [contested, setContested] = useState<number>(0);
   const [total, setTotal] = useState<number>(0);
+  const [winLabelElement, setWinLabelElement] = useState<HTMLDivElement | null>(null);
+
   useEffect(() => {
     const firebaseConfig = {
       apiKey: 'AIzaSyCURKa7asmTfECkxa0S83ew5gLirPBdiFc',
@@ -51,6 +53,8 @@ const VoteCounts = () => {
     updater(db, 'total', setTotal);
     updater(db, 'contested', setContested);
   }, []);
+  const neededToWin = Math.floor(total / 2) + 1;
+  const winLabelAdjustment = (winLabelElement?.getBoundingClientRect().width ?? 0) / 2;
   return (
     <>
       <Head>
@@ -71,23 +75,42 @@ const VoteCounts = () => {
           will beign counting those TK.
         </p>
         <h3 id="heading">
-          Results <span className="live-pill">live</span>
+          Results {total ? <span className="live-pill">live</span> : 'coming soon!'}
         </h3>
         <div className="bar-labels">
           <div className="yes-label">
             Yes: {yes} ({format(yes / total)})
+          </div>
+          <div
+            ref={(node) => {
+              setWinLabelElement(node);
+            }}
+            className="win-label"
+            style={{
+              left: `calc(max(${
+                total ? (neededToWin / total) * 100 : 0
+              }%, 50%) - ${winLabelAdjustment}px)`,
+            }}
+          >
+            {total ? neededToWin : '--'}
           </div>
           <div className="no-label">
             No: {no} ({format(no / total)})
           </div>
         </div>
         <div className="bar">
-          <div className="bar-yes" style={{ width: `${(yes / total) * 100}%` }} />
+          <div
+            className="bar-yes"
+            style={{ width: `calc(max(${total ? (yes / total) * 100 : 0}%, 2px))` }}
+          />
           <div
             className="bar-half"
-            style={{ left: `${((Math.floor(total / 2) + 1) / total) * 100}%` }}
+            style={{ left: `calc(max(${total ? (neededToWin / total) * 100 : 0}%, 50%))` }}
           />
-          <div className="bar-no" style={{ width: `${(no / total) * 100}%` }} />
+          <div
+            className="bar-no"
+            style={{ width: `calc(max(${total ? (no / total) * 100 : 0}%, 2px))` }}
+          />
         </div>
         <table>
           <thead>
@@ -99,12 +122,16 @@ const VoteCounts = () => {
           </thead>
           <tbody>
             <tr>
-              <td className="category-column yes-cell">Yes votes</td>
+              <td className="category-column yes-cell">
+                Yes <span className="drop-on-mobile">votes</span>
+              </td>
               <td className="number-column">{yes}</td>
               <td className="number-column">{format(yes / total)}</td>
             </tr>
             <tr>
-              <td className="category-column no-cell">No votes</td>
+              <td className="category-column no-cell">
+                No <span className="drop-on-mobile">votes</span>
+              </td>
               <td className="number-column">{no}</td>
               <td className="number-column">{format(no / total)}</td>
             </tr>
@@ -114,11 +141,15 @@ const VoteCounts = () => {
         <table>
           <tbody>
             <tr>
-              <td>Total ballots</td>
+              <td>
+                Total <span className="drop-on-mobile">ballots</span>
+              </td>
               <td className="number-column">{total}</td>
             </tr>
             <tr>
-              <td>Contested ballots</td>
+              <td>
+                Contested <span className="drop-on-mobile">ballots</span>
+              </td>
               <td className="number-column">{contested}</td>
             </tr>
           </tbody>
@@ -127,12 +158,6 @@ const VoteCounts = () => {
       <style jsx>{`
         main {
           padding-top: 2rem;
-        }
-
-        @media (min-width: 769px) {
-          main {
-            padding-top: 5rem;
-          }
         }
 
         h3 {
@@ -155,12 +180,19 @@ const VoteCounts = () => {
           text-transform: uppercase;
         }
         .bar-labels {
+          position: relative;
           display: flex;
           justify-content: space-between;
+          font-family: ${sansSerif};
         }
         .yes-label {
           padding: 1rem 0;
           color: ${yesVote};
+        }
+        .win-label {
+          position: absolute;
+          top: 1rem;
+          color: black;
         }
         .no-label {
           padding: 1rem 0;
@@ -225,6 +257,18 @@ const VoteCounts = () => {
           width: 2px;
           height: 115%;
           background: black;
+        }
+        .drop-on-mobile {
+          display: none;
+        }
+
+        @media (min-width: 769px) {
+          main {
+            padding-top: 5rem;
+          }
+          .drop-on-mobile {
+            display: inline;
+          }
         }
       `}</style>
     </>

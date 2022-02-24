@@ -114,16 +114,12 @@ const VoteCounts = () => {
         <table>
           <tbody>
             <tr>
-              <td>Ballots received</td>
+              <td>Total ballots</td>
               <td className="number-column">{total}</td>
             </tr>
             <tr>
-              <td>Ballots contested</td>
+              <td>Contested ballots</td>
               <td className="number-column">{contested}</td>
-            </tr>
-            <tr>
-              <td>Uncontested ballots</td>
-              <td className="number-column">{total - contested}</td>
             </tr>
           </tbody>
         </table>
@@ -171,7 +167,7 @@ const VoteCounts = () => {
           color: ${noVote};
         }
         table {
-          width: 100%;
+          width: calc(100% - 4rem);
           border-collapse: collapse;
           font-family: ${sansSerif};
           font-weight: 600;

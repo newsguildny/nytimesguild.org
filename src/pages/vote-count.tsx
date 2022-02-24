@@ -2,11 +2,20 @@ import { useEffect, useState } from 'react';
 import { initializeApp } from 'firebase/app';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import { getDatabase, ref, onValue } from 'firebase/database';
+import { Database, getDatabase, ref, onValue } from 'firebase/database';
 import { PageHeader } from '../components/PageHeader';
 
 function format(n: number): string {
   return `${(n * 100).toFixed(2)}%`;
+}
+
+function updater(db: Database, path: string, onUpdate: (n: number) => void) {
+  onValue(ref(db, path), (snapshot) => {
+    const data = snapshot.val();
+    if (typeof data === 'number') {
+      onUpdate(data);
+    }
+  });
 }
 
 const VoteCounts = () => {
@@ -28,31 +37,10 @@ const VoteCounts = () => {
     const app = initializeApp(firebaseConfig);
 
     const db = getDatabase(app);
-    const yesRef = ref(db, 'yes');
-    onValue(yesRef, (snapshot) => {
-      const data = snapshot.val();
-      if (typeof data === 'number') {
-        setYes(data);
-      }
-    });
-    onValue(ref(db, 'no'), (snapshot) => {
-      const data = snapshot.val();
-      if (typeof data === 'number') {
-        setNo(data);
-      }
-    });
-    onValue(ref(db, 'total'), (snapshot) => {
-      const data = snapshot.val();
-      if (typeof data === 'number') {
-        setTotal(data);
-      }
-    });
-    onValue(ref(db, 'contested'), (snapshot) => {
-      const data = snapshot.val();
-      if (typeof data === 'number') {
-        setContested(data);
-      }
-    });
+    updater(db, 'yes', setYes);
+    updater(db, 'no', setNo);
+    updater(db, 'total', setTotal);
+    updater(db, 'contested', setContested);
   }, []);
   const uncontested = total - contested;
   return (

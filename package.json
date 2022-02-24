@@ -17,9 +17,11 @@
     "process:headshots": "./scripts/process_testimonial_headshots.sh"
   },
   "dependencies": {
+    "@firebase/app": "^0.7.17",
     "@svgr/webpack": "^5.4.0",
     "@types/js-yaml": "^4.0.3",
     "date-fns": "^2.11.1",
+    "firebase": "^9.6.7",
     "gray-matter": "^4.0.2",
     "js-yaml": "^4.1.0",
     "lite-youtube-embed": "^0.2.0",

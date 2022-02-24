@@ -17,3 +17,7 @@ export const accent = '#ff4040';
 export const link = '#ff4040';
 
 export const headerBackground = '#ff4040';
+
+export const yesVote = '#ff4040';
+
+export const noVote = '#db3939';

@@ -4,6 +4,8 @@ import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { Database, getDatabase, ref, onValue } from 'firebase/database';
 import { PageHeader } from '../components/PageHeader';
+import { serifSizes, sansSerif, sansSerifSizes } from '../lib/styles/tokens/fonts';
+import { noVote, yesVote } from '../lib/styles/tokens/colors';
 
 function format(n: number): string {
   return `${(n * 100).toFixed(2)}%`;
@@ -54,31 +56,31 @@ const VoteCounts = () => {
       <main>
         <h1 id="heading">Results</h1>
         <div className="bar">
-          <div className="bar-yes" style={{ width: `${yes / total}%` }} />
+          <div className="bar-yes" style={{ width: `${(yes / total) * 100}%` }} />
           <div
             className="bar-half"
             style={{ left: `${((Math.floor(total / 2) + 1) / total) * 100}%` }}
           />
-          <div className="bar-no" style={{ width: `${no / total}%` }} />
+          <div className="bar-no" style={{ width: `${(no / total) * 100}%` }} />
         </div>
         <table>
           <thead>
             <tr>
-              <th aria-label="Vote category" />
-              <th>Votes</th>
-              <th>Pct. of uncontested</th>
+              <th aria-label="Vote category" className="category-column" />
+              <th className="number-column">Votes</th>
+              <th className="number-column">Pct. of uncontested</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Yes votes</td>
-              <td>{yes}</td>
-              <td>{format(yes / uncontested)}</td>
+              <td className="category-column yes-cell">Yes votes</td>
+              <td className="number-column">{yes}</td>
+              <td className="number-column">{format(yes / uncontested)}</td>
             </tr>
             <tr>
-              <td>No votes</td>
-              <td>{no}</td>
-              <td>{format(no / uncontested)}</td>
+              <td className="category-column no-cell">No votes</td>
+              <td className="number-column">{no}</td>
+              <td className="number-column">{format(no / uncontested)}</td>
             </tr>
           </tbody>
         </table>
@@ -87,15 +89,15 @@ const VoteCounts = () => {
           <tbody>
             <tr>
               <td>Ballots received</td>
-              <td>{total}</td>
+              <td className="number-column">{total}</td>
             </tr>
             <tr>
               <td>Ballots contested</td>
-              <td>{contested}</td>
+              <td className="number-column">{contested}</td>
             </tr>
             <tr>
               <td>Uncontested ballots</td>
-              <td>{total - contested}</td>
+              <td className="number-column">{total - contested}</td>
             </tr>
           </tbody>
         </table>
@@ -111,18 +113,57 @@ const VoteCounts = () => {
           }
         }
 
+        table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+        th {
+          font-size: ${serifSizes.extraSmall};
+          font-weight: 400;
+        }
+        tbody {
+          font-family: ${sansSerif};
+          font-size: ${sansSerifSizes.medium};
+          font-weight: 700;
+        }
+        tbody td {
+          border-top: solid thin black;
+          border-bottom: solid thin black;
+          padding: 0.5rem;
+        }
+        tbody td:first-of-type {
+          border-left: solid thin black;
+        }
+        tbody td:last-of-type {
+          border-right: solid thin black;
+        }
+        tbody td:first-of-type.yes-cell {
+          color: ${yesVote};
+          border-left: solid 0.25rem ${yesVote};
+        }
+        tbody td:first-of-type.no-cell {
+          color: ${noVote};
+          border-left: solid 0.25rem ${noVote};
+        }
+        .category-column {
+          width: calc(100% - 20rem);
+        }
+        .number-column {
+          text-align: right;
+          width: 10rem;
+        }
         .bar {
           background: lightgray;
-          height: 10rem;
+          height: 6rem;
           position: relative;
           display: flex;
           justify-content: space-between;
         }
         .bar-yes {
-          background: red;
+          background: ${yesVote};
         }
         .bar-no {
-          background: purple;
+          background: ${noVote};
         }
         .bar-half {
           width: 1px;

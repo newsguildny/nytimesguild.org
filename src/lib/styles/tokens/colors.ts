@@ -20,4 +20,6 @@ export const headerBackground = '#ff4040';
 
 export const yesVote = '#ff4040';
 
-export const noVote = '#db3939';
+export const noVote = '#B42F2F';
+
+export const tableBorder = '#C4C4C4';

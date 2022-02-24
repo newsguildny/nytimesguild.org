@@ -5,7 +5,14 @@ import Head from 'next/head';
 import { Database, getDatabase, ref, onValue } from 'firebase/database';
 import { PageHeader } from '../components/PageHeader';
 import { serifSizes, sansSerif, sansSerifSizes } from '../lib/styles/tokens/fonts';
-import { noVote, yesVote } from '../lib/styles/tokens/colors';
+import {
+  bodyText,
+  headerBackground,
+  headerText,
+  noVote,
+  tableBorder,
+  yesVote,
+} from '../lib/styles/tokens/colors';
 
 function format(n: number): string {
   return `${(n * 100).toFixed(2)}%`;
@@ -44,7 +51,6 @@ const VoteCounts = () => {
     updater(db, 'total', setTotal);
     updater(db, 'contested', setContested);
   }, []);
-  const uncontested = total - contested;
   return (
     <>
       <Head>
@@ -54,7 +60,27 @@ const VoteCounts = () => {
       </Head>
       <PageHeader heading="Vote Count" />
       <main>
-        <h1 id="heading">Results</h1>
+        <h2>About</h2>
+        <p>
+          The vote will be determined by a simple majority (50% +1 vote). This number is represented
+          by the vertical line at the center of the bar graph.
+        </p>
+        <p>
+          If any ballots are challenged they will be put aside for the initial count. If the
+          decision of the election could be changed by the number of contested ballots, the NLRB
+          will beign counting those TK.
+        </p>
+        <h3 id="heading">
+          Results <span className="live-pill">live</span>
+        </h3>
+        <div className="bar-labels">
+          <div className="yes-label">
+            Yes: {yes} ({format(yes / total)})
+          </div>
+          <div className="no-label">
+            No: {no} ({format(no / total)})
+          </div>
+        </div>
         <div className="bar">
           <div className="bar-yes" style={{ width: `${(yes / total) * 100}%` }} />
           <div
@@ -68,23 +94,23 @@ const VoteCounts = () => {
             <tr>
               <th aria-label="Vote category" className="category-column" />
               <th className="number-column">Votes</th>
-              <th className="number-column">Pct. of uncontested</th>
+              <th className="number-column">Pct. of total</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td className="category-column yes-cell">Yes votes</td>
               <td className="number-column">{yes}</td>
-              <td className="number-column">{format(yes / uncontested)}</td>
+              <td className="number-column">{format(yes / total)}</td>
             </tr>
             <tr>
               <td className="category-column no-cell">No votes</td>
               <td className="number-column">{no}</td>
-              <td className="number-column">{format(no / uncontested)}</td>
+              <td className="number-column">{format(no / total)}</td>
             </tr>
           </tbody>
         </table>
-        <h2>Ballot data</h2>
+        <h3>Ballot data</h3>
         <table>
           <tbody>
             <tr>
@@ -113,51 +139,83 @@ const VoteCounts = () => {
           }
         }
 
+        h3 {
+          display: flex;
+          margin-top: 5rem;
+          align-items: center;
+          font-family: ${sansSerif};
+          font-size: ${sansSerifSizes.large};
+          font-weight: 700;
+        }
+        .live-pill {
+          display: inline-block;
+          margin-left: 0.5rem;
+          padding: 0.25rem 0.5rem;
+          border-radius: 1.5rem;
+          font-size: ${sansSerifSizes.extraSmall};
+          font-weight: 800;
+          color: ${headerText};
+          background: ${headerBackground};
+          text-transform: uppercase;
+        }
+        .bar-labels {
+          display: flex;
+          justify-content: space-between;
+        }
+        .yes-label {
+          padding: 1rem 0;
+          color: ${yesVote};
+        }
+        .no-label {
+          padding: 1rem 0;
+          color: ${noVote};
+        }
         table {
           width: 100%;
           border-collapse: collapse;
+          font-family: ${sansSerif};
+          font-weight: 600;
+          font-size: ${sansSerifSizes.large};
+          color: black;
         }
         th {
+          padding: 0.5rem 1rem;
           font-size: ${serifSizes.extraSmall};
-          font-weight: 400;
+          color: ${bodyText};
         }
-        tbody {
-          font-family: ${sansSerif};
-          font-size: ${sansSerifSizes.medium};
-          font-weight: 700;
+        td {
+          padding: 1rem;
+          border-top: solid thin ${tableBorder};
+          border-bottom: solid thin ${tableBorder};
         }
-        tbody td {
-          border-top: solid thin black;
-          border-bottom: solid thin black;
-          padding: 0.5rem;
+        td:first-of-type {
+          border-left: solid thin ${tableBorder};
         }
-        tbody td:first-of-type {
-          border-left: solid thin black;
+        td:last-of-type {
+          border-right: solid thin ${tableBorder};
         }
-        tbody td:last-of-type {
-          border-right: solid thin black;
-        }
-        tbody td:first-of-type.yes-cell {
-          color: ${yesVote};
+        td.yes-cell {
           border-left: solid 0.25rem ${yesVote};
+          color: ${yesVote};
         }
-        tbody td:first-of-type.no-cell {
-          color: ${noVote};
+        td.no-cell {
           border-left: solid 0.25rem ${noVote};
+          color: ${noVote};
         }
         .category-column {
           width: calc(100% - 20rem);
         }
         .number-column {
-          text-align: right;
           width: 10rem;
+          text-align: right;
         }
         .bar {
-          background: lightgray;
-          height: 6rem;
           position: relative;
           display: flex;
+          height: 6rem;
+          margin-bottom: 2.5rem;
           justify-content: space-between;
+          background: lightgray;
         }
         .bar-yes {
           background: ${yesVote};
@@ -166,12 +224,11 @@ const VoteCounts = () => {
           background: ${noVote};
         }
         .bar-half {
-          width: 1px;
-          background: purple;
           position: absolute;
-          height: 100%;
-          top: 0;
-          border-right: 2px solid #000;
+          bottom: 0;
+          width: 2px;
+          height: 115%;
+          background: black;
         }
       `}</style>
     </>

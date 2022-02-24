@@ -15,4 +15,5 @@ export const sansSerifSizes = {
   large: 'var(--nyt-sans-serif-large)',
   medium: 'var(--nyt-sans-serif-medium)',
   small: 'var(--nyt-sans-serif-small)',
+  extraSmall: 'var(--nyt-sans-serif-extra-small)',
 };

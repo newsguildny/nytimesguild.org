@@ -93,12 +93,13 @@ function App({ Component, pageProps }: AppProps) {
           --nyt-serif-large: 2rem;
           --nyt-serif-medium: 1.5rem;
           --nyt-serif-small: 1.25rem;
-          --nyt-serif-extra-small: 1rem;
+          --nyt-serif-extra-small: 0.875rem;
 
           --nyt-sans-serif-extra-large: 1.25rem;
           --nyt-sans-serif-large: 1.125rem;
           --nyt-sans-serif-medium: 1rem;
           --nyt-sans-serif-small: 0.875rem;
+          --nyt-sans-serif-extra-small: 0.75rem;
 
           font-family: ${serif};
           font-size: ${serifSizes.small};
@@ -161,12 +162,13 @@ function App({ Component, pageProps }: AppProps) {
             --nyt-serif-large: 2.75rem;
             --nyt-serif-medium: 2rem;
             --nyt-serif-small: 1.5rem;
-            --nyt-serif-extra-small: 1rem;
+            --nyt-serif-extra-small: 0.875rem;
 
             --nyt-sans-serif-extra-large: 1.5rem;
             --nyt-sans-serif-large: 1.375rem;
             --nyt-sans-serif-medium: 1.125rem;
             --nyt-sans-serif-small: 1rem;
+            --nyt-sans-serif-extra-small: 0.75rem;
           }
           main > .mdx-wrapper > *,
           main > :not(.mdx-wrapper) {

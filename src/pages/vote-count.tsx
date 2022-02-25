@@ -32,7 +32,6 @@ const VoteCounts = () => {
   const [no, setNo] = useState<number>(0);
   const [contested, setContested] = useState<number>(0);
   const [total, setTotal] = useState<number>(0);
-  const [winLabelElement, setWinLabelElement] = useState<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const firebaseConfig = {
@@ -54,7 +53,7 @@ const VoteCounts = () => {
     updater(db, 'contested', setContested);
   }, []);
   const neededToWin = Math.floor(total / 2) + 1;
-  const winLabelAdjustment = (winLabelElement?.getBoundingClientRect().width ?? 0) / 2;
+  const winLabelWidth = 80;
   return (
     <>
       <Head>
@@ -82,14 +81,11 @@ const VoteCounts = () => {
             Yes: {yes} ({format(yes / total)})
           </div>
           <div
-            ref={(node) => {
-              setWinLabelElement(node);
-            }}
             className="win-label"
             style={{
-              left: `calc(max(${
-                total ? (neededToWin / total) * 100 : 0
-              }%, 50%) - ${winLabelAdjustment}px)`,
+              left: `calc(max(${total ? (neededToWin / total) * 100 : 0}%, 50%) - ${
+                winLabelWidth / 2
+              }px)`,
             }}
           >
             {total ? neededToWin : '--'}
@@ -193,6 +189,8 @@ const VoteCounts = () => {
           position: absolute;
           top: 1rem;
           color: black;
+          text-align: center;
+          width: ${winLabelWidth}px;
         }
         .no-label {
           padding: 1rem 0;

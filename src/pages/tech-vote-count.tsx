@@ -1,26 +1,26 @@
-import { GetServerSideProps } from 'next';
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import { initializeApp } from 'firebase/app';
-import { getDatabase, onValue, ref } from 'firebase/database';
+import { ReactNode } from 'react';
 import { serifSizes, sansSerif, sansSerifSizes } from '../lib/styles/tokens/fonts';
 import { bodyText, noVote, tableBorder, yesVote } from '../lib/styles/tokens/colors';
 import { PageHeader } from '../components/PageHeader';
 import { LivePill } from '../components/LivePill';
 import { AboutSection } from '../components/vote-count/AboutSection';
-import {
-  firebaseConfig,
-  isVoteData,
-  useVoteData,
-  VoteData,
-} from '../components/vote-count/useVoteData';
+import { useVoteData } from '../components/vote-count/useVoteData';
 import { VoteCountBar } from '../components/vote-count/VoteCountBar';
 
 function format(n: number): string {
   return n ? `${(n * 100).toFixed(2)}%` : '--%';
 }
 
-const VoteCounts = (initialValue: Omit<VoteData, 'neededToWin'>) => {
-  const { yes, no, contested, total, neededToWin } = useVoteData(initialValue);
+const VoteCounts = () => {
+  const { yes, no, contested, total, neededToWin } = useVoteData();
+
+  let resultStatus: ReactNode | undefined;
+  if (total > 0 && yes + no + contested === total) resultStatus = undefined;
+  else if (total === 0) resultStatus = 'coming soon!';
+  else resultStatus = <LivePill />;
+
   return (
     <>
       <Head>
@@ -40,7 +40,7 @@ const VoteCounts = (initialValue: Omit<VoteData, 'neededToWin'>) => {
         />
 
         {/* The vote count bar */}
-        <h3 id="heading">Results {total ? <LivePill /> : 'coming soon!'}</h3>
+        <h3 id="heading">Results {resultStatus}</h3>
         <VoteCountBar yes={yes} no={no} total={total} neededToWin={neededToWin} />
 
         {/* Yes / No votes table */}
@@ -151,19 +151,12 @@ const VoteCounts = (initialValue: Omit<VoteData, 'neededToWin'>) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
-
-  const props = await new Promise<VoteData>((resolve, reject) => {
-    onValue(ref(db), (snapshot) => {
-      const data = snapshot.val();
-      if (isVoteData(data)) resolve(data);
-      else reject(new Error(`Got unexpected data from Firebase`));
-    });
-  });
-
-  return { props };
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      slug: 'tech-vote-count',
+    },
+  };
 };
 
 export default VoteCounts;

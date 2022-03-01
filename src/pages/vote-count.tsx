@@ -4,13 +4,7 @@ import { serifSizes, sansSerif, sansSerifSizes } from '../lib/styles/tokens/font
 import { bodyText, noVote, tableBorder, yesVote } from '../lib/styles/tokens/colors';
 import { PageHeader } from '../components/PageHeader';
 import { LivePill } from '../components/LivePill';
-import {
-  Intro,
-  BeforeResult,
-  AfterWin,
-  WhileContested,
-  AfterLoss,
-} from '../components/vote-count/text';
+import { AboutSection } from '../components/vote-count/AboutSection';
 import { useVoteData } from '../components/vote-count/useVoteData';
 import { VoteCountBar } from '../components/vote-count/VoteCountBar';
 
@@ -20,9 +14,6 @@ function format(n: number): string {
 
 const VoteCounts = () => {
   const { yes, no, contested, total, neededToWin } = useVoteData();
-  // TODO: Define the logic for when the final outcome is contested
-  const contestedOutcome = false;
-
   return (
     <>
       <Head>
@@ -32,13 +23,14 @@ const VoteCounts = () => {
       </Head>
       <PageHeader heading="Vote Count" />
       <main>
-        {/* Text content above the vote count bar and tables */}
-        <h2>About</h2>
-        <Intro />
-        {yes < neededToWin && no < neededToWin && <BeforeResult />}
-        {contestedOutcome && <WhileContested contested={contested} />}
-        {yes >= neededToWin && <AfterWin />}
-        {no >= neededToWin && <AfterLoss />}
+        {/* Partly dynamic text content above the vote count bar and tables */}
+        <AboutSection
+          yes={yes}
+          no={no}
+          contested={contested}
+          total={total}
+          neededToWin={neededToWin}
+        />
 
         {/* The vote count bar */}
         <h3 id="heading">Results {total ? <LivePill /> : 'coming soon!'}</h3>

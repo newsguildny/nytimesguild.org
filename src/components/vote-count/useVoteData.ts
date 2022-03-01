@@ -6,6 +6,7 @@ export interface VoteData {
   yes: number;
   no: number;
   contested: number;
+  /** The total number of ballots received */
   total: number;
   neededToWin: number;
 }

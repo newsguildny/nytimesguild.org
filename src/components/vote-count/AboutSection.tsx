@@ -1,4 +1,5 @@
 import { ConfettiCannon, ConfettiCannonContext } from '../ConfettiCannon';
+import { VoteData } from './useVoteData';
 import { VoteCountSection } from './VoteCountSection';
 
 /**
@@ -6,7 +7,7 @@ import { VoteCountSection } from './VoteCountSection';
  * @see https://docs.google.com/spreadsheets/d/1icRCXDu6wGGJKYiigSM6ZgKBS1lukHPNkvxHLJ-bpYE/edit
  */
 
-export const Intro = () => (
+const Intro = () => (
   <>
     <p>Ballot counting will take place on Thursday, March 3rd.</p>
     <p>
@@ -17,7 +18,7 @@ export const Intro = () => (
   </>
 );
 
-export const BeforeResult = () => (
+const BeforeResult = () => (
   <>
     <p>
       Before each ballot is counted, either party can challenge a ballot. If management has reason
@@ -34,7 +35,7 @@ export const BeforeResult = () => (
   </>
 );
 
-export const AfterWin = () => (
+const AfterWin = () => (
   <ConfettiCannon>
     <VoteCountSection breaking>
       <p>
@@ -73,19 +74,35 @@ export const AfterWin = () => (
   </ConfettiCannon>
 );
 
-export const WhileContested = ({ contested = 0 }) => (
+const WhileContested = ({ contested = 0 }) => (
   <p>
-    Times management has chosen to challenge {contested} ballot{contested !== 1 ? '' : 's'}. Because
+    Times management has chosen to challenge {contested} ballot{contested !== 1 ? 's' : ''}. Because
     the initial count did not show a simple majority, the NLRB will resolve the eligibility disputes
     of challenged votes and count them.
   </p>
 );
 
-export const AfterLoss = () => (
+const AfterLoss = () => (
   <p>
     The NLRB ballot count has concluded, and unfortunately the Times Tech Guild did not gain a
     majority of votes. While this is a heartbreaking setback, it will not deter us. We will continue
     our work in solidarity, advocating for a fair and equitable workplace for all of our coworkers.
     ✊
   </p>
+);
+
+export const AboutSection = ({ yes, no, contested, total, neededToWin }: VoteData) => (
+  <>
+    <h2>About</h2>
+    <Intro />
+    {yes < neededToWin &&
+      no < neededToWin &&
+      (yes + no + contested === total && contested > 0 ? (
+        <WhileContested contested={contested} />
+      ) : (
+        <BeforeResult />
+      ))}
+    {yes >= neededToWin && <AfterWin />}
+    {no >= neededToWin && <AfterLoss />}
+  </>
 );

@@ -7,6 +7,7 @@ import { Burger } from './Burger';
 import { headerBackground, headerText } from '../lib/styles/tokens/colors';
 import { sansSerif, sansSerifSizes, serif, serifSizes } from '../lib/styles/tokens/fonts';
 import { getPagesMetadata } from '../lib/collections/pages';
+import { LivePill } from '../pages/vote-count/LivePill';
 
 const burgerStyles = css.resolve`
   display: block;
@@ -83,6 +84,14 @@ export function Navigation({ slug }: Props) {
               </Link>
             </li>
           ))}
+          <li>
+            <Link href="/vote-count">
+              {/* TODO: `slug` is `undefined` on the `vote-count` page??? */}
+              <a className={slug === 'vote-count' ? 'active' : ''}>
+                Vote Count <LivePill outlined small />
+              </a>
+            </Link>
+          </li>
         </ul>
       </nav>
       <style jsx>

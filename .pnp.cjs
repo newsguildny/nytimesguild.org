@@ -82,6 +82,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.2.0"],
             ["react", "npm:17.0.2"],
             ["react-accessible-accordion", "virtual:bd38bae4b168cbf0f0de9404b0b71faec44b7999cc3ecd4b5f578f72d8413a6b9635bfe92749572f875c696149b51ea3ed7daca91a45dd536ad0e5694f5fadcf#npm:3.3.4"],
+            ["react-confetti", "virtual:bd38bae4b168cbf0f0de9404b0b71faec44b7999cc3ecd4b5f578f72d8413a6b9635bfe92749572f875c696149b51ea3ed7daca91a45dd536ad0e5694f5fadcf#npm:6.0.1"],
             ["react-dom", "virtual:bd38bae4b168cbf0f0de9404b0b71faec44b7999cc3ecd4b5f578f72d8413a6b9635bfe92749572f875c696149b51ea3ed7daca91a45dd536ad0e5694f5fadcf#npm:17.0.2"],
             ["react-instagram-embed", "virtual:bd38bae4b168cbf0f0de9404b0b71faec44b7999cc3ecd4b5f578f72d8413a6b9635bfe92749572f875c696149b51ea3ed7daca91a45dd536ad0e5694f5fadcf#npm:1.5.0"],
             ["react-schemaorg", "virtual:bd38bae4b168cbf0f0de9404b0b71faec44b7999cc3ecd4b5f578f72d8413a6b9635bfe92749572f875c696149b51ea3ed7daca91a45dd536ad0e5694f5fadcf#npm:1.2.0"],
@@ -19049,6 +19050,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["prettier", "npm:2.2.0"],
             ["react", "npm:17.0.2"],
             ["react-accessible-accordion", "virtual:bd38bae4b168cbf0f0de9404b0b71faec44b7999cc3ecd4b5f578f72d8413a6b9635bfe92749572f875c696149b51ea3ed7daca91a45dd536ad0e5694f5fadcf#npm:3.3.4"],
+            ["react-confetti", "virtual:bd38bae4b168cbf0f0de9404b0b71faec44b7999cc3ecd4b5f578f72d8413a6b9635bfe92749572f875c696149b51ea3ed7daca91a45dd536ad0e5694f5fadcf#npm:6.0.1"],
             ["react-dom", "virtual:bd38bae4b168cbf0f0de9404b0b71faec44b7999cc3ecd4b5f578f72d8413a6b9635bfe92749572f875c696149b51ea3ed7daca91a45dd536ad0e5694f5fadcf#npm:17.0.2"],
             ["react-instagram-embed", "virtual:bd38bae4b168cbf0f0de9404b0b71faec44b7999cc3ecd4b5f578f72d8413a6b9635bfe92749572f875c696149b51ea3ed7daca91a45dd536ad0e5694f5fadcf#npm:1.5.0"],
             ["react-schemaorg", "virtual:bd38bae4b168cbf0f0de9404b0b71faec44b7999cc3ecd4b5f578f72d8413a6b9635bfe92749572f875c696149b51ea3ed7daca91a45dd536ad0e5694f5fadcf#npm:1.2.0"],
@@ -20292,6 +20294,29 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react", "npm:17.0.2"],
             ["reactcss", "virtual:515228cbf9e14b8b4697e60f12ddd3d60b2dd0c1f16bff3122f4ac191094f0a9e72e8fc465e05277e2a2bdf0986450a747127bc080d7476003ed2120aec3ff2a#npm:1.2.3"],
             ["tinycolor2", "npm:1.4.2"]
+          ],
+          "packagePeers": [
+            "@types/react",
+            "react"
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["react-confetti", [
+        ["npm:6.0.1", {
+          "packageLocation": "./.yarn/cache/react-confetti-npm-6.0.1-250f70ffe1-4dd6bef9ad.zip/node_modules/react-confetti/",
+          "packageDependencies": [
+            ["react-confetti", "npm:6.0.1"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:bd38bae4b168cbf0f0de9404b0b71faec44b7999cc3ecd4b5f578f72d8413a6b9635bfe92749572f875c696149b51ea3ed7daca91a45dd536ad0e5694f5fadcf#npm:6.0.1", {
+          "packageLocation": "./.yarn/__virtual__/react-confetti-virtual-f3c71fa7fe/0/cache/react-confetti-npm-6.0.1-250f70ffe1-4dd6bef9ad.zip/node_modules/react-confetti/",
+          "packageDependencies": [
+            ["react-confetti", "virtual:bd38bae4b168cbf0f0de9404b0b71faec44b7999cc3ecd4b5f578f72d8413a6b9635bfe92749572f875c696149b51ea3ed7daca91a45dd536ad0e5694f5fadcf#npm:6.0.1"],
+            ["@types/react", "npm:17.0.20"],
+            ["react", "npm:17.0.2"],
+            ["tween-functions", "npm:1.2.0"]
           ],
           "packagePeers": [
             "@types/react",
@@ -23939,6 +23964,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/tunnel-npm-0.0.6-b1c0830ea4-c362948df9.zip/node_modules/tunnel/",
           "packageDependencies": [
             ["tunnel", "npm:0.0.6"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["tween-functions", [
+        ["npm:1.2.0", {
+          "packageLocation": "./.yarn/cache/tween-functions-npm-1.2.0-4c24ac77a5-880708d680.zip/node_modules/tween-functions/",
+          "packageDependencies": [
+            ["tween-functions", "npm:1.2.0"]
           ],
           "linkType": "HARD",
         }]

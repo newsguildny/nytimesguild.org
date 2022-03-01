@@ -13554,6 +13554,7 @@ __metadata:
     prettier: ^2.1.2
     react: ^17.0.2
     react-accessible-accordion: ^3.3.4
+    react-confetti: ^6.0.1
     react-dom: ^17.0.2
     react-instagram-embed: ^1.5.0
     react-schemaorg: ^1.2.0
@@ -14615,6 +14616,17 @@ __metadata:
   peerDependencies:
     react: "*"
   checksum: 40b49e1aa2ab27a099cc37a3fa2d5bb906b8def4dbe2d922c0e42365e386d82b03f9b06a2b29a44a51f1e114cef72e61c0ba0740581a128d951936ea4617429b
+  languageName: node
+  linkType: hard
+
+"react-confetti@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "react-confetti@npm:6.0.1"
+  dependencies:
+    tween-functions: ^1.2.0
+  peerDependencies:
+    react: ^16.3.0 || ^17.0.1
+  checksum: 4dd6bef9ad297145051cbe3c53a01851071a31f03b8606cc56f808112341cd2225dac7e0559f5e7a33ffd7dd764cd64fcc31cf37d3c57e7738fcf1e15defdf37
   languageName: node
   linkType: hard
 
@@ -17376,6 +17388,13 @@ __metadata:
   version: 0.0.6
   resolution: "tunnel@npm:0.0.6"
   checksum: c362948df9ad34b649b5585e54ce2838fa583aa3037091aaed66793c65b423a264e5229f0d7e9a95513a795ac2bd4cb72cda7e89a74313f182c1e9ae0b0994fa
+  languageName: node
+  linkType: hard
+
+"tween-functions@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "tween-functions@npm:1.2.0"
+  checksum: 880708d680eff5c347ddcb9f922ad121703a91c78ce308ed309073e73a794b633eb0b80589a839365803f150515ad34c9646809ae8a0e90f09e62686eefb1ab6
   languageName: node
   linkType: hard
 

@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 import css from 'styled-jsx/css';
 import { TGuild } from './svgs/TGuild';
 import { Burger } from './Burger';
+import { LivePill } from './LivePill';
 import { headerBackground, headerText } from '../lib/styles/tokens/colors';
 import { sansSerif, sansSerifSizes, serif, serifSizes } from '../lib/styles/tokens/fonts';
 import { getPagesMetadata } from '../lib/collections/pages';
-import { LivePill } from '../pages/vote-count/LivePill';
 
 const burgerStyles = css.resolve`
   display: block;

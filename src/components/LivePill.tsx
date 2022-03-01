@@ -1,5 +1,5 @@
-import { headerText, headerBackground } from '../../lib/styles/tokens/colors';
-import { sansSerifSizes } from '../../lib/styles/tokens/fonts';
+import { headerText, headerBackground } from '../lib/styles/tokens/colors';
+import { sansSerifSizes } from '../lib/styles/tokens/fonts';
 
 export const LivePill = ({ outlined = false, small = false }) => (
   <>

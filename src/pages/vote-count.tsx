@@ -1,19 +1,26 @@
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import Head from 'next/head';
+import { initializeApp } from 'firebase/app';
+import { getDatabase, onValue, ref } from 'firebase/database';
 import { serifSizes, sansSerif, sansSerifSizes } from '../lib/styles/tokens/fonts';
 import { bodyText, noVote, tableBorder, yesVote } from '../lib/styles/tokens/colors';
 import { PageHeader } from '../components/PageHeader';
 import { LivePill } from '../components/LivePill';
 import { AboutSection } from '../components/vote-count/AboutSection';
-import { useVoteData } from '../components/vote-count/useVoteData';
+import {
+  firebaseConfig,
+  isVoteData,
+  useVoteData,
+  VoteData,
+} from '../components/vote-count/useVoteData';
 import { VoteCountBar } from '../components/vote-count/VoteCountBar';
 
 function format(n: number): string {
   return n ? `${(n * 100).toFixed(2)}%` : '--%';
 }
 
-const VoteCounts = () => {
-  const { yes, no, contested, total, neededToWin } = useVoteData();
+const VoteCounts = (initialValue: Omit<VoteData, 'neededToWin'>) => {
+  const { yes, no, contested, total, neededToWin } = useVoteData(initialValue);
   return (
     <>
       <Head>
@@ -144,10 +151,19 @@ const VoteCounts = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  return {
-    props: {},
-  };
+export const getServerSideProps: GetServerSideProps = async () => {
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  const props = await new Promise<VoteData>((resolve, reject) => {
+    onValue(ref(db), (snapshot) => {
+      const data = snapshot.val();
+      if (isVoteData(data)) resolve(data);
+      else reject(new Error(`Got unexpected data from Firebase`));
+    });
+  });
+
+  return { props };
 };
 
 export default VoteCounts;

@@ -85,9 +85,9 @@ export function Navigation({ slug }: Props) {
             </li>
           ))}
           <li>
-            <Link href="/vote-count">
+            <Link href="/tech-vote-count">
               {/* TODO: `slug` is `undefined` on the `vote-count` page??? */}
-              <a className={slug === 'vote-count' ? 'active' : ''}>
+              <a className={slug === 'tech-vote-count' ? 'active' : ''}>
                 Vote Count <LivePill outlined small />
               </a>
             </Link>

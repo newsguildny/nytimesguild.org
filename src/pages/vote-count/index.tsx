@@ -13,8 +13,7 @@ function format(n: number): string {
 }
 
 const VoteCounts = () => {
-  const voteData = useVoteData();
-  const { yes, no, contested, total, neededToWin } = voteData;
+  const { yes, no, contested, total, neededToWin } = useVoteData();
 
   return (
     <>

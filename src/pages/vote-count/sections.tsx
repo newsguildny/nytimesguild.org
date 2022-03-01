@@ -1,6 +1,11 @@
 import { ConfettiCannon, ConfettiCannonContext } from '../../components/ConfettiCannon';
 import { VoteCountSection } from './VoteCountSection';
 
+/**
+ * All text in this source file comes from this Google Sheet:
+ * @see https://docs.google.com/spreadsheets/d/1icRCXDu6wGGJKYiigSM6ZgKBS1lukHPNkvxHLJ-bpYE/edit
+ */
+
 export const Intro = () => (
   <>
     <p>Ballot counting will take place on Thursday, March 3rd.</p>

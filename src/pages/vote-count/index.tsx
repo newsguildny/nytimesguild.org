@@ -3,8 +3,8 @@ import { initializeApp } from 'firebase/app';
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { Database, getDatabase, ref, onValue } from 'firebase/database';
-import { PageHeader } from '../components/PageHeader';
-import { serifSizes, sansSerif, sansSerifSizes } from '../lib/styles/tokens/fonts';
+import { PageHeader } from '../../components/PageHeader';
+import { serifSizes, sansSerif, sansSerifSizes } from '../../lib/styles/tokens/fonts';
 import {
   bodyText,
   headerBackground,
@@ -12,7 +12,7 @@ import {
   noVote,
   tableBorder,
   yesVote,
-} from '../lib/styles/tokens/colors';
+} from '../../lib/styles/tokens/colors';
 
 function format(n: number): string {
   return n ? `${(n * 100).toFixed(2)}%` : '--%';

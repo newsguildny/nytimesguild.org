@@ -4,7 +4,7 @@ import { PageHeader } from '../../components/PageHeader';
 import { LivePill } from '../../components/LivePill';
 import { serifSizes, sansSerif, sansSerifSizes } from '../../lib/styles/tokens/fonts';
 import { bodyText, noVote, tableBorder, yesVote } from '../../lib/styles/tokens/colors';
-import { Intro, BeforeResult, AfterWin } from './sections';
+import { Intro, BeforeResult, AfterWin } from './text';
 import { useVoteData } from './useVoteData';
 import { VoteCountBar } from './VoteCountBar';
 

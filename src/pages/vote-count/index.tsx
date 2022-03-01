@@ -24,11 +24,17 @@ const VoteCounts = () => {
       </Head>
       <PageHeader heading="Vote Count" />
       <main>
+        {/* Text content above the vote count bar and tables */}
+        <h2>About</h2>
         <Intro />
-        {(yes >= neededToWin || no >= neededToWin) && <BeforeResult />}
-        <AfterWin />
+        {yes < neededToWin && no < neededToWin && <BeforeResult />}
+        {yes >= neededToWin && <AfterWin />}
+
+        {/* The vote count bar */}
         <h3 id="heading">Results {total ? <LivePill /> : 'coming soon!'}</h3>
         <VoteCountBar yes={yes} no={no} total={total} neededToWin={neededToWin} />
+
+        {/* Yes / No votes table */}
         <table>
           <thead>
             <tr>
@@ -54,6 +60,8 @@ const VoteCounts = () => {
             </tr>
           </tbody>
         </table>
+
+        {/* Total / contested ballots table */}
         <h3>Ballot data</h3>
         <table>
           <tbody>

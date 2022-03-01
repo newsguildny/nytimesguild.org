@@ -1,12 +1,18 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import { PageHeader } from '../../components/PageHeader';
-import { LivePill } from '../../components/LivePill';
-import { serifSizes, sansSerif, sansSerifSizes } from '../../lib/styles/tokens/fonts';
-import { bodyText, noVote, tableBorder, yesVote } from '../../lib/styles/tokens/colors';
-import { Intro, BeforeResult, AfterWin } from './text';
-import { useVoteData } from './useVoteData';
-import { VoteCountBar } from './VoteCountBar';
+import { serifSizes, sansSerif, sansSerifSizes } from '../lib/styles/tokens/fonts';
+import { bodyText, noVote, tableBorder, yesVote } from '../lib/styles/tokens/colors';
+import { PageHeader } from '../components/PageHeader';
+import { LivePill } from '../components/LivePill';
+import {
+  Intro,
+  BeforeResult,
+  AfterWin,
+  WhileContested,
+  AfterLoss,
+} from '../components/vote-count/text';
+import { useVoteData } from '../components/vote-count/useVoteData';
+import { VoteCountBar } from '../components/vote-count/VoteCountBar';
 
 function format(n: number): string {
   return n ? `${(n * 100).toFixed(2)}%` : '--%';
@@ -14,6 +20,8 @@ function format(n: number): string {
 
 const VoteCounts = () => {
   const { yes, no, contested, total, neededToWin } = useVoteData();
+  // TODO: Define the logic for when the final outcome is contested
+  const contestedOutcome = false;
 
   return (
     <>
@@ -28,7 +36,9 @@ const VoteCounts = () => {
         <h2>About</h2>
         <Intro />
         {yes < neededToWin && no < neededToWin && <BeforeResult />}
+        {contestedOutcome && <WhileContested contested={contested} />}
         {yes >= neededToWin && <AfterWin />}
+        {no >= neededToWin && <AfterLoss />}
 
         {/* The vote count bar */}
         <h3 id="heading">Results {total ? <LivePill /> : 'coming soon!'}</h3>

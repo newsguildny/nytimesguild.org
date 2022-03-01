@@ -1,4 +1,4 @@
-import { ConfettiCannon, ConfettiCannonContext } from '../../components/ConfettiCannon';
+import { ConfettiCannon, ConfettiCannonContext } from '../ConfettiCannon';
 import { VoteCountSection } from './VoteCountSection';
 
 /**
@@ -20,15 +20,16 @@ export const Intro = () => (
 export const BeforeResult = () => (
   <>
     <p>
-      Before each ballot is counted, management can challenge. If they have reason to doubt a
-      voter&rsquo;s current employment status or unit eligibility, for example, they can request
-      that the voter&rsquo;s ballot be set aside.
+      Before each ballot is counted, either party can challenge a ballot. If management has reason
+      to doubt a voter&rsquo;s current employment status, signature, or eligibility, for example,
+      they can challenge the ballot. The NLRB officer can accept or dismiss the challenge. If the
+      challenge is accepted, the ballot is set aside and will only be counted if all challenged
+      ballots are determinative for the outcome.
     </p>
     <p>
-      The NLRB will first count unchallenged ballots. If a simple majority is reached in the initial
-      count or the number of challenged ballots cannot sway the outcome of the vote, our union will
-      be officially certified. Otherwise, challenged ballots will be reviewed for eligibility and
-      counted.
+      The NLRB will first count unchallenged ballots. If a simple majority of total ballots is
+      reached in the initial count, our union will be officially certified. Otherwise, challenged
+      ballots will be reviewed for eligibility and counted.
     </p>
   </>
 );
@@ -70,4 +71,21 @@ export const AfterWin = () => (
       }
     `}</style>
   </ConfettiCannon>
+);
+
+export const WhileContested = ({ contested = 0 }) => (
+  <p>
+    Times management has chosen to challenge {contested} ballot{contested !== 1 ? '' : 's'}. Because
+    the initial count did not show a simple majority, the NLRB will resolve the eligibility disputes
+    of challenged votes and count them.
+  </p>
+);
+
+export const AfterLoss = () => (
+  <p>
+    The NLRB ballot count has concluded, and unfortunately the Times Tech Guild did not gain a
+    majority of votes. While this is a heartbreaking setback, it will not deter us. We will continue
+    our work in solidarity, advocating for a fair and equitable workplace for all of our coworkers.
+    ✊
+  </p>
 );

@@ -34,6 +34,14 @@ const BeforeResult = () => (
   </>
 );
 
+const Contested = ({ contested = 0 }) => (
+  <p>
+    Times management has chosen to challenge {contested} ballot{contested !== 1 ? 's' : ''}. Because
+    the initial count did not show a simple majority, the NLRB will resolve the eligibility disputes
+    of challenged votes and count them.
+  </p>
+);
+
 const Win = ({ total = 0 }) => (
   <ConfettiCannon total={total}>
     <p>
@@ -46,14 +54,6 @@ const Win = ({ total = 0 }) => (
     </p>
     <p>We did it y&rsquo;all 🥲✊🎉</p>
   </ConfettiCannon>
-);
-
-const Contested = ({ contested = 0 }) => (
-  <p>
-    Times management has chosen to challenge {contested} ballot{contested !== 1 ? 's' : ''}. Because
-    the initial count did not show a simple majority, the NLRB will resolve the eligibility disputes
-    of challenged votes and count them.
-  </p>
 );
 
 const Loss = () => (

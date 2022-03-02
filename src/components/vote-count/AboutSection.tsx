@@ -1,4 +1,4 @@
-import { ConfettiCannon } from '../ConfettiCannon';
+import { ConfettiCannon, ConfettiCannonContext } from './ConfettiCannon';
 import { VoteData } from './useVoteData';
 
 /**
@@ -52,7 +52,21 @@ const Win = ({ total = 0 }) => (
       recognition of our unit makes us the largest tech union with bargaining rights in the United
       States!
     </p>
-    <p>We did it y&rsquo;all 🥲✊🎉</p>
+    <p>
+      We did it y&rsquo;all 🥲✊
+      <ConfettiCannonContext.Consumer>
+        {({ moreConfetti, onToggleMoreConfetti }) => (
+          <a
+            href="#"
+            onClick={onToggleMoreConfetti}
+            title={`${moreConfetti ? 'Less' : 'More'} confetti, please!`}
+            style={{ textDecoration: 'none' }}
+          >
+            🎉
+          </a>
+        )}
+      </ConfettiCannonContext.Consumer>
+    </p>
   </ConfettiCannon>
 );
 

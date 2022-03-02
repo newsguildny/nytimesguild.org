@@ -2,16 +2,12 @@ import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { ReactNode } from 'react';
 import { serifSizes, sansSerif, sansSerifSizes } from '../lib/styles/tokens/fonts';
+import { formatPercentage, useVoteData } from '../components/vote-count/useVoteData';
 import { bodyText, noVote, tableBorder, yesVote } from '../lib/styles/tokens/colors';
 import { PageHeader } from '../components/PageHeader';
 import { LivePill } from '../components/LivePill';
 import { AboutSection } from '../components/vote-count/AboutSection';
-import { useVoteData } from '../components/vote-count/useVoteData';
 import { VoteCountBar } from '../components/vote-count/VoteCountBar';
-
-function format(n: number): string {
-  return n ? `${(n * 100).toFixed(2)}%` : '--%';
-}
 
 const VoteCounts = () => {
   const { yes, no, contested, total, neededToWin } = useVoteData();
@@ -58,14 +54,14 @@ const VoteCounts = () => {
                 Yes <span className="drop-on-mobile">votes</span>
               </td>
               <td className="number-column">{yes}</td>
-              <td className="number-column">{format(yes / total)}</td>
+              <td className="number-column">{formatPercentage(yes, total)}</td>
             </tr>
             <tr>
               <td className="category-column no-cell">
                 No <span className="drop-on-mobile">votes</span>
               </td>
               <td className="number-column">{no}</td>
-              <td className="number-column">{format(no / total)}</td>
+              <td className="number-column">{formatPercentage(no, total)}</td>
             </tr>
           </tbody>
         </table>
@@ -75,13 +71,13 @@ const VoteCounts = () => {
         <table>
           <tbody>
             <tr>
-              <td>
+              <td className="category-column">
                 Total <span className="drop-on-mobile">ballots</span>
               </td>
               <td className="number-column">{total}</td>
             </tr>
             <tr>
-              <td>
+              <td className="category-column">
                 Contested <span className="drop-on-mobile">ballots</span>
               </td>
               <td className="number-column">{contested}</td>
@@ -132,6 +128,7 @@ const VoteCounts = () => {
         }
         .category-column {
           width: calc(100% - 20rem);
+          font-weight: 700;
         }
         .number-column {
           width: 10rem;

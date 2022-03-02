@@ -11,6 +11,10 @@ export interface VoteData {
   neededToWin: number;
 }
 
+export function formatPercentage(numerator: number, denominator: number): string {
+  return denominator ? `${Math.round((numerator / denominator) * 100)}%` : '--%';
+}
+
 export const isVoteData = (data: unknown): data is VoteData =>
   typeof data === 'object' &&
   data !== null &&

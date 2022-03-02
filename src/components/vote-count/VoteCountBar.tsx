@@ -45,7 +45,7 @@ export const VoteCountBar = ({
       />
       <div
         className="bar-half"
-        style={{ left: `calc(max(${total ? (neededToWin / total) * 100 : 0}%, 50%))` }}
+        style={{ left: `calc(max(${total ? (neededToWin / total) * 100 : 0}%, 50%) - 1px)` }}
       />
       <div
         className="bar-no"

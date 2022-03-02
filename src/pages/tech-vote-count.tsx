@@ -1,0 +1,155 @@
+import { GetStaticProps } from 'next';
+import Head from 'next/head';
+import { ReactNode } from 'react';
+import { serifSizes, sansSerif, sansSerifSizes } from '../lib/styles/tokens/fonts';
+import { formatPercentage, useVoteData } from '../components/vote-count/useVoteData';
+import { bodyText, noVote, tableBorder, yesVote } from '../lib/styles/tokens/colors';
+import { PageHeader } from '../components/PageHeader';
+import { LivePill } from '../components/LivePill';
+import { AboutSection } from '../components/vote-count/AboutSection';
+import { VoteCountBar } from '../components/vote-count/VoteCountBar';
+
+const VoteCounts = () => {
+  const { yes, no, contested, total, neededToWin, status } = useVoteData();
+
+  let resultStatus: ReactNode | undefined;
+  if (status === 'loading') resultStatus = 'coming soon!';
+  else if (status === 'beforeResult') resultStatus = <LivePill />;
+
+  return (
+    <>
+      <Head>
+        <title>Vote Count - The New York Times Guild</title>
+        <meta name="og:title" content="Vote Count" />
+        <meta name="og:type" content="website" />
+      </Head>
+      <PageHeader heading="Vote Count" />
+      <main>
+        {/* Partly dynamic text content above the vote count bar and tables */}
+        <AboutSection total={total} contested={contested} status={status} />
+
+        {/* The vote count bar */}
+        <h3 id="heading">Results {resultStatus}</h3>
+        <VoteCountBar yes={yes} no={no} total={total} neededToWin={neededToWin} />
+
+        {/* Yes / No votes table */}
+        <table>
+          <thead>
+            <tr>
+              <th aria-label="Vote category" className="category-column" />
+              <th className="number-column">Votes</th>
+              <th className="number-column">Pct. of total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className="category-column yes-cell">
+                Yes <span className="drop-on-mobile">votes</span>
+              </td>
+              <td className="number-column">{yes}</td>
+              <td className="number-column">{formatPercentage(yes, total)}</td>
+            </tr>
+            <tr>
+              <td className="category-column no-cell">
+                No <span className="drop-on-mobile">votes</span>
+              </td>
+              <td className="number-column">{no}</td>
+              <td className="number-column">{formatPercentage(no, total)}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        {/* Total / contested ballots table */}
+        <h3>Ballot data</h3>
+        <table>
+          <tbody>
+            <tr>
+              <td className="category-column">
+                Total <span className="drop-on-mobile">ballots</span>
+              </td>
+              <td className="number-column">{total}</td>
+            </tr>
+            <tr>
+              <td className="category-column">
+                Contested <span className="drop-on-mobile">ballots</span>
+              </td>
+              <td className="number-column">{contested}</td>
+            </tr>
+          </tbody>
+        </table>
+      </main>
+      <style jsx>{`
+        h3 {
+          display: flex;
+          margin-top: 5rem;
+          align-items: center;
+          font-family: ${sansSerif};
+          font-size: ${sansSerifSizes.large};
+          font-weight: 700;
+        }
+        table {
+          width: calc(100% - 4rem);
+          border-collapse: collapse;
+          font-family: ${sansSerif};
+          font-weight: 600;
+          font-size: ${sansSerifSizes.large};
+          color: black;
+        }
+        th {
+          padding: 0.5rem 1rem;
+          font-size: ${serifSizes.extraSmall};
+          color: ${bodyText};
+        }
+        td {
+          padding: 1rem;
+          border-top: solid thin ${tableBorder};
+          border-bottom: solid thin ${tableBorder};
+        }
+        td:first-of-type {
+          border-left: solid thin ${tableBorder};
+        }
+        td:last-of-type {
+          border-right: solid thin ${tableBorder};
+        }
+        td.yes-cell {
+          border-left: solid 0.25rem ${yesVote};
+          color: ${yesVote};
+        }
+        td.no-cell {
+          border-left: solid 0.25rem ${noVote};
+          color: ${noVote};
+        }
+        .category-column {
+          width: calc(100% - 20rem);
+          font-weight: 700;
+        }
+        .number-column {
+          width: 10rem;
+          text-align: right;
+        }
+        .drop-on-mobile {
+          display: none;
+        }
+
+        @media (min-width: 769px) {
+          table {
+            width: calc(100% - 10rem);
+          }
+          .drop-on-mobile {
+            display: inline;
+          }
+        }
+      `}</style>
+    </>
+  );
+};
+
+export const getStaticProps: GetStaticProps = async () => {
+  return {
+    props: {
+      slug: 'tech-vote-count',
+    },
+  };
+};
+
+export default VoteCounts;

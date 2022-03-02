@@ -26,7 +26,7 @@ const VoteCounts = () => {
       <PageHeader heading="Vote Count" />
       <main>
         {/* Partly dynamic text content above the vote count bar and tables */}
-        <AboutSection contested={contested} status={status} />
+        <AboutSection total={total} contested={contested} status={status} />
 
         {/* The vote count bar */}
         <h3 id="heading">Results {resultStatus}</h3>
@@ -132,6 +132,9 @@ const VoteCounts = () => {
         }
 
         @media (min-width: 769px) {
+          table {
+            width: calc(100% - 10rem);
+          }
           .drop-on-mobile {
             display: inline;
           }

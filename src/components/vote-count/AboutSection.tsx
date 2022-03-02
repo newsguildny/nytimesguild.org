@@ -1,6 +1,5 @@
-import { ConfettiCannon, ConfettiCannonContext } from '../ConfettiCannon';
+import { ConfettiCannon } from '../ConfettiCannon';
 import { VoteData } from './useVoteData';
-import { VoteCountSection } from './VoteCountSection';
 
 /**
  * All text in this source file comes from this Google Sheet:
@@ -35,42 +34,17 @@ const BeforeResult = () => (
   </>
 );
 
-const Win = () => (
-  <ConfettiCannon>
-    <VoteCountSection breaking>
-      <p>
-        <strong>BREAKING NEWS:</strong>
-      </p>
-      <p>
-        The NLRB has counted a majority of votes in the Times Tech Guild&rsquo;s favor! The
-        recognition of our unit makes us the largest tech union with bargaining rights in the United
-        States!
-      </p>
-      <p>
-        We did it y&rsquo;all 🥲✊
-        <ConfettiCannonContext.Consumer>
-          {({ celebrating, resetCelebrating }) => (
-            <a
-              className={celebrating ? 'celebrating' : undefined}
-              href="#"
-              title={!celebrating ? 'Click to celebrate!!!' : undefined}
-              onClick={resetCelebrating}
-            >
-              🎉
-            </a>
-          )}
-        </ConfettiCannonContext.Consumer>
-      </p>
-    </VoteCountSection>
-    <style jsx>{`
-      a {
-        text-decoration: none;
-      }
-
-      .celebrating {
-        cursor: not-allowed;
-      }
-    `}</style>
+const Win = ({ total = 0 }) => (
+  <ConfettiCannon total={total}>
+    <p>
+      <strong>BREAKING NEWS:</strong>
+    </p>
+    <p>
+      The NLRB has counted a majority of votes in the Times Tech Guild&rsquo;s favor! The
+      recognition of our unit makes us the largest tech union with bargaining rights in the United
+      States!
+    </p>
+    <p>We did it y&rsquo;all 🥲✊🎉</p>
   </ConfettiCannon>
 );
 
@@ -91,12 +65,16 @@ const Loss = () => (
   </p>
 );
 
-export const AboutSection = ({ contested, status }: Pick<VoteData, 'contested' | 'status'>) => (
+export const AboutSection = ({
+  total,
+  contested,
+  status,
+}: Pick<VoteData, 'contested' | 'total' | 'status'>) => (
   <>
     <h2>About</h2>
     <Intro />
     {(status === 'loading' || status === 'beforeResult') && <BeforeResult />}
-    {status === 'win' && <Win />}
+    {status === 'win' && <Win total={total} />}
     {status === 'loss' && <Loss />}
     {status === 'contested' && <Contested contested={contested} />}
   </>

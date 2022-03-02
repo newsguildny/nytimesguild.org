@@ -60,7 +60,6 @@ export const useVoteData = (): VoteData => {
 
   useEffect(() => {
     const app = initializeApp(firebaseConfig);
-
     const db = getDatabase(app);
     updater(db, 'yes', setYes);
     updater(db, 'no', setNo);

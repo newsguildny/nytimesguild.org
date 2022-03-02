@@ -73,12 +73,13 @@ export function ConfettiCannon({ children, total }: ConfettiCannonProps) {
           background: ${breakingBackground};
           border: 0.125rem solid ${breakingBorder};
           padding: 0 1rem;
+          color: #3e3e3e;
         }
 
         .confetti-cannon {
           position: absolute;
-          Top: 0;
-          Bottom0;
+          top: 0;
+          left: 0;
           pointer-events: none;
         }
       `}</style>

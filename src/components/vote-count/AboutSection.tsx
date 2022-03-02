@@ -1,3 +1,4 @@
+import { sansSerif } from '../../lib/styles/tokens/fonts';
 import { ConfettiCannon, ConfettiCannonContext } from './ConfettiCannon';
 import { VoteData } from './useVoteData';
 
@@ -44,7 +45,7 @@ const Contested = ({ contested = 0 }) => (
 
 const Win = ({ total = 0 }) => (
   <ConfettiCannon total={total}>
-    <p>
+    <p className="breaking">
       <strong>BREAKING NEWS:</strong>
     </p>
     <p>
@@ -67,6 +68,12 @@ const Win = ({ total = 0 }) => (
         )}
       </ConfettiCannonContext.Consumer>
     </p>
+    <style jsx>{`
+      .breaking {
+        font-family: ${sansSerif};
+        line-height: 1em;
+      }
+    `}</style>
   </ConfettiCannon>
 );
 

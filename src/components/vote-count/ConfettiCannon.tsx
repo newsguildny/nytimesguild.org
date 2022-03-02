@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useRef, useState } from 'react';
+import { createContext, ReactNode, SyntheticEvent, useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { breakingBackground, breakingBorder } from '../../lib/styles/tokens/colors';
 
@@ -10,7 +10,12 @@ export interface ConfettiCannonProps {
   total: number;
 }
 
-export const ConfettiCannonContext = createContext({
+export interface ConfettiCannonContextValue {
+  moreConfetti: boolean;
+  onToggleMoreConfetti: (e: SyntheticEvent<HTMLElement>) => void;
+}
+
+export const ConfettiCannonContext = createContext<ConfettiCannonContextValue>({
   moreConfetti: false,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   onToggleMoreConfetti: () => {},
@@ -22,7 +27,8 @@ export function ConfettiCannon({ children, total }: ConfettiCannonProps) {
   const [height, setHeight] = useState(0);
   const ref = useRef<HTMLDivElement | null>(null);
 
-  const onToggleMoreConfetti = () => {
+  const onToggleMoreConfetti = (e: SyntheticEvent<HTMLElement>) => {
+    e.preventDefault();
     setMoreConfetti(!moreConfetti);
   };
 

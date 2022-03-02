@@ -10,12 +10,11 @@ import { AboutSection } from '../components/vote-count/AboutSection';
 import { VoteCountBar } from '../components/vote-count/VoteCountBar';
 
 const VoteCounts = () => {
-  const { yes, no, contested, total, neededToWin } = useVoteData();
+  const { yes, no, contested, total, neededToWin, status } = useVoteData();
 
   let resultStatus: ReactNode | undefined;
-  if (total > 0 && yes + no + contested === total) resultStatus = undefined;
-  else if (total === 0) resultStatus = 'coming soon!';
-  else resultStatus = <LivePill />;
+  if (status === 'loading') resultStatus = 'coming soon!';
+  else if (status === 'beforeResult') resultStatus = <LivePill />;
 
   return (
     <>
@@ -27,13 +26,7 @@ const VoteCounts = () => {
       <PageHeader heading="Vote Count" />
       <main>
         {/* Partly dynamic text content above the vote count bar and tables */}
-        <AboutSection
-          yes={yes}
-          no={no}
-          contested={contested}
-          total={total}
-          neededToWin={neededToWin}
-        />
+        <AboutSection contested={contested} status={status} />
 
         {/* The vote count bar */}
         <h3 id="heading">Results {resultStatus}</h3>

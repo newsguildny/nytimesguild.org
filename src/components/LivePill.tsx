@@ -26,7 +26,7 @@ export const LivePill = ({ outlined = false, small = false }) => (
       }
       .small {
         padding: 0.0625rem 0.4375rem;
-        margin-left: 0.125rem;
+        margin: -0.15625rem 0 -0.15625rem 0.125rem;
       }
     `}</style>
   </>

@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { initializeApp } from 'firebase/app';
 import { Database, getDatabase, ref, onValue } from 'firebase/database';
 
+export type VoteStatus = 'loading' | 'beforeResult' | 'win' | 'loss' | 'contested';
+
 export interface VoteData {
   yes: number;
   no: number;
@@ -9,19 +11,12 @@ export interface VoteData {
   /** The total number of ballots received */
   total: number;
   neededToWin: number;
+  status: VoteStatus;
 }
 
 export function formatPercentage(numerator: number, denominator: number): string {
   return denominator ? `${Math.round((numerator / denominator) * 100)}%` : '--%';
 }
-
-export const isVoteData = (data: unknown): data is VoteData =>
-  typeof data === 'object' &&
-  data !== null &&
-  typeof (data as Record<string, unknown>).yes === 'number' &&
-  typeof (data as Record<string, unknown>).no === 'number' &&
-  typeof (data as Record<string, unknown>).total === 'number' &&
-  typeof (data as Record<string, unknown>).contested === 'number';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCURKa7asmTfECkxa0S83ew5gLirPBdiFc',
@@ -33,6 +28,20 @@ export const firebaseConfig = {
   appId: '1:45909778564:web:02866d0927cfb9478f62d1',
 };
 
+function getVoteStatus({
+  yes,
+  no,
+  total,
+  contested,
+  neededToWin,
+}: Omit<VoteData, 'status'>): VoteStatus {
+  if (total === 0) return 'loading';
+  if (yes + no + contested === total && contested > 0) return 'contested';
+  if (yes >= neededToWin) return 'win';
+  if (no >= neededToWin) return 'loss';
+  return 'beforeResult';
+}
+
 function updater(db: Database, path: string, onUpdate: (n: number) => void) {
   onValue(ref(db, path), (snapshot) => {
     const data = snapshot.val();
@@ -42,13 +51,11 @@ function updater(db: Database, path: string, onUpdate: (n: number) => void) {
   });
 }
 
-export const useVoteData = (
-  initialValue: Omit<VoteData, 'neededToWin'> = { yes: 0, no: 0, total: 0, contested: 0 }
-): VoteData => {
-  const [yes, setYes] = useState<number>(initialValue.yes);
-  const [no, setNo] = useState<number>(initialValue.no);
-  const [contested, setContested] = useState<number>(initialValue.contested);
-  const [total, setTotal] = useState<number>(initialValue.total);
+export const useVoteData = (): VoteData => {
+  const [yes, setYes] = useState<number>(0);
+  const [no, setNo] = useState<number>(0);
+  const [contested, setContested] = useState<number>(0);
+  const [total, setTotal] = useState<number>(0);
   const neededToWin = Math.floor(total / 2) + 1;
 
   useEffect(() => {
@@ -67,5 +74,6 @@ export const useVoteData = (
     contested,
     total,
     neededToWin,
+    status: getVoteStatus({ yes, no, total, contested, neededToWin }),
   };
 };

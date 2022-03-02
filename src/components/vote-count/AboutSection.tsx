@@ -35,7 +35,7 @@ const BeforeResult = () => (
   </>
 );
 
-const AfterWin = () => (
+const Win = () => (
   <ConfettiCannon>
     <VoteCountSection breaking>
       <p>
@@ -74,7 +74,7 @@ const AfterWin = () => (
   </ConfettiCannon>
 );
 
-const WhileContested = ({ contested = 0 }) => (
+const Contested = ({ contested = 0 }) => (
   <p>
     Times management has chosen to challenge {contested} ballot{contested !== 1 ? 's' : ''}. Because
     the initial count did not show a simple majority, the NLRB will resolve the eligibility disputes
@@ -82,7 +82,7 @@ const WhileContested = ({ contested = 0 }) => (
   </p>
 );
 
-const AfterLoss = () => (
+const Loss = () => (
   <p>
     The NLRB ballot count has concluded, and unfortunately the Times Tech Guild did not gain a
     majority of votes. While this is a heartbreaking setback, it will not deter us. We will continue
@@ -91,18 +91,13 @@ const AfterLoss = () => (
   </p>
 );
 
-export const AboutSection = ({ yes, no, contested, total, neededToWin }: VoteData) => (
+export const AboutSection = ({ contested, status }: Pick<VoteData, 'contested' | 'status'>) => (
   <>
     <h2>About</h2>
     <Intro />
-    {yes < neededToWin &&
-      no < neededToWin &&
-      (yes + no + contested === total && contested > 0 ? (
-        <WhileContested contested={contested} />
-      ) : (
-        <BeforeResult />
-      ))}
-    {yes >= neededToWin && <AfterWin />}
-    {no >= neededToWin && <AfterLoss />}
+    {(status === 'loading' || status === 'beforeResult') && <BeforeResult />}
+    {status === 'win' && <Win />}
+    {status === 'loss' && <Loss />}
+    {status === 'contested' && <Contested contested={contested} />}
   </>
 );

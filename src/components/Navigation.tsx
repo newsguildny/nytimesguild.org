@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import css from 'styled-jsx/css';
 import { TGuild } from './svgs/TGuild';
 import { Burger } from './Burger';
-import { LivePill } from './LivePill';
 import { headerBackground, headerText } from '../lib/styles/tokens/colors';
 import { sansSerif, sansSerifSizes, serif, serifSizes } from '../lib/styles/tokens/fonts';
 import { getPagesMetadata } from '../lib/collections/pages';
@@ -86,10 +85,7 @@ export function Navigation({ slug }: Props) {
           ))}
           <li>
             <Link href="/tech-vote-count">
-              {/* TODO: `slug` is `undefined` on the `vote-count` page??? */}
-              <a className={slug === 'tech-vote-count' ? 'active' : ''}>
-                Vote Count <LivePill outlined small />
-              </a>
+              <a className={slug === 'tech-vote-count' ? 'active' : ''}>Vote Count</a>
             </Link>
           </li>
         </ul>

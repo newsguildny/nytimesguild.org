@@ -45,7 +45,13 @@ const Contested = ({ contested = 0 }) => (
 
 const Win = ({ total = 0 }) => (
   <ConfettiCannon total={total}>
-    <p className="breaking">
+    <p
+      style={{
+        fontFamily: sansSerif,
+        lineHeight: '1em',
+        marginTop: '1rem',
+      }}
+    >
       <strong>BREAKING NEWS:</strong>
     </p>
     <p>
@@ -53,7 +59,7 @@ const Win = ({ total = 0 }) => (
       recognition of our unit makes us the largest tech union with bargaining rights in the United
       States!
     </p>
-    <p>
+    <p style={{ marginBottom: '1rem' }}>
       We did it y&rsquo;all 🥲✊
       <ConfettiCannonContext.Consumer>
         {({ moreConfetti, onToggleMoreConfetti }) => (
@@ -68,12 +74,6 @@ const Win = ({ total = 0 }) => (
         )}
       </ConfettiCannonContext.Consumer>
     </p>
-    <style jsx>{`
-      .breaking {
-        font-family: ${sansSerif};
-        line-height: 1em;
-      }
-    `}</style>
   </ConfettiCannon>
 );
 

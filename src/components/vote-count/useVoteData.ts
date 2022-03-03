@@ -36,9 +36,9 @@ function getVoteStatus({
   neededToWin,
 }: Omit<VoteData, 'status'>): VoteStatus {
   if (total === 0) return 'loading';
-  if (yes + no + contested === total && contested > 0) return 'contested';
   if (yes >= neededToWin) return 'win';
   if (no >= neededToWin) return 'loss';
+  if (yes + no + contested === total && contested > 0) return 'contested';
   return 'beforeResult';
 }
 

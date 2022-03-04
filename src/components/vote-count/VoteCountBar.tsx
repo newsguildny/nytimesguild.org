@@ -1,18 +1,20 @@
 import { sansSerif, serif } from '../../lib/styles/tokens/fonts';
 import { noVote, yesVote } from '../../lib/styles/tokens/colors';
-import { VoteData, formatPercentage } from './useVoteData';
 
-export interface VoteCountBarProps extends Pick<VoteData, 'yes' | 'no' | 'total' | 'neededToWin'> {
-  winLabelWidth?: number;
+export function formatPercentage(numerator: number, denominator: number): string {
+  return denominator ? `${Math.round((numerator / denominator) * 100)}%` : '--%';
 }
 
-export const VoteCountBar = ({
-  yes,
-  no,
-  total,
-  neededToWin,
-  winLabelWidth = 80,
-}: VoteCountBarProps) => (
+export interface VoteCountBarProps {
+  yes: number;
+  no: number;
+  total: number;
+  neededToWin: number;
+}
+
+const WIN_LABEL_WIDTH = 80;
+
+export const VoteCountBar = ({ yes, no, total, neededToWin }: VoteCountBarProps) => (
   <>
     <div className="bar-labels">
       <div className="yes-label">
@@ -25,7 +27,7 @@ export const VoteCountBar = ({
         className="win-label"
         style={{
           left: `calc(max(${total ? (neededToWin / total) * 100 : 0}%, 50%) - ${
-            winLabelWidth / 2
+            WIN_LABEL_WIDTH / 2
           }px)`,
         }}
       >
@@ -74,7 +76,7 @@ export const VoteCountBar = ({
         top: 1rem;
         color: black;
         text-align: center;
-        width: ${winLabelWidth}px;
+        width: ${WIN_LABEL_WIDTH}px;
       }
       .no-label {
         padding: 1rem 0;

@@ -1,20 +1,17 @@
 import { GetStaticProps } from 'next';
 import Head from 'next/head';
-import { ReactNode } from 'react';
 import { serifSizes, sansSerif, sansSerifSizes } from '../lib/styles/tokens/fonts';
-import { formatPercentage, useVoteData } from '../components/vote-count/useVoteData';
 import { bodyText, noVote, tableBorder, yesVote } from '../lib/styles/tokens/colors';
 import { PageHeader } from '../components/PageHeader';
-import { LivePill } from '../components/LivePill';
-import { AboutSection } from '../components/vote-count/AboutSection';
-import { VoteCountBar } from '../components/vote-count/VoteCountBar';
+import { formatPercentage, VoteCountBar } from '../components/vote-count/VoteCountBar';
+import { ConfettiCannon, ConfettiCannonContext } from '../components/vote-count/ConfettiCannon';
 
 const VoteCounts = () => {
-  const { yes, no, contested, total, neededToWin, status } = useVoteData();
-
-  let resultStatus: ReactNode | undefined;
-  if (status === 'loading') resultStatus = 'coming soon!';
-  else if (status === 'beforeResult') resultStatus = <LivePill />;
+  const yes = 404;
+  const no = 88;
+  const contested = 16;
+  const neededToWin = 255;
+  const total = 508;
 
   return (
     <>
@@ -25,11 +22,47 @@ const VoteCounts = () => {
       </Head>
       <PageHeader heading="Vote Count" />
       <main>
-        {/* Partly dynamic text content above the vote count bar and tables */}
-        <AboutSection total={total} contested={contested} status={status} />
+        <h2>About</h2>
+        <p>Ballot counting will take place on Thursday, March 3rd.</p>
+        <p>
+          This vote determines whether or not our union is certified, and is decided by a simple
+          majority (50% +1 vote) of total ballots. The vertical line in the center of the bar graph
+          indicates the number of votes needed to decide the outcome.
+        </p>
+        <ConfettiCannon total={total}>
+          <p
+            style={{
+              fontFamily: sansSerif,
+              lineHeight: '1em',
+              marginTop: '1rem',
+            }}
+          >
+            <strong>BREAKING NEWS:</strong>
+          </p>
+          <p>
+            The NLRB has counted a majority of votes in the Times Tech Guild&rsquo;s favor! The
+            recognition of our unit makes us the largest tech union with bargaining rights in the
+            United States!
+          </p>
+          <p style={{ marginBottom: '1rem' }}>
+            We did it y&rsquo;all 🥲✊
+            <ConfettiCannonContext.Consumer>
+              {({ moreConfetti, onToggleMoreConfetti }) => (
+                <a
+                  href="#"
+                  onClick={onToggleMoreConfetti}
+                  title={`${moreConfetti ? 'Less' : 'More'} confetti, please!`}
+                  style={{ textDecoration: 'none' }}
+                >
+                  🎉
+                </a>
+              )}
+            </ConfettiCannonContext.Consumer>
+          </p>
+        </ConfettiCannon>
 
         {/* The vote count bar */}
-        <h3 id="heading">Results {resultStatus}</h3>
+        <h3 id="heading">Results</h3>
         <VoteCountBar yes={yes} no={no} total={total} neededToWin={neededToWin} />
 
         {/* Yes / No votes table */}

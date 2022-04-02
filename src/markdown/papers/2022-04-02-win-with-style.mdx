@@ -42,6 +42,29 @@ import { useEffect, useState } from 'react';
 import { initializeApp } from 'firebase/app';
 import { Database, getDatabase, ref, onValue } from 'firebase/database';
 
+function getVoteStatus({
+  yes,
+  no,
+  total,
+  contested,
+  neededToWin,
+}: Omit<VoteData, 'status'>): VoteStatus {
+  if (total === 0) return 'loading';
+  if (yes + no + contested === total && contested > 0) return 'contested';
+  if (yes >= neededToWin) return 'win';
+  if (no >= neededToWin) return 'loss';
+  return 'beforeResult';
+}
+
+function updater(db: Database, path: string, onUpdate: (n: number) => void) {
+  onValue(ref(db, path), (snapshot) => {
+    const data = snapshot.val();
+    if (typeof data === 'number') {
+      onUpdate(data);
+    }
+  });
+}
+
 export const useVoteData = (): VoteData => {
   const [yes, setYes] = useState<number>(0);
   const [no, setNo] = useState<number>(0);
@@ -69,4 +92,12 @@ export const useVoteData = (): VoteData => {
 };
 ```
 
-*Note*: Our entire website is open source! You can look through its source code at [github.com/newsguildny/nytimesguild.org](https://github.com/newsguildny/nytimesguild.org). The above code has since been removed, because the page doesn't need to update live anymore, but it was added in these two commits:
+*Note*: Our entire website is open source! You can look through its source code at [github.com/newsguildny/nytimesguild.org](https://github.com/newsguildny/nytimesguild.org). The above code has since been removed, because the page doesn't need to update live anymore, but it was added in these two commits: [4e9e5cbfab](https://github.com/newsguildny/nytimesguild.org/commit/4e9e5cbfabaf59e255997542acdfd92db74c4599), and [e64242c15a](https://github.com/newsguildny/nytimesguild.org/commit/e64242c15ae3a7bf2d9f620c7fc50ce67b8996e1).
+
+We wrote the majority of this code in a pairing session with a few engineers and a designer; it only took about an hour! The rest was just a matter of appropriately sizing some DOM elements to make the vote count bar, and making everything look right.
+
+## The day of the vote
+
+On the day of the certification vote, one of the Organizing Committee members was tasked with tracking the ballots as they were announced on the Zoom call. They had the Realtime DB UI pulled up and updated the values in the database in real time. When the "yes" ballots passed the threshold to certify the union, the page automatically updated to show a message celebrating our win. We dropped some confetti, too, for good measure. Even with a few hiccups (a "123" accidentally went in as "1234" for a brief moment, triggering the confetti prematurely for anyone who happened to be watching), the whole event was nearly seamless. And we got 20,000 page views in one day!
+
+If you're interested in building your own vote count page for a unit certification, or if you have any other questions that you think the Times Tech Guild could help you out with, don't hesitate to reach out! You can reach us at [nyttech@nyguild.org](mailto:nyttech@nyguild.org) and [NYTGuildTech](https://twitter.com/NYTGuildTech). We'd love to help!

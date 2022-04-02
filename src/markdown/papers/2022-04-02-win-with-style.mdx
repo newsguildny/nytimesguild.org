@@ -1,6 +1,6 @@
 ---
 slug: win-with-style
-headline: How To Win Your Union Certification Vote — In Style
+headline: How To Win Your Union Certification Vote — With Style
 date: 2022-04-02T13:42:50.310Z
 snippet: On March 3, 2022, [The New York Times Tech Guild won its certification
   vote](https://nytimesguild.org/tech-vote-count) with a whopping 80% of votes
@@ -14,4 +14,22 @@ On March 3, 2022, [The New York Times Tech Guild won its certification vote](htt
 
 ## Why we built a live vote count page
 
-A week or so before our certification vote, one of the members of our Organizing Committee, Vicki Crosson, had a brilliant idea: We should make it possible for everyone in our unit to see the vote count live. The actual act of counting the physical paper ballots took place in the New York City headquarters of the National Labor Relations Board, and only **\[not sure who?]** was allowed to be there in person. There was a live Zoom feed of the entire process that anyone in the unit could join, but since the vote count was occurring during the workday, very few people would actually be able to follow the video call in real time.
+A week or so before our certification vote, one of the members of our Organizing Committee, Vicki Crosson, had a brilliant idea: We should make it possible for everyone in our unit to see the vote count live. The actual act of counting the physical paper ballots took place in the New York City headquarters of the National Labor Relations Board, and only NLRB staff and legal representatives were allowed to be there in person. There was a live Zoom feed of the entire process that anyone in the unit could join, but since the vote count was occurring during the workday, very few people would actually be able to follow the video call in real time.
+
+One of the primary goals of our organizing campaign is to maximize engagement from unit members. We're building a strong union of coworkers that are willing to take a stand for each other in solidarity. The Zoom call just wasn't cutting it; we wanted *everyone* to be able to follow along and feel like they were a part of this victory. So we needed something more accessible, especially for people who would be checking in between meetings and needed to be able to quickly get up to speed.
+
+Luckily, we already had a website, [nytimesguild.org](https://nytimesguild.org/), that we built to be as easy to iterate on as possible. And we have a unit-full of product managers, project managers, designers, data analysts, and software engineers; we couldn't have been better suited to the task of building a new live vote count page. So that's what we did!
+
+## How we built it
+
+We had less than a week between the origination of the idea and the scheduled certification vote. Our timeline was strict, and everyone contributing time to this effort was doing so outside of normal work hours. We had to optimize for speed, which meant using prebuilt solutions wherever we could. We quickly came up with a list of requirements:
+
+1. The page had to update live, without requiring a refresh. We want people to be able to see the vote count update in real time.
+2. There needed to be a mechanism for updating the page that someone on the Organizing Committee would have access to.
+3. The aforementioned admin portal needed to be heavily access controlled. Only the people in charge of syncing the votes could have access.
+4. Our website doesn't have a backend server (it's compiled to static assets at build time via [Next.js's Static HTML Export](https://nextjs.org/docs/advanced-features/static-html-export), and served by [Netlify CDN](https://www.netlify.com)), so any additional technology can't rely on a backend server!
+5. We had to be able to built it in about 5 days!
+
+When it comes to realtime updates, it's hard to beat [Google Cloud Platform's Firebase](https://firebase.google.com/). The New York Times' own collaborative text editor, [Oak](https://open.nytimes.com/building-a-text-editor-for-a-digital-first-newsroom-f1cb8367fc21), uses Firestore, one of Firebase's two database offerings, as the backing store for its rich text documents. Firebase has another huge benefit, too: it has a GUI for its database. It's almost astonishingly easy to edit any value in a Firestore or Realtime DB instance, and access to the database admin UI can be controlled via Google accounts. Since Firebase is a "Backend-as-a-Service" offering, it's accessible over HTTP and can be reached directly from the browser.
+
+Since we were only worried about storing four numbers (the total number of ballots cast, the number of contested ballots, the number of "yes" ballots, and the number of "no" ballots), we opted for Firebase's simpler Realtime DB over the more powerful (but slightly more complex) Firestore offering. The difference in complexity between the two in practice is almost negligible, but Realtime DB fit our needs so that's what we went with!

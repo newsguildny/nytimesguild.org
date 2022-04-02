@@ -6,6 +6,7 @@ import { Footer } from '../components/Footer';
 import { bodyText, link, rule, secondaryHeadingText } from '../lib/styles/tokens/colors';
 import { sansSerif, serif, serifSizes } from '../lib/styles/tokens/fonts';
 import 'lite-youtube-embed/src/lite-yt-embed.css';
+import 'prismjs/themes/prism-okaidia.css';
 
 function App({ Component, pageProps }: AppProps) {
   // For now, we'd like to hide header/footer on The Table's landing page
@@ -105,6 +106,13 @@ function App({ Component, pageProps }: AppProps) {
           font-size: ${serifSizes.small};
           font-weight: 400;
           color: ${bodyText};
+        }
+
+        // Code blocks default to Consolas/monospace, which looks
+        // much larger than our serif and sans serif fonts, so
+        // we pick a smaller font size.
+        pre[class*='language-'] {
+          font-size: var(--nyt-sans-serif-small);
         }
 
         // next-mdx-remote initially renders MDX content into

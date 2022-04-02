@@ -2,6 +2,7 @@ import rehypeSlug from 'rehype-slug';
 import renderToStringMdxRemote from 'next-mdx-remote/render-to-string';
 import { MdxRemote } from 'next-mdx-remote/types';
 import { buildStaticContextValue, StaticContext } from 'next-static-context';
+import prism from 'remark-prism';
 import { remarkLineBreaks } from './remarkPlugins';
 
 export async function renderToString(
@@ -20,7 +21,7 @@ export async function renderToString(
       },
     }),
     mdxOptions: {
-      remarkPlugins: [remarkLineBreaks],
+      remarkPlugins: [remarkLineBreaks, prism],
       rehypePlugins: [rehypeSlug],
     },
   });

@@ -5023,6 +5023,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/remark-prism@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "@types/remark-prism@npm:1.3.0"
+  dependencies:
+    remark: ^12.0.0
+    unified: ^9.2.1
+  checksum: 293bfa17007a54e040aced34dc25eaa31aad3cf1f760c9a1e90d8780a88ca13686804ce16fba67c646fe9e767af48433366ea51a975b8f89a44c6901c8c096b6
+  languageName: node
+  linkType: hard
+
 "@types/responselike@npm:*, @types/responselike@npm:^1.0.0":
   version: 1.0.0
   resolution: "@types/responselike@npm:1.0.0"
@@ -6888,6 +6898,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"classnames@npm:^2.3.1":
+  version: 2.3.1
+  resolution: "classnames@npm:2.3.1"
+  checksum: 14db8889d56c267a591f08b0834989fe542d47fac659af5a539e110cc4266694e8de86e4e3bbd271157dbd831361310a8293e0167141e80b0f03a0f175c80960
+  languageName: node
+  linkType: hard
+
 "clean-stack@npm:^2.0.0":
   version: 2.2.0
   resolution: "clean-stack@npm:2.2.0"
@@ -7415,6 +7432,13 @@ __metadata:
     domutils: ^1.7.0
     nth-check: ^1.0.2
   checksum: 0c4099910f2411e2a9103cf92ea6a4ad738b57da75bcf73d39ef2c14a00ef36e5f16cb863211c901320618b24ace74da6333442d82995cafd5040077307de462
+  languageName: node
+  linkType: hard
+
+"css-selector-parser@npm:^1.4.1":
+  version: 1.4.1
+  resolution: "css-selector-parser@npm:1.4.1"
+  checksum: 31948754e579eedb918c2fb2d5a4c643ec769ff4a0d03a7bd10b43b25d44973f8cbe86d7ec00c4494269f7ff38b3d2ab0f6ea801cece0ef0974e74469dff770c
   languageName: node
   linkType: hard
 
@@ -8261,7 +8285,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"escape-html@npm:~1.0.3":
+"escape-html@npm:^1.0.3, escape-html@npm:~1.0.3":
   version: 1.0.3
   resolution: "escape-html@npm:1.0.3"
   checksum: 6213ca9ae00d0ab8bccb6d8d4e0a98e76237b2410302cf7df70aaa6591d509a2a37ce8998008cbecae8fc8ffaadf3fb0229535e6a145f3ce0b211d060decbb24
@@ -11335,7 +11359,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jsdom@npm:^16.6.0":
+"jsdom@npm:^16.5.3, jsdom@npm:^16.6.0":
   version: 16.7.0
   resolution: "jsdom@npm:16.7.0"
   dependencies:
@@ -11954,6 +11978,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"markdown-table@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "markdown-table@npm:2.0.0"
+  dependencies:
+    repeat-string: ^1.0.0
+  checksum: 9bb634a9300016cbb41216c1eab44c74b6b7083ac07872e296f900a29449cf0e260ece03fa10c3e9784ab94c61664d1d147da0315f95e1336e2bdcc025615c90
+  languageName: node
+  linkType: hard
+
 "material-colors@npm:^1.2.1":
   version: 1.2.6
   resolution: "material-colors@npm:1.2.6"
@@ -11987,6 +12020,15 @@ __metadata:
   dependencies:
     unist-util-visit: ^1.1.0
   checksum: 5c2eec96bd9f231d54733bbfb4fbd83ec8e1a6ddd9084a79f502614b6868a27be8ac75946ba5871c3d291673904da1fa63a5738de9c98ac1dbfd011ebb57d853
+  languageName: node
+  linkType: hard
+
+"mdast-util-compact@npm:^2.0.0":
+  version: 2.0.1
+  resolution: "mdast-util-compact@npm:2.0.1"
+  dependencies:
+    unist-util-visit: ^2.0.0
+  checksum: 750cc76e46223d2dadf86835d415d4954566572e6af5a8df5577065e5f863dda46c30767e12e29c4ec53cf2e7040863b0279d44af357e8b36f5983d78a73dceb
   languageName: node
   linkType: hard
 
@@ -13517,6 +13559,7 @@ __metadata:
     "@types/netlify-identity-widget": ^1.9.2
     "@types/node": ^16.7.13
     "@types/react": ^17.0.20
+    "@types/remark-prism": ^1.3.0
     "@types/unist": 2.0.3
     "@types/webpack-env": ^1.16.2
     "@typescript-eslint/eslint-plugin": 4.20.0
@@ -13552,6 +13595,7 @@ __metadata:
     next-static-context: ^1.0.1
     normalize.css: ^8.0.1
     prettier: ^2.1.2
+    prismjs: ^1.27.0
     react: ^17.0.2
     react-accessible-accordion: ^3.3.4
     react-confetti: ^6.0.1
@@ -13564,6 +13608,7 @@ __metadata:
     rehype-slug: ^4.0.1
     rehype-stringify: ^8.0.0
     remark-parse: ^9.0.0
+    remark-prism: ^1.3.6
     remark-rehype: ^8.0.0
     remark-sectionize: ^1.1.1
     remark-stringify: ^9.0.1
@@ -13574,13 +13619,10 @@ __metadata:
     unified: ^9.2.1
     unist-util-visit: ^2.0.3
     yaml-loader: ^0.6.0
-  dependenciesMeta:
-    next-static-context@1.0.0-rc5:
-      unplugged: true
   languageName: unknown
   linkType: soft
 
-"object-assign@npm:^4, object-assign@npm:^4.1.0, object-assign@npm:^4.1.1":
+"object-assign@npm:^4, object-assign@npm:^4.0.0, object-assign@npm:^4.1.0, object-assign@npm:^4.1.1":
   version: 4.1.1
   resolution: "object-assign@npm:4.1.1"
   checksum: fcc6e4ea8c7fe48abfbb552578b1c53e0d194086e2e6bbbf59e0a536381a292f39943c6e9628af05b5528aa5e3318bb30d6b2e53cadaf5b8fe9e12c4b69af23f
@@ -13965,7 +14007,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"parse5@npm:6.0.1, parse5@npm:^6.0.0":
+"parse-numeric-range@npm:^1.2.0":
+  version: 1.3.0
+  resolution: "parse-numeric-range@npm:1.3.0"
+  checksum: 289ca126d5b8ace7325b199218de198014f58ea6895ccc88a5247491d07f0143bf047f80b4a31784f1ca8911762278d7d6ecb90a31dfae31da91cc1a2524c8ce
+  languageName: node
+  linkType: hard
+
+"parse5-htmlparser2-tree-adapter@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "parse5-htmlparser2-tree-adapter@npm:6.0.1"
+  dependencies:
+    parse5: ^6.0.1
+  checksum: 1848378b355d027915645c13f13f982e60502d201f53bc2067a508bf2dba4aac08219fc781dcd160167f5f50f0c73f58d20fa4fb3d90ee46762c20234fa90a6d
+  languageName: node
+  linkType: hard
+
+"parse5@npm:6.0.1, parse5@npm:^6.0.0, parse5@npm:^6.0.1":
   version: 6.0.1
   resolution: "parse5@npm:6.0.1"
   checksum: 7d569a176c5460897f7c8f3377eff640d54132b9be51ae8a8fa4979af940830b2b0c296ce75e5bd8f4041520aadde13170dbdec44889975f906098ea0002f4bd
@@ -14238,6 +14296,13 @@ __metadata:
     ansi-styles: ^5.0.0
     react-is: ^17.0.1
   checksum: 2472b03b804c21cb1fde94fb01c4ad6e3395e33d8e339ae0ee3dbca0a212235079c8250b5ccb15aa8700c7107b6bbbaaf7ab0d8246d4cf9092e9467a6e22beda
+  languageName: node
+  linkType: hard
+
+"prismjs@npm:^1.23.0, prismjs@npm:^1.27.0":
+  version: 1.27.0
+  resolution: "prismjs@npm:1.27.0"
+  checksum: 85c7f4a3e999073502cc9e1882af01e3709706369ec254b60bff1149eda701f40d02512acab956012dc7e61cfd61743a3a34c1bd0737e8dbacd79141e5698bbc
   languageName: node
   linkType: hard
 
@@ -15476,7 +15541,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"remark-parse@npm:8.0.3":
+"remark-parse@npm:8.0.3, remark-parse@npm:^8.0.0":
   version: 8.0.3
   resolution: "remark-parse@npm:8.0.3"
   dependencies:
@@ -15529,6 +15594,23 @@ __metadata:
   dependencies:
     mdast-util-from-markdown: ^0.8.0
   checksum: 50104880549639b7dd7ae6f1e23c214915fe9c054f02f3328abdaee3f6de6d7282bf4357c3c5b106958fe75e644a3c248c2197755df34f9955e8e028fc74868f
+  languageName: node
+  linkType: hard
+
+"remark-prism@npm:^1.3.6":
+  version: 1.3.6
+  resolution: "remark-prism@npm:1.3.6"
+  dependencies:
+    classnames: ^2.3.1
+    css-selector-parser: ^1.4.1
+    escape-html: ^1.0.3
+    jsdom: ^16.5.3
+    parse-numeric-range: ^1.2.0
+    parse5: ^6.0.1
+    parse5-htmlparser2-tree-adapter: ^6.0.1
+    prismjs: ^1.23.0
+    unist-util-map: ^2.0.1
+  checksum: f0b1d008957ba4868a1b921201a2ddaa6880e0dc89c16c752e87602337e38d4b8e140ceb12a05332efe16900bd73aa7e16cd2dede2c0673b1d2ea6e09b09724d
   languageName: node
   linkType: hard
 
@@ -15591,12 +15673,45 @@ __metadata:
   languageName: node
   linkType: hard
 
+"remark-stringify@npm:^8.0.0":
+  version: 8.1.1
+  resolution: "remark-stringify@npm:8.1.1"
+  dependencies:
+    ccount: ^1.0.0
+    is-alphanumeric: ^1.0.0
+    is-decimal: ^1.0.0
+    is-whitespace-character: ^1.0.0
+    longest-streak: ^2.0.1
+    markdown-escapes: ^1.0.0
+    markdown-table: ^2.0.0
+    mdast-util-compact: ^2.0.0
+    parse-entities: ^2.0.0
+    repeat-string: ^1.5.4
+    state-toggle: ^1.0.0
+    stringify-entities: ^3.0.0
+    unherit: ^1.0.4
+    xtend: ^4.0.1
+  checksum: 9a556e5a0dc26db151694a5d0a1dcd0f21bd7e619b3934d677876a633ad01a03e38f5cf174ff5468ec755d5a9398f4fbccac4788e04f5bcab8bb2583eddbc1b3
+  languageName: node
+  linkType: hard
+
 "remark-stringify@npm:^9.0.1":
   version: 9.0.1
   resolution: "remark-stringify@npm:9.0.1"
   dependencies:
     mdast-util-to-markdown: ^0.6.0
   checksum: 93f46076f4d96ab1946d13e7dd43e83088480ac6b1dfe05a65e2c2f0e33d1f52a50175199b464a81803fc0f5b3bf182037665f89720b30515eba37bec4d63d56
+  languageName: node
+  linkType: hard
+
+"remark@npm:^12.0.0":
+  version: 12.0.1
+  resolution: "remark@npm:12.0.1"
+  dependencies:
+    remark-parse: ^8.0.0
+    remark-stringify: ^8.0.0
+    unified: ^9.0.0
+  checksum: 1ce7a264c19b3d0b915b0c08c9b84c053b03ecd65086ca25ac54e1ce5a685a1153403da870ec8e43f7b98c47fc6e7f0a12eb4d16481facc88131c1dbd4af01a1
   languageName: node
   linkType: hard
 
@@ -16757,7 +16872,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stringify-entities@npm:^3.0.1":
+"stringify-entities@npm:^3.0.0, stringify-entities@npm:^3.0.1":
   version: 3.1.0
   resolution: "stringify-entities@npm:3.1.0"
   dependencies:
@@ -17678,6 +17793,16 @@ typescript@^4.4.2:
   version: 4.0.3
   resolution: "unist-util-is@npm:4.0.3"
   checksum: 8febc0ef7d722a8ef22980a251815e87eb8981125becdc91189eb9fec9a343843413e876377d5e2c320c2051215fbfde143f1509218ce3ba3faec00101f27eb3
+  languageName: node
+  linkType: hard
+
+"unist-util-map@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "unist-util-map@npm:2.0.1"
+  dependencies:
+    "@types/mdast": ^3.0.0
+    object-assign: ^4.0.0
+  checksum: 0a8bbe5dfd7855b621cad1e603ada406846e8aa1fe0d6b601e2fa286bb6ba8f1cde0ab04f897f236358deb8f21fbb3a59c4f8214cdaf65b2ec6a6f6215046ba9
   languageName: node
   linkType: hard
 

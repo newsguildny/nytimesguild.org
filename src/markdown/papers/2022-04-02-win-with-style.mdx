@@ -35,3 +35,33 @@ When it comes to realtime updates, it's hard to beat [Google Cloud Platform's Fi
 Since we were only worried about storing four numbers (the total number of ballots cast, the number of contested ballots, the number of "yes" ballots, and the number of "no" ballots), we opted for Firebase's simpler Realtime DB over the more powerful (but slightly more complex) Firestore offering. The difference in complexity between the two in practice is almost negligible, but Realtime DB fit our needs so that's what we went with.
 
 ![A screenshot of the Firebase Realtime Database admin page. The value for contested is set to 16, the value for no is set to 88, the value for total is set to 508, and the value for yes is set to 404. The value for yes is currently being edited.](/images/screen-shot-2022-04-02-at-1.44.26-pm.png "A screenshot of the Firebase Realtime Database admin page.")
+
+The code for subscribing to changes to these values was fairly simple. Our website is written in React, so we wrote a simple hook that utilizes the [Firebase Realtime Database SDK](https://firebase.google.com/docs/database/web/start) to update some React state whenever the values change:
+
+```typescript
+export const useVoteData = (): VoteData => {
+  const [yes, setYes] = useState<number>(0);
+  const [no, setNo] = useState<number>(0);
+  const [contested, setContested] = useState<number>(0);
+  const [total, setTotal] = useState<number>(0);
+  const neededToWin = Math.floor(total / 2) + 1;
+
+  useEffect(() => {
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    updater(db, 'yes', setYes);
+    updater(db, 'no', setNo);
+    updater(db, 'total', setTotal);
+    updater(db, 'contested', setContested);
+  }, []);
+
+  return {
+    yes,
+    no,
+    contested,
+    total,
+    neededToWin,
+    status: getVoteStatus({ yes, no, total, contested, neededToWin }),
+  };
+};
+```

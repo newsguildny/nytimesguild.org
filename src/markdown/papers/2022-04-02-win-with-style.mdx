@@ -2,13 +2,12 @@
 slug: win-with-style
 headline: How To Win Your Union Certification Vote — With Style
 date: 2022-04-02T13:42:50.310Z
-snippet: On March 3, 2022, [The New York Times Tech Guild won its certification
-  vote](https://nytimesguild.org/tech-vote-count) with a whopping 80% of votes
-  in favor. Throughout the day, over seven thousand people watched the vote
-  count live on our website, which we had updated the week before to include a
-  live-updating vote count page. Winning our certification by such a large
-  margin was a huge victory, and so was the excitement we generated about our
-  new unit!
+snippet: On March 3, 2022, The New York Times Tech Guild won its certification
+  vote with a whopping 80% of votes in favor. Throughout the day, over seven
+  thousand people watched the vote count live on our website, which we had
+  updated the week before to include a live-updating vote count page. Winning
+  our certification by such a large margin was a huge victory, and so was the
+  excitement we generated about our new unit!
 ---
 On March 3, 2022, [The New York Times Tech Guild won its certification vote](https://nytimesguild.org/tech-vote-count) with a whopping 80% of votes in favor. Throughout the day, over seven thousand people watched the vote count live on our website, which we had updated the week before to include a live-updating vote count page. Winning our certification by such a large margin was a huge victory, and so was the excitement we generated about our new unit!
 
@@ -39,6 +38,10 @@ Since we were only worried about storing four numbers (the total number of ballo
 The code for subscribing to changes to these values was fairly simple. Our website is written in React, so we wrote a simple hook that utilizes the [Firebase Realtime Database SDK](https://firebase.google.com/docs/database/web/start) to update some React state whenever the values change:
 
 ```typescript
+import { useEffect, useState } from 'react';
+import { initializeApp } from 'firebase/app';
+import { Database, getDatabase, ref, onValue } from 'firebase/database';
+
 export const useVoteData = (): VoteData => {
   const [yes, setYes] = useState<number>(0);
   const [no, setNo] = useState<number>(0);
@@ -65,3 +68,5 @@ export const useVoteData = (): VoteData => {
   };
 };
 ```
+
+*Note*: Our entire website is open source! You can look through its source code at [github.com/newsguildny/nytimesguild.org](https://github.com/newsguildny/nytimesguild.org). The above code has since been removed, because the page doesn't need to update live anymore, but it was added in these two commits:

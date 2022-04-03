@@ -1,0 +1,116 @@
+---
+slug: win-with-style
+headline: How To Win Your Union Certification Vote — With Style
+date: 2022-04-02T13:42:50.310Z
+snippet: On March 3, 2022, The New York Times Tech Guild won its certification
+  vote with a whopping 82% of votes in favor. Throughout the day, over seven
+  thousand people watched the vote count live on our website, which we had
+  updated the week before to include a live-updating vote count page. Winning
+  our certification by such a large margin was a huge victory, and so was the
+  excitement we generated about our new unit!
+---
+On March 3, 2022, [The New York Times Tech Guild won its certification vote](https://nytimesguild.org/tech-vote-count) with a whopping 82% of votes in favor. Throughout the day, over seven thousand people watched the vote count live on our website, which we had updated the week before to include a live-updating vote count page. Winning our certification by such a large margin was a huge victory, and so was the excitement we generated about our new unit!
+
+## Why we built a live vote count page
+
+A week or so before our certification vote, one of the members of our Organizing Committee had a brilliant idea: We should make a live vote tracker. The actual act of counting the physical paper ballots took place in the New York City headquarters of the National Labor Relations Board, and only NLRB staff and legal representatives were allowed to be there in person. There was a live Zoom feed of the entire process that anyone in the unit could join, but since the vote count was occurring during the workday, very few people would actually be able to follow the video call in real time.
+
+One of the primary goals of our organizing campaign is to maximize engagement from unit members. We're building a strong union of coworkers that are willing to take a stand for each other in solidarity. And secondarily, we want to spark engagement from our community of tech workers and union workers outside the Times, too! The Zoom call just wasn't cutting it; we wanted *everyone* to be able to follow along and feel like they were a part of this victory. So we needed something more accessible, especially for people who would be checking in between meetings and needed to be able to quickly get up to speed.
+
+Luckily, we already had a website, [nytimesguild.org](https://nytimesguild.org/), that we built to be as easy to iterate on as possible. And we have a unit-full of product managers, project managers, designers, data analysts, and software engineers known for their outstanding live election coverage and data visualization. We couldn't have been better suited to the task of building a new live vote count page. So that's what we did!
+
+## How we built it
+
+We had less than a week between the origination of the idea and the scheduled certification vote. Our timeline was strict, and everyone contributing time to this effort was doing so outside of normal work hours. We had to optimize for speed, which meant using prebuilt solutions wherever we could. We quickly came up with a list of requirements:
+
+1. The page had to update live, without requiring a refresh. We want people to be able to see the vote count update in real time.
+2. There needed to be a mechanism for updating the page that someone on the Organizing Committee would have access to.
+3. The aforementioned admin portal needed to be heavily access controlled. Only the people in charge of syncing the votes could have access.
+4. Our website doesn't have a backend server (it's compiled to static assets at build time via [Next.js's Static HTML Export](https://nextjs.org/docs/advanced-features/static-html-export), and served by [Netlify CDN](https://www.netlify.com)), so any additional technology can't rely on a backend server.
+5. We had to be able to build it in about 5 days.
+
+When it comes to realtime updates, it's hard to beat [Google Cloud Platform's Firebase](https://firebase.google.com/). The New York Times' own collaborative text editor, [Oak](https://open.nytimes.com/building-a-text-editor-for-a-digital-first-newsroom-f1cb8367fc21), uses Firestore, one of Firebase's two database offerings, as the backing store for its rich text documents. Firebase has another huge benefit, too: it has a GUI for its database. It's almost astonishingly easy to edit any value in a Firestore or Realtime DB instance, and access to the database admin UI can be controlled via Google accounts. Since Firebase is a "Backend-as-a-Service" offering, it's accessible over HTTP and can be reached directly from the browser.
+
+Since we were only worried about storing four numbers (the total number of ballots cast, the number of contested ballots, the number of "yes" ballots, and the number of "no" ballots), we opted for Firebase's simpler Realtime DB over the more powerful (but slightly more complex) Firestore offering. The difference in complexity between the two in practice is almost negligible, but Realtime DB fit our needs so that's what we went with.
+
+![A screenshot of the Firebase Realtime Database admin page. The value for contested is set to 16, the value for no is set to 88, the value for total is set to 508, and the value for yes is set to 404. The value for yes is currently being edited.](/images/screen-shot-2022-04-02-at-1.44.26-pm.png "A screenshot of the Firebase Realtime Database admin page.")
+
+The code for subscribing to changes to these values was fairly simple. Our website is written in React, so we wrote a simple hook that utilizes the [Firebase Realtime Database SDK](https://firebase.google.com/docs/database/web/start) to update some React state whenever the values change:
+
+```typescript
+import { useEffect, useState } from 'react';
+import { initializeApp } from 'firebase/app';
+import { Database, getDatabase, ref, onValue } from 'firebase/database';
+
+function getVoteStatus({
+  yes,
+  no,
+  total,
+  contested,
+  neededToWin,
+}: Omit<VoteData, 'status'>): VoteStatus {
+  if (total === 0) return 'loading';
+  if (yes + no + contested === total && contested > 0) return 'contested';
+  if (yes >= neededToWin) return 'win';
+  if (no >= neededToWin) return 'loss';
+  return 'beforeResult';
+}
+
+function updater(db: Database, path: string, onUpdate: (n: number) => void) {
+  onValue(ref(db, path), (snapshot) => {
+    const data = snapshot.val();
+    if (typeof data === 'number') {
+      onUpdate(data);
+    }
+  });
+}
+
+export const useVoteData = (): VoteData => {
+  const [yes, setYes] = useState<number>(0);
+  const [no, setNo] = useState<number>(0);
+  const [contested, setContested] = useState<number>(0);
+  const [total, setTotal] = useState<number>(0);
+  const neededToWin = Math.floor(total / 2) + 1;
+
+  useEffect(() => {
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    updater(db, 'yes', setYes);
+    updater(db, 'no', setNo);
+    updater(db, 'total', setTotal);
+    updater(db, 'contested', setContested);
+  }, []);
+
+  return {
+    yes,
+    no,
+    contested,
+    total,
+    neededToWin,
+    status: getVoteStatus({ yes, no, total, contested, neededToWin }),
+  };
+};
+```
+
+Note: Our entire website is open source! You can look through its source code at [github.com/newsguildny/nytimesguild.org](https://github.com/newsguildny/nytimesguild.org). The above code has since been removed, because the page doesn't need to update live anymore, but it was added in these two commits: [4e9e5cbfab](https://github.com/newsguildny/nytimesguild.org/commit/4e9e5cbfabaf59e255997542acdfd92db74c4599), and [e64242c15a](https://github.com/newsguildny/nytimesguild.org/commit/e64242c15ae3a7bf2d9f620c7fc50ce67b8996e1).
+
+We wrote the majority of this code in a pairing session with a few engineers and a designer; it only took about an hour! The rest was just a matter of appropriately sizing some DOM elements to make the vote count bar, and making everything look right.
+
+## The day of the vote
+
+On the day of the certification vote, one of the Organizing Committee members was tasked with tracking the ballots as they were announced on the Zoom call. They had the Realtime DB UI pulled up and updated the values in the database in real time. When the "yes" ballots passed the threshold to certify the union, the page automatically updated to show a message celebrating our win. We dropped some confetti, too, for good measure. Even with a few hiccups (a "123" accidentally went in as "1234" for a brief moment, triggering the confetti prematurely for anyone who happened to be watching), the whole event was nearly seamless. And we got 20,000 page views in one day!
+
+If you're interested in building your own vote count page for a unit certification, or if you have any other questions that you think the Times Tech Guild could help you out with, don't hesitate to reach out! You can reach us at [nyttech@nyguild.org](mailto:nyttech@nyguild.org) and [NYTGuildTech](https://twitter.com/NYTGuildTech). We'd love to help!
+
+## Credits
+
+A huge thanks to everyone that helped make this happen:
+
+* Vicki Crosson, mastermind and data entry
+* Kait Hoehne, copy writer
+* Nora Keller, product and copy writer
+* Joe Kohlman, developer
+* Shane Moore (me), developer
+* Carrie Price, data entry
+* Riley Sykes, designer
+* Jeff Sisson, developer

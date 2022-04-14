@@ -1,0 +1,6 @@
+runtime: nodejs16
+
+handlers:
+  - url: /
+    static_dir: private-dist
+    secure: always

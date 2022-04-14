@@ -2,6 +2,18 @@
   publish = "dist"
   command = "yarn run export"
 
+[[redirects]]
+  from = "/admin/*"
+  status = 200
+  force = true
+  conditions = {Role = ["admin","editor"]}
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/login"
+  force = true
+  status = 401
+
 # @see https://docs.netlify.com/routing/redirects/#syntax-for-the-netlify-configuration-file
 [[redirects]]
   from = "/tech/avatar"

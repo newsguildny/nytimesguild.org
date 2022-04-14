@@ -4,7 +4,7 @@ import Head from 'next/head';
 import path from 'path';
 import fs from 'fs';
 import { useEffect } from 'react';
-import { init } from '../lib/netlify';
+import { init } from '../../lib/netlify';
 
 interface Props {
   config: CmsConfig;

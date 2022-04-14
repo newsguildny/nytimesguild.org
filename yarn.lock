@@ -9497,6 +9497,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gotrue-js@npm:^0.9.29":
+  version: 0.9.29
+  resolution: "gotrue-js@npm:0.9.29"
+  dependencies:
+    micro-api-client: ^3.2.1
+  checksum: f2042506dea0543a6220892eda01e5363e3dcaa39049933fbb9dc7f1c70869174ad4a1a72836c576e4dc39ad76899712d85a879537799fbe9fe22e9de9f64b04
+  languageName: node
+  linkType: hard
+
 "graceful-fs@npm:^4.1.2, graceful-fs@npm:^4.2.4":
   version: 4.2.4
   resolution: "graceful-fs@npm:4.2.4"
@@ -13193,13 +13202,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"netlify-identity-widget@npm:^1.9.1":
-  version: 1.9.1
-  resolution: "netlify-identity-widget@npm:1.9.1"
-  checksum: 35c056659ddf554dd300847431417ce9276be241481f16f1b36b04408accb7f558b13789e0da25b14a394b302359e1583ea5c33059ab35ba295331f3f86f83ec
-  languageName: node
-  linkType: hard
-
 "next-mdx-remote@npm:^2.1.3":
   version: 2.1.3
   resolution: "next-mdx-remote@npm:2.1.3"
@@ -13581,6 +13583,7 @@ __metadata:
     eslint-plugin-react: ^7.21.5
     eslint-plugin-react-hooks: ^4.2.0
     firebase: ^9.6.7
+    gotrue-js: ^0.9.29
     gray-matter: ^4.0.2
     husky: ^5.0.4
     jest: ^27.1.0
@@ -13588,8 +13591,8 @@ __metadata:
     lint-staged: ^10.5.1
     lite-youtube-embed: ^0.2.0
     netlify-cms-app: ^2.15.38
+    netlify-cms-core: ^2.47.2
     netlify-cms-proxy-server: ^1.3.12
-    netlify-identity-widget: ^1.9.1
     next: ^11
     next-mdx-remote: ^2.1.3
     next-static-context: ^1.0.1

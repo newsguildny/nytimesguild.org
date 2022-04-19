@@ -78,13 +78,13 @@ export function Navigation({ slug }: Props) {
         <ul>
           {pagesMetadata?.map((pageMetadata) => (
             <li key={pageMetadata.slug}>
-              <Link href={`/${pageMetadata.slug}`}>
+              <Link href={`/${pageMetadata.slug}/`}>
                 <a className={slug === pageMetadata.slug ? 'active' : ''}>{pageMetadata.title}</a>
               </Link>
             </li>
           ))}
           <li>
-            <Link href="/tech-vote-count">
+            <Link href="/tech-vote-count/">
               <a className={slug === 'tech-vote-count' ? 'active' : ''}>Vote Count</a>
             </Link>
           </li>

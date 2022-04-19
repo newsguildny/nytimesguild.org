@@ -34,14 +34,6 @@ jobs:
       - name: Export pages
         run: yarn export
 
-      # Deploy private pages to IAP-protected App Engine instance
-      - uses: actions-hub/gcloud@master
-        env:
-          PROJECT_ID: centering-oxide-347014
-          APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-        with:
-          args: app deploy
-
       # Deploy public pages to GCS bucket fronted by Cloud CDN
       - uses: actions-hub/gcloud@master
         env:
@@ -49,4 +41,4 @@ jobs:
           APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         with:
           cli: gsutil
-          args: -m cp -r "public-dist/*" gs://www-nytimesguild-org/
+          args: -m cp -r "dist/*" gs://www-nytimesguild-org/

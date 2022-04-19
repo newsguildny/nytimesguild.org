@@ -7,4 +7,5 @@ module.exports = withStaticContext('./src/components', {
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
+  trailingSlash: true,
 });

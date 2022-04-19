@@ -5,7 +5,7 @@ This website is built on several Google Cloud Platform (GCP) technologies.
 nytimesguild.org is served by a Global HTTPS Load Balancer (LB), which has two backends:
 
 1. A Google Cloud Storage (GCS) backend bucket, www-nytimesguild-org, which is accessible to the public internet. Only public web pages are deployed to this bucket.
-2. An App Engine backend service, which is protected by IAP. Only private web pages are deployed to this App Engine service.
+2. An App Engine backend service, which is protected by IAP. This hosts our private [Library](https://github.com/nytimes/library) instance.
 
 The GCS bucket is connected to Cloud CDN, with 1 hour TTLs.
 
@@ -20,6 +20,6 @@ Most of this infrastructure is manually managed via the GCP Console. The Cloud R
 
 ## Deployments
 
-There is a GitHub workflow defined at `.github/workflows/deploy.yml` that builds and exports the site to static files, splits up the public and private pages, and then deploys them as described above. Whether a page is private is entirely determined by whether the `./scripts/export.sh` script moves it into `private-dist/` before running the deployment steps.
+There is a GitHub workflow defined at `.github/workflows/deploy.yml` that builds and exports the site to static files and then deploys them to GCS.
 
-Deployments are executed by a dedicated service account with the minimal required permissions to deploy new App Engine versions and update GCS objects.
+Deployments are executed by a dedicated service account with the minimal required permissions to update GCS objects.

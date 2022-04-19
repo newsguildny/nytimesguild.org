@@ -49,7 +49,7 @@ export function HighlightedTestimonials({ category }: Props) {
         .map((testimonial) => (
           <Testimonial key={testimonial.name} testimonial={testimonial} />
         ))}
-      <CallToAction to={`/testimonials/${category}`}>Read more testimonials</CallToAction>
+      <CallToAction to={`/testimonials/${category}/`}>Read more testimonials</CallToAction>
     </>
   );
 }

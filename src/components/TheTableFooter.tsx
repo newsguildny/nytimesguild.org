@@ -19,7 +19,7 @@ const TheTableFooter = ({ teasers }: Props) => {
         <h2>Previous Issues</h2>
         {teasers &&
           teasers.map(({ date, headline, issue, slug, thumbnail }) => (
-            <Link key={date} href={`/the-table/${slug}`}>
+            <Link key={date} href={`/the-table/${slug}/`}>
               <div className="link">
                 <img alt={`edition ${issue} thumbnail`} src={thumbnail} />
                 <div className="issueInfo">

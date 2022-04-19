@@ -8,7 +8,7 @@
     "dev:inspect": "NODE_OPTIONS='--inspect' yarn dev",
     "build": "next build",
     "start": "next start",
-    "export": "./scripts/export.sh",
+    "export": "next build && next export -o ./dist",
     "lint": "eslint src --report-unused-disable-directives",
     "lint:fix": "yarn lint --fix",
     "test": "jest",

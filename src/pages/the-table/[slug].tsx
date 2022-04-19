@@ -30,7 +30,7 @@ const TheTableIssue = ({ issue, previousIssues }: IssuePageProps) => {
         issue={issueNumber}
         navLink={{
           label: '← Back to Current Issue',
-          link: '/the-table',
+          link: '/the-table/',
         }}
       />
       {!!previousIssues.length && <TheTableFooter teasers={previousIssues} />}

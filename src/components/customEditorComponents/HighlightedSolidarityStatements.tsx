@@ -44,7 +44,7 @@ export function HighlightedSolidarityStatements() {
           solidarityStatement={solidarityStatement}
         />
       ))}
-      <CallToAction to="/solidarity-statements">Read more</CallToAction>
+      <CallToAction to="/solidarity-statements/">Read more</CallToAction>
     </>
   );
 }

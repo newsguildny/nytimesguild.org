@@ -11,25 +11,25 @@ export interface ConfettiCannonProps {
 }
 
 export interface ConfettiCannonContextValue {
-  moreConfetti: boolean;
-  onToggleMoreConfetti: (e: SyntheticEvent<HTMLElement>) => void;
+  confetti: boolean;
+  onToggleConfetti: (e: SyntheticEvent<HTMLElement>) => void;
 }
 
 export const ConfettiCannonContext = createContext<ConfettiCannonContextValue>({
-  moreConfetti: false,
+  confetti: false,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onToggleMoreConfetti: () => {},
+  onToggleConfetti: () => {},
 });
 
 export function ConfettiCannon({ children, total }: ConfettiCannonProps) {
-  const [moreConfetti, setMoreConfetti] = useState(false);
+  const [confetti, setConfetti] = useState(false);
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
   const ref = useRef<HTMLDivElement | null>(null);
 
-  const onToggleMoreConfetti = (e: SyntheticEvent<HTMLElement>) => {
+  const onToggleConfetti = (e: SyntheticEvent<HTMLElement>) => {
     e.preventDefault();
-    setMoreConfetti(!moreConfetti);
+    setConfetti(!confetti);
   };
 
   useEffect(() => {
@@ -60,15 +60,17 @@ export function ConfettiCannon({ children, total }: ConfettiCannonProps) {
   return (
     <>
       <div className="confetti-container" ref={ref}>
-        <Confetti
-          className="confetti-cannon"
-          width={width}
-          height={height}
-          numberOfPieces={total}
-          recycle={moreConfetti}
-          colors={['#FF4040', '#B42F2F', '#FF5555', '#FF7373', '#FF9C9E', '#FFD3D3', '#ECECEC']}
-        />
-        <ConfettiCannonContext.Provider value={{ moreConfetti, onToggleMoreConfetti }}>
+        {confetti && (
+          <Confetti
+            className="confetti-cannon"
+            width={width}
+            height={height}
+            numberOfPieces={total}
+            recycle={confetti}
+            colors={['#FF4040', '#B42F2F', '#FF5555', '#FF7373', '#FF9C9E', '#FFD3D3', '#ECECEC']}
+          />
+        )}
+        <ConfettiCannonContext.Provider value={{ confetti, onToggleConfetti }}>
           {children}
         </ConfettiCannonContext.Provider>
       </div>

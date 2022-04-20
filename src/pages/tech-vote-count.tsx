@@ -12,6 +12,7 @@ const VoteCounts = () => {
   const contested = 16;
   const neededToWin = 255;
   const total = 508;
+  const valid = total - contested;
 
   return (
     <>
@@ -23,11 +24,14 @@ const VoteCounts = () => {
       <PageHeader heading="Vote Count" />
       <main>
         <h2>About</h2>
-        <p>Ballot counting will take place on Thursday, March 3rd.</p>
         <p>
-          This vote determines whether or not our union is certified, and is decided by a simple
-          majority (50% +1 vote) of total ballots. The vertical line in the center of the bar graph
-          indicates the number of votes needed to decide the outcome.
+          Ballot counting for The Times Tech Guild (The NewsGuild of New York, Local 31003, TNG/CWA)
+          took place on Thursday, March 3rd, 2022.
+        </p>
+        <p>
+          This vote was decided by a simple majority (50% +1 vote) of total ballots and officially
+          certified our union. The vertical line in the center of the bar graph indicates the number
+          of votes needed to decide the outcome.
         </p>
         <ConfettiCannon total={total}>
           <p
@@ -47,11 +51,11 @@ const VoteCounts = () => {
           <p style={{ marginBottom: '1rem' }}>
             We did it y&rsquo;all 🥲✊
             <ConfettiCannonContext.Consumer>
-              {({ moreConfetti, onToggleMoreConfetti }) => (
+              {({ confetti, onToggleConfetti }) => (
                 <a
                   href="#"
-                  onClick={onToggleMoreConfetti}
-                  title={`${moreConfetti ? 'Less' : 'More'} confetti, please!`}
+                  onClick={onToggleConfetti}
+                  title={`${confetti ? 'Less' : 'More'} confetti, please!`}
                   style={{ textDecoration: 'none' }}
                 >
                   🎉
@@ -71,7 +75,8 @@ const VoteCounts = () => {
             <tr>
               <th aria-label="Vote category" className="category-column" />
               <th className="number-column">Votes</th>
-              <th className="number-column">Pct. of total</th>
+              <th className="number-column">% of total</th>
+              <th className="number-column">% of valid votes</th>
             </tr>
           </thead>
           <tbody>
@@ -81,6 +86,7 @@ const VoteCounts = () => {
               </td>
               <td className="number-column">{yes}</td>
               <td className="number-column">{formatPercentage(yes, total)}</td>
+              <td className="number-column">{formatPercentage(yes, valid)}</td>
             </tr>
             <tr>
               <td className="category-column no-cell">
@@ -88,6 +94,7 @@ const VoteCounts = () => {
               </td>
               <td className="number-column">{no}</td>
               <td className="number-column">{formatPercentage(no, total)}</td>
+              <td className="number-column">{formatPercentage(no, valid)}</td>
             </tr>
           </tbody>
         </table>
@@ -108,8 +115,23 @@ const VoteCounts = () => {
               </td>
               <td className="number-column">{contested}</td>
             </tr>
+            <tr>
+              <td className="category-column">Valid votes</td>
+              <td className="number-column">{valid}</td>
+            </tr>
           </tbody>
         </table>
+        <section id="updates">
+          <p>Since certification we have made the following changes:</p>
+          <ul>
+            <li>Updated the About section language.</li>
+            <li>
+              Added a field for votes counted, which is the number of Yes and No votes counted by
+              the NLRB.
+            </li>
+            <li>Added percentages for Yes and No with valid votes counted as the denominator.</li>
+          </ul>
+        </section>
       </main>
       <style jsx>{`
         h3 {
@@ -164,12 +186,29 @@ const VoteCounts = () => {
           display: none;
         }
 
+        #updates {
+          font-size: 1rem;
+          line-height: 1.32em;
+        }
+
+        #updates p {
+          margin-bottom: 0.5em;
+        }
+
+        #updates ul {
+          margin-top: 0;
+          padding-left: 1em;
+        }
+
         @media (min-width: 769px) {
           table {
             width: calc(100% - 10rem);
           }
           .drop-on-mobile {
             display: inline;
+          }
+          #updates {
+            font-size: 1.25rem;
           }
         }
       `}</style>

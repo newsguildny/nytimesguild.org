@@ -42,3 +42,12 @@ jobs:
         with:
           cli: gsutil
           args: -m cp -r "dist/*" gs://www-nytimesguild-org/
+          
+      # Invalidate the CDN cache after updating the files in the bucket, so that
+      # clients always get the latest version of the site
+      - uses: actions-hub/gcloud@master
+        env:
+          PROJECT_ID: centering-oxide-347014
+          APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+        with:
+          args: compute url-maps invalidate-cdn-cache www-nytimesguild-org-lb --async --path "/*"

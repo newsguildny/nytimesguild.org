@@ -50,4 +50,4 @@ jobs:
           PROJECT_ID: centering-oxide-347014
           APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         with:
-          args: compute url-maps invalidate-cdn-cache www-nytimesguild-org-lb --async --path "/*"
+          args: compute url-maps invalidate-cdn-cache nytimesguild-org-lb --async --path "'/*'"

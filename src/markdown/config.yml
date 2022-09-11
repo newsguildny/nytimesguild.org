@@ -3,7 +3,7 @@ backend:
   name: git-gateway
   branch: main
   identity_url: https://gotrue-736x5ulcda-uc.a.run.app/
-  gateway_url: https://git-gateway-736x5ulcda-uc.a.run.app/
+  gateway_url: https://git-gateway.nytimesguild.org
 media_folder: public/images
 public_folder: /images
 publish_mode: editorial_workflow

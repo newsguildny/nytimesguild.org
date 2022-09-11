@@ -38,16 +38,16 @@ function App({ Component, pageProps }: AppProps) {
               format('woff2');
             font-style: normal;
           }
+        }
 
-          @supports (font-variation-settings: 'wdth' 115) {
-            @font-face {
-              font-family: ${serif};
-              font-display: swap;
-              src: url('/fonts/Crimson_Pro/variable/CrimsonPro-VariableFont_wght.ttf')
-                format('truetype-variations');
-              font-style: normal;
-              font-weight: 100 900;
-            }
+        @supports (font-variation-settings: 'wdth' 115) {
+          @font-face {
+            font-family: ${serif};
+            font-display: swap;
+            src: url('/fonts/Crimson_Pro/variable/CrimsonPro-VariableFont_wght.ttf')
+              format('truetype-variations');
+            font-style: normal;
+            font-weight: 100 900;
           }
         }
 

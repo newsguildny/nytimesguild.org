@@ -41,7 +41,7 @@ jobs:
           APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
         with:
           cli: gsutil
-          args: -h "Cache-Control:public, max-age=3600" -m cp -z js,css,html,json -r "dist/*" gs://www-nytimesguild-org/
+          args: -m -h "Cache-Control:public, max-age=31536000" cp -z js,css,html,json -r "dist/*" gs://www-nytimesguild-org/
 
       # Invalidate the CDN cache after updating the files in the bucket, so that
       # clients always get the latest version of the site

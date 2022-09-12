@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { PageHeader } from '../../components/PageHeader';
 import { PageLayout } from '../../components/PageLayout';
 import { ShopPaperSnippet, ShopPaperData } from '../../components/ShopPaperSnippet';
-import { getPagesMetadata, PageData } from '../../lib/collections/pages';
+import { getNavPagesMetadata, PageData } from '../../lib/collections/pages';
 import { getPapersData } from '../../lib/collections/papers';
 
 interface Props {
@@ -30,7 +30,7 @@ const ShopPapers = ({ papers, pagesMetadata }: Props) => (
 );
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const pagesMetadata = getPagesMetadata();
+  const pagesMetadata = getNavPagesMetadata();
   const papers = getPapersData();
   return {
     props: {

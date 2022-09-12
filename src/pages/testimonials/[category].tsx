@@ -8,7 +8,7 @@ import {
 import { PageHeader } from '../../components/PageHeader';
 import { PageLayout } from '../../components/PageLayout';
 import { Testimonial, TestimonialContent } from '../../components/Testimonial';
-import { getPagesMetadata, PageData } from '../../lib/collections/pages';
+import { getNavPagesMetadata, PageData } from '../../lib/collections/pages';
 import { render } from '../../lib/collections/render';
 import { getTestimonialCategories, getTestimonialsData } from '../../lib/collections/testimonials';
 import { createContextValue } from '../../lib/staticContext';
@@ -77,7 +77,7 @@ export const getStaticProps: GetStaticProps<Props, { category: string }> = async
   const categoryValue = params!.category!;
   const testimonials = await render(getTestimonialsData(categoryValue));
   const otherCategories = getTestimonialCategories();
-  const pagesMetadata = getPagesMetadata();
+  const pagesMetadata = getNavPagesMetadata();
   const staticContext = await createContextValue([highlightedTestimonialsKey]);
   return {
     props: {

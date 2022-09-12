@@ -5,7 +5,7 @@ import { bodyText, noVote, tableBorder, yesVote } from '../lib/styles/tokens/col
 import { PageHeader } from '../components/PageHeader';
 import { formatPercentage, VoteCountBar } from '../components/vote-count/VoteCountBar';
 import { ConfettiCannon, ConfettiCannonContext } from '../components/vote-count/ConfettiCannon';
-import { getPagesMetadata, PageData } from '../lib/collections/pages';
+import { getNavPagesMetadata, PageData } from '../lib/collections/pages';
 import { PageLayout } from '../components/PageLayout';
 
 interface Props {
@@ -225,7 +225,7 @@ const VoteCounts = ({ pagesMetadata }: Props) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const pagesMetadata = getPagesMetadata();
+  const pagesMetadata = getNavPagesMetadata();
   return {
     props: {
       slug: 'tech-vote-count',

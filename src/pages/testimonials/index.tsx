@@ -7,7 +7,7 @@ import {
 } from '../../components/customEditorComponents/HighlightedTestimonials';
 import { PageHeader } from '../../components/PageHeader';
 import { PageLayout } from '../../components/PageLayout';
-import { getPagesMetadata, PageData } from '../../lib/collections/pages';
+import { getNavPagesMetadata, PageData } from '../../lib/collections/pages';
 import { getTestimonialCategories } from '../../lib/collections/testimonials';
 import { createContextValue } from '../../lib/staticContext';
 
@@ -43,7 +43,7 @@ export default TestimonialsIndexPage;
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const categories = getTestimonialCategories();
   const staticContext = await createContextValue([highlightedTestimonialsKey]);
-  const pagesMetadata = getPagesMetadata();
+  const pagesMetadata = getNavPagesMetadata();
   return {
     props: { categories, staticContext, pagesMetadata },
   };

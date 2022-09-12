@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next';
 import { PageLayout } from '../components/PageLayout';
-import { getPagesMetadata, PageData } from '../lib/collections/pages';
+import { getNavPagesMetadata, PageData } from '../lib/collections/pages';
 
 interface Props {
   pagesMetadata: PageData[];
@@ -15,6 +15,6 @@ export default function Custom404({ pagesMetadata }: Props) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const pagesMetadata = getPagesMetadata();
+  const pagesMetadata = getNavPagesMetadata();
   return { props: { pagesMetadata } };
 };

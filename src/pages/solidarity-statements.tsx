@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { PageHeader } from '../components/PageHeader';
 import { PageLayout } from '../components/PageLayout';
 import { SolidarityStatement, SolidarityStatementContent } from '../components/SolidarityStatement';
-import { getPagesMetadata, PageData } from '../lib/collections/pages';
+import { getNavPagesMetadata, PageData } from '../lib/collections/pages';
 import { render } from '../lib/collections/render';
 import { getSolidarityStatementsData } from '../lib/collections/solidarityStatements';
 
@@ -46,7 +46,7 @@ const SolidarityStatements = ({ solidarityStatements, pagesMetadata }: Props) =>
 
 export const getStaticProps: GetStaticProps = async () => {
   const solidarityStatements = await render(getSolidarityStatementsData());
-  const pagesMetadata = getPagesMetadata();
+  const pagesMetadata = getNavPagesMetadata();
   return {
     props: {
       solidarityStatements,

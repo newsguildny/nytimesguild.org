@@ -12,7 +12,7 @@ import { serif, serifSizes } from '../../lib/styles/tokens/fonts';
 import { secondaryHeadingText } from '../../lib/styles/tokens/colors';
 import { render } from '../../lib/collections/render';
 import { createContextValue, getStaticContextKeys } from '../../lib/staticContext';
-import { getPagesMetadata, PageData } from '../../lib/collections/pages';
+import { getNavPagesMetadata, PageData } from '../../lib/collections/pages';
 import { PageLayout } from '../../components/PageLayout';
 
 interface Props {
@@ -66,7 +66,7 @@ export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({ 
   const paperData = getPaperData(params.slug);
   const staticContextKeys = [...getStaticContextKeys(paperData.content), recentPapersKey];
   const staticContext = await createContextValue(staticContextKeys);
-  const pagesMetadata = getPagesMetadata();
+  const pagesMetadata = getNavPagesMetadata();
   const { source, headline, snippet } = await render(paperData, components, staticContext);
   return {
     props: {

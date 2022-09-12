@@ -1,7 +1,12 @@
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { MdxRemote } from 'next-mdx-remote/types';
 import Head from 'next/head';
-import { getPageData, getPagesMetadata, PageData } from '../lib/collections/pages';
+import {
+  getNavPagesMetadata,
+  getPageData,
+  getPagesMetadata,
+  PageData,
+} from '../lib/collections/pages';
 import { components } from '../components/customEditorComponents';
 import { HomeHeader } from '../components/HomeHeader';
 import { PageHeader } from '../components/PageHeader';
@@ -55,7 +60,7 @@ export default Page;
 
 export const getStaticProps: GetStaticProps<Props, { slug: [string] }> = async ({ params }) => {
   const slug = params?.slug?.[0] || 'index';
-  const pagesMetadata = getPagesMetadata();
+  const pagesMetadata = getNavPagesMetadata();
   const collectionItem = getPageData(slug);
   const staticContextKeys = getStaticContextKeys(collectionItem.content);
   const staticContextValue = await createContextValue(staticContextKeys);

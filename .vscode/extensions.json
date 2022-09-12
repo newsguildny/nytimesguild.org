@@ -4,6 +4,7 @@
     "divlo.vscode-styled-jsx-languageserver",
     "divlo.vscode-styled-jsx-syntax",
     "jounqin.vscode-mdx",
-    "arcanis.vscode-zipfs"
+    "arcanis.vscode-zipfs",
+    "esbenp.prettier-vscode"
   ]
 }

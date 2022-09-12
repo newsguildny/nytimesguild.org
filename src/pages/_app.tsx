@@ -1,20 +1,21 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { provideStaticContext } from 'next-static-context/app';
-import { Navigation } from '../components/Navigation';
-import { Footer } from '../components/Footer';
 import { bodyText, link, rule, secondaryHeadingText } from '../lib/styles/tokens/colors';
-import { sansSerif, serif, serifSizes } from '../lib/styles/tokens/fonts';
+import { serif, serifSizes } from '../lib/styles/tokens/fonts';
 import 'lite-youtube-embed/src/lite-yt-embed.css';
 import 'prismjs/themes/prism-okaidia.css';
+import { StaticContext } from '../lib/staticContext/StaticContext';
 
-function App({ Component, pageProps }: AppProps) {
-  // For now, we'd like to hide header/footer on The Table's landing page
-  const pageContext = `${pageProps?.context}` || '';
-  const showChrome = !pageContext.includes('the-table');
-
+export default function App({
+  Component,
+  pageProps,
+}: AppProps<{
+  context?: string;
+  slug?: string;
+  staticContext?: Record<string, unknown>;
+}>) {
   return (
-    <>
+    <StaticContext.Provider value={pageProps.staticContext ?? {}}>
       <Head>
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.webp" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.webp" />
@@ -26,68 +27,8 @@ function App({ Component, pageProps }: AppProps) {
         <meta name="theme-color" content="#ff4040" />
         <meta name="og:image" content="https://nytimesguild.org/og-image.webp" />
       </Head>
-      {showChrome && <Navigation slug={pageProps.slug} />}
       <Component {...pageProps} />
-      {showChrome && <Footer />}
       <style jsx global>{`
-        @supports not (font-variation-settings: 'wdth' 115) {
-          @font-face {
-            font-family: ${serif};
-            font-display: swap;
-            src: url('/fonts/Crimson_Pro/webfonts/crimson-pro-v13-latin-regular.woff2')
-              format('woff2');
-            font-style: normal;
-          }
-        }
-
-        @supports (font-variation-settings: 'wdth' 115) {
-          @font-face {
-            font-family: ${serif};
-            font-display: swap;
-            src: url('/fonts/Crimson_Pro/variable/CrimsonPro-VariableFont_wght.ttf')
-              format('truetype-variations');
-            font-style: normal;
-            font-weight: 100 900;
-          }
-        }
-
-        @supports not (font-variation-settings: 'wdth' 115) {
-          @font-face {
-            font-family: ${sansSerif};
-            font-display: swap;
-            src: url('/fonts/PublicSans/webfonts/PublicSans-Regular.woff2') format('woff2');
-            font-style: normal;
-            font-weight: 400;
-          }
-
-          @font-face {
-            font-family: ${sansSerif};
-            font-display: swap;
-            src: url('/fonts/PublicSans/webfonts/PublicSans-SemiBold.woff2') format('woff2');
-            font-style: normal;
-            font-weight: 600;
-          }
-
-          @font-face {
-            font-family: ${sansSerif};
-            font-display: swap;
-            src: url('/fonts/PublicSans/webfonts/PublicSans-Bold.woff2') format('woff2');
-            font-style: normal;
-            font-weight: 700;
-          }
-        }
-
-        @supports (font-variation-settings: 'wdth' 115) {
-          @font-face {
-            font-family: ${sansSerif};
-            font-display: swap;
-            src: url('/fonts/PublicSans/variable/Public-Sans-Roman-VF.ttf')
-              format('truetype-variations');
-            font-style: normal;
-            font-weight: 100 900;
-          }
-        }
-
         body {
           margin: 0;
           --nyt-serif-extra-large: 2.625rem;
@@ -186,8 +127,6 @@ function App({ Component, pageProps }: AppProps) {
           }
         }
       `}</style>
-    </>
+    </StaticContext.Provider>
   );
 }
-
-export default provideStaticContext(App);

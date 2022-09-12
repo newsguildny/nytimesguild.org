@@ -5,8 +5,14 @@ import { bodyText, noVote, tableBorder, yesVote } from '../lib/styles/tokens/col
 import { PageHeader } from '../components/PageHeader';
 import { formatPercentage, VoteCountBar } from '../components/vote-count/VoteCountBar';
 import { ConfettiCannon, ConfettiCannonContext } from '../components/vote-count/ConfettiCannon';
+import { getPagesMetadata, PageData } from '../lib/collections/pages';
+import { PageLayout } from '../components/PageLayout';
 
-const VoteCounts = () => {
+interface Props {
+  pagesMetadata: PageData[];
+}
+
+const VoteCounts = ({ pagesMetadata }: Props) => {
   const yes = 404;
   const no = 88;
   const contested = 16;
@@ -21,118 +27,120 @@ const VoteCounts = () => {
         <meta name="og:title" content="Vote Count" />
         <meta name="og:type" content="website" />
       </Head>
-      <PageHeader heading="Vote Count" />
-      <main>
-        <h2>About</h2>
-        <p>
-          Ballot counting for The Times Tech Guild (The NewsGuild of New York, Local 31003, TNG/CWA)
-          took place on Thursday, March 3rd, 2022.
-        </p>
-        <p>
-          This vote was decided by a simple majority (50% +1 vote) of total ballots and officially
-          certified our union. The vertical line in the center of the bar graph indicates the number
-          of votes needed to decide the outcome.
-        </p>
-        <ConfettiCannon total={total}>
-          <p
-            style={{
-              fontFamily: sansSerif,
-              lineHeight: '1em',
-              marginTop: '1rem',
-            }}
-          >
-            <strong>BREAKING NEWS:</strong>
+      <PageLayout slug="tech-vote-count" pagesMetadata={pagesMetadata}>
+        <PageHeader heading="Vote Count" />
+        <main>
+          <h2>About</h2>
+          <p>
+            Ballot counting for The Times Tech Guild (The NewsGuild of New York, Local 31003,
+            TNG/CWA) took place on Thursday, March 3rd, 2022.
           </p>
           <p>
-            The NLRB has counted a majority of votes in the Times Tech Guild&rsquo;s favor! The
-            recognition of our unit makes us the largest tech union with bargaining rights in the
-            United States!
+            This vote was decided by a simple majority (50% +1 vote) of total ballots and officially
+            certified our union. The vertical line in the center of the bar graph indicates the
+            number of votes needed to decide the outcome.
           </p>
-          <p style={{ marginBottom: '1rem' }}>
-            We did it y&rsquo;all 🥲✊
-            <ConfettiCannonContext.Consumer>
-              {({ confetti, onToggleConfetti }) => (
-                <a
-                  href="#"
-                  onClick={onToggleConfetti}
-                  title={`${confetti ? 'Less' : 'More'} confetti, please!`}
-                  style={{ textDecoration: 'none' }}
-                >
-                  🎉
-                </a>
-              )}
-            </ConfettiCannonContext.Consumer>
-          </p>
-        </ConfettiCannon>
+          <ConfettiCannon total={total}>
+            <p
+              style={{
+                fontFamily: sansSerif,
+                lineHeight: '1em',
+                marginTop: '1rem',
+              }}
+            >
+              <strong>BREAKING NEWS:</strong>
+            </p>
+            <p>
+              The NLRB has counted a majority of votes in the Times Tech Guild&rsquo;s favor! The
+              recognition of our unit makes us the largest tech union with bargaining rights in the
+              United States!
+            </p>
+            <p style={{ marginBottom: '1rem' }}>
+              We did it y&rsquo;all 🥲✊
+              <ConfettiCannonContext.Consumer>
+                {({ confetti, onToggleConfetti }) => (
+                  <a
+                    href="#"
+                    onClick={onToggleConfetti}
+                    title={`${confetti ? 'Less' : 'More'} confetti, please!`}
+                    style={{ textDecoration: 'none' }}
+                  >
+                    🎉
+                  </a>
+                )}
+              </ConfettiCannonContext.Consumer>
+            </p>
+          </ConfettiCannon>
 
-        {/* The vote count bar */}
-        <h3 id="heading">Results</h3>
-        <VoteCountBar yes={yes} no={no} total={total} neededToWin={neededToWin} />
+          {/* The vote count bar */}
+          <h3 id="heading">Results</h3>
+          <VoteCountBar yes={yes} no={no} total={total} neededToWin={neededToWin} />
 
-        {/* Yes / No votes table */}
-        <table>
-          <thead>
-            <tr>
-              <th aria-label="Vote category" className="category-column" />
-              <th className="number-column">Votes</th>
-              <th className="number-column">% of total</th>
-              <th className="number-column">% of valid votes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td className="category-column yes-cell">
-                Yes <span className="drop-on-mobile">votes</span>
-              </td>
-              <td className="number-column">{yes}</td>
-              <td className="number-column">{formatPercentage(yes, total)}</td>
-              <td className="number-column">{formatPercentage(yes, valid)}</td>
-            </tr>
-            <tr>
-              <td className="category-column no-cell">
-                No <span className="drop-on-mobile">votes</span>
-              </td>
-              <td className="number-column">{no}</td>
-              <td className="number-column">{formatPercentage(no, total)}</td>
-              <td className="number-column">{formatPercentage(no, valid)}</td>
-            </tr>
-          </tbody>
-        </table>
+          {/* Yes / No votes table */}
+          <table>
+            <thead>
+              <tr>
+                <th aria-label="Vote category" className="category-column" />
+                <th className="number-column">Votes</th>
+                <th className="number-column">% of total</th>
+                <th className="number-column">% of valid votes</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className="category-column yes-cell">
+                  Yes <span className="drop-on-mobile">votes</span>
+                </td>
+                <td className="number-column">{yes}</td>
+                <td className="number-column">{formatPercentage(yes, total)}</td>
+                <td className="number-column">{formatPercentage(yes, valid)}</td>
+              </tr>
+              <tr>
+                <td className="category-column no-cell">
+                  No <span className="drop-on-mobile">votes</span>
+                </td>
+                <td className="number-column">{no}</td>
+                <td className="number-column">{formatPercentage(no, total)}</td>
+                <td className="number-column">{formatPercentage(no, valid)}</td>
+              </tr>
+            </tbody>
+          </table>
 
-        {/* Total / contested ballots table */}
-        <h3>Ballot data</h3>
-        <table>
-          <tbody>
-            <tr>
-              <td className="category-column">
-                Total <span className="drop-on-mobile">ballots</span>
-              </td>
-              <td className="number-column">{total}</td>
-            </tr>
-            <tr>
-              <td className="category-column">
-                Contested <span className="drop-on-mobile">ballots</span>
-              </td>
-              <td className="number-column">{contested}</td>
-            </tr>
-            <tr>
-              <td className="category-column">Valid votes</td>
-              <td className="number-column">{valid}</td>
-            </tr>
-          </tbody>
-        </table>
-        <section id="updates">
-          <p>Since certification we have made the following changes:</p>
-          <ul>
-            <li>Updated the About section language.</li>
-            <li>
-              Added a field for votes counted, which is the number of Yes and No votes counted by
-              the NLRB.
-            </li>
-            <li>Added percentages for Yes and No with valid votes counted as the denominator.</li>
-          </ul>
-        </section>
-      </main>
+          {/* Total / contested ballots table */}
+          <h3>Ballot data</h3>
+          <table>
+            <tbody>
+              <tr>
+                <td className="category-column">
+                  Total <span className="drop-on-mobile">ballots</span>
+                </td>
+                <td className="number-column">{total}</td>
+              </tr>
+              <tr>
+                <td className="category-column">
+                  Contested <span className="drop-on-mobile">ballots</span>
+                </td>
+                <td className="number-column">{contested}</td>
+              </tr>
+              <tr>
+                <td className="category-column">Valid votes</td>
+                <td className="number-column">{valid}</td>
+              </tr>
+            </tbody>
+          </table>
+          <section id="updates">
+            <p>Since certification we have made the following changes:</p>
+            <ul>
+              <li>Updated the About section language.</li>
+              <li>
+                Added a field for votes counted, which is the number of Yes and No votes counted by
+                the NLRB.
+              </li>
+              <li>Added percentages for Yes and No with valid votes counted as the denominator.</li>
+            </ul>
+          </section>
+        </main>
+      </PageLayout>
       <style jsx>{`
         h3 {
           display: flex;
@@ -217,9 +225,11 @@ const VoteCounts = () => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
+  const pagesMetadata = getPagesMetadata();
   return {
     props: {
       slug: 'tech-vote-count',
+      pagesMetadata,
     },
   };
 };

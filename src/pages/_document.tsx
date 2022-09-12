@@ -6,10 +6,12 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <link
-            rel="preload"
-            href="/fonts/PublicSans/variable/Public-Sans-Roman-VF.ttf"
-            as="font"
-            crossOrigin=""
+            href="https://fonts.googleapis.com/css2?family=Crimson+Pro&display=optional"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Public+Sans&display=optional"
+            rel="stylesheet"
           />
         </Head>
         <body>

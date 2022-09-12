@@ -4,18 +4,25 @@ import Head from 'next/head';
 import { useHydratedMdx } from '../../lib/mdx/hydrate';
 import { getPaperData, getPapersFilenames } from '../../lib/collections/papers';
 import { components } from '../../components/customEditorComponents';
-import { RecentPapers } from '../../components/customEditorComponents/RecentPapers';
+import {
+  RecentPapers,
+  staticContextKey as recentPapersKey,
+} from '../../components/customEditorComponents/RecentPapers';
 import { serif, serifSizes } from '../../lib/styles/tokens/fonts';
 import { secondaryHeadingText } from '../../lib/styles/tokens/colors';
 import { render } from '../../lib/collections/render';
+import { createContextValue, getStaticContextKeys } from '../../lib/staticContext';
+import { getPagesMetadata, PageData } from '../../lib/collections/pages';
+import { PageLayout } from '../../components/PageLayout';
 
 interface Props {
   source: MdxRemote.Source;
+  pagesMetadata: PageData[];
   headline: string;
   snippet: string;
 }
 
-const ShopPaper = ({ source, headline, snippet }: Props) => {
+const ShopPaper = ({ source, pagesMetadata, headline, snippet }: Props) => {
   const content = useHydratedMdx(source, { components });
   return (
     <>
@@ -25,11 +32,13 @@ const ShopPaper = ({ source, headline, snippet }: Props) => {
         <meta name="og:type" content="article" />
         <meta name="og:description" content={snippet} />
       </Head>
-      <main>
-        <h1>{headline}</h1>
-        {content}
-        <RecentPapers />
-      </main>
+      <PageLayout pagesMetadata={pagesMetadata}>
+        <main>
+          <h1>{headline}</h1>
+          {content}
+          <RecentPapers />
+        </main>
+      </PageLayout>
       <style jsx>
         {`
           h1 {
@@ -54,13 +63,19 @@ export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({ 
   if (!params?.slug) {
     throw new Error('getStaticProps called without a slug in papers/[slug].tsx');
   }
-  const { source, headline, snippet } = await render(getPaperData(params.slug), components);
+  const paperData = getPaperData(params.slug);
+  const staticContextKeys = [...getStaticContextKeys(paperData.content), recentPapersKey];
+  const staticContext = await createContextValue(staticContextKeys);
+  const pagesMetadata = getPagesMetadata();
+  const { source, headline, snippet } = await render(paperData, components, staticContext);
   return {
     props: {
       slug: params!.slug,
+      pagesMetadata,
       source,
       snippet,
       headline,
+      staticContext,
     },
   };
 };

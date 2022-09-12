@@ -1,18 +1,21 @@
 import hydrate from 'next-mdx-remote/hydrate';
 import { MdxRemote } from 'next-mdx-remote/types';
-import { Children, cloneElement, isValidElement, useContext } from 'react';
-import { StaticContext } from 'next-static-context';
+import { Children, cloneElement, isValidElement, ReactElement } from 'react';
+import { StaticContext } from '../staticContext/StaticContext';
 
 export function useHydratedMdx(
   source: MdxRemote.Source,
   params?: {
     components?: MdxRemote.Components;
+    staticContextValue?: Record<string, unknown>;
   }
 ) {
-  const staticContext = useContext(StaticContext);
   const content = hydrate(source, {
     ...params,
-    provider: { component: StaticContext.Provider, props: { value: staticContext } },
+    provider: {
+      component: StaticContext.Provider,
+      props: { value: params?.staticContextValue ?? {} },
+    },
   });
   // On the server side, next-mdx-remote wraps its mdx content with a div,
   // which we need to target with global styles to avoid a flash of incorrectly
@@ -20,7 +23,7 @@ export function useHydratedMdx(
   // so we add a className prop to the div before returning it.
   const child = Children.only(content);
   if (isValidElement(child)) {
-    return cloneElement(child, { className: 'mdx-wrapper' });
+    return cloneElement(child as ReactElement, { className: 'mdx-wrapper' });
   }
   return child;
 }

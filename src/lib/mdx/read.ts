@@ -8,11 +8,16 @@ export interface MarkdownSource {
   source: MdxRemote.Source;
 }
 
-interface GrayMatterData<Data> extends GrayMatterFile<string> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface GrayMatterData<Data extends { [key: string]: any }> extends GrayMatterFile<string> {
   data: Data;
 }
 
-export function getMarkdownData<Data>(category: string, filename: string) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function getMarkdownData<Data extends { [key: string]: any }>(
+  category: string,
+  filename: string
+) {
   const filePath = path.join(process.cwd(), 'src', 'markdown', category, `${filename}.mdx`);
   const fileContents = fs.readFileSync(filePath, 'utf8');
   const grayMatter = matter(fileContents, {

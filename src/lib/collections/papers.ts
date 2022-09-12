@@ -23,8 +23,12 @@ export function getRecentPapersFilenames() {
   return allFilenames.slice(0, 3);
 }
 
+export function getPaperMetadata(filename: string) {
+  return getMarkdownData<ShopPaperData>('papers', filename).data;
+}
+
 export function getPapersMetadata() {
-  return getPapersFilenames().map((slug) => getMarkdownData<ShopPaperData>('papers', slug).data);
+  return getPapersFilenames().map(getPaperMetadata);
 }
 
 export function getPaperData(filename: string) {

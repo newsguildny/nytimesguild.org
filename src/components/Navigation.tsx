@@ -1,4 +1,3 @@
-import { StaticContextKey, useStaticContext } from 'next-static-context';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import css from 'styled-jsx/css';
@@ -6,39 +5,29 @@ import { TGuild } from './svgs/TGuild';
 import { Burger } from './Burger';
 import { headerBackground, headerText } from '../lib/styles/tokens/colors';
 import { sansSerif, sansSerifSizes, serif, serifSizes } from '../lib/styles/tokens/fonts';
-import { getPagesMetadata } from '../lib/collections/pages';
+import type { PageData } from '../lib/collections/pages';
 
 const burgerStyles = css.resolve`
-  display: block;
-  position: absolute;
-  top: 2.5rem;
-  right: 2rem;
+  button {
+    display: block;
+    position: absolute;
+    top: 2.5rem;
+    right: 2rem;
+  }
 
   @media (min-width: 769px) {
-    display: none;
+    button {
+      display: none;
+    }
   }
 `;
 
-export async function getStaticContext() {
-  return {
-    pagesMetadata: getPagesMetadata()
-      .filter(({ showInNavigation }) => showInNavigation)
-      .sort((first, second) => {
-        if (first.navigationOrder < second.navigationOrder) return -1;
-        if (first.navigationOrder > second.navigationOrder) return 1;
-        return 0;
-      }),
-  };
-}
-
-export const staticContextKey = new StaticContextKey<typeof getStaticContext>('navigation');
-
 interface Props {
   slug?: string;
+  pagesMetadata?: PageData[];
 }
 
-export function Navigation({ slug }: Props) {
-  const { pagesMetadata } = useStaticContext(staticContextKey) ?? {};
+export function Navigation({ slug, pagesMetadata }: Props) {
   const [isNavShown, setIsNavShown] = useState(false);
 
   useEffect(() => {

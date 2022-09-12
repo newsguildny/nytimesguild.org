@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { getMarkdownData, MarkdownSource } from '../mdx/read';
 
-interface PageData {
+export interface PageData {
   filename: string;
   slug: string;
   title: string;
@@ -19,7 +19,14 @@ export function getPageSlugs() {
 }
 
 export function getPagesMetadata() {
-  return getPageSlugs().map((slug) => getMarkdownData<PageData>('pages', slug).data);
+  return getPageSlugs()
+    .map((slug) => getMarkdownData<PageData>('pages', slug).data)
+    .filter(({ showInNavigation }) => showInNavigation)
+    .sort((first, second) => {
+      if (first.navigationOrder < second.navigationOrder) return -1;
+      if (first.navigationOrder > second.navigationOrder) return 1;
+      return 0;
+    });
 }
 
 export type PageContent = PageData & MarkdownSource;

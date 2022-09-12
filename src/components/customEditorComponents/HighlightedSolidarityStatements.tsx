@@ -1,10 +1,6 @@
 import { EditorComponentOptions } from 'netlify-cms-core';
-import { StaticContextKey, useStaticContext } from 'next-static-context';
-import { render } from '../../lib/collections/render';
-import {
-  getSolidarityStatementData,
-  getSolidarityStatementsMetadata,
-} from '../../lib/collections/solidarityStatements';
+import { MdxRemote } from 'next-mdx-remote/types';
+import { StaticContextKey, useStaticContext } from '../../lib/staticContext/StaticContext';
 import { SolidarityStatement } from '../SolidarityStatement';
 import { CallToAction } from './CallToAction';
 
@@ -18,23 +14,8 @@ export const options: EditorComponentOptions = {
   toPreview: () => `<p><strong>Highlighted Solidarity Statements Block</strong></p>`,
 };
 
-export function getStaticContext() {
-  const allSolidarityStatementsMetadata = getSolidarityStatementsMetadata();
-  const highlightedSolidarityStatementsMetadata = allSolidarityStatementsMetadata.filter(
-    (solidarityStatement) => solidarityStatement.highlight
-  );
-  return Promise.all(
-    highlightedSolidarityStatementsMetadata.map(({ filename }) =>
-      render(getSolidarityStatementData(filename))
-    )
-  );
-}
-
-export const staticContextKey = new StaticContextKey<typeof getStaticContext>(
-  'highlightedSolidarityStatements'
-);
-
 export function HighlightedSolidarityStatements() {
+  // eslint-disable-next-line no-use-before-define
   const highlightedSolidarityStatements = useStaticContext(staticContextKey);
   return (
     <>
@@ -48,3 +29,13 @@ export function HighlightedSolidarityStatements() {
     </>
   );
 }
+
+export const staticContextKey = new StaticContextKey<
+  Array<{
+    source: MdxRemote.Source;
+    logo?: string | undefined;
+    filename: string;
+    name: string;
+    highlight: boolean;
+  }>
+>('HighlightedSolidarityStatements');

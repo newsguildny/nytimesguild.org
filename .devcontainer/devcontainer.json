@@ -2,7 +2,7 @@
   "name": "Node.js",
   "build": {
     "dockerfile": "Dockerfile",
-    "args": { "VARIANT": "14" }
+    "args": { "VARIANT": "16-bullseye" }
   },
   "settings": {},
   "extensions": [
@@ -12,16 +12,11 @@
     "divlo.vscode-styled-jsx-syntax",
     "jounqin.vscode-mdx"
   ],
-  "postCreateCommand": "sudo chown node node_modules && yarn install",
+  "postCreateCommand": "yarn install",
   "remoteUser": "node",
   "containerUser": "node",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/${localWorkspaceFolderBasename},type=bind,Z",
   "runArgs": ["--userns=keep-id"],
-  "mounts": [
-    // Following instructions at https://code.visualstudio.com/docs/remote/containers-advanced#_use-a-targeted-named-volume,
-    // create a targeted named volume to speed up node module installation performance
-    "source=nytunion_node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
-  ],
   // 3000 is the port that the dev server runs on. 8081 is the port that the local
   // identity backend runs on.
   "forwardPorts": [3000, 8081]

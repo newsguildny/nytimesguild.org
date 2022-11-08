@@ -15037,10 +15037,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["loader-utils", [\
-        ["npm:1.4.0", {\
-          "packageLocation": "./.yarn/cache/loader-utils-npm-1.4.0-a56254a277-d150b15e7a.zip/node_modules/loader-utils/",\
+        ["npm:1.4.1", {\
+          "packageLocation": "./.yarn/cache/loader-utils-npm-1.4.1-91a9c6b986-ea0b648cba.zip/node_modules/loader-utils/",\
           "packageDependencies": [\
-            ["loader-utils", "npm:1.4.0"],\
+            ["loader-utils", "npm:1.4.1"],\
             ["big.js", "npm:5.2.2"],\
             ["emojis-list", "npm:3.0.0"],\
             ["json5", "npm:1.0.1"]\
@@ -19130,7 +19130,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["fast-levenshtein", "npm:2.0.6"],\
             ["global", "npm:4.4.0"],\
             ["hoist-non-react-statics", "npm:3.3.2"],\
-            ["loader-utils", "npm:1.4.0"],\
+            ["loader-utils", "npm:1.4.1"],\
             ["prop-types", "npm:15.7.2"],\
             ["react", "npm:17.0.2"],\
             ["react-dom", "virtual:bd38bae4b168cbf0f0de9404b0b71faec44b7999cc3ecd4b5f578f72d8413a6b9635bfe92749572f875c696149b51ea3ed7daca91a45dd536ad0e5694f5fadcf#npm:17.0.2"],\
@@ -23613,7 +23613,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/yaml-loader-npm-0.6.0-348c22dc2a-de6f070aaf.zip/node_modules/yaml-loader/",\
           "packageDependencies": [\
             ["yaml-loader", "npm:0.6.0"],\
-            ["loader-utils", "npm:1.4.0"],\
+            ["loader-utils", "npm:1.4.1"],\
             ["yaml", "npm:1.10.0"]\
           ],\
           "linkType": "HARD"\

@@ -14785,14 +14785,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["jszip", [\
-        ["npm:3.7.1", {\
-          "packageLocation": "./.yarn/cache/jszip-npm-3.7.1-4ec3dbc6c4-67d737a82b.zip/node_modules/jszip/",\
+        ["npm:3.10.1", {\
+          "packageLocation": "./.yarn/cache/jszip-npm-3.10.1-2862546cfb-abc77bfbe3.zip/node_modules/jszip/",\
           "packageDependencies": [\
-            ["jszip", "npm:3.7.1"],\
+            ["jszip", "npm:3.10.1"],\
             ["lie", "npm:3.3.0"],\
             ["pako", "npm:1.0.11"],\
             ["readable-stream", "npm:2.3.7"],\
-            ["set-immediate-shim", "npm:1.0.1"]\
+            ["setimmediate", "npm:1.0.5"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -20846,7 +20846,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/selenium-webdriver-npm-4.0.0-rc-1-51b5007a0a-10e74040a3.zip/node_modules/selenium-webdriver/",\
           "packageDependencies": [\
             ["selenium-webdriver", "npm:4.0.0-rc-1"],\
-            ["jszip", "npm:3.7.1"],\
+            ["jszip", "npm:3.10.1"],\
             ["rimraf", "npm:3.0.2"],\
             ["tmp", "npm:0.2.1"],\
             ["ws", "virtual:65365ca31f92d8543ef1f6b3f22cd89a80390b5e2ebb64cdf81f34a927a45f8f30312be3223e00ba9b1bb5845a6aa103a966b7e7462e66156f17b8dc82214541#npm:8.5.0"]\
@@ -20857,7 +20857,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/selenium-webdriver-npm-4.1.1-65365ca31f-dfe8e7e43c.zip/node_modules/selenium-webdriver/",\
           "packageDependencies": [\
             ["selenium-webdriver", "npm:4.1.1"],\
-            ["jszip", "npm:3.7.1"],\
+            ["jszip", "npm:3.10.1"],\
             ["tmp", "npm:0.2.1"],\
             ["ws", "virtual:65365ca31f92d8543ef1f6b3f22cd89a80390b5e2ebb64cdf81f34a927a45f8f30312be3223e00ba9b1bb5845a6aa103a966b7e7462e66156f17b8dc82214541#npm:8.5.0"]\
           ],\
@@ -20964,11 +20964,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["set-immediate-shim", [\
-        ["npm:1.0.1", {\
-          "packageLocation": "./.yarn/cache/set-immediate-shim-npm-1.0.1-f1ac810b1a-5085c84039.zip/node_modules/set-immediate-shim/",\
+      ["setimmediate", [\
+        ["npm:1.0.5", {\
+          "packageLocation": "./.yarn/cache/setimmediate-npm-1.0.5-54587459b6-c9a6f2c5b5.zip/node_modules/setimmediate/",\
           "packageDependencies": [\
-            ["set-immediate-shim", "npm:1.0.1"]\
+            ["setimmediate", "npm:1.0.5"]\
           ],\
           "linkType": "HARD"\
         }]\

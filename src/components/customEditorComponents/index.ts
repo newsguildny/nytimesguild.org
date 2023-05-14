@@ -1,4 +1,5 @@
 import { CallToAction, options as callToActionOptions } from './CallToAction';
+import { Download, options as downloadOptions } from './Download';
 import { YouTube, options as youTubeOptions } from './YouTube';
 import {
   HighlightedTestimonials,
@@ -17,6 +18,7 @@ import { CenteredContent, options as centeredContentOptions } from './CenteredCo
 export const components = {
   CallToAction,
   CenteredContent,
+  Download,
   FAQ,
   FAQItem,
   FullBleedImage,
@@ -30,6 +32,7 @@ export const components = {
 export const options = [
   callToActionOptions,
   centeredContentOptions,
+  downloadOptions,
   youTubeOptions,
   highlightedTestimonialsOptions,
   highlightedSolidarityStatementsOptions,

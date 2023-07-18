@@ -1,3 +1,5 @@
+<img src="public/images/techguild-bug.png" width="100">
+
 ## Dependencies
 
 - [yarn](https://yarnpkg.com)

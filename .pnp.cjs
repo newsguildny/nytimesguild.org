@@ -36,7 +36,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/core", "npm:7.22.9"],\
             ["@babel/eslint-parser", "virtual:bd38bae4b168cbf0f0de9404b0b71faec44b7999cc3ecd4b5f578f72d8413a6b9635bfe92749572f875c696149b51ea3ed7daca91a45dd536ad0e5694f5fadcf#npm:7.22.9"],\
             ["@babel/eslint-plugin", "virtual:bd38bae4b168cbf0f0de9404b0b71faec44b7999cc3ecd4b5f578f72d8413a6b9635bfe92749572f875c696149b51ea3ed7daca91a45dd536ad0e5694f5fadcf#npm:7.22.5"],\
-            ["@firebase/app", "npm:0.7.33"],\
+            ["@firebase/app", "npm:0.9.14"],\
             ["@svgr/webpack", "npm:5.4.0"],\
             ["@types/jest", "npm:27.0.1"],\
             ["@types/js-yaml", "npm:4.0.3"],\
@@ -5800,18 +5800,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@firebase/app", [\
-        ["npm:0.7.33", {\
-          "packageLocation": "./.yarn/cache/@firebase-app-npm-0.7.33-42073b67ab-52904eb31c.zip/node_modules/@firebase/app/",\
-          "packageDependencies": [\
-            ["@firebase/app", "npm:0.7.33"],\
-            ["@firebase/component", "npm:0.5.17"],\
-            ["@firebase/logger", "npm:0.3.3"],\
-            ["@firebase/util", "npm:1.6.3"],\
-            ["idb", "npm:7.0.1"],\
-            ["tslib", "npm:2.2.0"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
         ["npm:0.9.14", {\
           "packageLocation": "./.yarn/cache/@firebase-app-npm-0.9.14-6a0a865c34-f506817ed1.zip/node_modules/@firebase/app/",\
           "packageDependencies": [\
@@ -6048,15 +6036,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@firebase/component", [\
-        ["npm:0.5.17", {\
-          "packageLocation": "./.yarn/cache/@firebase-component-npm-0.5.17-92ce1529bb-5f9a98bb2b.zip/node_modules/@firebase/component/",\
-          "packageDependencies": [\
-            ["@firebase/component", "npm:0.5.17"],\
-            ["@firebase/util", "npm:1.6.3"],\
-            ["tslib", "npm:2.2.0"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
         ["npm:0.6.4", {\
           "packageLocation": "./.yarn/cache/@firebase-component-npm-0.6.4-3592a60aed-5d7006e4bc.zip/node_modules/@firebase/component/",\
           "packageDependencies": [\
@@ -6390,14 +6369,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@firebase/logger", [\
-        ["npm:0.3.3", {\
-          "packageLocation": "./.yarn/cache/@firebase-logger-npm-0.3.3-0e32adc026-34c20c50db.zip/node_modules/@firebase/logger/",\
-          "packageDependencies": [\
-            ["@firebase/logger", "npm:0.3.3"],\
-            ["tslib", "npm:2.2.0"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
         ["npm:0.4.0", {\
           "packageLocation": "./.yarn/cache/@firebase-logger-npm-0.4.0-4e189c5236-4b5418f03a.zip/node_modules/@firebase/logger/",\
           "packageDependencies": [\
@@ -6750,14 +6721,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["@firebase/util", [\
-        ["npm:1.6.3", {\
-          "packageLocation": "./.yarn/cache/@firebase-util-npm-1.6.3-845d8eecf6-ccdbb1993f.zip/node_modules/@firebase/util/",\
-          "packageDependencies": [\
-            ["@firebase/util", "npm:1.6.3"],\
-            ["tslib", "npm:2.2.0"]\
-          ],\
-          "linkType": "HARD"\
-        }],\
         ["npm:1.9.3", {\
           "packageLocation": "./.yarn/cache/@firebase-util-npm-1.9.3-f73af1bb9f-b2dbd39229.zip/node_modules/@firebase/util/",\
           "packageDependencies": [\
@@ -18632,7 +18595,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@babel/core", "npm:7.22.9"],\
             ["@babel/eslint-parser", "virtual:bd38bae4b168cbf0f0de9404b0b71faec44b7999cc3ecd4b5f578f72d8413a6b9635bfe92749572f875c696149b51ea3ed7daca91a45dd536ad0e5694f5fadcf#npm:7.22.9"],\
             ["@babel/eslint-plugin", "virtual:bd38bae4b168cbf0f0de9404b0b71faec44b7999cc3ecd4b5f578f72d8413a6b9635bfe92749572f875c696149b51ea3ed7daca91a45dd536ad0e5694f5fadcf#npm:7.22.5"],\
-            ["@firebase/app", "npm:0.7.33"],\
+            ["@firebase/app", "npm:0.9.14"],\
             ["@svgr/webpack", "npm:5.4.0"],\
             ["@types/jest", "npm:27.0.1"],\
             ["@types/js-yaml", "npm:4.0.3"],\

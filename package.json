@@ -17,7 +17,7 @@
     "process:headshots": "./scripts/process_testimonial_headshots.sh"
   },
   "dependencies": {
-    "@firebase/app": "^0.7.33",
+    "@firebase/app": "^0.9.14",
     "@svgr/webpack": "^5.4.0",
     "@types/js-yaml": "^4.0.3",
     "date-fns": "^2.11.1",

@@ -16674,10 +16674,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["moment", [\
-        ["npm:2.29.1", {\
-          "packageLocation": "./.yarn/cache/moment-npm-2.29.1-787d9fdafd-1e14d5f422.zip/node_modules/moment/",\
+        ["npm:2.29.4", {\
+          "packageLocation": "./.yarn/cache/moment-npm-2.29.4-902943305d-0ec3f9c2bc.zip/node_modules/moment/",\
           "packageDependencies": [\
-            ["moment", "npm:2.29.1"]\
+            ["moment", "npm:2.29.4"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -16765,7 +16765,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["codemirror", "npm:5.62.2"],\
             ["immutable", "npm:3.8.2"],\
             ["lodash", "npm:4.17.19"],\
-            ["moment", "npm:2.29.1"],\
+            ["moment", "npm:2.29.4"],\
             ["netlify-cms-backend-azure", "virtual:2107c05149698bc54a9c0df94dc91c84f5844e7fc3e0e379a471d3c4a09f51e7d5c27c2c40a589bb242cd8cd0f48cc2e13b0b523735b73f4e0efeb4a7ae0d4d6#npm:1.3.1"],\
             ["netlify-cms-backend-bitbucket", "virtual:2107c05149698bc54a9c0df94dc91c84f5844e7fc3e0e379a471d3c4a09f51e7d5c27c2c40a589bb242cd8cd0f48cc2e13b0b523735b73f4e0efeb4a7ae0d4d6#npm:2.14.0"],\
             ["netlify-cms-backend-git-gateway", "virtual:2107c05149698bc54a9c0df94dc91c84f5844e7fc3e0e379a471d3c4a09f51e7d5c27c2c40a589bb242cd8cd0f48cc2e13b0b523735b73f4e0efeb4a7ae0d4d6#npm:2.13.1"],\
@@ -17247,7 +17247,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["js-base64", "npm:3.6.0"],\
             ["jwt-decode", "npm:3.1.2"],\
             ["lodash", "npm:4.17.19"],\
-            ["moment", "npm:2.29.1"],\
+            ["moment", "npm:2.29.4"],\
             ["netlify-cms-editor-component-image", "virtual:2107c05149698bc54a9c0df94dc91c84f5844e7fc3e0e379a471d3c4a09f51e7d5c27c2c40a589bb242cd8cd0f48cc2e13b0b523735b73f4e0efeb4a7ae0d4d6#npm:2.7.0"],\
             ["netlify-cms-lib-auth", "virtual:2107c05149698bc54a9c0df94dc91c84f5844e7fc3e0e379a471d3c4a09f51e7d5c27c2c40a589bb242cd8cd0f48cc2e13b0b523735b73f4e0efeb4a7ae0d4d6#npm:2.4.2"],\
             ["netlify-cms-lib-util", "virtual:2107c05149698bc54a9c0df94dc91c84f5844e7fc3e0e379a471d3c4a09f51e7d5c27c2c40a589bb242cd8cd0f48cc2e13b0b523735b73f4e0efeb4a7ae0d4d6#npm:2.15.1"],\
@@ -17527,7 +17527,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/moment", null],\
             ["immutable", "npm:3.8.2"],\
             ["lodash", "npm:4.17.19"],\
-            ["moment", "npm:2.29.1"]\
+            ["moment", "npm:2.29.4"]\
           ],\
           "packagePeers": [\
             "@types/immutable",\
@@ -17751,7 +17751,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/prop-types", null],\
             ["@types/react", "npm:17.0.20"],\
             ["@types/react-dom", null],\
-            ["moment", "npm:2.29.1"],\
+            ["moment", "npm:2.29.4"],\
             ["netlify-cms-ui-default", "virtual:2107c05149698bc54a9c0df94dc91c84f5844e7fc3e0e379a471d3c4a09f51e7d5c27c2c40a589bb242cd8cd0f48cc2e13b0b523735b73f4e0efeb4a7ae0d4d6#npm:2.15.5"],\
             ["prop-types", "npm:15.7.2"],\
             ["react", "npm:17.0.2"],\
@@ -19918,7 +19918,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["react-datetime", "virtual:7c54f52f3aff48a6835a206facef2190e959e11ee5f004ce64cd49c79ca4723b6125526dd1d94b278c1b77e571a94ad61392c22d77f98a361bff4d0e198984e6#npm:3.2.0"],\
             ["@types/moment", null],\
             ["@types/react", "npm:17.0.20"],\
-            ["moment", "npm:2.29.1"],\
+            ["moment", "npm:2.29.4"],\
             ["prop-types", "npm:15.7.2"],\
             ["react", "npm:17.0.2"]\
           ],\

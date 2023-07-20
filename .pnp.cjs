@@ -5504,7 +5504,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["import-fresh", "npm:3.2.2"],\
             ["js-yaml", "npm:3.14.0"],\
             ["lodash", "npm:4.17.19"],\
-            ["minimatch", "npm:3.0.4"],\
+            ["minimatch", "npm:3.1.2"],\
             ["strip-json-comments", "npm:3.1.1"]\
           ],\
           "linkType": "HARD"\
@@ -11472,7 +11472,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["json-stable-stringify-without-jsonify", "npm:1.0.1"],\
             ["levn", "npm:0.4.1"],\
             ["lodash", "npm:4.17.19"],\
-            ["minimatch", "npm:3.0.4"],\
+            ["minimatch", "npm:3.1.2"],\
             ["natural-compare", "npm:1.4.0"],\
             ["optionator", "npm:0.9.1"],\
             ["progress", "npm:2.0.3"],\
@@ -11769,7 +11769,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["eslint-import-resolver-node", "npm:0.3.4"],\
             ["eslint-module-utils", "virtual:80715062ceb01393bebd0824369631d0000883ce30bcf69714a2421e05fc74ba8d220c0d90275db4b571d231e699a8106e9e907859d95b9214e767c2d1b8ce56#npm:2.6.0"],\
             ["has", "npm:1.0.3"],\
-            ["minimatch", "npm:3.0.4"],\
+            ["minimatch", "npm:3.1.2"],\
             ["object.values", "npm:1.1.1"],\
             ["read-pkg-up", "npm:2.0.0"],\
             ["resolve", "patch:resolve@npm%3A1.17.0#~builtin<compat/resolve>::version=1.17.0&hash=07638b"],\
@@ -12775,7 +12775,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["fs.realpath", "npm:1.0.0"],\
             ["inflight", "npm:1.0.6"],\
             ["inherits", "npm:2.0.4"],\
-            ["minimatch", "npm:3.0.4"],\
+            ["minimatch", "npm:3.1.2"],\
             ["once", "npm:1.4.0"],\
             ["path-is-absolute", "npm:1.0.1"]\
           ],\
@@ -15838,10 +15838,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["minimatch", [\
-        ["npm:3.0.4", {\
-          "packageLocation": "./.yarn/cache/minimatch-npm-3.0.4-6e76f51c23-66ac295f8a.zip/node_modules/minimatch/",\
+        ["npm:3.1.2", {\
+          "packageLocation": "./.yarn/cache/minimatch-npm-3.1.2-9405269906-c154e56640.zip/node_modules/minimatch/",\
           "packageDependencies": [\
-            ["minimatch", "npm:3.0.4"],\
+            ["minimatch", "npm:3.1.2"],\
             ["brace-expansion", "npm:1.1.11"]\
           ],\
           "linkType": "HARD"\
@@ -16239,7 +16239,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["ini", "npm:2.0.0"],\
             ["jwt-decode", "npm:3.1.2"],\
             ["lodash", "npm:4.17.19"],\
-            ["minimatch", "npm:3.0.4"],\
+            ["minimatch", "npm:3.1.2"],\
             ["netlify-cms-backend-bitbucket", "virtual:9d511ccb908e11f658c980933d7e09a96ca27721da4cd1a74d70957bbb8d88c233130c51596312718cdbc19ede56eed8952ede62a5e1243ffcdcd3960670db22#npm:2.13.3"],\
             ["netlify-cms-backend-github", "virtual:9d511ccb908e11f658c980933d7e09a96ca27721da4cd1a74d70957bbb8d88c233130c51596312718cdbc19ede56eed8952ede62a5e1243ffcdcd3960670db22#npm:2.13.4"],\
             ["netlify-cms-backend-gitlab", "virtual:9d511ccb908e11f658c980933d7e09a96ca27721da4cd1a74d70957bbb8d88c233130c51596312718cdbc19ede56eed8952ede62a5e1243ffcdcd3960670db22#npm:2.11.4"],\
@@ -22167,7 +22167,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["test-exclude", "npm:6.0.0"],\
             ["@istanbuljs/schema", "npm:0.1.2"],\
             ["glob", "npm:7.1.6"],\
-            ["minimatch", "npm:3.0.4"]\
+            ["minimatch", "npm:3.1.2"]\
           ],\
           "linkType": "HARD"\
         }]\

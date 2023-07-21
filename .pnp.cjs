@@ -9592,10 +9592,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]\
       ]],\
       ["async", [\
-        ["npm:3.2.0", {\
-          "packageLocation": "./.yarn/cache/async-npm-3.2.0-b6fd825ddc-6739fae769.zip/node_modules/async/",\
+        ["npm:3.2.4", {\
+          "packageLocation": "./.yarn/cache/async-npm-3.2.4-aba13508f9-43d07459a4.zip/node_modules/async/",\
           "packageDependencies": [\
-            ["async", "npm:3.2.0"]\
+            ["async", "npm:3.2.4"]\
           ],\
           "linkType": "HARD"\
         }]\
@@ -24386,7 +24386,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [\
             ["winston", "npm:3.3.3"],\
             ["@dabh/diagnostics", "npm:2.0.2"],\
-            ["async", "npm:3.2.0"],\
+            ["async", "npm:3.2.4"],\
             ["is-stream", "npm:2.0.0"],\
             ["logform", "npm:2.2.0"],\
             ["one-time", "npm:1.0.0"],\

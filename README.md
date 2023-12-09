@@ -58,6 +58,12 @@ To preprocess headshots for the testimonials section of the website, you'll need
 
 Create a directory somewhere with your input files (say, `~/headshots`). Then run `yarn process:headshots ~/headshots/*`, which will process your input files (desaturate, adjust levels, resize, crop, and strip metadata) and output them in `public/images`, where they will be available to set as headshots for testimonials!
 
+## Processes
+
+### Updating Holiday Calendar
+
+To update the holiday calendar download, update the `.ics` files in `public/` and update the resource links in `src/pages/resources.mdx`.
+
 ### See Also
 
 - [Debugging in Visual Studio Code](https://code.visualstudio.com/docs/editor/debugging)

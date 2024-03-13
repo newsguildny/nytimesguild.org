@@ -105,6 +105,10 @@ export default function App({
           list-style-type: '${'\\00B7\\2002'}';
         }
 
+        img.regular-width {
+          width: 100%;
+        }
+
         @media (min-width: 769px) {
           body {
             --nyt-serif-extra-large: 4.25rem;

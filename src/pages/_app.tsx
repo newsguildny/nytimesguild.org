@@ -61,8 +61,8 @@ export default function App({
         // React Fragment on the client. This leads to a flash
         // of incorrectly styled content unless we handle this
         // specific case here.
-        main > .mdx-wrapper > *,
-        main > :not(.mdx-wrapper) {
+        main:not(.contract-campaign) > .mdx-wrapper > *,
+        main:not(.contract-campaign) > :not(.mdx-wrapper) {
           margin-left: 2rem;
           margin-right: 2rem;
         }
@@ -123,11 +123,24 @@ export default function App({
             --nyt-sans-serif-small: 1rem;
             --nyt-sans-serif-extra-small: 0.75rem;
           }
-          main > .mdx-wrapper > *,
-          main > :not(.mdx-wrapper) {
+          main:not(.contract-campaign) > .mdx-wrapper > *,
+          main:not(.contract-campaign) > :not(.mdx-wrapper) {
             max-width: 47rem;
             margin-left: 5rem;
             margin-right: 5rem;
+          }
+        }
+        .contract-campaign > .mdx-wrapper > *,
+        .contract-campaign > :not(.mdx-wrapper) {
+          max-width: 47rem;
+          margin-left: 2rem;
+          margin-right: 2rem;
+        }
+        @media (min-width: 769px) {
+          .contract-campaign > .mdx-wrapper > *,
+          .contract-campaign > :not(.mdx-wrapper) {
+            margin-left: auto;
+            margin-right: auto;
           }
         }
       `}</style>

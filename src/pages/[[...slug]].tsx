@@ -38,6 +38,7 @@ const Page = ({
   staticContextValue,
 }: Props) => {
   const isHome = slug === 'index';
+  const isContractCampaign = slug === 'tech-contract-campaign';
   const content = useHydratedMdx(source, { components, staticContextValue });
   return (
     <>
@@ -48,7 +49,7 @@ const Page = ({
       </Head>
       <PageLayout slug={slug} pagesMetadata={pagesMetadata}>
         {isHome ? <HomeHeader /> : <PageHeader heading={heading} subheading={subheading} />}
-        <main>
+        <main className={isContractCampaign ? 'contract-campaign' : ''}>
           <StaticContext.Provider value={staticContextValue}>{content}</StaticContext.Provider>
         </main>
       </PageLayout>

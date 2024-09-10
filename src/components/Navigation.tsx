@@ -72,9 +72,17 @@ export function Navigation({ slug, pagesMetadata }: Props) {
               </Link>
             </li>
           ))}
+          {/* Only show on the `/tech/` and `/tech-vote-count/` pages */}
+          {(slug === 'tech' || slug === 'tech-vote-count') && (
+            <li>
+              <Link href="/tech-vote-count/">
+                <a className={slug === 'tech-vote-count' ? 'active' : ''}>Vote Count</a>
+              </Link>
+            </li>
+          )}
           <li>
-            <Link href="/tech-vote-count/">
-              <a className={slug === 'tech-vote-count' ? 'active' : ''}>Vote Count</a>
+            <Link href="/tech-sav/">
+              <a className={slug === 'tech-sav' ? 'active' : ''}>Tech SAV</a>
             </Link>
           </li>
         </ul>

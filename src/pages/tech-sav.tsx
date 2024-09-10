@@ -31,7 +31,7 @@ const VoteCounts = ({ pagesMetadata }: Props) => {
           <h2>About</h2>
           <p>
             The Times Tech Guild (The NewsGuild of New York, Local 31003, TNG/CWA) held a Strike
-            Authorization Vote on September 9-10, 2024.
+            Authorization Vote (SAV) on September 9-10, 2024.
           </p>
           <p>
             This vote was decided by a simple majority (50% +1 vote) and conducted online via{' '}

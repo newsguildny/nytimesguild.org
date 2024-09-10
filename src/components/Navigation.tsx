@@ -77,6 +77,11 @@ export function Navigation({ slug, pagesMetadata }: Props) {
               <a className={slug === 'tech-vote-count' ? 'active' : ''}>Vote Count</a>
             </Link>
           </li>
+          <li>
+            <Link href="/tech-sav/">
+              <a className={slug === 'tech-sav' ? 'active' : ''}>SAV</a>
+            </Link>
+          </li>
         </ul>
       </nav>
       <style jsx>

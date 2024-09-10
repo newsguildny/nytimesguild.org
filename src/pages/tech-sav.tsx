@@ -17,7 +17,7 @@ const VoteCounts = ({ pagesMetadata }: Props) => {
   const yes = 524;
   const no = 29;
   const blank = 1;
-  const neededToWin = Math.round(voted / 2);
+  const neededToWin = 278;
 
   return (
     <>

@@ -40,6 +40,17 @@ const VoteCounts = ({ pagesMetadata }: Props) => {
             </a>
             .
           </p>
+          <p>
+            For more on this result, please refer to{' '}
+            <a
+              href="https://www.nyguild.org/post/new-york-times-tech-guild-votes-yes-to-strike"
+              target="_blank"
+              rel="noopener noreferrer nofollow"
+            >
+              this press release
+            </a>{' '}
+            from The NewsGuild of New York.
+          </p>
           {/* The vote count bar */}
           <h3 id="heading">Results</h3>
           <VoteCountBar yes={yes} no={no} total={voted} neededToWin={neededToWin} />

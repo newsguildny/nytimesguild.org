@@ -13,9 +13,10 @@ interface Props {
 
 const VoteCounts = ({ pagesMetadata }: Props) => {
   const eligible = 622;
-  const voted = 553;
+  const voted = 554;
   const yes = 524;
   const no = 29;
+  const blank = 1;
   const neededToWin = Math.round(voted / 2);
 
   return (
@@ -41,7 +42,8 @@ const VoteCounts = ({ pagesMetadata }: Props) => {
             .
           </p>
           <p>
-            For more on this result, please refer to{' '}
+            The vote passed, with an overwhelming 95% of voting members authorizing the strike.
+            Please refer to{' '}
             <a
               href="https://www.nyguild.org/post/new-york-times-tech-guild-votes-yes-to-strike"
               target="_blank"
@@ -49,7 +51,7 @@ const VoteCounts = ({ pagesMetadata }: Props) => {
             >
               this press release
             </a>{' '}
-            from The NewsGuild of New York.
+            from The NewsGuild of New York for more.
           </p>
           {/* The vote count bar */}
           <h3 id="heading">Results</h3>
@@ -81,6 +83,14 @@ const VoteCounts = ({ pagesMetadata }: Props) => {
                 <td className="number-column">{no}</td>
                 <td className="number-column">{formatPercentage(no, voted)}</td>
                 <td className="number-column">{formatPercentage(no, eligible)}</td>
+              </tr>
+              <tr>
+                <td className="category-column no-cell">
+                  Blank <span className="drop-on-mobile">votes</span>
+                </td>
+                <td className="number-column">{blank}</td>
+                <td className="number-column">{formatPercentage(blank, voted)}</td>
+                <td className="number-column">{formatPercentage(blank, eligible)}</td>
               </tr>
             </tbody>
           </table>

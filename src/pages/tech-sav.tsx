@@ -84,14 +84,6 @@ const VoteCounts = ({ pagesMetadata }: Props) => {
                 <td className="number-column">{formatPercentage(no, voted)}</td>
                 <td className="number-column">{formatPercentage(no, eligible)}</td>
               </tr>
-              <tr>
-                <td className="category-column no-cell">
-                  Blank <span className="drop-on-mobile">votes</span>
-                </td>
-                <td className="number-column">{blank}</td>
-                <td className="number-column">{formatPercentage(blank, voted)}</td>
-                <td className="number-column">{formatPercentage(blank, eligible)}</td>
-              </tr>
             </tbody>
           </table>
 
@@ -104,6 +96,12 @@ const VoteCounts = ({ pagesMetadata }: Props) => {
                   Total <span className="drop-on-mobile">votes</span>
                 </td>
                 <td className="number-column">{voted}</td>
+              </tr>
+              <tr>
+                <td className="category-column">
+                  Blank <span className="drop-on-mobile">votes</span>
+                </td>
+                <td className="number-column">{blank}</td>
               </tr>
               <tr>
                 <td className="category-column">Eligible unit members</td>

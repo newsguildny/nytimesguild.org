@@ -1,0 +1,19 @@
+.pdf-iframe-container {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.iframe {
+  width: 100%;
+  height: 30rem;
+  border: none;
+}
+
+@media (min-width: 769px) {
+  .iframe {
+    height: 60rem;
+  }
+}

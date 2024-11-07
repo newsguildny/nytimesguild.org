@@ -6,4 +6,7 @@ module.exports = {
     ignoreDuringBuilds: true,
   },
   trailingSlash: true,
+  experimental: {
+    serverComponentsExternalPackages: ["remark-prism"],
+  },
 };

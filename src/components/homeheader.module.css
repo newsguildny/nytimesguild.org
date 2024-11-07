@@ -1,0 +1,54 @@
+.header {
+  padding: 1rem 1.125rem 2.75rem;
+  background-color: var(--nyt-header-background-color);
+  color: var(--nyt-header-text-color);
+}
+.p,
+.li {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 300;
+  color: var(--nyt-header-text-color);
+}
+.desktop-header {
+  display: none;
+}
+@media (min-width: 769px) {
+  .mobile-header {
+    display: none;
+  }
+  .desktop-header {
+    display: block;
+  }
+  .header {
+    padding: 3rem 5rem 6rem;
+  }
+  .p {
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
+  .header p:first-child {
+    margin: 0;
+  }
+  .header .justified-header-line {
+    margin: 0 0 0 9.8rem;
+  }
+  .header strong {
+    font-weight: 600;
+  }
+  .header-conclusion > p:first-child {
+    margin: 1em 0 0;
+  }
+  .header-conclusion > p {
+    margin: 0;
+  }
+}
+@media (min-width: 1009px) {
+  .p {
+    font-size: 2.25rem;
+    line-height: 2.875rem;
+  }
+  .header .justified-header-line {
+    margin: 0 0 0 13.7rem;
+  }
+}

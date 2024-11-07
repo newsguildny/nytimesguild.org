@@ -1,105 +1,66 @@
-import { headerBackground, headerText } from '../lib/styles/tokens/colors';
-import { serif } from '../lib/styles/tokens/fonts';
+import { crimsonPro } from "src/app/fonts";
+import cx from "classnames";
+import styles from "./homeheader.module.css";
 
 export function HomeHeader() {
   return (
-    <>
-      <header>
-        <div className="mobile-header">
-          <p>We&rsquo;re building</p>
-          <ul>
-            <li>
-              A <strong>diverse and equitable</strong> New York Times
-            </li>
-            <li className="justified-header-line">
-              A <strong>transparent and inclusive</strong> media industry
-            </li>
-            <li className="justified-header-line">
-              A <strong>stronger and united</strong> workplace
-            </li>
-          </ul>
-          <div className="header-conclusion">
-            <p>We have more power together than we do apart.</p>
-            <p>
-              <strong>We are the Times-Guild.</strong>
-            </p>
-          </div>
+    <header className={styles.header}>
+      <div className={styles["mobile-header"]}>
+        <p className={cx(crimsonPro.className, styles.p)}>
+          We&rsquo;re building
+        </p>
+        <ul>
+          <li className={cx(crimsonPro.className, styles.li)}>
+            A <strong>diverse and equitable</strong> New York Times
+          </li>
+          <li className={cx(styles.li, styles["justified-header-line"])}>
+            A <strong>transparent and inclusive</strong> media industry
+          </li>
+          <li className={cx(styles.li, styles["justified-header-line"])}>
+            A <strong>stronger and united</strong> workplace
+          </li>
+        </ul>
+        <div className={styles["header-conclusion"]}>
+          <p className={cx(crimsonPro.className, styles.p)}>
+            We have more power together than we do apart.
+          </p>
+          <p className={cx(crimsonPro.className, styles.p)}>
+            <strong>We are the Times-Guild.</strong>
+          </p>
         </div>
-        <div className="desktop-header">
-          <p>
-            We&rsquo;re building a <strong>diverse and equitable</strong> New York Times
+      </div>
+      <div className={styles["desktop-header"]}>
+        <p className={cx(crimsonPro.className, styles.p)}>
+          We&rsquo;re building a <strong>diverse and equitable</strong> New York
+          Times
+        </p>
+        <p
+          className={cx(
+            crimsonPro.className,
+            styles.p,
+            styles["justified-header-line"],
+          )}
+        >
+          a <strong>transparent and inclusive</strong> media industry
+        </p>
+        <p
+          className={cx(
+            crimsonPro.className,
+            styles.p,
+            styles["justified-header-line"],
+          )}
+        >
+          a <strong>stronger and united</strong> workplace
+        </p>
+        <div className={styles["header-conclusion"]}>
+          <p className={cx(crimsonPro.className, styles.p)}>
+            We have more power together than we do apart.
           </p>
-          <p className="justified-header-line">
-            a <strong>transparent and inclusive</strong> media industry
+          <p className={cx(crimsonPro.className, styles.p)}>
+            <strong>We are the Times-Guild.</strong>
           </p>
-          <p className="justified-header-line">
-            a <strong>stronger and united</strong> workplace
-          </p>
-          <div className="header-conclusion">
-            <p>We have more power together than we do apart.</p>
-            <p>
-              <strong>We are the Times-Guild.</strong>
-            </p>
-          </div>
         </div>
-      </header>
-      <style jsx>{`
-        header {
-          padding: 1rem 1.125rem 2.75rem;
-          background-color: ${headerBackground};
-          color: ${headerText};
-        }
-        p,
-        li {
-          font-family: ${serif};
-          font-size: 1.5rem;
-          line-height: 2rem;
-          font-weight: 300;
-          color: ${headerText};
-        }
-        .desktop-header {
-          display: none;
-        }
-        @media (min-width: 769px) {
-          .mobile-header {
-            display: none;
-          }
-          .desktop-header {
-            display: block;
-          }
-          header {
-            padding: 3rem 5rem 6rem;
-          }
-          p {
-            font-size: 1.6rem;
-            line-height: 2rem;
-          }
-          header p:first-child {
-            margin: 0;
-          }
-          header .justified-header-line {
-            margin: 0 0 0 9.8rem;
-          }
-          header strong {
-            font-weight: 600;
-          }
-          .header-conclusion > p:first-child {
-            margin: 1em 0 0;
-          }
-          .header-conclusion > p {
-            margin: 0;
-          }
-        }
-        @media (min-width: 1009px) {
-          p {
-            font-size: 2.25rem;
-            line-height: 2.875rem;
-          }
-          header .justified-header-line {
-            margin: 0 0 0 13.7rem;
-          }
-        }
-      `}</style>
-    </>
+      </div>
+    </header>
   );
 }

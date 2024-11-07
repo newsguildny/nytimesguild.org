@@ -1,8 +1,12 @@
-import { sansSerif, serif } from '../../lib/styles/tokens/fonts';
-import { noVote, yesVote } from '../../lib/styles/tokens/colors';
+import { noVote, yesVote } from "../../lib/styles/tokens/colors";
 
-export function formatPercentage(numerator: number, denominator: number): string {
-  return denominator ? `${Math.round((numerator / denominator) * 100)}%` : '--%';
+export function formatPercentage(
+  numerator: number,
+  denominator: number,
+): string {
+  return denominator
+    ? `${Math.round((numerator / denominator) * 100)}%`
+    : "--%";
 }
 
 export interface VoteCountBarProps {
@@ -14,11 +18,16 @@ export interface VoteCountBarProps {
 
 const WIN_LABEL_WIDTH = 80;
 
-export const VoteCountBar = ({ yes, no, total, neededToWin }: VoteCountBarProps) => (
+export const VoteCountBar = ({
+  yes,
+  no,
+  total,
+  neededToWin,
+}: VoteCountBarProps) => (
   <>
     <div className="bar-labels">
       <div className="yes-label">
-        Yes:{' '}
+        Yes:{" "}
         <span className="yes-count">
           {yes} ({formatPercentage(yes, total)})
         </span>
@@ -31,10 +40,10 @@ export const VoteCountBar = ({ yes, no, total, neededToWin }: VoteCountBarProps)
           }px)`,
         }}
       >
-        {total ? neededToWin : '--'}
+        {total ? neededToWin : "--"}
       </div>
       <div className="no-label">
-        No:{' '}
+        No:{" "}
         <span className="no-count">
           {no} ({formatPercentage(no, total)})
         </span>
@@ -47,7 +56,9 @@ export const VoteCountBar = ({ yes, no, total, neededToWin }: VoteCountBarProps)
       />
       <div
         className="bar-half"
-        style={{ left: `calc(max(${total ? (neededToWin / total) * 100 : 0}%, 50%) - 1px)` }}
+        style={{
+          left: `calc(max(${total ? (neededToWin / total) * 100 : 0}%, 50%) - 1px)`,
+        }}
       />
       <div
         className="bar-no"
@@ -63,7 +74,7 @@ export const VoteCountBar = ({ yes, no, total, neededToWin }: VoteCountBarProps)
         position: relative;
         display: flex;
         justify-content: space-between;
-        font-family: ${sansSerif};
+        font-family: var(--nyt-sans-serif-font);
         font-size: 1.375rem;
         font-weight: 300;
       }
@@ -85,7 +96,7 @@ export const VoteCountBar = ({ yes, no, total, neededToWin }: VoteCountBarProps)
       .yes-count,
       .no-count,
       .win-label {
-        font-family: ${serif};
+        font-family: var(--nyt-serif-font);
         font-size: 1.75rem;
         font-weight: 600;
       }

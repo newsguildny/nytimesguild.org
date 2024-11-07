@@ -1,0 +1,59 @@
+.container {
+  font-size: var(--nyt-sans-serif-medium);
+  margin-bottom: 2rem;
+  clear: right;
+}
+
+.h4 {
+  margin: 0;
+}
+
+.text-container :global(p) {
+  margin-top: 0.5rem;
+}
+
+.tguild-wrapper {
+  background-color: var(--nyt-header-background-color);
+  flex-shrink: 0;
+}
+
+.img,
+.tguild-wrapper {
+  width: 5.25rem;
+  height: 5.25rem;
+  margin: 0 0 1rem 0.25rem;
+  border-radius: 50%;
+  float: right;
+  shape-outside: circle(50%);
+}
+
+.tguild {
+  top: calc(50% - (3.875rem / 2));
+  left: calc(50% - (4.25rem / 2));
+}
+
+@media (min-width: 769px) {
+  .container {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+  }
+
+  .tguild {
+    top: calc(50% - (6rem / 2));
+    left: calc(50% - (6.625rem / 2));
+  }
+
+  .img,
+  .tguild-wrapper {
+    width: 7.5rem;
+    height: 7.5rem;
+    margin-left: 0;
+  }
+
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    padding-right: 2rem;
+  }
+}

@@ -1,0 +1,7 @@
+.link {
+  composes: link from "./calltoaction.module.css";
+}
+
+.arrow {
+  composes: arrow from "./calltoaction.module.css";
+}

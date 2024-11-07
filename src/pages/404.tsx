@@ -1,6 +1,6 @@
-import { GetStaticProps } from 'next';
-import { PageLayout } from '../components/PageLayout';
-import { getNavPagesMetadata, PageData } from '../lib/collections/pages';
+import { GetStaticProps } from "next";
+import { PageLayout } from "../components/PageLayout";
+import { getNavPagesMetadata, PageData } from "../lib/collections/pages";
 
 interface Props {
   pagesMetadata: PageData[];

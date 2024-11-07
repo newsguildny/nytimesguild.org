@@ -1,5 +1,5 @@
-import { Literal, Node, Parent } from 'unist';
-import visit from 'unist-util-visit';
+import { Literal, Node, Parent } from "unist";
+import visit from "unist-util-visit";
 
 /**
  * @see https://github.com/syntax-tree/mdast#literal
@@ -19,18 +19,22 @@ export function remarkLineBreaks() {
   return (tree: Node) => {
     // Since we're filtering `visit` to only `text` nodes, our visitor
     // only needs to handle mdast Literals (nodes with a string value)
-    visit(tree, 'text', (node: MDASTLiteral, index: number, parent?: Parent) => {
-      const match = node.value.match(lineBreakRegex);
-      if (match) {
-        parent?.children.splice(
-          index,
-          1,
-          { type: 'text', value: node.value.slice(0, match.index) },
-          { type: 'break' }
-        );
-        return index + 2;
-      }
-      return undefined;
-    });
+    visit(
+      tree,
+      "text",
+      (node: MDASTLiteral, index: number, parent?: Parent) => {
+        const match = node.value.match(lineBreakRegex);
+        if (match) {
+          parent?.children.splice(
+            index,
+            1,
+            { type: "text", value: node.value.slice(0, match.index) },
+            { type: "break" },
+          );
+          return index + 2;
+        }
+        return undefined;
+      },
+    );
   };
 }

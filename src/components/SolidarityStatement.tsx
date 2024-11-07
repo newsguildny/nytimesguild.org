@@ -1,79 +1,27 @@
-import { useHydratedMdx } from '../lib/mdx/hydrate';
-import { sansSerif, sansSerifSizes } from '../lib/styles/tokens/fonts';
-import { MarkdownSource } from '../lib/mdx/read';
-
-export interface SolidarityStatementData {
-  filename: string;
-  name: string;
-  highlight: boolean;
-  logo?: string;
-}
-
-export type SolidarityStatementContent = SolidarityStatementData & MarkdownSource;
+import { getSolidarityStatementData } from "src/lib/collections/solidarityStatements";
+import cx from "classnames";
+import { publicSans } from "src/app/fonts";
+import styles from "./solidaritystatement.module.css";
+import { MDX } from "./MDX";
 
 interface Props {
-  solidarityStatement: SolidarityStatementContent;
+  solidarityStatement: ReturnType<typeof getSolidarityStatementData>;
 }
 
 export function SolidarityStatement({ solidarityStatement }: Props) {
-  const content = useHydratedMdx(solidarityStatement.source);
   return (
-    <>
-      <div className={`container ${solidarityStatement.logo ? '' : 'no-logo'}`}>
-        {solidarityStatement.logo && <img src={solidarityStatement.logo} alt="" />}
-        <div className="text-container">
-          <h4>{solidarityStatement.name}</h4>
-          {content}
-        </div>
+    <div
+      className={cx(styles.container, publicSans.className, {
+        [styles["no-logo"]]: !solidarityStatement.logo,
+      })}
+    >
+      {solidarityStatement.logo && (
+        <img className={styles.img} src={solidarityStatement.logo} alt="" />
+      )}
+      <div className={styles["text-container"]}>
+        <h4 className={styles.h4}>{solidarityStatement.name}</h4>
+        <MDX source={solidarityStatement.content} />
       </div>
-      <style jsx>{`
-        .container {
-          font-family: ${sansSerif};
-          font-size: ${sansSerifSizes.medium};
-          margin-bottom: 2rem;
-          clear: right;
-        }
-
-        h4 {
-          margin: 0;
-        }
-
-        .text-container :global(p) {
-          margin-bottom: 0.5rem;
-        }
-
-        img {
-          width: 120px;
-          margin: 0 0 1rem 0.5rem;
-          float: right;
-        }
-
-        @media (min-width: 769px) {
-          .container {
-            display: flex;
-            flex-direction: row-reverse;
-            align-items: flex-start;
-          }
-
-          img {
-            margin-left: 0;
-          }
-
-          .container.no-logo {
-            display: block;
-          }
-
-          .text-container {
-            display: flex;
-            flex-direction: column;
-            padding-right: 2rem;
-          }
-
-          .container.no-logo .text-container {
-            width: calc(100% - 2rem - 120px);
-          }
-        }
-      `}</style>
-    </>
+    </div>
   );
 }

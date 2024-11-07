@@ -1,33 +1,14 @@
-import { headerText, headerBackground } from '../lib/styles/tokens/colors';
-import { sansSerifSizes } from '../lib/styles/tokens/fonts';
+import cx from "classnames";
+import styles from "./livepill.module.css";
 
 export const LivePill = ({ outlined = false, small = false }) => (
-  <>
-    <span className={`live-pill ${outlined ? 'outlined' : 'filled'}${small ? ' small' : ''}`}>
-      live
-    </span>
-    <style jsx>{`
-      .live-pill {
-        box-sizing: border-box;
-        display: inline-block;
-        margin-left: 0.5rem;
-        padding: 0.25rem 0.5rem;
-        border-radius: 1.5rem;
-        font-size: ${sansSerifSizes.extraSmall};
-        font-weight: 800;
-        color: ${headerText};
-        text-transform: uppercase;
-      }
-      .filled {
-        background: ${headerBackground};
-      }
-      .outlined {
-        border: 0.09375rem solid ${headerText};
-      }
-      .small {
-        padding: 0.0625rem 0.4375rem;
-        margin: -0.15625rem 0 -0.15625rem 0.125rem;
-      }
-    `}</style>
-  </>
+  <span
+    className={cx(styles["live-pill"], {
+      [styles.filled]: !outlined,
+      [styles.outlined]: outlined,
+      [styles.small]: small,
+    })}
+  >
+    live
+  </span>
 );

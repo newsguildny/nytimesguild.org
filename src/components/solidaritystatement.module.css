@@ -1,0 +1,45 @@
+.container {
+  font-size: var(--nyt-sans-serif-medium);
+  margin-bottom: 2rem;
+  clear: right;
+}
+
+.h4 {
+  margin: 0;
+}
+
+.text-container :global(p) {
+  margin-bottom: 0.5rem;
+}
+
+.img {
+  width: 120px;
+  margin: 0 0 1rem 0.5rem;
+  float: right;
+}
+
+@media (min-width: 769px) {
+  .container {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: flex-start;
+  }
+
+  .img {
+    margin-left: 0;
+  }
+
+  .container.no-logo {
+    display: block;
+  }
+
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    padding-right: 2rem;
+  }
+
+  .container.no-logo .text-container {
+    width: calc(100% - 2rem - 120px);
+  }
+}

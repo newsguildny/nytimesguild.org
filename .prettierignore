@@ -2,3 +2,7 @@
 /public-dist
 /private-dist
 /.next
+/.yarn
+.pnp.*
+
+**/*.mdx

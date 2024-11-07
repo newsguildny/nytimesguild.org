@@ -1,0 +1,98 @@
+.header {
+  display: block;
+  color: #490606;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 900;
+  margin: 0 1rem;
+}
+
+.description {
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-align: center;
+  margin: 0.5rem;
+}
+
+.info {
+  color: #490606;
+  font-weight: 400;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+}
+
+.main {
+  background-color: #ffebed;
+  padding-bottom: 3rem;
+}
+
+.article {
+  margin-top: 2rem;
+  font-size: var(--nyt-sans-serif-medium);
+}
+
+.img {
+  max-width: 740px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.link {
+  font-size: 0.9rem;
+  margin: 1.5rem;
+  text-decoration: none;
+}
+
+@media (min-width: 769px) {
+  .title {
+    font-size: 8rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .info {
+    font-size: 1rem;
+  }
+
+  .link {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .header {
+    position: relative;
+    top: 6rem;
+    margin-top: -4rem;
+  }
+
+  .title {
+    font-size: 9rem;
+  }
+
+  .description {
+    font-size: 1.2rem;
+  }
+
+  .info {
+    margin: 0 2rem 2rem 2rem;
+  }
+
+  .main {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
+  .link {
+    margin: 2rem;
+  }
+}

@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
-import { Navigation } from './Navigation';
-import { Footer } from './Footer';
-import type { PageData } from '../lib/collections/pages';
+import { ReactNode } from "react";
+import { Navigation } from "./Navigation";
+import { Footer } from "./Footer";
+import type { PageData } from "../lib/collections/pages";
 
 interface Props {
   slug?: string;

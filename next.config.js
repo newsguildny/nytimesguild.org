@@ -6,6 +6,6 @@ module.exports = {
   experimental: {
     serverComponentsExternalPackages: ["remark-prism"],
   },
-  output: 'export',
-  distDir: 'dist'
+  output: "export",
+  distDir: "dist",
 };

@@ -25,7 +25,7 @@ const RepoBadge = ({ pagesMetadata }: Props) => {
           </a>
           <pre>
             [![Support
-            @NYTGuildTech](https://nytimesguild.com/badge-nyt-guild-tech.png)](https://nytimesguild.org/tech/fund)
+            @NYTGuildTech](https://nytimesguild.org/badge-nyt-guild-tech.png)](https://nytimesguild.org/tech/fund)
           </pre>
 
           <h2>Large</h2>
@@ -37,7 +37,7 @@ const RepoBadge = ({ pagesMetadata }: Props) => {
           </a>
           <pre>
             [![Support
-            @NYTGuildTech](https://nytimesguild.com/badge-nyt-guild-tech-large.png)](https://nytimesguild.org/tech/fund)
+            @NYTGuildTech](https://nytimesguild.org/badge-nyt-guild-tech-large.png)](https://nytimesguild.org/tech/fund)
           </pre>
         </main>
       </PageLayout>

@@ -8,7 +8,7 @@
     "dev:inspect": "NODE_OPTIONS='--inspect' yarn dev",
     "build": "next build",
     "start": "next start",
-    "export": "next build && next export -o ./dist",
+    "export": "next build",
     "lint": "eslint src --report-unused-disable-directives",
     "lint:fix": "yarn lint --fix",
     "type-check": "tsc -p tsconfig.json --incremental",

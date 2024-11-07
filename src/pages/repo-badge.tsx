@@ -1,8 +1,8 @@
-import { GetStaticProps } from 'next';
-import Head from 'next/head';
-import { PageHeader } from '../components/PageHeader';
-import { getNavPagesMetadata, PageData } from '../lib/collections/pages';
-import { PageLayout } from '../components/PageLayout';
+import { GetStaticProps } from "next";
+import Head from "next/head";
+import { PageHeader } from "../components/PageHeader";
+import { getNavPagesMetadata, PageData } from "../lib/collections/pages";
+import { PageLayout } from "../components/PageLayout";
 
 interface Props {
   pagesMetadata: PageData[];
@@ -30,7 +30,10 @@ const RepoBadge = ({ pagesMetadata }: Props) => {
 
           <h2>Large</h2>
           <a href="https://nytimesguild.org/tech/fund">
-            <img alt="Support NYT Guild Tech" src="/badge-nyt-guild-tech-large.png" />
+            <img
+              alt="Support NYT Guild Tech"
+              src="/badge-nyt-guild-tech-large.png"
+            />
           </a>
           <pre>
             [![Support
@@ -63,7 +66,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const pagesMetadata = getNavPagesMetadata();
   return {
     props: {
-      slug: 'repo-badge',
+      slug: "repo-badge",
       pagesMetadata,
     },
   };

@@ -1,6 +1,3 @@
-// const { resolve } = require('path');
-// const { withStaticContext } = require('next-static-context/lib/withStaticContext');
-
 module.exports = {
   eslint: {
     ignoreDuringBuilds: true,
@@ -9,4 +6,6 @@ module.exports = {
   experimental: {
     serverComponentsExternalPackages: ["remark-prism"],
   },
+  output: 'export',
+  distDir: 'dist'
 };

@@ -1,0 +1,27 @@
+.link {
+  display: block;
+  margin: 3rem 0 6rem 0;
+  width: max-content;
+  max-width: calc(100% - 4rem);
+  padding: 1rem 1.5rem;
+  border: 2px solid #dedede;
+  font-size: var(--nyt-sans-serif-large);
+  line-height: 1.875rem;
+  color: #666;
+  text-decoration: none;
+  transition: color 0.3s;
+  transition: border 0.3s;
+}
+
+.link:hover {
+  border-color: #666;
+  color: #222;
+}
+
+.link:hover > :global(svg) {
+  transform: translateX(2.5rem);
+}
+
+.arrow {
+  transition: transform 0.3s ease-out;
+}

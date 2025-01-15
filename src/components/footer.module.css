@@ -1,0 +1,31 @@
+.footer {
+  margin-top: 4rem;
+  background-color: var(--nyt-secondary-background-color);
+  text-align: center;
+  width: 100%;
+  padding: 20vh 0;
+  color: var(--nyt-secondary-heading-text-color);
+}
+
+.footer .h3 {
+  font-size: var(--nyt-serif-large);
+  font-weight: 200;
+}
+
+.a {
+  text-decoration: none;
+  color: var(--nyt-body-text-color);
+  font-size: var(--nyt-sans-serif-large);
+}
+.a:visited {
+  color: var(--nyt-body-text-color);
+}
+.a > svg {
+  margin-right: 0.75rem;
+}
+
+@media (min-width: 769px) {
+  .footer {
+    margin-top: 10rem;
+  }
+}

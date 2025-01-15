@@ -1,14 +1,14 @@
-import GoTrue from 'gotrue-js';
-import { GetStaticProps } from 'next';
-import Head from 'next/head';
-import { useRef, useState } from 'react';
+import GoTrue from "gotrue-js";
+import { GetStaticProps } from "next";
+import Head from "next/head";
+import { useRef, useState } from "react";
 
 const LoginPage = () => {
   const [isLoginLoading, setIsLoginLoading] = useState(false);
   const auth = useRef<GoTrue | null>(null);
   if (!auth.current) {
     auth.current = new GoTrue({
-      APIUrl: 'https://gotrue-736x5ulcda-uc.a.run.app/',
+      APIUrl: "https://gotrue-736x5ulcda-uc.a.run.app/",
       setCookie: true,
     });
   }
@@ -29,9 +29,9 @@ const LoginPage = () => {
             onSubmit={async (event) => {
               event.preventDefault();
               const formData = new FormData(event.currentTarget);
-              const email = formData.get('email')?.valueOf();
-              const password = formData.get('password')?.valueOf();
-              if (typeof email !== 'string' || typeof password !== 'string') {
+              const email = formData.get("email")?.valueOf();
+              const password = formData.get("password")?.valueOf();
+              if (typeof email !== "string" || typeof password !== "string") {
                 return;
               }
               setIsLoginLoading(true);

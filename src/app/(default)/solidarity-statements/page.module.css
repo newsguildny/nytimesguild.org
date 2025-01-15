@@ -1,0 +1,3 @@
+.main {
+  composes: main from "../testimonials/[category]/page.module.css";
+}

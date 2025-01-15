@@ -1,22 +1,35 @@
-import fs from 'fs';
-import path from 'path';
-import { getMarkdownData } from '../mdx/read';
-import { SolidarityStatementData } from '../../components/SolidarityStatement';
+import fs from "fs";
+import path from "path";
+import { getMarkdownData } from "../mdx/read";
+
+export interface SolidarityStatementData {
+  filename: string;
+  name: string;
+  highlight: boolean;
+  logo?: string;
+}
 
 export function getSolidarityStatementsFilenames() {
   return fs
-    .readdirSync(path.join(process.cwd(), 'src', 'markdown', 'solidarityStatements'))
+    .readdirSync(
+      path.join(process.cwd(), "src", "markdown", "solidarityStatements"),
+    )
     .map((paper) => paper.slice(0, paper.length - 4));
 }
 
 export function getSolidarityStatementsMetadata() {
   return getSolidarityStatementsFilenames().map(
-    (slug) => getMarkdownData<SolidarityStatementData>('solidarityStatements', slug).data
+    (slug) =>
+      getMarkdownData<SolidarityStatementData>("solidarityStatements", slug)
+        .data,
   );
 }
 
 export function getSolidarityStatementData(filename: string) {
-  const markdownData = getMarkdownData<SolidarityStatementData>('solidarityStatements', filename);
+  const markdownData = getMarkdownData<SolidarityStatementData>(
+    "solidarityStatements",
+    filename,
+  );
   return {
     filename: markdownData.data.filename,
     name: markdownData.data.name,
@@ -27,5 +40,7 @@ export function getSolidarityStatementData(filename: string) {
 }
 
 export function getSolidarityStatementsData() {
-  return getSolidarityStatementsFilenames().map((filename) => getSolidarityStatementData(filename));
+  return getSolidarityStatementsFilenames().map((filename) =>
+    getSolidarityStatementData(filename),
+  );
 }

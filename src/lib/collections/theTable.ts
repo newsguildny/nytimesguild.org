@@ -1,8 +1,6 @@
-import fs from 'fs';
-import path from 'path';
-import { getMarkdownData } from '../mdx/read';
-import { renderToString } from '../mdx/renderToString';
-import { components } from '../../components/customEditorComponents';
+import fs from "fs";
+import path from "path";
+import { getMarkdownData } from "../mdx/read";
 
 export interface IssueData {
   date: string;
@@ -15,7 +13,7 @@ export interface IssueData {
 
 export function getIssueFiles() {
   const files = fs
-    .readdirSync(path.join(process.cwd(), 'src', 'markdown', 'theTable'))
+    .readdirSync(path.join(process.cwd(), "src", "markdown", "theTable"))
     .map((issue) => issue.slice(0, issue.length - 4));
 
   files.sort((a, b) => {
@@ -36,30 +34,28 @@ export function getLatestIssueFile() {
 }
 
 const formatMarkdownData = (filename: string) => {
-  const markdownData = getMarkdownData<IssueData>('theTable', filename);
-  const formattedDate = new Date(markdownData.data.date).toString().slice(3, 15);
+  const markdownData = getMarkdownData<IssueData>("theTable", filename);
+  const formattedDate = new Date(markdownData.data.date)
+    .toString()
+    .slice(3, 15);
 
   return { markdownData, formattedDate };
 };
 
-export async function getIssueData(filename: string) {
+export function getIssueData(filename: string) {
   const { markdownData, formattedDate } = formatMarkdownData(filename);
-
-  const mdxSource = await renderToString(markdownData.content, {
-    components,
-  });
 
   return {
     date: formattedDate,
     headline: markdownData.data.headline,
     issue: markdownData.data.issue,
     slug: filename,
-    context: 'the-table',
-    source: mdxSource,
+    context: "the-table",
+    content: markdownData.content,
   };
 }
 
-export async function getTeaserData(filename: string) {
+export function getTeaserData(filename: string) {
   const { markdownData, formattedDate } = formatMarkdownData(filename);
 
   return {
@@ -76,15 +72,12 @@ export function getLatestIssue() {
   return getIssueData(latestIssue);
 }
 
-export async function getPreviousIssues(selectedIssue?: string) {
+export function getPreviousIssues(selectedIssue?: string) {
   const previousIssueFiles = getIssueFiles()
     .slice(1)
     .filter((file) => {
       return file !== selectedIssue;
     });
 
-  return previousIssueFiles.map(async (file: string) => {
-    const teaserData = await getTeaserData(file);
-    return teaserData;
-  });
+  return previousIssueFiles.map(getTeaserData);
 }

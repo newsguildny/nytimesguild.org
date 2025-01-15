@@ -1,0 +1,21 @@
+.live-pill {
+  box-sizing: border-box;
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 1.5rem;
+  font-size: var(--nyt-sans-serif-extra-small);
+  font-weight: 800;
+  color: var(--nyt-header-text-color);
+  text-transform: uppercase;
+}
+.filled {
+  background: var(--nyt-header-background-color);
+}
+.outlined {
+  border: 0.09375rem solid var(--nyt-header-text-color);
+}
+.small {
+  padding: 0.0625rem 0.4375rem;
+  margin: -0.15625rem 0 -0.15625rem 0.125rem;
+}

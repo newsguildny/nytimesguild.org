@@ -1,18 +1,25 @@
 {
-  "extends": ["kyt/base"],
+  "extends": ["kyt/base", "prettier"],
   "parser": "espree",
+  "rules": {
+    "prettier/prettier": "off"
+  },
   "overrides": [
     {
       "files": ["*.ts", "*.tsx"],
-      "extends": [
-        "kyt/jest",
-        "kyt/react",
-        "plugin:@typescript-eslint/recommended"
-      ],
+      "extends": ["kyt/react", "plugin:@typescript-eslint/recommended"],
       "parser": "@typescript-eslint/parser",
       "plugins": ["@typescript-eslint"],
       "rules": {
+        "prettier/prettier": "off",
         "import/prefer-default-export": "off",
+        "import/no-unresolved": "off",
+        "react/no-unknown-property": [
+          2,
+          {
+            "ignore": ["jsx", "global"]
+          }
+        ],
         "react/react-in-jsx-scope": "off",
         "react/jsx-filename-extension": ["error", { "extensions": [".tsx"] }],
         "react/jsx-props-no-spreading": "off",

@@ -4,7 +4,7 @@ import { MDX } from "src/components/MDX";
 import { notFound } from "next/navigation";
 import { HomeHeader } from "../../../components/HomeHeader";
 import { PageHeader } from "../../../components/PageHeader";
-import { getPageData, getPagesMetadata } from "../../../lib/collections/pages";
+import { getPageData, getPageSlugs } from "../../../lib/collections/pages";
 
 const siteTitle = "The New York Times Guild";
 
@@ -62,8 +62,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const pagesMetadata = getPagesMetadata();
-  return pagesMetadata.map(({ slug }) => ({
+  return getPageSlugs().map((slug) => ({
     slug: slug === "index" ? [] : [slug],
   }));
 }

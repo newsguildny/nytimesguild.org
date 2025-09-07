@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         with:
           path: |
             ${{ github.workspace }}/.next/cache

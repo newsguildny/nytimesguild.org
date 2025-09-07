@@ -25,7 +25,7 @@ export function HomeHeader() {
             We have more power together than we do apart.
           </p>
           <p className={cx(crimsonPro.className, styles.p)}>
-            <strong>We are the Times-Guild.</strong>
+            <strong>We are the unions of The New York Times.</strong>
           </p>
         </div>
       </div>
@@ -57,7 +57,7 @@ export function HomeHeader() {
             We have more power together than we do apart.
           </p>
           <p className={cx(crimsonPro.className, styles.p)}>
-            <strong>We are the Times-Guild.</strong>
+            <strong>We are the unions of The New York Times.</strong>
           </p>
         </div>
       </div>

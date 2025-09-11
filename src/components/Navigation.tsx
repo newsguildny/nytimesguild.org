@@ -63,27 +63,9 @@ export function Navigation({ slug, pagesMetadata }: Props) {
             </Link>
           </li>
         ))}
-        {/* Only show on the `/tech/` and `/tech-vote-count/` pages */}
-        {(slug === "tech" || slug === "tech-vote-count") && (
-          <li className={styles.li}>
-            <Link
-              href="/tech-vote-count/"
-              className={cx(styles.link, {
-                [styles.active]: slug === "tech-vote-count",
-              })}
-            >
-              Vote Count
-            </Link>
-          </li>
-        )}
         <li className={styles.li}>
-          <Link
-            href="/tech-sav/"
-            className={cx(styles.link, {
-              [styles.active]: slug === "tech-sav",
-            })}
-          >
-            Tech SAV
+          <Link href="https://www.wirecutterunion.com/" className={styles.link}>
+            Wirecutter
           </Link>
         </li>
       </ul>

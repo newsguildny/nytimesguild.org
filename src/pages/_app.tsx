@@ -1,10 +1,9 @@
-import { AppProps } from 'next/app';
-import Head from 'next/head';
-import { bodyText, link, rule, secondaryHeadingText } from '../lib/styles/tokens/colors';
-import { serif, serifSizes } from '../lib/styles/tokens/fonts';
-import 'lite-youtube-embed/src/lite-yt-embed.css';
-import 'prismjs/themes/prism-okaidia.css';
-import { StaticContext } from '../lib/staticContext/StaticContext';
+import { AppProps } from "next/app";
+import Head from "next/head";
+import { link, rule } from "../lib/styles/tokens/colors";
+import { serifSizes } from "../lib/styles/tokens/fonts";
+import "lite-youtube-embed/src/lite-yt-embed.css";
+import "prismjs/themes/prism-okaidia.css";
 
 export default function App({
   Component,
@@ -12,20 +11,36 @@ export default function App({
 }: AppProps<{
   context?: string;
   slug?: string;
-  staticContext?: Record<string, unknown>;
 }>) {
   return (
-    <StaticContext.Provider value={pageProps.staticContext ?? {}}>
+    <>
       <Head>
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.webp" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.webp" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.webp" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.webp"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.webp"
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.webp"
+        />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff4040" />
         <meta name="apple-mobile-web-app-title" content="NYT Guild" />
         <meta name="msapplication-TileColor" content="#ff4040" />
         <meta name="theme-color" content="#ff4040" />
-        <meta name="og:image" content="https://nytimesguild.org/og-image.webp" />
+        <meta
+          name="og:image"
+          content="https://nytimesguild.org/og-image.webp"
+        />
       </Head>
       <Component {...pageProps} />
       <style jsx global>{`
@@ -43,16 +58,35 @@ export default function App({
           --nyt-sans-serif-small: 0.875rem;
           --nyt-sans-serif-extra-small: 0.75rem;
 
-          font-family: ${serif};
-          font-size: ${serifSizes.small};
+          --nyt-sans-serif-font: "Public Sans";
+          --nyt-serif-font: "Crimson Pro";
+
+          --nyt-background-color: #fff;
+          --nyt-header-text-color: #fff;
+          --nyt-secondary-background-color: #f3f3f3;
+          --nyt-rule-color: #dedede;
+          --nyt-body-text-color: #666;
+          --nyt-secondary-heading-text-color: #666;
+          --nyt-primary-heading-text-color: #ff4040;
+          --nyt-accent-color: #ff4040;
+          --nyt-link-color: #ff4040;
+          --nyt-header-background-color: #ff4040;
+          --nyt-yes-vote-color: #ff4040;
+          --nyt-no-vote-color: #b42f2f;
+          --nyt-table-border-color: #c4c4c4;
+          --nyt-breaking-background-color: #ffd3d3;
+          --nyt-breaking-border-color: #ff4040;
+
+          font-family: var(--nyt-serif-font);
+          font-size: var(--nyt-serif-small);
           font-weight: 400;
-          color: ${bodyText};
+          color: var(--nyt-body-text-color);
         }
 
         // Code blocks default to Consolas/monospace, which looks
         // much larger than our serif and sans serif fonts, so
         // we pick a smaller font size.
-        pre[class*='language-'] {
+        pre[class*="language-"] {
           font-size: var(--nyt-sans-serif-small);
         }
 
@@ -61,8 +95,8 @@ export default function App({
         // React Fragment on the client. This leads to a flash
         // of incorrectly styled content unless we handle this
         // specific case here.
-        main > .mdx-wrapper > *,
-        main > :not(.mdx-wrapper) {
+        main:not(.contract-campaign) > .mdx-wrapper > *,
+        main:not(.contract-campaign) > :not(.mdx-wrapper) {
           margin-left: 2rem;
           margin-right: 2rem;
         }
@@ -85,14 +119,14 @@ export default function App({
           margin: 2rem 0 1rem;
           font-size: ${serifSizes.medium};
           font-weight: 200;
-          color: ${secondaryHeadingText};
+          color: var(--nyt-secondary-heading-text-color);
         }
 
         h2 {
           margin: 3rem 0 1.5rem;
           font-size: ${serifSizes.large};
           font-weight: 200;
-          color: ${secondaryHeadingText};
+          color: var(--nyt-secondary-heading-text-color);
         }
 
         hr {
@@ -102,7 +136,11 @@ export default function App({
 
         ul {
           // middle dot followed by en space
-          list-style-type: '${'\\00B7\\2002'}';
+          list-style-type: "${"\\00B7\\2002"}";
+        }
+
+        img.regular-width {
+          width: 100%;
         }
 
         @media (min-width: 769px) {
@@ -119,14 +157,27 @@ export default function App({
             --nyt-sans-serif-small: 1rem;
             --nyt-sans-serif-extra-small: 0.75rem;
           }
-          main > .mdx-wrapper > *,
-          main > :not(.mdx-wrapper) {
+          main:not(.contract-campaign) > .mdx-wrapper > *,
+          main:not(.contract-campaign) > :not(.mdx-wrapper) {
             max-width: 47rem;
             margin-left: 5rem;
             margin-right: 5rem;
           }
         }
+        .contract-campaign > .mdx-wrapper > *,
+        .contract-campaign > :not(.mdx-wrapper) {
+          max-width: 47rem;
+          margin-left: 2rem;
+          margin-right: 2rem;
+        }
+        @media (min-width: 769px) {
+          .contract-campaign > .mdx-wrapper > *,
+          .contract-campaign > :not(.mdx-wrapper) {
+            margin-left: auto;
+            margin-right: auto;
+          }
+        }
       `}</style>
-    </StaticContext.Provider>
+    </>
   );
 }

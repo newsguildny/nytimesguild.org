@@ -1,7 +1,7 @@
-import GoTrue, { UserData } from 'gotrue-js';
-import { GetStaticProps } from 'next';
-import Head from 'next/head';
-import { useEffect, useRef, useState } from 'react';
+import GoTrue, { UserData } from "gotrue-js";
+import { GetStaticProps } from "next";
+import Head from "next/head";
+import { useEffect, useRef, useState } from "react";
 
 const UsersPage = () => {
   const [isCreateUserLoading, setIsCreateUserLoading] = useState(false);
@@ -9,7 +9,7 @@ const UsersPage = () => {
   const auth = useRef<GoTrue | null>(null);
   if (!auth.current) {
     auth.current = new GoTrue({
-      APIUrl: 'https://gotrue-736x5ulcda-uc.a.run.app/',
+      APIUrl: "https://gotrue-736x5ulcda-uc.a.run.app/",
       setCookie: true,
     });
   }
@@ -17,13 +17,13 @@ const UsersPage = () => {
   const currentUser = auth.current.currentUser();
 
   useEffect(() => {
-    currentUser?.admin.listUsers('').then((response) => {
+    currentUser?.admin.listUsers("").then((response) => {
       // @ts-expect-error gotrue-js is typed incorrectly
       setUsers(response.users);
     });
   }, [currentUser]);
 
-  if (currentUser?.role !== 'admin') {
+  if (currentUser?.role !== "admin") {
     return (
       <main>
         <p>Sorry, you don&apos;t have permission to view this page</p>
@@ -45,22 +45,28 @@ const UsersPage = () => {
             onSubmit={async (event) => {
               event.preventDefault();
               const formData = new FormData(event.currentTarget);
-              const email = formData.get('email')?.valueOf();
-              const password = formData.get('password')?.valueOf();
-              const isAdmin = formData.get('is-admin')?.valueOf();
-              if (typeof email !== 'string' || typeof password !== 'string') {
+              const email = formData.get("email")?.valueOf();
+              const password = formData.get("password")?.valueOf();
+              const isAdmin = formData.get("is-admin")?.valueOf();
+              if (typeof email !== "string" || typeof password !== "string") {
                 return;
               }
               setIsCreateUserLoading(true);
-              const newUser = await currentUser?.admin.createUser(email, password, {
-                role: isAdmin ? 'admin' : '',
-                confirm: true,
-              });
+              const newUser = await currentUser?.admin.createUser(
+                email,
+                password,
+                {
+                  role: isAdmin ? "admin" : "",
+                  confirm: true,
+                },
+              );
               await currentUser?.admin.updateUser(newUser, {
                 // eslint-disable-next-line camelcase
                 app_metadata: {
-                  authorization: { roles: isAdmin ? ['admin', 'editor'] : ['editor'] },
-                  roles: isAdmin ? ['admin', 'editor'] : ['editor'],
+                  authorization: {
+                    roles: isAdmin ? ["admin", "editor"] : ["editor"],
+                  },
+                  roles: isAdmin ? ["admin", "editor"] : ["editor"],
                 },
               });
               setIsCreateUserLoading(false);
@@ -101,7 +107,7 @@ const UsersPage = () => {
             {users.map((user) => (
               <li key={user.id}>
                 {user.email}
-                {user.role === 'admin' ? ' (admin)' : ''}{' '}
+                {user.role === "admin" ? " (admin)" : ""}{" "}
                 <button
                   type="button"
                   onClick={async () => {

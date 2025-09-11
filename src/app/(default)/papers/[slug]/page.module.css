@@ -1,0 +1,9 @@
+.h1 {
+  font-size: var(--nyt-serif-extra-large);
+  font-weight: 300;
+  color: var(--nyt-secondary-heading-text-color);
+}
+
+.img {
+  max-width: 100%;
+}

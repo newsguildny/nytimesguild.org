@@ -11,21 +11,21 @@ interface LiteYoutubeEmbedProps extends React.HTMLAttributes {
 
 declare namespace JSX {
   interface IntrinsicElements {
-    'lite-youtube': LiteYoutubeEmbedProps;
+    "lite-youtube": LiteYoutubeEmbedProps;
   }
 }
 
-declare module 'lite-youtube-embed/src/lite-yt-embed';
+declare module "lite-youtube-embed/src/lite-yt-embed";
 
-declare module 'react-twitter-embed' {
+declare module "react-twitter-embed" {
   export const TwitterTweetEmbed: React.Component;
 }
 
-declare module 'remark-sectionize';
+declare module "remark-sectionize";
 
-declare module 'rehype-remark';
+declare module "rehype-remark";
 
-declare module 'netlify-cms-core' {
+declare module "netlify-cms-core" {
   export interface EditorComponentField {
     fields?: EditorComponentField[];
     /**
@@ -43,7 +43,7 @@ declare module 'netlify-cms-core' {
 type Unpacked<T> = T extends (infer U)[]
   ? U
   : T extends (...args: unknown[]) => infer U
-  ? U
-  : T extends Promise<infer U>
-  ? U
-  : T;
+    ? U
+    : T extends Promise<infer U>
+      ? U
+      : T;

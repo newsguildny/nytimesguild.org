@@ -1,12 +1,21 @@
-import { createContext, ReactNode, SyntheticEvent, useEffect, useRef, useState } from 'react';
-import dynamic from 'next/dynamic';
-import { breakingBackground, breakingBorder } from '../../lib/styles/tokens/colors';
+import {
+  createContext,
+  ReactNode,
+  SyntheticEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import dynamic from "next/dynamic";
+import {
+  breakingBackground,
+  breakingBorder,
+} from "../../lib/styles/tokens/colors";
 
-const Confetti = dynamic(() => import('react-confetti'), { ssr: false });
+const Confetti = dynamic(() => import("react-confetti"), { ssr: false });
 
 export interface ConfettiCannonProps {
   children: ReactNode;
-  startTime?: number;
   total: number;
 }
 
@@ -39,21 +48,21 @@ export function ConfettiCannon({ children, total }: ConfettiCannonProps) {
       setWidth(
         ref.current.offsetWidth -
           parseInt(computedStyle.borderLeftWidth, 10) -
-          parseInt(computedStyle.borderRightWidth, 10)
+          parseInt(computedStyle.borderRightWidth, 10),
       );
       setHeight(
         document.body.offsetHeight -
           ref.current.offsetTop -
           parseInt(computedStyle.borderTopWidth, 10) -
-          parseInt(computedStyle.borderBottomWidth, 10)
+          parseInt(computedStyle.borderBottomWidth, 10),
       );
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   });
 
@@ -67,7 +76,15 @@ export function ConfettiCannon({ children, total }: ConfettiCannonProps) {
             height={height}
             numberOfPieces={total}
             recycle={confetti}
-            colors={['#FF4040', '#B42F2F', '#FF5555', '#FF7373', '#FF9C9E', '#FFD3D3', '#ECECEC']}
+            colors={[
+              "#FF4040",
+              "#B42F2F",
+              "#FF5555",
+              "#FF7373",
+              "#FF9C9E",
+              "#FFD3D3",
+              "#ECECEC",
+            ]}
           />
         )}
         <ConfettiCannonContext.Provider value={{ confetti, onToggleConfetti }}>

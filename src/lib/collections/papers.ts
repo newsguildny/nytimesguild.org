@@ -1,11 +1,11 @@
-import fs from 'fs';
-import path from 'path';
-import { getMarkdownData } from '../mdx/read';
-import { ShopPaperData } from '../../components/ShopPaperSnippet';
+import fs from "fs";
+import path from "path";
+import { getMarkdownData } from "../mdx/read";
+import { ShopPaperData } from "../../components/ShopPaperSnippet";
 
 export function getPapersFilenames() {
   return fs
-    .readdirSync(path.join(process.cwd(), 'src', 'markdown', 'papers'))
+    .readdirSync(path.join(process.cwd(), "src", "markdown", "papers"))
     .map((paper) => paper.slice(0, paper.length - 4));
 }
 
@@ -24,7 +24,7 @@ export function getRecentPapersFilenames() {
 }
 
 export function getPaperMetadata(filename: string) {
-  return getMarkdownData<ShopPaperData>('papers', filename).data;
+  return getMarkdownData<ShopPaperData>("papers", filename).data;
 }
 
 export function getPapersMetadata() {
@@ -32,7 +32,7 @@ export function getPapersMetadata() {
 }
 
 export function getPaperData(filename: string) {
-  const markdownData = getMarkdownData<ShopPaperData>('papers', filename);
+  const markdownData = getMarkdownData<ShopPaperData>("papers", filename);
   return {
     filename: markdownData.data.filename,
     headline: markdownData.data.headline,

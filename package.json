@@ -21,7 +21,7 @@
     "@types/js-yaml": "^4.0.3",
     "classnames": "^2.5.1",
     "date-fns": "^2.11.1",
-    "firebase": "^10.0.0",
+    "firebase": "^10.9.0",
     "gotrue-js": "^0.9.29",
     "gray-matter": "^4.0.3",
     "js-yaml": "^4.1.0",

@@ -51,23 +51,23 @@ export function Navigation({ slug, pagesMetadata }: Props) {
         onClick={() => setIsNavShown((oldValue) => !oldValue)}
       />
       <ul className={cx(publicSans.className, styles.ul)}>
-        {pagesMetadata?.map((pageMetadata) => (
-          <li className={styles.li} key={pageMetadata.slug}>
-            <Link
-              href={`/${pageMetadata.slug}/`}
-              className={cx(styles.link, {
-                [styles.active]: slug === pageMetadata.slug,
-              })}
-            >
-              {pageMetadata.title}
-            </Link>
-          </li>
-        ))}
-        <li className={styles.li}>
-          <Link href="https://www.wirecutterunion.com/" className={styles.link}>
-            Wirecutter
-          </Link>
-        </li>
+        {pagesMetadata?.map((pageMetadata) => {
+          const link = pageMetadata.slug.includes("http")
+            ? pageMetadata.slug
+            : `/${pageMetadata.slug}/`;
+          return (
+            <li className={styles.li} key={pageMetadata.slug}>
+              <Link
+                href={link}
+                className={cx(styles.link, {
+                  [styles.active]: slug === pageMetadata.slug,
+                })}
+              >
+                {pageMetadata.title}
+              </Link>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );

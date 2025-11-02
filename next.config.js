@@ -8,7 +8,7 @@ module.exports = {
   },
   output: "export",
   distDir: "dist",
-	async redirects() {
+  async redirects() {
     return [
       {
         source: '/tech/index.html',

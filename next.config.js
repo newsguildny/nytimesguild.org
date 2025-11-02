@@ -15,7 +15,7 @@ module.exports = {
         destination: '/times-tech',
         permanent: true,
       },
-			{
+      {
         source: '/tech/',
         destination: '/times-tech',
         permanent: true,

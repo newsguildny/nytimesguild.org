@@ -23,7 +23,7 @@ export default async function Page({ params }: Props) {
   } catch {
     return notFound();
   }
-
+  console.log("loading what page?", slug);
   return (
     <>
       {isHome ? (

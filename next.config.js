@@ -11,13 +11,13 @@ module.exports = {
   async redirects() {
     return [
       {
-        source: '/tech/index.html',
-        destination: '/times-tech',
+        source: "/tech/index.html",
+        destination: "/times-tech",
         permanent: true,
       },
       {
-        source: '/tech',
-        destination: '/times-tech',
+        source: "/tech",
+        destination: "/times-tech",
         permanent: true,
       },
     ];

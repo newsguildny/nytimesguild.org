@@ -1,8 +1,8 @@
 import cx from "classnames";
 import { crimsonPro, publicSans } from "src/app/fonts";
-import { TwitterIcon } from "./svgs/TwitterIcon";
 import { MailIcon } from "./svgs/MailIcon";
 import styles from "./footer.module.css";
+import { BlueskyIcon } from "./svgs/BlueskyIcon";
 
 export function Footer() {
   return (
@@ -19,9 +19,9 @@ export function Footer() {
       <p>
         <a
           className={cx(publicSans.className, styles.a)}
-          href="https://twitter.com/NYTGuildTech"
+          href="https://nytguildtech.bsky.social"
         >
-          <TwitterIcon /> @NYTGuildTech
+          <BlueskyIcon /> @nytguildtech.bsky.social
         </a>
       </p>
     </footer>

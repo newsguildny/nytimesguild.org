@@ -3,6 +3,7 @@ import { crimsonPro, publicSans } from "src/app/fonts";
 import { MailIcon } from "./svgs/MailIcon";
 import styles from "./footer.module.css";
 import { BlueskyIcon } from "./svgs/BlueskyIcon";
+import { MastodonIcon } from "./svgs/MastodonIcon";
 
 export function Footer() {
   return (
@@ -22,6 +23,14 @@ export function Footer() {
           href="https://nytguildtech.bsky.social"
         >
           <BlueskyIcon /> @nytguildtech.bsky.social
+        </a>
+      </p>
+      <p>
+        <a
+          className={cx(publicSans.className, styles.a)}
+          href="https://union.place/@NYTGuildTech"
+        >
+          <MastodonIcon /> @NYTGuildTech@union.place
         </a>
       </p>
     </footer>

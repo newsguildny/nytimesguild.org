@@ -1,0 +1,8 @@
+.jobs :global(li + li) {
+  margin-top: 0.75rem;
+}
+
+.jobs :global(.salary) {
+  display: block;
+  font-size: var(--nyt-serif-small);
+}

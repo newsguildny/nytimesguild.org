@@ -8,6 +8,7 @@ import { FAQ, FAQItem } from "./FAQ";
 import { FullBleedImage } from "./FullBleedImage";
 import { PDFEmbed } from "./PDFEmbed";
 import { CenteredContent } from "./CenteredContent";
+import { TechGuildJobs } from "./TechGuildJobs";
 
 export const components = {
   CallToAction,
@@ -20,5 +21,6 @@ export const components = {
   HighlightedSolidarityStatements,
   PDFEmbed,
   RecentPapers,
+  TechGuildJobs,
   YouTube,
 };
